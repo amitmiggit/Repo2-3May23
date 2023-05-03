@@ -1,0 +1,271 @@
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d70/lvoracle  | egrep version 
+Checking DiskLayout DLVs .. 7.4.1 Max supported DLV is 15
+
+LV /dev/vx/dsk/dgdbpsiow1bkup/lvbkup has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsiow1db/lvdb has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsiow1redo1/lvredo1 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsiow1redo2/lvredo2 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+=============
+LV /dev/vx/dsk/dgdbpsipw1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsipw1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsipw1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpsipw1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+=========
+LV /dev/vx/dsk/dgdbpwow1bkup/lvbkup has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1db/lvdb has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1redo1/lvredo1 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1redo2/lvredo2 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+=================
+LV /dev/vx/dsk/dgdbqarow1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+================
+LV /dev/vx/dsk/dgoracle_lp01d69/lvoracle has DLV 13 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d69/lvoracleaudit has DLV 13 ERROR NOK: UPDATE TO DLV 15
+ =====
+ dbpsiow1
+dbpsipw1
+mkdir /DLVUPGRADE 
+df -hPT /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsiow1bkup//lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsiow1db/lvdb /DLVUPGRADE;for DLV in 11 12 13 14 15;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsiow1redo1/lvredo1 /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsiow1redo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE
+======== 
+mount /dev/vx/dsk/dgdbpsiow1redo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+========
+mount /dev/vx/dsk/dgdbpsipw1bkup//lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsipw1db/lvdb /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+
+mount /dev/vx/dsk/dgdbpsipw1lvredo1/lvredo1 /DLVUPGRADE;for DLV in 11 12 13 14 15;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3&& sync -f /DLVUPGRADE;doneumount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsipw1lvredo1/lvredo1 /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsipw1lvredo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+
+=======================
+===========================
+mount /dev/vx/dsk/dgdbpwow1bkup//lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+
+
+====
+ mount /dev/vx/dsk/dgdbpwow1db/lvdb /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+umount /DLVUPGRADE
+mount /dev/vx/dsk/dgdbpwow1redo1/lvredo1 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+umount /DLVUPGRADE
+mount /dev/vx/dsk/dgdbpwow1redo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+====
+==========================
+umount /DLVUPGRADE
+mount /dev/vx/dsk/dgdbqarow1bkup//lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+mount /dev/vx/dsk/dgdbqarow1bkup/lvbkup /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbqarow1db/lvdb /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+ mount /dev/vx/dsk/dgdbqarow1redo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+
+mount /dev/vx/dsk/dgoracle_lp01d69/lvoracle /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+mount /dev/vx/dsk/dgoracle_lp01d69/lvoracleaudit /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+==============================
+mount /dev/vx/dsk/dgoracle_lp01d69/lvoracle  /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount  /dev/vx/dsk/dgoracle_lp01d69/lvoracleaudit /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+============================================
+
+
+
+70
+ dbipsow1
+  dbipspw1
+ dboid6w1 
+dgdboid6w1
+LV /dev/vx/dsk/dgdbipsow1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdboid6w1bkup/lvbkup has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1db/lvdb has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1redo1/lvredo1 has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1redo2/lvredo2 has max DLV 15 OK
+
+LV /dev/vx/dsk/dgoracle_lp01d70/lvoracle has DLV 13 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d70/lvoracleaudit has DLV 13 ERROR NOK: UPDATE TO DLV 15
+======================
+mkdir /DLVUPGRADE 
+df -hPT /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbipsow1bkup/lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipsow1db/lvdb  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipsow1redo1/lvredo1   /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipsow1redo2/lvredo2   /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+=======================
+
+mount /dev/vx/dsk/dgdbipspw1bkup /lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipspw1db/lvdb  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipspw1redo1/lvredo1  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdbipspw1redo2/lvredo2  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+========================
+mount /dev/vx/dsk/dgdboid6w1bkup /lvbkup  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdboid6w1db/lvdb  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdboid6w1redo1/lvredo1  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount /dev/vx/dsk/dgdboid6w1redo2/lvredo2  /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+==============================
+mount /dev/vx/dsk/dgoracle_lp01d70/lvoracle  /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+mount  /dev/vx/dsk/dgoracle_lp01d70/lvoracleaudit /DLVUPGRADE;for DLV in 11 12 13 14 15 ; do vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 3 && sync -f /DLVUPGRADE;done;umount /DLVUPGRADE 
+============================================
+mount /dev/vx/dsk/dgoracle_lp01d70/lvoracle /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+mount  /dev/vx/dsk/dgoracle_lp01d70/lvoracleaudit /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+
+
+============================
+# for DLV in 11 12 13 14 15 ; do
+vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 1 && sync -f  /DLVUPGRADE 
+vxupgrade -n $DLV /DLVUPGRADE1  &&  sleep 1 && sync -f  /DLVUPGRADE1 
+vxupgrade -n $DLV /DLVUPGRADE2  &&  sleep 1 && sync -f  /DLVUPGRADE2 
+vxupgrade -n $DLV /DLVUPGRADE3 &&  sleep 1 && sync -f  /DLVUPGRADE3   
+done
+====================
+mkdir /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsiow1bkup/lvbkup /DLVUPGRADE 
+for DLV in 11 12 13 14 15 ; 
+do
+vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 1 && sync -f  /DLVUPGRADE 
+done
+umount /DLVUPGRADE
+================= 
+mount  /dev/vx/dsk/dgdbpsiow1db/lvdb /DLVUPGRADE
+for DLV in 11 12 13 14 15 ; 
+do
+vxupgrade -n $DLV /DLVUPGRADE1  &&  sleep 1 && sync -f  /DLVUPGRADE1
+done
+umount /DLVUPGRADE
+=========================
+mkdir /DLVUPGRADE2 
+mount /dev/vx/dsk/dgdbpsiow1redo1/lvredo1 /DLVUPGRADE2 
+for DLV in 11 12 13 14 15 ; 
+do
+vxupgrade -n $DLV /DLVUPGRADE2  &&  sleep 1 && sync -f  /DLVUPGRADE2
+done
+umount /DLVUPGRADE2
+==========================
+mkdir /DLVUPGRADE3   
+mount /dev/vx/dsk/dgdbpwow1redo2/lvredo2 /DLVUPGRADE3
+for DLV in 11 12 13 14 15; 
+do
+vxupgrade -n $DLV /DLVUPGRADE3  &&  sleep 1 && sync -f  /DLVUPGRADE3
+done
+umount /DLVUPGRADE3
+============
+
+
+2
+========================
+mkdir /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpsipw1bkup/lvbkup /DLVUPGRADE 
+vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 1 && sync -f  /DLVUPGRADE 
+umount /DLVUPGRADE
+================= 
+mkdir /DLVUPGRADE1  
+mount /dev/vx/dsk/dgdbpsipw1db/lvdb /DLVUPGRADE1 
+vxupgrade -n $DLV /DLVUPGRADE1  &&  sleep 1 && sync -f  /DLVUPGRADE1 
+umount /DLVUPGRADE1
+=========================
+mkdir /DLVUPGRADE2 
+mount /dev/vx/dsk/dgdbpsipw1redo1/lvredo1 /DLVUPGRADE2 
+vxupgrade -n $DLV /DLVUPGRADE2  &&  sleep 1 && sync -f  /DLVUPGRADE2
+umount /DLVUPGRADE2
+==========================
+mkdir /DLVUPGRADE3   
+mount /dev/vx/dsk/dgdbpsiow1redo2/lvredo2  /DLVUPGRADE3   
+vxupgrade -n $DLV /DLVUPGRADE3  &&  sleep 1 && sync -f  /DLVUPGRADE3
+umount /DLVUPGRADE3
+============
+
+3
+LV /dev/vx/dsk/dgdbpwow1bkup/lvbkup has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1db/lvdb has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1redo1/lvredo1 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbpwow1redo2/lvredo2 has DLV 11 ERROR NOK: UPDATE TO DLV 15
+
+
+========================
+mkdir /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbpwow1bkup/lvbkup /DLVUPGRADE 
+for DLV in 11 12 13 14 15 ; 
+do
+vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 1 && sync -f  /DLVUPGRADE 
+done
+umount /DLVUPGRADE
+================= 
+mkdir /DLVUPGRADE1  
+mount /dev/vx/dsk/dgdbpwow1db/lvdb  /DLVUPGRADE1 
+for DLV in 11 12 13 14 15 ;do
+vxupgrade -n $DLV /DLVUPGRADE1  &&  sleep 1 && sync -f  /DLVUPGRADE1 
+done
+umount /DLVUPGRADE1
+=========================
+mkdir /DLVUPGRADE2 
+mount /dev/vx/dsk/dgdbpwow1redo1/lvredo1 /DLVUPGRADE2
+for DLV in 11 12 13 14 15 ; do 
+vxupgrade -n $DLV /DLVUPGRADE2  &&  sleep 1 && sync -f  /DLVUPGRADE2
+done
+umount /DLVUPGRADE2
+==========================
+mkdir /DLVUPGRADE3   
+mount /dev/vx/dsk/dgdbpwow1redo2/lvredo2  /DLVUPGRADE3
+for DLV in 11 12 13 14 15 ; do
+vxupgrade -n $DLV /DLVUPGRADE3  &&  sleep 1 && sync -f  /DLVUPGRADE3
+done
+umount /DLVUPGRADE3
+============
+
+
+4
+LV /dev/vx/dsk/dgdbqarow1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbqarow1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+
+
+
+mkdir /DLVUPGRADE 
+mount /dev/vx/dsk/dgdbqarow1bkup/lvbkup /DLVUPGRADE 
+for DLV in 11 12 13 14 15 ; 
+do
+vxupgrade -n $DLV /DLVUPGRADE  &&  sleep 1 && sync -f  /DLVUPGRADE 
+done
+umount /DLVUPGRADE
+================= 
+mkdir /DLVUPGRADE1  
+mount /dev/vx/dsk/dgdbqarow1db/lvdb /DLVUPGRADE1 
+for DLV in 11 12 13 14 15 ;do
+vxupgrade -n $DLV /DLVUPGRADE1  &&  sleep 1 && sync -f  /DLVUPGRADE1 
+done
+umount /DLVUPGRADE1
+=========================
+mkdir /DLVUPGRADE2 
+mount /dev/vx/dsk/dgdbqarow1redo1/lvredo1 /DLVUPGRADE2
+for DLV in 11 12 13 14 15 ; do 
+vxupgrade -n $DLV /DLVUPGRADE2  &&  sleep 1 && sync -f  /DLVUPGRADE2
+done
+umount /DLVUPGRADE2
+==========================
+mkdir /DLVUPGRADE3   
+mount /dev/vx/dsk/dgdbqarow1redo2/lvredo2 /DLVUPGRADE3
+for DLV in 11 12 13 14 15 ; do
+vxupgrade -n $DLV /DLVUPGRADE3  &&  sleep 1 && sync -f  /DLVUPGRADE3
+done
+umount /DLVUPGRADE3
+============
+
+
+
+
+Check that the LVOL is now at the required level and umount when OK:
+
+# /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgpgipcs0001/lvapps | egrep version

@@ -1,0 +1,899 @@
+Source Cluster:  lp10d47/48 
+
+Destination Cluster:  lp10d49/50
+
+--- Maximum of 6 packages in total, except for cluster evacuations
+package(s) to be transferred: 
+
+dbapdm75-------------49
+dbipm75--------------50
+dbipsc75-------------49
+dbipso75-------------49
+dbipst75
+dbpampus
+dbpsat75
+
+san_shortinfo |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75
+
+Preferred Node:  
+lp10d49.w10: dbapdm75, dbipsc75, dbipso75
+lp10d50.w10: dbipst75, dbpsat75, dbipm75, dbpampus
+
+New IP necessary:  < Y / N >N
+
+
+--- There is no package limit if this is an evacuation (cluster replacement)
+Cluster evacuation: < Y / N >Y
+
+
+Packages running on Destination Node :
+
+
+
+san_shortinfo | egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75
+
+
+======================================================================================================================
+
+
+lp10d47:~ # hastatus -sum |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75
+B  dbapdm75        lp10d47              Y          N               OFFLINE
+B  dbapdm75        lp10d48              Y          N               OFFLINE
+B  dbipm75         lp10d47              Y          N               OFFLINE
+B  dbipm75         lp10d48              Y          N               OFFLINE
+B  dbipsc75        lp10d47              Y          N               OFFLINE
+B  dbipsc75        lp10d48              Y          N               OFFLINE
+B  dbipso75        lp10d47              Y          N               OFFLINE
+B  dbipso75        lp10d48              Y          N               OFFLINE
+B  dbipst75        lp10d47              Y          N               OFFLINE
+B  dbipst75        lp10d48              Y          N               OFFLINE
+B  dbpampus        lp10d47              Y          N               OFFLINE
+B  dbpampus        lp10d48              Y          N               OFFLINE
+B  dbpsat75        lp10d47              Y          N               OFFLINE
+B  dbpsat75        lp10d48              Y          N               OFFLINE
+C  dbapdm75
+C  dbipm75
+C  dbipsc75
+C  dbipso75
+C  dbipst75
+C  dbpampus
+C  dbpsat75
+H  dbapdm75        Application     dbapdm75_app
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75bkup
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75db
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo1
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo2
+H  dbapdm75        IP              dbapdm75_ip
+H  dbapdm75        Mount           dbapdm75_bkup_mount
+H  dbapdm75        Mount           dbapdm75_db_mount
+H  dbapdm75        Mount           dbapdm75_redo1_mount
+H  dbapdm75        Mount           dbapdm75_redo2_mount
+H  dbapdm75        Proxy           dbapdm75_nic_proxy
+H  dbipm75         Application     dbipm75_app
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75bkup
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75db
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo1
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo2
+H  dbipm75         IP              dbipm75_ip
+H  dbipm75         Mount           dbipm75_bkup_mount
+H  dbipm75         Mount           dbipm75_db_mount
+H  dbipm75         Mount           dbipm75_redo1_mount
+H  dbipm75         Mount           dbipm75_redo2_mount
+H  dbipm75         Proxy           dbipm75_nic_proxy
+H  dbipsc75        Application     dbipsc75_oracle_app
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75bkup
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75db
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo1
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo2
+H  dbipsc75        IP              dbipsc75_dbipsc75_ip
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_bkup_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_db_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo1_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo2_mount
+H  dbipsc75        Proxy           dbipsc75_nic_proxy
+H  dbipso75        Application     dbipso75_app
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75bkup
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75db
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo1
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo2
+H  dbipso75        IP              dbipso75_ip
+H  dbipso75        Mount           dbipso75_bkup_mount
+H  dbipso75        Mount           dbipso75_db_mount
+H  dbipso75        Mount           dbipso75_redo1_mount
+H  dbipso75        Mount           dbipso75_redo2_mount
+H  dbipso75        Proxy           dbipso75_nic_proxy
+H  dbipst75        Application     dbipst75_app
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75bkup
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75db
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo1
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo2
+H  dbipst75        IP              dbipst75_ip
+H  dbipst75        Mount           dbipst75_bkup_mount
+H  dbipst75        Mount           dbipst75_db_mount
+H  dbipst75        Mount           dbipst75_redo1_mount
+H  dbipst75        Mount           dbipst75_redo2_mount
+H  dbipst75        Proxy           dbipst75_nic_proxy
+H  dbpampus        Application     dbpampus_oracle_app
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusbkup
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusdb
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo1
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo2
+H  dbpampus        IP              dbpampus_dbpampus_ip
+H  dbpampus        Mount           dbpampus_global_dbpampus_bkup_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_db_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo1_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo2_mount
+H  dbpampus        Proxy           dbpampus_nic_proxy
+H  dbpsat75        Application     dbpsat75_app
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75bkup
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75db
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo1
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo2
+H  dbpsat75        IP              dbpsat75_ip
+H  dbpsat75        Mount           dbpsat75_bkup_mount
+H  dbpsat75        Mount           dbpsat75_db_mount
+H  dbpsat75        Mount           dbpsat75_redo1_mount
+H  dbpsat75        Mount           dbpsat75_redo2_mount
+H  dbpsat75        Proxy           dbpsat75_nic_proxy
+lp10d47:~ #  hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp10d47              RUNNING              0
+A  lp10d48              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp10d47              Y          N               ONLINE
+B  NIC             lp10d48              Y          N               ONLINE
+B  dbapdm75        lp10d47              Y          N               OFFLINE
+B  dbapdm75        lp10d48              Y          N               OFFLINE
+B  dbipm75         lp10d47              Y          N               OFFLINE
+B  dbipm75         lp10d48              Y          N               OFFLINE
+B  dbipsc75        lp10d47              Y          N               OFFLINE
+B  dbipsc75        lp10d48              Y          N               OFFLINE
+B  dbipso75        lp10d47              Y          N               OFFLINE
+B  dbipso75        lp10d48              Y          N               OFFLINE
+B  dbipst75        lp10d47              Y          N               OFFLINE
+B  dbipst75        lp10d48              Y          N               OFFLINE
+B  dbpampus        lp10d47              Y          N               OFFLINE
+B  dbpampus        lp10d48              Y          N               OFFLINE
+B  dbpsat75        lp10d47              Y          N               OFFLINE
+B  dbpsat75        lp10d48              Y          N               OFFLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  dbapdm75
+C  dbipm75
+C  dbipsc75
+C  dbipso75
+C  dbipst75
+C  dbpampus
+C  dbpsat75
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  dbapdm75        Application     dbapdm75_app
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75bkup
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75db
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo1
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo2
+H  dbapdm75        IP              dbapdm75_ip
+H  dbapdm75        Mount           dbapdm75_bkup_mount
+H  dbapdm75        Mount           dbapdm75_db_mount
+H  dbapdm75        Mount           dbapdm75_redo1_mount
+H  dbapdm75        Mount           dbapdm75_redo2_mount
+H  dbapdm75        Proxy           dbapdm75_nic_proxy
+H  dbipm75         Application     dbipm75_app
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75bkup
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75db
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo1
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo2
+H  dbipm75         IP              dbipm75_ip
+H  dbipm75         Mount           dbipm75_bkup_mount
+H  dbipm75         Mount           dbipm75_db_mount
+H  dbipm75         Mount           dbipm75_redo1_mount
+H  dbipm75         Mount           dbipm75_redo2_mount
+H  dbipm75         Proxy           dbipm75_nic_proxy
+H  dbipsc75        Application     dbipsc75_oracle_app
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75bkup
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75db
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo1
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo2
+H  dbipsc75        IP              dbipsc75_dbipsc75_ip
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_bkup_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_db_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo1_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo2_mount
+H  dbipsc75        Proxy           dbipsc75_nic_proxy
+H  dbipso75        Application     dbipso75_app
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75bkup
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75db
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo1
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo2
+H  dbipso75        IP              dbipso75_ip
+H  dbipso75        Mount           dbipso75_bkup_mount
+H  dbipso75        Mount           dbipso75_db_mount
+H  dbipso75        Mount           dbipso75_redo1_mount
+H  dbipso75        Mount           dbipso75_redo2_mount
+H  dbipso75        Proxy           dbipso75_nic_proxy
+H  dbipst75        Application     dbipst75_app
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75bkup
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75db
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo1
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo2
+H  dbipst75        IP              dbipst75_ip
+H  dbipst75        Mount           dbipst75_bkup_mount
+H  dbipst75        Mount           dbipst75_db_mount
+H  dbipst75        Mount           dbipst75_redo1_mount
+H  dbipst75        Mount           dbipst75_redo2_mount
+H  dbipst75        Proxy           dbipst75_nic_proxy
+H  dbpampus        Application     dbpampus_oracle_app
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusbkup
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusdb
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo1
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo2
+H  dbpampus        IP              dbpampus_dbpampus_ip
+H  dbpampus        Mount           dbpampus_global_dbpampus_bkup_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_db_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo1_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo2_mount
+H  dbpampus        Proxy           dbpampus_nic_proxy
+H  dbpsat75        Application     dbpsat75_app
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75bkup
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75db
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo1
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo2
+H  dbpsat75        IP              dbpsat75_ip
+H  dbpsat75        Mount           dbpsat75_bkup_mount
+H  dbpsat75        Mount           dbpsat75_db_mount
+H  dbpsat75        Mount           dbpsat75_redo1_mount
+H  dbpsat75        Mount           dbpsat75_redo2_mount
+H  dbpsat75        Proxy           dbpsat75_nic_proxy
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #  hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp10d47              RUNNING              0
+A  lp10d48              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp10d47              Y          N               ONLINE
+B  NIC             lp10d48              Y          N               ONLINE
+B  dbapdm75        lp10d47              Y          N               OFFLINE
+B  dbapdm75        lp10d48              Y          N               OFFLINE
+B  dbipm75         lp10d47              Y          N               OFFLINE
+B  dbipm75         lp10d48              Y          N               OFFLINE
+B  dbipsc75        lp10d47              Y          N               OFFLINE
+B  dbipsc75        lp10d48              Y          N               OFFLINE
+B  dbipso75        lp10d47              Y          N               OFFLINE
+B  dbipso75        lp10d48              Y          N               OFFLINE
+B  dbipst75        lp10d47              Y          N               OFFLINE
+B  dbipst75        lp10d48              Y          N               OFFLINE
+B  dbpampus        lp10d47              Y          N               OFFLINE
+B  dbpampus        lp10d48              Y          N               OFFLINE
+B  dbpsat75        lp10d47              Y          N               OFFLINE
+B  dbpsat75        lp10d48              Y          N               OFFLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  dbapdm75
+C  dbipm75
+C  dbipsc75
+C  dbipso75
+C  dbipst75
+C  dbpampus
+C  dbpsat75
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  dbapdm75        Application     dbapdm75_app
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75bkup
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75db
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo1
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo2
+H  dbapdm75        IP              dbapdm75_ip
+H  dbapdm75        Mount           dbapdm75_bkup_mount
+H  dbapdm75        Mount           dbapdm75_db_mount
+H  dbapdm75        Mount           dbapdm75_redo1_mount
+H  dbapdm75        Mount           dbapdm75_redo2_mount
+H  dbapdm75        Proxy           dbapdm75_nic_proxy
+H  dbipm75         Application     dbipm75_app
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75bkup
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75db
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo1
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo2
+H  dbipm75         IP              dbipm75_ip
+H  dbipm75         Mount           dbipm75_bkup_mount
+H  dbipm75         Mount           dbipm75_db_mount
+H  dbipm75         Mount           dbipm75_redo1_mount
+H  dbipm75         Mount           dbipm75_redo2_mount
+H  dbipm75         Proxy           dbipm75_nic_proxy
+H  dbipsc75        Application     dbipsc75_oracle_app
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75bkup
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75db
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo1
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo2
+H  dbipsc75        IP              dbipsc75_dbipsc75_ip
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_bkup_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_db_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo1_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo2_mount
+H  dbipsc75        Proxy           dbipsc75_nic_proxy
+H  dbipso75        Application     dbipso75_app
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75bkup
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75db
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo1
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo2
+H  dbipso75        IP              dbipso75_ip
+H  dbipso75        Mount           dbipso75_bkup_mount
+H  dbipso75        Mount           dbipso75_db_mount
+H  dbipso75        Mount           dbipso75_redo1_mount
+H  dbipso75        Mount           dbipso75_redo2_mount
+H  dbipso75        Proxy           dbipso75_nic_proxy
+H  dbipst75        Application     dbipst75_app
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75bkup
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75db
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo1
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo2
+H  dbipst75        IP              dbipst75_ip
+H  dbipst75        Mount           dbipst75_bkup_mount
+H  dbipst75        Mount           dbipst75_db_mount
+H  dbipst75        Mount           dbipst75_redo1_mount
+H  dbipst75        Mount           dbipst75_redo2_mount
+H  dbipst75        Proxy           dbipst75_nic_proxy
+H  dbpampus        Application     dbpampus_oracle_app
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusbkup
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusdb
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo1
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo2
+H  dbpampus        IP              dbpampus_dbpampus_ip
+H  dbpampus        Mount           dbpampus_global_dbpampus_bkup_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_db_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo1_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo2_mount
+H  dbpampus        Proxy           dbpampus_nic_proxy
+H  dbpsat75        Application     dbpsat75_app
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75bkup
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75db
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo1
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo2
+H  dbpsat75        IP              dbpsat75_ip
+H  dbpsat75        Mount           dbpsat75_bkup_mount
+H  dbpsat75        Mount           dbpsat75_db_mount
+H  dbpsat75        Mount           dbpsat75_redo1_mount
+H  dbpsat75        Mount           dbpsat75_redo2_mount
+H  dbpsat75        Proxy           dbpsat75_nic_proxy
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ # san_shortinfo |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75
+VXDEV              | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | DISKGROUP
+-------------------|-----------------------------------|-----------------------------------|----------
+hitachi_vspg1k0_00ae | sdly  00:AE   1G   11307  1048576 | sdkb  00:AE   2G   11307  1048576 | dgdbipm75db
+hitachi_vspg1k0_0101 | sdkj  01:01   1G   11307   230490 | sdhp  01:01   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0102 | sdje  01:02   1G   11307   115245 | sdgg  01:02   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0103 | sdjf  01:03   1G   11307   115245 | sdgi  01:03   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0104 | sdji  01:04   1G   11307   115245 | sdgj  01:04   2G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_0105 | sdhj  01:05   1G   11307     7201 | sdeq  01:05   2G   11307     7201 | dgdbipst75redo1
+hitachi_vspg1k0_0106 | sdjl  01:06   1G   11307   115245 | sdgl  01:06   2G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_0107 | sdkk  01:07   1G   11307   230490 | sdhs  01:07   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0108 | sdhl  01:08   1G   11307     7201 | sdes  01:08   2G   11307     7201 | dgdbipst75redo2
+hitachi_vspg1k0_0109 | sdjn  01:09   1G   11307   115245 | sdgn  01:09   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_010c | sdhm  01:0C   1G   11307     7201 | sdev  01:0C   2G   11307     7201 | dgdbipst75redo2
+hitachi_vspg1k0_010d | sdhn  01:0D   1G   11307     7201 | sdew  01:0D   2G   11307     7201 | dgdbipst75redo1
+hitachi_vspg1k0_010e | sdiy  01:0E   1G   11307    57622 | sdgb  01:0E   2G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_010f | sdiz  01:0F   1G   11307    57622 | sdgd  01:0F   2G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_0110 | sdjb  01:10   1G   11307    57622 | sdge  01:10   2G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_0111 | sdhq  01:11   1G   11307     7201 | sdey  01:11   2G   11307     7201 | dgdbipso75redo2
+hitachi_vspg1k0_0112 | sdhr  01:12   1G   11307     7201 | sdfa  01:12   2G   11307     7201 | dgdbipso75redo1
+hitachi_vspg1k0_0114 | sdjp  01:14   1G   11307   115245 | sdgp  01:14   2G   11307   115245 | dgdbpsat75bkup
+hitachi_vspg1k0_0115 | sdko  01:15   1G   11307   230490 | sdhu  01:15   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0116 | sdkq  01:16   1G   11307   230490 | sdhw  01:16   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0117 | sdht  01:17   1G   11307     7201 | sdfc  01:17   2G   11307     7201 | dgdbpsat75redo2
+hitachi_vspg1k0_0118 | sdhv  01:18   1G   11307     7201 | sdfe  01:18   2G   11307     7201 | dgdbpsat75redo1
+hitachi_vspg1k0_0119 | sdks  01:19   1G   11307   230490 | sdhz  01:19   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011a | sdjr  01:1A   1G   11307   115245 | sdgr  01:1A   2G   11307   115245 | dgdbpsat75bkup
+hitachi_vspg1k0_011b | sdku  01:1B   1G   11307   230490 | sdid  01:1B   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011c | sdkv  01:1C   1G   11307   230490 | sdif  01:1C   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011d | sdkw  01:1D   1G   11307   230490 | sdig  01:1D   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011e | sdkx  01:1E   1G   11307   230490 | sdih  01:1E   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011f | sdjt  01:1F   1G   11307   115245 | sdgu  01:1F   2G   11307   115245 | dgdbipso75db
+hitachi_vspg1k0_0120 | sdky  01:20   1G   11307   230490 | sdii  01:20   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0121 | sdkz  01:21   1G   11307   230490 | sdij  01:21   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0122 | sdla  01:22   1G   11307   230490 | sdik  01:22   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0123 | sdlb  01:23   1G   11307   230490 | sdil  01:23   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0124 | sdlc  01:24   1G   11307   230490 | sdim  01:24   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0125 | sdld  01:25   1G   11307   230490 | sdin  01:25   2G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0127 | sdjv  01:27   1G   11307   115245 | sdgw  01:27   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0128 | sdjw  01:28   1G   11307   115245 | sdgx  01:28   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0129 | sdjx  01:29   1G   11307   115245 | sdha  01:29   2G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_012b | sdlo  01:2B   1G   11307   518602 | sdjh  01:2B   2G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012c | sdlp  01:2C   1G   11307   518602 | sdjj  01:2C   2G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012d | sdlq  01:2D   1G   11307   518602 | sdjk  01:2D   2G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012e | sdka  01:2E   1G   11307   115245 | sdhc  01:2E   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_012f | sdkc  01:2F   1G   11307   115245 | sdhe  01:2F   2G   11307   115245 | dgdbapdm75bkup
+hitachi_vspg1k0_0130 | sdle  01:30   1G   11307   230490 | sdio  01:30   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0131 | sdlf  01:31   1G   11307   230490 | sdip  01:31   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0132 | sdlg  01:32   1G   11307   230490 | sdis  01:32   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0133 | sdkd  01:33   1G   11307   115245 | sdhg  01:33   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0134 | sdlh  01:34   1G   11307   230490 | sdiu  01:34   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0135 | sdli  01:35   1G   11307   230490 | sdiv  01:35   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0137 | sdhx  01:37   1G   11307    14405 | sdfh  01:37   2G   11307    14405 | dgdbapdm75redo1
+hitachi_vspg1k0_0138 | sdhy  01:38   1G   11307    14405 | sdfi  01:38   2G   11307    14405 | dgdbapdm75redo2
+hitachi_vspg1k0_0139 | sdia  01:39   1G   11307    14405 | sdfl  01:39   2G   11307    14405 | dgdbipm75redo1
+hitachi_vspg1k0_013a | sdib  01:3A   1G   11307    14405 | sdfn  01:3A   2G   11307    14405 | dgdbipm75redo2
+hitachi_vspg1k0_0147 | sdkf  01:47   1G   11307   115245 | sdhi  01:47   2G   11307   115245 | dgdbapdm75bkup
+hitachi_vspg1k0_0148 | sdlj  01:48   1G   11307   230490 | sdix  01:48   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0149 | sdlk  01:49   1G   11307   230490 | sdja  01:49   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014a | sdll  01:4A   1G   11307   230490 | sdjc  01:4A   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014b | sdlm  01:4B   1G   11307   230490 | sdjd  01:4B   2G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014d | sdln  01:4D   1G   11307   230490 | sdjg  01:4D   2G   11307   230490 | dgdbpampusdb
+hitachi_vspg1k0_014e | sdkg  01:4E   1G   11307   115245 | sdhk  01:4E   2G   11307   115245 | dgdbpampusbkup
+hitachi_vspg1k0_014f | sdic  01:4F   1G   11307    14405 | sdfo  01:4F   2G   11307    14405 | dgdbpampusredo1
+hitachi_vspg1k0_0150 | sdie  01:50   1G   11307    14405 | sdfq  01:50   2G   11307    14405 | dgdbpampusredo2
+hitachi_vspg1k0_0151 | sdlr  01:51   1G   11307   518602 | sdjm  01:51   2G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_0152 | sdls  01:52   1G   11307   518602 | sdjo  01:52   2G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_0153 | sdkh  01:53   1G   11307   115245 | sdho  01:53   2G   11307   115245 | dgdbipsc75db
+hitachi_vspg1k0_0154 | sdiq  01:54   1G   11307    14405 | sdft  01:54   2G   11307    14405 | dgdbipsc75bkup
+hitachi_vspg1k0_0155 | sdir  01:55   1G   11307    14405 | sdfv  01:55   2G   11307    14405 | dgdbipsc75bkup
+hitachi_vspg1k0_0156 | sdit  01:56   1G   11307    14405 | sdfx  01:56   2G   11307    14405 | dgdbipsc75redo1
+hitachi_vspg1k0_0157 | sdiw  01:57   1G   11307    14405 | sdfz  01:57   2G   11307    14405 | dgdbipsc75redo2
+hitachi_vspg1k0_0166 | sdlt  01:66   1G   11307   115245 | sdjq  01:66   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0167 | sdlu  01:67   1G   11307   115245 | sdjs  01:67   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0168 | sdlv  01:68   1G   11307   115245 | sdju  01:68   2G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0175 | sdlw  01:75   1G   11307   230490 | sdjy  01:75   2G   11307   230490 | dgdbipso75bkup
+hitachi_vspg1k0_0176 | sdlx  01:76   1G   11307   230490 | sdjz  01:76   2G   11307   230490 | dgdbipso75bkup
+hitachi_vspg1k0_01a1 | sdlz  01:A1   1G   11307   115245 | sdke  01:A1   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_01c6 | sdma  01:C6   1G   11307   518602 | sdki  01:C6   2G   11307   518602 | dgdbapdm75db
+hitachi_vspg1k0_01c7 | sdmb  01:C7   1G   11307    57622 | sdkl  01:C7   2G   11307    57622 | dgdbapdm75db
+hitachi_vspg1k0_027b | sdmc  02:7B   1G   11307   518602 | sdkm  02:7B   2G   11307   518602 | dgdbipm75bkup
+hitachi_vspg1k0_027c | sdmd  02:7C   1G   11307   230490 | sdkn  02:7C   2G   11307   230490 | dgdbipm75bkup
+hitachi_vspg1k0_027d | sdme  02:7D   1G   11307   115245 | sdkp  02:7D   2G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_041c | sdmg  04:1C   1G   11307   230490 | sdkt  04:1C   2G   11307   230490 | dgdbapdm75bkup
+hitachi_vspg1k0_0422 | sdmf  04:22   1G   11307   230490 | sdkr  04:22   2G   11307   230490 | dgdbapdm75bkup
+hitachi_vspg1k1_00ae | sdgk  00:AE   1G   20414  1048576 | sddr  00:AE   2G   20414  1048576 | dgdbipm75db
+hitachi_vspg1k1_0101 | sddp  01:01   1G   20414   230490 | sdar  01:01   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0102 | sdds  01:02   1G   20414   230490 | sdas  01:02   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0103 | sdba  01:03   1G   20414     7201 | sdf   01:03   2G   20414     7201 | dgdbipso75redo2
+hitachi_vspg1k1_0104 | sdbc  01:04   1G   20414     7201 | sdg   01:04   2G   20414     7201 | dgdbipso75redo1
+hitachi_vspg1k1_0105 | sdcl  01:05   1G   20414   115245 | sdaa  01:05   2G   20414   115245 | dgdbpsat75bkup
+hitachi_vspg1k1_0106 | sdcn  01:06   1G   20414   115245 | sdab  01:06   2G   20414   115245 | dgdbpsat75bkup
+hitachi_vspg1k1_0107 | sddu  01:07   1G   20414   230490 | sdau  01:07   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0108 | sddx  01:08   1G   20414   230490 | sdaw  01:08   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0109 | sddz  01:09   1G   20414   230490 | sday  01:09   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_010a | sdbe  01:0A   1G   20414     7201 | sdh   01:0A   2G   20414     7201 | dgdbpsat75redo2
+hitachi_vspg1k1_010b | sdbg  01:0B   1G   20414     7201 | sdi   01:0B   2G   20414     7201 | dgdbpsat75redo1
+hitachi_vspg1k1_010c | sdcp  01:0C   1G   20414   115245 | sdac  01:0C   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_010d | sdcr  01:0D   1G   20414   115245 | sdad  01:0D   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_010e | sdbh  01:0E   1G   20414     7201 | sdj   01:0E   2G   20414     7201 | dgdbipst75redo2
+hitachi_vspg1k1_010f | sdbj  01:0F   1G   20414     7201 | sdk   01:0F   2G   20414     7201 | dgdbipst75redo1
+hitachi_vspg1k1_0110 | sdeb  01:10   1G   20414   230490 | sdbb  01:10   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0111 | sdct  01:11   1G   20414   115245 | sdae  01:11   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0112 | sdbl  01:12   1G   20414     7201 | sdl   01:12   2G   20414     7201 | dgdbipst75redo1
+hitachi_vspg1k1_0114 | sdcw  01:14   1G   20414   115245 | sdaf  01:14   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0116 | sdbm  01:16   1G   20414     7201 | sdm   01:16   2G   20414     7201 | dgdbipst75redo2
+hitachi_vspg1k1_0117 | sdcy  01:17   1G   20414   115245 | sdag  01:17   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_0118 | sded  01:18   1G   20414   230490 | sdbd  01:18   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0119 | sdcf  01:19   1G   20414    57622 | sdx   01:19   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011a | sdch  01:1A   1G   20414    57622 | sdy   01:1A   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011b | sdcj  01:1B   1G   20414    57622 | sdz   01:1B   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011d | sdef  01:1D   1G   20414   230490 | sdbf  01:1D   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_011e | sdeh  01:1E   1G   20414   230490 | sdbi  01:1E   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_011f | sdcz  01:1F   1G   20414   115245 | sdah  01:1F   2G   20414   115245 | dgdbipso75db
+hitachi_vspg1k1_0120 | sdek  01:20   1G   20414   230490 | sdbk  01:20   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0121 | sdel  01:21   1G   20414   230490 | sdbn  01:21   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0122 | sden  01:22   1G   20414   230490 | sdbq  01:22   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0123 | sdep  01:23   1G   20414   230490 | sdbs  01:23   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0124 | sder  01:24   1G   20414   230490 | sdbx  01:24   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0125 | sdet  01:25   1G   20414   230490 | sdby  01:25   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0127 | sdda  01:27   1G   20414   115245 | sdai  01:27   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0128 | sddb  01:28   1G   20414   115245 | sdaj  01:28   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0129 | sddd  01:29   1G   20414   115245 | sdak  01:29   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_012b | sdfp  01:2B   1G   20414   518602 | sdcu  01:2B   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_012c | sdde  01:2C   1G   20414   115245 | sdal  01:2C   2G   20414   115245 | dgdbapdm75bkup
+hitachi_vspg1k1_012d | sddf  01:2D   1G   20414   115245 | sdam  01:2D   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_012e | sdeu  01:2E   1G   20414   230490 | sdcb  01:2E   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_012f | sdex  01:2F   1G   20414   230490 | sdcc  01:2F   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0130 | sdfr  01:30   1G   20414   518602 | sdcv  01:30   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0131 | sdfs  01:31   1G   20414   518602 | sdcx  01:31   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0132 | sdez  01:32   1G   20414   230490 | sdce  01:32   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0133 | sddh  01:33   1G   20414   115245 | sdan  01:33   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0134 | sdfb  01:34   1G   20414   230490 | sdcg  01:34   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0135 | sdfd  01:35   1G   20414   230490 | sdci  01:35   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0137 | sdbo  01:37   1G   20414    14405 | sdn   01:37   2G   20414    14405 | dgdbapdm75redo1
+hitachi_vspg1k1_0138 | sdbp  01:38   1G   20414    14405 | sdo   01:38   2G   20414    14405 | dgdbapdm75redo2
+hitachi_vspg1k1_0139 | sdbr  01:39   1G   20414    14405 | sdp   01:39   2G   20414    14405 | dgdbipm75redo1
+hitachi_vspg1k1_013a | sdbt  01:3A   1G   20414    14405 | sdq   01:3A   2G   20414    14405 | dgdbipm75redo2
+hitachi_vspg1k1_0147 | sddj  01:47   1G   20414   115245 | sdao  01:47   2G   20414   115245 | dgdbapdm75bkup
+hitachi_vspg1k1_0148 | sdff  01:48   1G   20414   230490 | sdck  01:48   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0149 | sdfg  01:49   1G   20414   230490 | sdcm  01:49   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014a | sdfj  01:4A   1G   20414   230490 | sdco  01:4A   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014b | sdfk  01:4B   1G   20414   230490 | sdcq  01:4B   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014d | sdfm  01:4D   1G   20414   230490 | sdcs  01:4D   2G   20414   230490 | dgdbpampusdb
+hitachi_vspg1k1_014e | sddl  01:4E   1G   20414   115245 | sdap  01:4E   2G   20414   115245 | dgdbpampusbkup
+hitachi_vspg1k1_014f | sdbu  01:4F   1G   20414    14405 | sdr   01:4F   2G   20414    14405 | dgdbpampusredo1
+hitachi_vspg1k1_0150 | sdbv  01:50   1G   20414    14405 | sds   01:50   2G   20414    14405 | dgdbpampusredo2
+hitachi_vspg1k1_0151 | sdfu  01:51   1G   20414   518602 | sddc  01:51   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0152 | sdfw  01:52   1G   20414   518602 | sddg  01:52   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0153 | sddn  01:53   1G   20414   115245 | sdaq  01:53   2G   20414   115245 | dgdbipsc75db
+hitachi_vspg1k1_0154 | sdbw  01:54   1G   20414    14405 | sdt   01:54   2G   20414    14405 | dgdbipsc75bkup
+hitachi_vspg1k1_0155 | sdbz  01:55   1G   20414    14405 | sdu   01:55   2G   20414    14405 | dgdbipsc75bkup
+hitachi_vspg1k1_0156 | sdca  01:56   1G   20414    14405 | sdv   01:56   2G   20414    14405 | dgdbipsc75redo1
+hitachi_vspg1k1_0157 | sdcd  01:57   1G   20414    14405 | sdw   01:57   2G   20414    14405 | dgdbipsc75redo2
+hitachi_vspg1k1_0166 | sdfy  01:66   1G   20414   115245 | sddi  01:66   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0167 | sdga  01:67   1G   20414   115245 | sddk  01:67   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0168 | sdgc  01:68   1G   20414   115245 | sddm  01:68   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0175 | sdgf  01:75   1G   20414   230490 | sddo  01:75   2G   20414   230490 | dgdbipso75bkup
+hitachi_vspg1k1_0176 | sdgh  01:76   1G   20414   230490 | sddq  01:76   2G   20414   230490 | dgdbipso75bkup
+hitachi_vspg1k1_01a1 | sdgm  01:A1   1G   20414   115245 | sddt  01:A1   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_01c6 | sdgo  01:C6   1G   20414   518602 | sddv  01:C6   2G   20414   518602 | dgdbapdm75db
+hitachi_vspg1k1_01c7 | sdgq  01:C7   1G   20414    57622 | sddw  01:C7   2G   20414    57622 | dgdbapdm75db
+hitachi_vspg1k1_027b | sdgs  02:7B   1G   20414   518602 | sddy  02:7B   2G   20414   518602 | dgdbipm75bkup
+hitachi_vspg1k1_027c | sdgt  02:7C   1G   20414   230490 | sdea  02:7C   2G   20414   230490 | dgdbipm75bkup
+hitachi_vspg1k1_027d | sdgv  02:7D   1G   20414   115245 | sdec  02:7D   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_041c | sdgz  04:1C   1G   20414   230490 | sdeg  04:1C   2G   20414   230490 | dgdbapdm75bkup
+hitachi_vspg1k1_0422 | sdgy  04:22   1G   20414   230490 | sdee  04:22   2G   20414   230490 | dgdbapdm75bkup
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ #
+lp10d47:~ # san_shortinfo |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75 | wc -l
+164
+lp10d47:~ #
+
+
+===================================
+
+
+lp10d48:~ # san_shortinfo |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75
+hitachi_vspg1k0_00ae | sdda  00:AE   2G   11307  1048576 | sdgx  00:AE   1G   11307  1048576 | dgdbipm75db
+hitachi_vspg1k0_0101 | sdar  01:01   2G   11307   230490 | sdeh  01:01   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0102 | sdaa  01:02   2G   11307   115245 | sdcz  01:02   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0103 | sdab  01:03   2G   11307   115245 | sddb  01:03   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0104 | sdac  01:04   2G   11307   115245 | sddd  01:04   1G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_0105 | sdf   01:05   2G   11307     7201 | sdbg  01:05   1G   11307     7201 | dgdbipst75redo1
+hitachi_vspg1k0_0106 | sdad  01:06   2G   11307   115245 | sddf  01:06   1G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_0107 | sdas  01:07   2G   11307   230490 | sdej  01:07   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0108 | sdg   01:08   2G   11307     7201 | sdbi  01:08   1G   11307     7201 | dgdbipst75redo2
+hitachi_vspg1k0_0109 | sdae  01:09   2G   11307   115245 | sddg  01:09   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_010c | sdh   01:0C   2G   11307     7201 | sdbk  01:0C   1G   11307     7201 | dgdbipst75redo2
+hitachi_vspg1k0_010d | sdi   01:0D   2G   11307     7201 | sdbm  01:0D   1G   11307     7201 | dgdbipst75redo1
+hitachi_vspg1k0_010e | sdx   01:0E   2G   11307    57622 | sdcr  01:0E   1G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_010f | sdy   01:0F   2G   11307    57622 | sdct  01:0F   1G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_0110 | sdz   01:10   2G   11307    57622 | sdcw  01:10   1G   11307    57622 | dgdbipso75db
+hitachi_vspg1k0_0111 | sdj   01:11   2G   11307     7201 | sdbo  01:11   1G   11307     7201 | dgdbipso75redo2
+hitachi_vspg1k0_0112 | sdk   01:12   2G   11307     7201 | sdbq  01:12   1G   11307     7201 | dgdbipso75redo1
+hitachi_vspg1k0_0114 | sdaf  01:14   2G   11307   115245 | sddi  01:14   1G   11307   115245 | dgdbpsat75bkup
+hitachi_vspg1k0_0115 | sdat  01:15   2G   11307   230490 | sdel  01:15   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0116 | sdau  01:16   2G   11307   230490 | sdem  01:16   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0117 | sdl   01:17   2G   11307     7201 | sdbs  01:17   1G   11307     7201 | dgdbpsat75redo2
+hitachi_vspg1k0_0118 | sdm   01:18   2G   11307     7201 | sdbu  01:18   1G   11307     7201 | dgdbpsat75redo1
+hitachi_vspg1k0_0119 | sdav  01:19   2G   11307   230490 | sdeo  01:19   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011a | sdag  01:1A   2G   11307   115245 | sddl  01:1A   1G   11307   115245 | dgdbpsat75bkup
+hitachi_vspg1k0_011b | sdaw  01:1B   2G   11307   230490 | sdep  01:1B   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011c | sdax  01:1C   2G   11307   230490 | sder  01:1C   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011d | sdaz  01:1D   2G   11307   230490 | sdes  01:1D   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011e | sdbb  01:1E   2G   11307   230490 | sdev  01:1E   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_011f | sdah  01:1F   2G   11307   115245 | sddm  01:1F   1G   11307   115245 | dgdbipso75db
+hitachi_vspg1k0_0120 | sdbd  01:20   2G   11307   230490 | sdex  01:20   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0121 | sdbf  01:21   2G   11307   230490 | sdey  01:21   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0122 | sdbh  01:22   2G   11307   230490 | sdfa  01:22   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0123 | sdbj  01:23   2G   11307   230490 | sdfc  01:23   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0124 | sdbl  01:24   2G   11307   230490 | sdfe  01:24   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0125 | sdbn  01:25   2G   11307   230490 | sdfg  01:25   1G   11307   230490 | dgdbpsat75db
+hitachi_vspg1k0_0127 | sdai  01:27   2G   11307   115245 | sddo  01:27   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0128 | sdaj  01:28   2G   11307   115245 | sddq  01:28   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0129 | sdak  01:29   2G   11307   115245 | sddr  01:29   1G   11307   115245 | dgdbipst75db
+hitachi_vspg1k0_012b | sdci  01:2B   2G   11307   518602 | sdgg  01:2B   1G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012c | sdcj  01:2C   2G   11307   518602 | sdgh  01:2C   1G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012d | sdck  01:2D   2G   11307   518602 | sdgi  01:2D   1G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_012e | sdal  01:2E   2G   11307   115245 | sddt  01:2E   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_012f | sdam  01:2F   2G   11307   115245 | sddv  01:2F   1G   11307   115245 | dgdbapdm75bkup
+hitachi_vspg1k0_0130 | sdbp  01:30   2G   11307   230490 | sdfh  01:30   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0131 | sdbr  01:31   2G   11307   230490 | sdfj  01:31   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0132 | sdbt  01:32   2G   11307   230490 | sdfl  01:32   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0133 | sdan  01:33   2G   11307   115245 | sddy  01:33   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_0134 | sdbz  01:34   2G   11307   230490 | sdfo  01:34   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0135 | sdcb  01:35   2G   11307   230490 | sdfs  01:35   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0137 | sdn   01:37   2G   11307    14405 | sdbv  01:37   1G   11307    14405 | dgdbapdm75redo1
+hitachi_vspg1k0_0138 | sdo   01:38   2G   11307    14405 | sdbw  01:38   1G   11307    14405 | dgdbapdm75redo2
+hitachi_vspg1k0_0139 | sdp   01:39   2G   11307    14405 | sdbx  01:39   1G   11307    14405 | dgdbipm75redo1
+hitachi_vspg1k0_013a | sdq   01:3A   2G   11307    14405 | sdby  01:3A   1G   11307    14405 | dgdbipm75redo2
+hitachi_vspg1k0_0147 | sdao  01:47   2G   11307   115245 | sdea  01:47   1G   11307   115245 | dgdbapdm75bkup
+hitachi_vspg1k0_0148 | sdcd  01:48   2G   11307   230490 | sdfv  01:48   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_0149 | sdce  01:49   2G   11307   230490 | sdfx  01:49   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014a | sdcf  01:4A   2G   11307   230490 | sdfz  01:4A   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014b | sdcg  01:4B   2G   11307   230490 | sdgb  01:4B   1G   11307   230490 | dgdbapdm75db
+hitachi_vspg1k0_014d | sdch  01:4D   2G   11307   230490 | sdge  01:4D   1G   11307   230490 | dgdbpampusdb
+hitachi_vspg1k0_014e | sdap  01:4E   2G   11307   115245 | sdef  01:4E   1G   11307   115245 | dgdbpampusbkup
+hitachi_vspg1k0_014f | sdr   01:4F   2G   11307    14405 | sdca  01:4F   1G   11307    14405 | dgdbpampusredo1
+hitachi_vspg1k0_0150 | sds   01:50   2G   11307    14405 | sdcc  01:50   1G   11307    14405 | dgdbpampusredo2
+hitachi_vspg1k0_0151 | sdcm  01:51   2G   11307   518602 | sdgl  01:51   1G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_0152 | sdcn  01:52   2G   11307   518602 | sdgn  01:52   1G   11307   518602 | dgdbipm75db
+hitachi_vspg1k0_0153 | sdaq  01:53   2G   11307   115245 | sdeg  01:53   1G   11307   115245 | dgdbipsc75db
+hitachi_vspg1k0_0154 | sdt   01:54   2G   11307    14405 | sdcl  01:54   1G   11307    14405 | dgdbipsc75bkup
+hitachi_vspg1k0_0155 | sdu   01:55   2G   11307    14405 | sdco  01:55   1G   11307    14405 | dgdbipsc75bkup
+hitachi_vspg1k0_0156 | sdv   01:56   2G   11307    14405 | sdcp  01:56   1G   11307    14405 | dgdbipsc75redo1
+hitachi_vspg1k0_0157 | sdw   01:57   2G   11307    14405 | sdcq  01:57   1G   11307    14405 | dgdbipsc75redo2
+hitachi_vspg1k0_0166 | sdcs  01:66   2G   11307   115245 | sdgo  01:66   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0167 | sdcu  01:67   2G   11307   115245 | sdgp  01:67   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0168 | sdcv  01:68   2G   11307   115245 | sdgr  01:68   1G   11307   115245 | dgdbipst75bkup
+hitachi_vspg1k0_0175 | sdcx  01:75   2G   11307   230490 | sdgt  01:75   1G   11307   230490 | dgdbipso75bkup
+hitachi_vspg1k0_0176 | sdcy  01:76   2G   11307   230490 | sdgu  01:76   1G   11307   230490 | dgdbipso75bkup
+hitachi_vspg1k0_01a1 | sddc  01:A1   2G   11307   115245 | sdgz  01:A1   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_01c6 | sdde  01:C6   2G   11307   518602 | sdhb  01:C6   1G   11307   518602 | dgdbapdm75db
+hitachi_vspg1k0_01c7 | sddh  01:C7   2G   11307    57622 | sdhe  01:C7   1G   11307    57622 | dgdbapdm75db
+hitachi_vspg1k0_027b | sddj  02:7B   2G   11307   518602 | sdhf  02:7B   1G   11307   518602 | dgdbipm75bkup
+hitachi_vspg1k0_027c | sddk  02:7C   2G   11307   230490 | sdhh  02:7C   1G   11307   230490 | dgdbipm75bkup
+hitachi_vspg1k0_027d | sddn  02:7D   2G   11307   115245 | sdhl  02:7D   1G   11307   115245 | dgdbipm75bkup
+hitachi_vspg1k0_041c | sdds  04:1C   2G   11307   230490 | sdho  04:1C   1G   11307   230490 | dgdbapdm75bkup
+hitachi_vspg1k0_0422 | sddp  04:22   2G   11307   230490 | sdhm  04:22   1G   11307   230490 | dgdbapdm75bkup
+hitachi_vspg1k1_00ae | sdly  00:AE   1G   20414  1048576 | sdjx  00:AE   2G   20414  1048576 | dgdbipm75db
+hitachi_vspg1k1_0101 | sdko  01:01   1G   20414   230490 | sdha  01:01   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0102 | sdkp  01:02   1G   20414   230490 | sdhc  01:02   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0103 | sdhx  01:03   1G   20414     7201 | sdeb  01:03   2G   20414     7201 | dgdbipso75redo2
+hitachi_vspg1k1_0104 | sdhz  01:04   1G   20414     7201 | sdec  01:04   2G   20414     7201 | dgdbipso75redo1
+hitachi_vspg1k1_0105 | sdjn  01:05   1G   20414   115245 | sdfr  01:05   2G   20414   115245 | dgdbpsat75bkup
+hitachi_vspg1k1_0106 | sdjp  01:06   1G   20414   115245 | sdft  01:06   2G   20414   115245 | dgdbpsat75bkup
+hitachi_vspg1k1_0107 | sdkr  01:07   1G   20414   230490 | sdhd  01:07   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0108 | sdks  01:08   1G   20414   230490 | sdhg  01:08   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0109 | sdkt  01:09   1G   20414   230490 | sdhi  01:09   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_010a | sdib  01:0A   1G   20414     7201 | sded  01:0A   2G   20414     7201 | dgdbpsat75redo2
+hitachi_vspg1k1_010b | sdic  01:0B   1G   20414     7201 | sdee  01:0B   2G   20414     7201 | dgdbpsat75redo1
+hitachi_vspg1k1_010c | sdjq  01:0C   1G   20414   115245 | sdfu  01:0C   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_010d | sdjr  01:0D   1G   20414   115245 | sdfw  01:0D   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_010e | sdid  01:0E   1G   20414     7201 | sdei  01:0E   2G   20414     7201 | dgdbipst75redo2
+hitachi_vspg1k1_010f | sdie  01:0F   1G   20414     7201 | sdek  01:0F   2G   20414     7201 | dgdbipst75redo1
+hitachi_vspg1k1_0110 | sdku  01:10   1G   20414   230490 | sdhj  01:10   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0111 | sdjs  01:11   1G   20414   115245 | sdfy  01:11   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0112 | sdig  01:12   1G   20414     7201 | sden  01:12   2G   20414     7201 | dgdbipst75redo1
+hitachi_vspg1k1_0114 | sdjt  01:14   1G   20414   115245 | sdga  01:14   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0116 | sdii  01:16   1G   20414     7201 | sdeq  01:16   2G   20414     7201 | dgdbipst75redo2
+hitachi_vspg1k1_0117 | sdju  01:17   1G   20414   115245 | sdgc  01:17   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_0118 | sdkv  01:18   1G   20414   230490 | sdhk  01:18   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0119 | sdjh  01:19   1G   20414    57622 | sdfn  01:19   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011a | sdjj  01:1A   1G   20414    57622 | sdfp  01:1A   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011b | sdjl  01:1B   1G   20414    57622 | sdfq  01:1B   2G   20414    57622 | dgdbipso75db
+hitachi_vspg1k1_011d | sdkw  01:1D   1G   20414   230490 | sdhn  01:1D   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_011e | sdkx  01:1E   1G   20414   230490 | sdhp  01:1E   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_011f | sdjw  01:1F   1G   20414   115245 | sdgd  01:1F   2G   20414   115245 | dgdbipso75db
+hitachi_vspg1k1_0120 | sdky  01:20   1G   20414   230490 | sdhr  01:20   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0121 | sdkz  01:21   1G   20414   230490 | sdht  01:21   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0122 | sdla  01:22   1G   20414   230490 | sdhw  01:22   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0123 | sdlb  01:23   1G   20414   230490 | sdhy  01:23   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0124 | sdlc  01:24   1G   20414   230490 | sdia  01:24   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0125 | sdld  01:25   1G   20414   230490 | sdif  01:25   2G   20414   230490 | dgdbpsat75db
+hitachi_vspg1k1_0127 | sdjy  01:27   1G   20414   115245 | sdgf  01:27   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0128 | sdka  01:28   1G   20414   115245 | sdgj  01:28   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0129 | sdkc  01:29   1G   20414   115245 | sdgk  01:29   2G   20414   115245 | dgdbipst75db
+hitachi_vspg1k1_012b | sdlo  01:2B   1G   20414   518602 | sdiy  01:2B   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_012c | sdke  01:2C   1G   20414   115245 | sdgm  01:2C   2G   20414   115245 | dgdbapdm75bkup
+hitachi_vspg1k1_012d | sdkg  01:2D   1G   20414   115245 | sdgq  01:2D   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_012e | sdle  01:2E   1G   20414   230490 | sdih  01:2E   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_012f | sdlf  01:2F   1G   20414   230490 | sdij  01:2F   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0130 | sdlp  01:30   1G   20414   518602 | sdiz  01:30   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0131 | sdlq  01:31   1G   20414   518602 | sdjb  01:31   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0132 | sdlg  01:32   1G   20414   230490 | sdil  01:32   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0133 | sdki  01:33   1G   20414   115245 | sdgs  01:33   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_0134 | sdlh  01:34   1G   20414   230490 | sdin  01:34   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0135 | sdli  01:35   1G   20414   230490 | sdip  01:35   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0137 | sdik  01:37   1G   20414    14405 | sdet  01:37   2G   20414    14405 | dgdbapdm75redo1
+hitachi_vspg1k1_0138 | sdim  01:38   1G   20414    14405 | sdeu  01:38   2G   20414    14405 | dgdbapdm75redo2
+hitachi_vspg1k1_0139 | sdio  01:39   1G   20414    14405 | sdew  01:39   2G   20414    14405 | dgdbipm75redo1
+hitachi_vspg1k1_013a | sdiq  01:3A   1G   20414    14405 | sdez  01:3A   2G   20414    14405 | dgdbipm75redo2
+hitachi_vspg1k1_0147 | sdkj  01:47   1G   20414   115245 | sdgv  01:47   2G   20414   115245 | dgdbapdm75bkup
+hitachi_vspg1k1_0148 | sdlj  01:48   1G   20414   230490 | sdir  01:48   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_0149 | sdlk  01:49   1G   20414   230490 | sdit  01:49   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014a | sdll  01:4A   1G   20414   230490 | sdiu  01:4A   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014b | sdlm  01:4B   1G   20414   230490 | sdiw  01:4B   2G   20414   230490 | dgdbapdm75db
+hitachi_vspg1k1_014d | sdln  01:4D   1G   20414   230490 | sdix  01:4D   2G   20414   230490 | dgdbpampusdb
+hitachi_vspg1k1_014e | sdkl  01:4E   1G   20414   115245 | sdgw  01:4E   2G   20414   115245 | dgdbpampusbkup
+hitachi_vspg1k1_014f | sdis  01:4F   1G   20414    14405 | sdfb  01:4F   2G   20414    14405 | dgdbpampusredo1
+hitachi_vspg1k1_0150 | sdiv  01:50   1G   20414    14405 | sdfd  01:50   2G   20414    14405 | dgdbpampusredo2
+hitachi_vspg1k1_0151 | sdlr  01:51   1G   20414   518602 | sdjd  01:51   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0152 | sdls  01:52   1G   20414   518602 | sdjg  01:52   2G   20414   518602 | dgdbipm75db
+hitachi_vspg1k1_0153 | sdkm  01:53   1G   20414   115245 | sdgy  01:53   2G   20414   115245 | dgdbipsc75db
+hitachi_vspg1k1_0154 | sdja  01:54   1G   20414    14405 | sdff  01:54   2G   20414    14405 | dgdbipsc75bkup
+hitachi_vspg1k1_0155 | sdjc  01:55   1G   20414    14405 | sdfi  01:55   2G   20414    14405 | dgdbipsc75bkup
+hitachi_vspg1k1_0156 | sdje  01:56   1G   20414    14405 | sdfk  01:56   2G   20414    14405 | dgdbipsc75redo1
+hitachi_vspg1k1_0157 | sdjf  01:57   1G   20414    14405 | sdfm  01:57   2G   20414    14405 | dgdbipsc75redo2
+hitachi_vspg1k1_0166 | sdlt  01:66   1G   20414   115245 | sdji  01:66   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0167 | sdlu  01:67   1G   20414   115245 | sdjk  01:67   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0168 | sdlv  01:68   1G   20414   115245 | sdjm  01:68   2G   20414   115245 | dgdbipst75bkup
+hitachi_vspg1k1_0175 | sdlw  01:75   1G   20414   230490 | sdjo  01:75   2G   20414   230490 | dgdbipso75bkup
+hitachi_vspg1k1_0176 | sdlx  01:76   1G   20414   230490 | sdjv  01:76   2G   20414   230490 | dgdbipso75bkup
+hitachi_vspg1k1_01a1 | sdlz  01:A1   1G   20414   115245 | sdjz  01:A1   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_01c6 | sdma  01:C6   1G   20414   518602 | sdkb  01:C6   2G   20414   518602 | dgdbapdm75db
+hitachi_vspg1k1_01c7 | sdmb  01:C7   1G   20414    57622 | sdkd  01:C7   2G   20414    57622 | dgdbapdm75db
+hitachi_vspg1k1_027b | sdmc  02:7B   1G   20414   518602 | sdkf  02:7B   2G   20414   518602 | dgdbipm75bkup
+hitachi_vspg1k1_027c | sdmd  02:7C   1G   20414   230490 | sdkh  02:7C   2G   20414   230490 | dgdbipm75bkup
+hitachi_vspg1k1_027d | sdme  02:7D   1G   20414   115245 | sdkk  02:7D   2G   20414   115245 | dgdbipm75bkup
+hitachi_vspg1k1_041c | sdmg  04:1C   1G   20414   230490 | sdkq  04:1C   2G   20414   230490 | dgdbapdm75bkup
+hitachi_vspg1k1_0422 | sdmf  04:22   1G   20414   230490 | sdkn  04:22   2G   20414   230490 | dgdbapdm75bkup
+lp10d48:~ #
+lp10d48:~ #
+lp10d48:~ #
+lp10d48:~ #
+lp10d48:~ #
+lp10d48:~ # san_shortinfo |egrep dbapdm75\|dbipm75\|dbipsc75\|dbipso75\|dbipst75\|dbpampus\|dbpsat75 | wc -l
+164
+lp10d48:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp10d47              RUNNING              0
+A  lp10d48              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp10d47              Y          N               ONLINE
+B  NIC             lp10d48              Y          N               ONLINE
+B  dbapdm75        lp10d47              Y          N               OFFLINE
+B  dbapdm75        lp10d48              Y          N               OFFLINE
+B  dbipm75         lp10d47              Y          N               OFFLINE
+B  dbipm75         lp10d48              Y          N               OFFLINE
+B  dbipsc75        lp10d47              Y          N               OFFLINE
+B  dbipsc75        lp10d48              Y          N               OFFLINE
+B  dbipso75        lp10d47              Y          N               OFFLINE
+B  dbipso75        lp10d48              Y          N               OFFLINE
+B  dbipst75        lp10d47              Y          N               OFFLINE
+B  dbipst75        lp10d48              Y          N               OFFLINE
+B  dbpampus        lp10d47              Y          N               OFFLINE
+B  dbpampus        lp10d48              Y          N               OFFLINE
+B  dbpsat75        lp10d47              Y          N               OFFLINE
+B  dbpsat75        lp10d48              Y          N               OFFLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  dbapdm75
+C  dbipm75
+C  dbipsc75
+C  dbipso75
+C  dbipst75
+C  dbpampus
+C  dbpsat75
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  dbapdm75        Application     dbapdm75_app
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75bkup
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75db
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo1
+H  dbapdm75        DiskGroup       dbapdm75_dgdbapdm75redo2
+H  dbapdm75        IP              dbapdm75_ip
+H  dbapdm75        Mount           dbapdm75_bkup_mount
+H  dbapdm75        Mount           dbapdm75_db_mount
+H  dbapdm75        Mount           dbapdm75_redo1_mount
+H  dbapdm75        Mount           dbapdm75_redo2_mount
+H  dbapdm75        Proxy           dbapdm75_nic_proxy
+H  dbipm75         Application     dbipm75_app
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75bkup
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75db
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo1
+H  dbipm75         DiskGroup       dbipm75_dgdbipm75redo2
+H  dbipm75         IP              dbipm75_ip
+H  dbipm75         Mount           dbipm75_bkup_mount
+H  dbipm75         Mount           dbipm75_db_mount
+H  dbipm75         Mount           dbipm75_redo1_mount
+H  dbipm75         Mount           dbipm75_redo2_mount
+H  dbipm75         Proxy           dbipm75_nic_proxy
+H  dbipsc75        Application     dbipsc75_oracle_app
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75bkup
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75db
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo1
+H  dbipsc75        DiskGroup       dbipsc75_dgdbipsc75redo2
+H  dbipsc75        IP              dbipsc75_dbipsc75_ip
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_bkup_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_db_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo1_mount
+H  dbipsc75        Mount           dbipsc75_global_dbipsc75_redo2_mount
+H  dbipsc75        Proxy           dbipsc75_nic_proxy
+H  dbipso75        Application     dbipso75_app
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75bkup
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75db
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo1
+H  dbipso75        DiskGroup       dbipso75_dgdbipso75redo2
+H  dbipso75        IP              dbipso75_ip
+H  dbipso75        Mount           dbipso75_bkup_mount
+H  dbipso75        Mount           dbipso75_db_mount
+H  dbipso75        Mount           dbipso75_redo1_mount
+H  dbipso75        Mount           dbipso75_redo2_mount
+H  dbipso75        Proxy           dbipso75_nic_proxy
+H  dbipst75        Application     dbipst75_app
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75bkup
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75db
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo1
+H  dbipst75        DiskGroup       dbipst75_dgdbipst75redo2
+H  dbipst75        IP              dbipst75_ip
+H  dbipst75        Mount           dbipst75_bkup_mount
+H  dbipst75        Mount           dbipst75_db_mount
+H  dbipst75        Mount           dbipst75_redo1_mount
+H  dbipst75        Mount           dbipst75_redo2_mount
+H  dbipst75        Proxy           dbipst75_nic_proxy
+H  dbpampus        Application     dbpampus_oracle_app
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusbkup
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusdb
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo1
+H  dbpampus        DiskGroup       dbpampus_dgdbpampusredo2
+H  dbpampus        IP              dbpampus_dbpampus_ip
+H  dbpampus        Mount           dbpampus_global_dbpampus_bkup_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_db_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo1_mount
+H  dbpampus        Mount           dbpampus_global_dbpampus_redo2_mount
+H  dbpampus        Proxy           dbpampus_nic_proxy
+H  dbpsat75        Application     dbpsat75_app
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75bkup
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75db
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo1
+H  dbpsat75        DiskGroup       dbpsat75_dgdbpsat75redo2
+H  dbpsat75        IP              dbpsat75_ip
+H  dbpsat75        Mount           dbpsat75_bkup_mount
+H  dbpsat75        Mount           dbpsat75_db_mount
+H  dbpsat75        Mount           dbpsat75_redo1_mount
+H  dbpsat75        Mount           dbpsat75_redo2_mount
+H  dbpsat75        Proxy           dbpsat75_nic_proxy
+lp10d48:~ #
+
+

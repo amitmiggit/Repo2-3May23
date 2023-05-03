@@ -1,0 +1,153 @@
+/dev/vx/dsk/dgpefpcs0018/lvsapdata1                    vxfs      2.1T  1.9T  165G  92% /oracle/EFP/sapdata1
+/dev/vx/dsk/dgpefpcs0019/lvsapdata2                    vxfs      2.1T  1.9T  169G  92% /oracle/EFP/sapdata2
+/dev/vx/dsk/dgpefpcs0020/lvsapdata3                    vxfs      2.0T  1.9T  187G  91% /oracle/EFP/sapdata3
+/dev/vx/dsk/dgpefpcs0021/lvsapdata4                    vxfs      2.0T  1.8T  246G  88% /oracle/EFP/sapdata4
+/dev/vx/dsk/dgpefpcs0022/lvsapdata5                    vxfs      2.0T  1.9T  187G  91% /oracle/EFP/sapdata5
+/dev/vx/dsk/dgpefpcs0023/lvsapdata6                    vxfs      2.0T  1.9T  157G  93% /oracle/EFP/sapdata6
+/dev/vx/dsk/dgpefpcs0024/lvsapdata7                    vxfs      2.0T  1.9T  157G  93% /oracle/EFP/sapdata7
+/dev/vx/dsk/dgpefpcs0025/lvsapdata8                    vxfs      2.0T  1.9T  157G  93% /oracle/EFP/sapdata8
+/dev/vx/dsk/dgpefpcs0026/lvsapdata9                    vxfs      2.0T  1.9T  157G  93% /oracle/EFP/sapdata9
+/dev/vx/dsk/dgpefpcs0027/lvsapdata10                   vxfs      2.0T  1.9T  194G  91% /oracle/EFP/sapdata10
+/dev/vx/dsk/dgpefpcs0028/lvsapdata11                   vxfs      2.0T  2.0T   97G  96% /oracle/EFP/sapdata11
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS/GROW_ADD_TEMPLATES $ pwd
+/global/instserv/data/CONFIGURE_VERITAS/GROW_ADD_TEMPLATES
+[INSTSERV][qxz10kv][lpinstiaas02] /global/instserv/data/CONFIGURE_VERITAS/GROW_ADD_TEMPLATES $
+
+###################################################################
+
+HOST lpefp18
+
+dg dgpefpcs0018
+0B:4B   10650  B1_GS3
+0B:4B   10652  B1_GS3
+
+lv lvsapdata1 max
+mnt lvsapdata1 /oracle/EFP/sapdata1
+
+###################################################################
+
+dg dgpefpcs0019
+0B:4C   10650  B1_GS3
+0B:4C   10652  B1_GS3
+
+lv lvsapdata2 max
+mnt lvsapdata2 /oracle/EFP/sapdata2
+
+###################################################################
+
+dg dgpefpcs0020
+0B:4D   10650  B1_GS3
+0B:4D   10652  B1_GS3
+
+lv lvsapdata3 max
+mnt lvsapdata3 /oracle/EFP/sapdata3
+
+###################################################################
+
+dg dgpefpcs0021
+0B:4E   10650  B1_GS3
+0B:4E   10652  B1_GS3
+
+lv lvsapdata4 max
+mnt lvsapdata4 /oracle/EFP/sapdata4
+
+###################################################################
+
+dg dgpefpcs0022
+0B:4F   10650  B1_GS3
+0B:4F   10652  B1_GS3
+
+lv lvsapdata5 max
+mnt lvsapdata5 /oracle/EFP/sapdata5
+
+
+###################################################################
+
+dg dgpefpcs0023
+0B:50   10650  B1_GS3
+0B:50   10652  B1_GS3
+
+lv lvsapdata6 max
+mnt lvsapdata6 /oracle/EFP/sapdata6
+
+###################################################################
+dg dgpefpcs0024
+0B:51   10650  B1_GS3
+0B:51   10652  B1_GS3
+
+lv lvsapdata7 max
+mnt lvsapdata7 /oracle/EFP/sapdata7
+
+###################################################################
+dg dgpefpcs0025
+0B:52   10650  B1_GS3
+0B:52   10652  B1_GS3
+
+lv lvsapdata8 max
+mnt lvsapdata8 /oracle/EFP/sapdata8
+
+###################################################################
+
+dg dgpefpcs0026
+0B:53   10650  B1_GS3
+0B:53   10652  B1_GS3
+
+lv lvsapdata9 max
+mnt lvsapdata9 /oracle/EFP/sapdata9
+
+###################################################################
+
+dg dgpefpcs0027
+0B:54   10650  B1_GS3
+0B:54   10652  B1_GS3
+
+lv lvsapdata10 max
+mnt lvsapdata10 /oracle/EFP/sapdata10
+
+###################################################################
+
+dg dgpefpcs0028
+0B:55   10650  B1_GS3
+0B:55   10652  B1_GS3
+
+lv lvsapdata11 max
+mnt lvsapdata11 /oracle/EFP/sapdata11
+
+
+
+vxresize -b -g dgpefpcs0018 lvsapdata1 5382250496 
+
+
+vxresize -b -g dgpefpcs0019 lvsapdata2 5382250496
+
+
+vxresize -b -g dgpefpcs0020 lvsapdata3 5356888064
+
+
+vxresize -b -g dgpefpcs0021 lvsapdata4 5356865536
+
+
+vxresize -b -g dgpefpcs0022 lvsapdata5 5356865536
+
+
+vxresize -b -g dgpefpcs0023 lvsapdata6 5356865536
+
+vxresize -b -g dgpefpcs0024 lvsapdata7 5356865536
+
+vxresize -b -g dgpefpcs0025 lvsapdata8 5356865536
+
+
+vxresize -b -g dgpefpcs0026 lvsapdata9 5356865536
+
+
+
+vxresize -b -g dgpefpcs0027 lvsapdata10 5356865536
+
+
+vxresize -b -g dgpefpcs0028 lvsapdata11 5356865536
+
+  
+
+

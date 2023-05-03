@@ -1,0 +1,23 @@
+call_hook.sh --hook-noabort lpdnssp01.bmwgroup.net firstboot 08-01-bmw-cfg-netbackup-client
+then run to
+rudder agent update
+rudder agent run
+backupconf -c check from client machine 
+service BMWfirewall restart 
+Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de) 17:40: 
+install_override.sh lib2vcombeudpproxy2 BMW-CFG-netbackup-client 
+Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de) 17:49: 
+/var/tmp/overrides/BMW-CFG-netbackup-client-script check 
+Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de) 17:53: 
+chmod 775 /var/tmp/overrides/BMW-CFG-netbackup-client-script 
+##ip ro add 160.48.236.66(master server) via 10.189.186.1 dev eth1 
+ifroute-eth1
+Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de) 17:59: 
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.9+SLES12+Netbackup+Configuriation 
+Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de) 18:05: 
+/sbin/ifdown eth1
+/sbin/ifup eth1 
+Misra Amit, (Amit.Misra@partner.bmw.de) 18:17: 
+lppgb01061vmb.bmwgroup.net 
+Misra Amit, (Amit.Misra@partner.bmw.de) 19:36: 
+INC000036014428 

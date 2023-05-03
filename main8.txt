@@ -1,0 +1,1 @@
+df -hT;df -TH -t vxfs;df -TH -t vxfs|wc -l;cat /etc/fstab;cat /etc/passwd;cat /etc/group;vxdg list; hares -list;vxprint -htq;vxdisk -o alldgs list;hares -display;rpm -qa|grep -i veritas; rpm -qa|grep -i vxfs;rpm -qa|grep -i vrts;rpm -qa|grep -i vrts;

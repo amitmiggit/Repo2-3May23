@@ -1,0 +1,19 @@
+TAS000006451680--error
+TAS000006465581-error
+
+[?12-?06-?2022 16:26] Misra Amit, (Amit.Misra@partner.bmw.de): 
+TAS000006439540 ---move exec
+[?12-?06-?2022 16:32] Misra Amit, (Amit.Misra@partner.bmw.de): 
+TAS000006439649 ------move cleanup --MD migration pending
+
+TAS000006401044- server-unix-std:global|06|086c-move-farm-cleanup-(NSTC)
+TAS000006401225 -server-unix-std:global|06|086c-move-farm-cleanup-(NSTC)
+As we got request for IPU for lpproflexdb01 which is cluster node and IPU has been done successfully, 
+but cluster version also updated to 7.4.2 which is mismatching with partner node due to cluster not coming up. we involved matrix team they suggested two solution.
+
+two solutions:
+-- lpproflexdb01 should be rolled back to sles12sp4 -> packages must not be stopped, fallback
+-- lpproflexdb02 should be updated to sles12sp5 -> in this case all of the packages must be stopped for hours
+and as I know the upgrade from sles12sp4 to sp5 has difficulties
+
+Note: Oracle  team not provided the downtime

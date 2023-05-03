@@ -1,0 +1,21 @@
+systemctl start pacemaker
+systemctl stop pacemaker
+systemctl stop corosync
+systemctl restart corosync
+
+crm cluster start
+crm cluster stop
+crm cluster restart
+crm cluster status
+
+crm --help
+crm help 
+crm_mon -P
+crm_mon -1
+==
+CRQ000001426547
+
+ crm resource cleanup ctdb-clone
+# crm resource cleanup netmon node4
+# crm_resource cleanup apache2
+

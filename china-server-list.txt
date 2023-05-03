@@ -1,0 +1,122 @@
+for i in `cat serv.lis`; do cmdb $i; echo $i; done; 
+for i in `cat`; do cmdb $i|grep -i "machine type"; echo $i; done; 
+for i in `cat`; do cmdb $i|grep -i "OS version"; echo $i; done; 
+machine type:  
+OS version:    
+OS name:       
+serial number: 
+Instserv:      
+Logical ID:    
+location:      
+rack ID:       
+description:
+modul:         
+usage:
+service owner: 
+status:        
+DNS domain:    
+
+
+
+
+[INSTSERV][qxz0crd][lpinstiaas01] ~ $ for i in `cat`; do cmdb $i -x; echo $i; done;
+lp19pga01268vm
+lp19pga01281vm
+lp19pga01283vm
+lp19pga01308vm
+lp19pga01318vm
+
+lpinstw19b2v 
+lpinstwnbrdr 
+
+
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ rootssh lpinstwnbrdr
+lpinstwnbrdr:~ #
+
+=====
+qxz12n2@lpinstiaas09:~> ssh lpinstw19b2v
+Enter PASSCODE:
+Password:
+Password change requested. Choose a new password.
+Old Password:
+New Password:
+Reenter New Password:
+Password changed.
+
+lp19pga01268vm                         
+lp19pga01281vm                         
+lp19pga01283vm                         
+lp19pga01308vm                         
+lp19pga01318vm                         
+lp19pga01319vm                         
+lp19pga01320vm                         
+lp19pga01324vm                         
+lp19pga01327vm                         
+lp19pga01401vm                         
+lp19pga01562vm                         
+lp19pga01689vm                         
+lp19pga01744vm                         
+lp19pga01746vm                         
+lp19pga01756vm                         
+lp19pga01840vm                         
+lp19pga01886vm                         
+lp19pga01921vm                         
+lp19pga02631vm                         
+lp19pga02654vm                         
+lp19pga02655vm                         
+lp19pga02742vm                         
+lp19pga02846vm                         
+lp19pga03032vm                         
+lp19pga03033vm                         
+lp19pga03165vm                         
+lp19pga03166vm                         
+lp19pga03171vm                         
+lp19pga03173vm                         
+lp19pga03174vm                         
+lp19pga03183vm                         
+lp19pga03193vm                         
+lp19pga03196vm                         
+lp19pga03197vm                         
+lp19pga03199vm                         
+lp19pga03201vm                         
+lp19pga03209vm                         
+lp19pga03234vm                         
+lp19pga03341vm                         
+lp19pga03342vm                         
+lp19pga03348vm                         
+lp19pga03367vm                         
+lp19pga03378vm                         
+lp19pga03508vm                         
+lp19pgb01268vm                         
+lp19pgb01281vm                         
+lp19pgb01283vm                         
+lp19pgb01308vm                         
+lp19pgb01318vm                         
+lp19pgb01319vm                         
+lp19pgb01320vm                         
+lp19pgb01324vm                         
+lp19pgb01327vm                         
+lp19pgb01401vm                         
+lp19pgb01562vm                         
+lp19pgb01689vm                         
+lp19pgb01744vm                         
+lp19pgb01746vm                         
+lp19pgb01756vm                         
+lp19pgb01840vm                         
+lp19pgb01886vm                         
+lp19pgb01921vm                         
+lp19pgb02631vm                         
+lp19pgb02654vm                         
+lp19pgb02655vm                         
+lp19pgb02742vm                         
+lp19pgb02846vm                         
+lp19pgb03032vm                         
+lp19pgb03033vm                         
+lp19pgb03196vm                         
+lp19pgb03197vm                         
+lp19pgb03234vm                         
+lp19pgb03341vm                         
+lp19pgb03342vm                         
+lp19pgb03367vm                         
+lp19pgb03378vm                         
+lp19pgb03508vm                         

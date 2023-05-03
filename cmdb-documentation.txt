@@ -1,0 +1,29 @@
+Hello Team
+We are   experiencing this error on all the servers in Group-DMS production.
+
+Error description:-
+[DM_SESSION_I_RETRYING_DATABASE_CONNECTION]info:  "The following error was encountered trying to get a database connection:  ORA-12505: TNS:listener does not currently know of SID given in connect descriptor.
+
+Regards
+Group-DMS Support
+
+Hello Anand,
+Could you please come online for clarification.
+
+dbgdrp is neither a Server nor DB.
+
+is this the DB name: dbgdmsp
+
+databse server -dbgdrp  (Group-DMS Production)
+
+hello support team
+
+the FW rules for db package plsfpes1 (IP 160.50.60.175)  were deleted due to decomission of the servers lpbkdb53/54.bmwgroup.net. further info in rule id 194490 
+
+Theses packages are hosted in cluster lpbkdb59/60 since months and are available.
+
+Please bring back urgently the removed rules
+
+
+Thanks
+Juanma

@@ -1,0 +1,19 @@
+NP sir
+ip-reservation for pkg creation in VCS
+cmdb gui - c6000 server name - CN - get net_id
+select - ipmanagment - ipv4 -net - net-id (net-id)-
+search-and goback-click on showingoutput-
+ipaddress-new-hostname-domain name-save
+
+Adding package and ip in cmdb GUI:
+========================================
+search with servername*-----click on server 
+select - failover cluster-Resource group-click on new
+name-package name-resource type - IP-status-productive
+statedate - click one todaydate - save it
+failovercluster-click on add-name:server name*-search it-click on OK and save
+======================
+ipv4 address-add-IP address:our reserved IP - search click on okay and save it 
+
+RG18069 -pkgkzsr-TAS000006392140-lpdbs109-lpdbs110-23Apr-2022
+

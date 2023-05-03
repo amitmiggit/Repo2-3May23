@@ -1,0 +1,43 @@
+skipped_server_list.txt
+lpdkpgb00034vm
+lpdkpgb00034vm:~ # xenstore-read /tool/hostname
+lpxenppgdk002
+lpdkpgb00034vm:~ #
+
+mount -o remount,rw,skip_balance /tmp
+
+
+[Tue Feb  2 16:54:24 2021] BTRFS: device label DOCKER_73568 devid 1 transid 936988 /dev/dm-0
+[Tue Feb  2 16:54:24 2021] Process accounting resumed
+[Tue Feb  2 16:54:24 2021] BTRFS info (device dm-0): disk space caching is enabled
+[Tue Feb  2 16:54:24 2021] BTRFS info (device dm-0): has skinny extents
+[Tue Feb  2 16:54:25 2021] BTRFS info (device dm-0): detected SSD devices, enabling SSD mode
+[Tue Feb  2 16:54:25 2021] No iBFT detected.
+[Tue Feb  2 16:54:25 2021] NET: Registered protocol family 17
+[Tue Feb  2 16:54:33 2021] audit: type=1400 audit(1612284873.705:2): apparmor="STATUS" operation="profile_load" name="d
+[Tue Feb  2 16:54:33 2021] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your script
+[Tue Feb  2 16:54:33 2021] Bridge firewalling registered
+[Tue Feb  2 16:54:34 2021] ip_tables: (C) 2000-2006 Netfilter Core Team
+[Tue Feb  2 16:54:34 2021] nf_conntrack version 0.5.0 (65536 buckets, 262144 max)
+[Tue Feb  2 16:54:34 2021] Initializing XFRM netlink socket
+[Tue Feb  2 16:54:34 2021] Netfilter messages via NETLINK v0.30.
+[Tue Feb  2 16:54:34 2021] ctnetlink v0.93: registering with nfnetlink.
+[Tue Feb  2 16:54:35 2021] IPv6: ADDRCONF(NETDEV_UP): br-57361efbbbab: link is not ready
+[Tue Feb  2 16:54:37 2021] BTRFS: Transaction aborted (error -17)
+[Tue Feb  2 16:54:37 2021] BTRFS: error (device xvda2) in btrfs_run_delayed_refs:2385: errno=-17 Object already exists
+[Tue Feb  2 16:54:37 2021] BTRFS info (device xvda2): forced readonly
+[Tue Feb  2 16:54:37 2021] ------------[ cut here ]------------
+[Tue Feb  2 16:54:37 2021] WARNING: CPU: 1 PID: 194 at ../fs/btrfs/extent-tree.c:2385 btrfs_run_delayed_refs+0x1a2/0x1b
+[Tue Feb  2 16:54:37 2021] Modules linked in: xt_conntrack ipt_MASQUERADE nf_nat_masquerade_ipv4 nf_conntrack_netlink n
+[Tue Feb  2 16:54:37 2021] Supported: Yes
+:
+
+btrfs is very fragile in power loss or kernel crash/panic scenarios. It very consistently causes soft lockups on file read/writes after power loss 
+
+nastool -i <input> -a <action> [-c <CID>] [<Options>]
+
+nastool -i M3O-0270_Unix-operations.txt -a UmountCheck 
+
+
+
+

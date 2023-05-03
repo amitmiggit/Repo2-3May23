@@ -1,0 +1,137 @@
+lp01d69:~ # hastatus -sum | grep -i online
+B  NIC             lp01d69              Y          N               ONLINE
+B  NIC             lp01d70              Y          N               ONLINE
+B  dbipsow1        lp01d70              Y          N               ONLINE|STOPPING
+B  dbipspw1        lp01d70              Y          N               ONLINE|STOPPING
+B  dboid6w1        lp01d70              Y          N               ONLINE|STOPPING
+lp01d70:/dev/vx/dsk # vxdg list
+NAME         STATE           ID
+dgoracle_lp01d70 enabled,cds          1579863638.14.lp01d70
+dgdbipsow1bkup enabled,cds          1218009041.104.lp01d11
+dgdbipsow1db enabled,cds          1218009018.86.lp01d11
+dgdbipsow1redo1 enabled,cds          1218009058.110.lp01d11
+dgdbipsow1redo2 enabled,cds          1218009072.116.lp01d11
+dgdbipspw1bkup enabled,cds          1218115540.216.lp01d11
+dgdbipspw1db enabled,cds          1218115521.202.lp01d11
+dgdbipspw1redo1 enabled,cds          1218115557.222.lp01d11
+dgdbipspw1redo2 enabled,cds          1218115572.228.lp01d11
+dgdboid6w1bkup enabled,cds          1605518967.322.lp01d69
+dgdboid6w1db enabled,cds          1605518976.328.lp01d69
+dgdboid6w1redo1 enabled,cds          1605518987.334.lp01d69
+dgdboid6w1redo2 enabled,cds          1605518995.340.lp01d69
+lp01d70:/dev/vx/dsk #
+
+lp01d70:/dev/vx/dsk # df -hT
+Filesystem                                       Type      Size  Used Avail Use% Mounted on
+devtmpfs                                         devtmpfs  188G  8.0K  188G   1% /dev
+tmpfs                                            tmpfs     188G  4.0K  188G   1% /dev/shm
+tmpfs                                            tmpfs     188G  9.8M  188G   1% /run
+tmpfs                                            tmpfs     188G     0  188G   0% /sys/fs/cgroup
+/dev/sda2                                        btrfs     101G   57G   42G  58% /
+/dev/sda2                                        btrfs     101G   57G   42G  58% /lfs
+/dev/sda2                                        btrfs     101G   57G   42G  58% /.snapshots
+/dev/sda2                                        btrfs     101G   57G   42G  58% /var/cache
+/dev/sda2                                        btrfs     101G   57G   42G  58% /global/local
+/dev/sda2                                        btrfs     101G   57G   42G  58% /var/spool
+/dev/sda2                                        btrfs     101G   57G   42G  58% /home
+/dev/sda2                                        btrfs     101G   57G   42G  58% /tmp
+/dev/sda2                                        btrfs     101G   57G   42G  58% /var/opt
+/dev/sda2                                        btrfs     101G   57G   42G  58% /var/tmp
+/dev/sda2                                        btrfs     101G   57G   42G  58% /var/log
+/dev/sda2                                        btrfs     101G   57G   42G  58% /opt
+/dev/sda1                                        ext3      976M  102M  824M  11% /boot
+/dev/mapper/vglocal-lvvarcrash                   xfs        50G  2.7G   48G   6% /var/crash
+tmpfs                                            tmpfs     4.0K     0  4.0K   0% /dev/vx
+nv02400143.bmwgroup.net:/f05601/t011626/pwo_dump nfs        50G   37G   14G  73% /nfs/ora/pwo_dump
+tmpfs                                            tmpfs      38G     0   38G   0% /run/user/66159
+tmpfs                                            tmpfs      38G     0   38G   0% /run/user/48952
+nv01100026.bmwgroup.net:/f08195/t024669          nfs        15G  6.5G  8.6G  44% /nfs/ora/BMW_DP_DBIPSOW1
+nv01100028.bmwgroup.net:/f08192/t029316          nfs        15G  1.8G   14G  12% /nfs/ora/BMW_DP_DBIPSPW1
+tmpfs                                            tmpfs      38G     0   38G   0% /run/user/0
+tmpfs                                            tmpfs      38G     0   38G   0% /run/user/44035
+/dev/vx/dsk/dgoracle_lp01d70/lvoracle            vxfs      175G   60G  115G  34% /lfs/oracle
+/dev/vx/dsk/dgoracle_lp01d70/lvoracleaudit       vxfs       50G  296M   50G   1% /lfs/oracle_audit
+tmpfs                                            tmpfs      38G     0   38G   0% /run/user/160
+/dev/vx/dsk/dgdbipsow1redo1/lvredo1              vxfs       28G  1.8G   25G   7% /global/dbipsow1/redo1
+/dev/vx/dsk/dgdbipsow1db/lvdb                    vxfs      338G  204G  134G  61% /global/dbipsow1/db
+/dev/vx/dsk/dgdbipsow1bkup/lvbkup                vxfs      1.6T  309G  1.3T  20% /global/dbipsow1/bkup
+/dev/vx/dsk/dgdbipsow1redo2/lvredo2              vxfs       28G  1.6G   25G   7% /global/dbipsow1/redo2
+/dev/vx/dsk/dgdbipspw1redo1/lvredo1              vxfs       15G   10G  3.9G  73% /global/dbipspw1/redo1
+/dev/vx/dsk/dgdbipspw1db/lvdb                    vxfs      282G  215G   66G  77% /global/dbipspw1/db
+/dev/vx/dsk/dgdbipspw1redo2/lvredo2              vxfs       15G  9.8G  4.0G  72% /global/dbipspw1/redo2
+/dev/vx/dsk/dgdbipspw1bkup/lvbkup                vxfs      2.6T  109G  2.5T   5% /global/dbipspw1/bkup
+/dev/vx/dsk/dgdboid6w1redo2/lvredo2              vxfs       15G  534M   13G   4% /global/dboid6w1/redo2
+/dev/vx/dsk/dgdboid6w1db/lvdb                    vxfs       15G  5.5G  8.5G  40% /global/dboid6w1/db
+/dev/vx/dsk/dgdboid6w1redo1/lvredo1              vxfs       15G  547M   13G   5% /global/dboid6w1/redo1
+/dev/vx/dsk/dgdboid6w1bkup/lvbkup                vxfs      113G   18G   95G  16% /global/dboid6w1/bkup
+lp01d70:/dev/vx/dsk #
+===
+lp01d70:/var/tmp # ./check_dlv_dgv.sh
+
+Checking host lp01d70 SLES Release 12-SP4 VxVM Version 7.4.1 PL: 2805
+Installed VxVM Version: 7.4.1 PL 2805 on lp01d70
+VxVM 7.4.1 supports: DLV 11-15
+VxVM 7.4.1 supports: DGV MAX 280
+VRTvcs Installed Version: 7.4.1 PL 0000 on lp01d70
+
+
+Checking DiskLayout DLVs .. 7.4.1 Max supported DLV is 15
+
+LV /dev/vx/dsk/dgdbipsow1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipsow1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbipspw1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdboid6w1bkup/lvbkup has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1db/lvdb has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1redo1/lvredo1 has max DLV 15 OK
+LV /dev/vx/dsk/dgdboid6w1redo2/lvredo2 has max DLV 15 OK
+LV /dev/vx/dsk/dgoracle_lp01d70/lvoracle has DLV 13 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d70/lvoracleaudit has DLV 13 ERROR NOK: UPDATE TO DLV 15
+
+Checking DiskGroup DGVs .. 7.4.1 Max supported DGV is 280
+
+DG dgdbipsow1bkup has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipsow1db has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipsow1redo1 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipsow1redo2 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipspw1bkup has DGV 190 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipspw1db has DGV 190 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipspw1redo1 has DGV 190 ERROR NOK: UPDATE TO DGV 280
+DG dgdbipspw1redo2 has DGV 190 ERROR NOK: UPDATE TO DGV 280
+DG dgdboid6w1bkup has max DGV 280 OK
+DG dgdboid6w1db has max DGV 280 OK
+DG dgdboid6w1redo1 has max DGV 280 OK
+DG dgdboid6w1redo2 has max DGV 280 OK
+DG dgoracle_lp01d70 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+
+Extra Patch Level Check for 7.4.1
+
+OK: VRTSvxvm Patch Level is 2805
+OK: VRTSodm Patch Level is 1700
+OK: VRTSvxfs Patch Level is 1700
+
+OK: Veritas VRTSvxvm 7.4.1 and VRTSvcs 7.4.1 Versions match
+
+lp01d70:/var/tmp #
+===============================
+
+vxdg import dgoracle_lp01d70
+vxdg import dgdbipsow1bkup
+vxdg import dgdbipsow1db
+vxdg import dgdbipsow1redo1
+vxdg import dgdbipsow1redo2
+vxdg import dgdbipspw1bkup
+vxdg import dgdbipspw1db
+vxdg import dgdbipspw1redo1
+vxdg import dgdbipspw1redo2
+vxdg import dgdboid6w1bkup
+vxdg import dgdboid6w1db
+vxdg import dgdboid6w1redo1
+vxdg import dgdboid6w1redo2
+
+
+

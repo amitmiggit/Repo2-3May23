@@ -1,0 +1,123 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cd /lfs/iaas_teamfolder/LINUX_SCRIPTS/
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS $ cd task/
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS/task $ ls
+DEV_TASKEXPERT.sh  LW_TASKEXPERT.sh  nrpe  TASKEXPERT.sh
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS/task $ ./TASKEXPERT.sh
+
+
+ **** WELCOME TO BMW AUTOMATION ****
+ ====================================
+ 1. Set Downtime
+ 2. Sudo rule validation
+ 3. Master Release Precheck
+ 4. MD migration preparation
+ q. Quit
+
+
+Your Choice : 4
+
+
+Execution TASK Number :TAS000006038374
+Preperation TASK Number :TAS000006038488
+Storm Request from prep task (New Storage):370620
+
+Please enter all the VMs & Press [Enter and Ctrl+D] :
+lppga02094vm
+lppgb02094vm
+
+#######################################################  Preparing MD migration for TAS000006038374 ########################################################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      VM Name                          Xen Farm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lppga02094vm.bmwgroup.net     ::     lpxenpgag015
+lppgb02094vm.bmwgroup.net     ::     lpxenpgag016
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+lpxenpgag015 :: Install Server: lpinstiaas01  OK
+
+lpxenpgag016 :: Install Server: lpinstiaas01  OK
+
+
+Be careful ! Is all VM running on Target? yes/no:yes
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Collecting VM's MD devices & size, have patience this may take sometime ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:--------> Collected
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lppga02094vm_1 14G
+lppga02094vm_2 14G
+lppga02094vm_3 14G
+lppga02094vm 56G
+lppgb02094vm_1 14G
+lppgb02094vm_2 14G
+lppgb02094vm_3 14G
+lppgb02094vm 56G
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Collecting new luns details at target, have patience this may take sometime ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Copying script at target farm to get luns detail ::
+get_new_lun.sh                                                                                                             100%  142     0.1KB/s   00:00
+
+:--------> Collected
+
+Cleaning script at target farm ::
+
+:--------> Cleared
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                   COMMANDS                                                                           MD_size  Lun_size
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+######################################################### Command for : lppga02094vm ##############################################################
+vmc -p -d "360060e80075ac50000305ac5000010bd 360060e80075ac40000305ac4000010bd" migratemd lppga02094vm /dev/md/lppga02094vm_1             14G    14G
+vmc -p -d "360060e80075ac50000305ac5000010be 360060e80075ac40000305ac4000010be" migratemd lppga02094vm /dev/md/lppga02094vm_2             14G    14G
+vmc -p -d "360060e80075ac50000305ac5000010bf 360060e80075ac40000305ac4000010bf" migratemd lppga02094vm /dev/md/lppga02094vm_3             14G    14G
+vmc -p -d "360060e80075ac50000305ac5000010c5 360060e80075ac40000305ac4000010c5" migratemd lppga02094vm /dev/md/lppga02094vm             56G    56G
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IMPORTANT - Please validate disk size once again manually and execute MD migration one at a time :-) Enjoy
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ lpxenpgag015 ::
+vmc storage free | egrep -i ' 10BD | 10BE | 10BF | 10C0 | 10C1 | 10C2 | 10C3 | 10C4 | 10C5 | 10C6 | 10C7 | 10C8 | 10C9 | 10CA | 10CB | 10CC '
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Copying script at target farm to get luns detail ::
+get_new_lun.sh                                                                                                             100%  142     0.1KB/s   00:00
+
+:--------> Collected
+
+Cleaning script at target farm ::
+
+:--------> Cleared
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                   COMMANDS                                                                           MD_size  Lun_size
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+######################################################### Command for : lppgb02094vm ##############################################################
+vmc -p -d "360060e80075ac40000305ac4000010c0 360060e80075ac50000305ac5000010c0" migratemd lppgb02094vm /dev/md/lppgb02094vm_1             14G    14G
+vmc -p -d "360060e80075ac40000305ac4000010c1 360060e80075ac50000305ac5000010c1" migratemd lppgb02094vm /dev/md/lppgb02094vm_2             14G    14G
+vmc -p -d "360060e80075ac40000305ac4000010c2 360060e80075ac50000305ac5000010c2" migratemd lppgb02094vm /dev/md/lppgb02094vm_3             14G    14G
+vmc -p -d "360060e80075ac40000305ac4000010c6 360060e80075ac50000305ac5000010c6" migratemd lppgb02094vm /dev/md/lppgb02094vm             56G    56G
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IMPORTANT - Please validate disk size once again manually and execute MD migration one at a time :-) Enjoy
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ lpxenpgag016 ::
+vmc storage free | egrep -i ' 10BD | 10BE | 10BF | 10C0 | 10C1 | 10C2 | 10C3 | 10C4 | 10C5 | 10C6 | 10C7 | 10C8 | 10C9 | 10CA | 10CB | 10CC '
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS/task $ pwd
+/lfs/iaas_teamfolder/LINUX_SCRIPTS/task
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS/task $ ls
+DEV_TASKEXPERT.sh  LW_TASKEXPERT.sh  nrpe  TASKEXPERT.sh
+[INSTSERV][qxz10kv][lpinstiaas01] /lfs/iaas_teamfolder/LINUX_SCRIPTS/task $

@@ -1,0 +1,1955 @@
+lp05d19:/var/tmp # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # ls -ltra
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+drwxrwxrwt 1 root    root         0 Feb 21 11:33 .rdh
+-rw-r--r-- 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwx------ 1 root    root         6 Feb 21 12:14 systemd-private-1f6c968109ec4215bc039ce51b48f00c-systemd-localed.service-VoEW8H
+drwxrwxrwt 1 root    root       890 Feb 21 12:14 .
+lp05d19:/var/tmp # cat dbyapss.cmd
+hagrp -add dbyapss
+hagrp -modify dbyapss SystemList  lp05d19 0 lp05d20 1
+hagrp -modify dbyapss AutoStartList  lp05d19 lp05d20
+hagrp -modify dbyapss SourceFile "./main.cf"
+hares -add dbyapss_app Application dbyapss
+hares -modify dbyapss_app StartProgram "/lfs/cluster/vcs/dbyapss_start"
+hares -modify dbyapss_app StopProgram "/lfs/cluster/vcs/dbyapss_stop"
+hares -modify dbyapss_app MonitorProgram "/lfs/cluster/vcs/dbyapss_monitor"
+hares -modify dbyapss_app User root
+hares -modify dbyapss_app PidFiles -delete -keys
+hares -modify dbyapss_app MonitorProcesses -delete -keys
+hares -modify dbyapss_app UseSUDash 0
+hares -modify dbyapss_app StartOnly 0
+hares -modify dbyapss_app Enabled 1
+hares -add dbyapss_dgdbyapssbkup DiskGroup dbyapss
+hares -modify dbyapss_dgdbyapssbkup Critical 0
+hares -modify dbyapss_dgdbyapssbkup DiskGroup dgdbyapssbkup
+hares -modify dbyapss_dgdbyapssbkup StartVolumes 1
+hares -modify dbyapss_dgdbyapssbkup StopVolumes 1
+hares -modify dbyapss_dgdbyapssbkup MonitorReservation 0
+hares -modify dbyapss_dgdbyapssbkup tempUseFence INVALID
+hares -modify dbyapss_dgdbyapssbkup Reservation ClusterDefault
+hares -modify dbyapss_dgdbyapssbkup ClearClone 0
+hares -modify dbyapss_dgdbyapssbkup ForceImport 1
+hares -modify dbyapss_dgdbyapssbkup Enabled 1
+hares -add dbyapss_dgdbyapssdb DiskGroup dbyapss
+hares -modify dbyapss_dgdbyapssdb Critical 0
+hares -modify dbyapss_dgdbyapssdb DiskGroup dgdbyapssdb
+hares -modify dbyapss_dgdbyapssdb StartVolumes 1
+hares -modify dbyapss_dgdbyapssdb StopVolumes 1
+hares -modify dbyapss_dgdbyapssdb MonitorReservation 0
+hares -modify dbyapss_dgdbyapssdb tempUseFence INVALID
+hares -modify dbyapss_dgdbyapssdb Reservation ClusterDefault
+hares -modify dbyapss_dgdbyapssdb ClearClone 0
+hares -modify dbyapss_dgdbyapssdb ForceImport 1
+hares -modify dbyapss_dgdbyapssdb Enabled 1
+hares -add dbyapss_dgdbyapssredo1 DiskGroup dbyapss
+hares -modify dbyapss_dgdbyapssredo1 Critical 0
+hares -modify dbyapss_dgdbyapssredo1 DiskGroup dgdbyapssredo1
+hares -modify dbyapss_dgdbyapssredo1 StartVolumes 1
+hares -modify dbyapss_dgdbyapssredo1 StopVolumes 1
+hares -modify dbyapss_dgdbyapssredo1 MonitorReservation 0
+hares -modify dbyapss_dgdbyapssredo1 tempUseFence INVALID
+hares -modify dbyapss_dgdbyapssredo1 Reservation ClusterDefault
+hares -modify dbyapss_dgdbyapssredo1 ClearClone 0
+hares -modify dbyapss_dgdbyapssredo1 ForceImport 1
+hares -modify dbyapss_dgdbyapssredo1 Enabled 1
+hares -add dbyapss_dgdbyapssredo2 DiskGroup dbyapss
+hares -modify dbyapss_dgdbyapssredo2 Critical 0
+hares -modify dbyapss_dgdbyapssredo2 DiskGroup dgdbyapssredo2
+hares -modify dbyapss_dgdbyapssredo2 StartVolumes 1
+hares -modify dbyapss_dgdbyapssredo2 StopVolumes 1
+hares -modify dbyapss_dgdbyapssredo2 MonitorReservation 0
+hares -modify dbyapss_dgdbyapssredo2 tempUseFence INVALID
+hares -modify dbyapss_dgdbyapssredo2 Reservation ClusterDefault
+hares -modify dbyapss_dgdbyapssredo2 ClearClone 0
+hares -modify dbyapss_dgdbyapssredo2 ForceImport 1
+hares -modify dbyapss_dgdbyapssredo2 Enabled 1
+hares -add dbyapss_ip IP dbyapss
+hares -modify dbyapss_ip Device bond0
+hares -modify dbyapss_ip Address "160.52.103.74"
+hares -modify dbyapss_ip NetMask "255.255.255.0"
+hares -modify dbyapss_ip Options "broadcast 160.52.103.255"
+hares -modify dbyapss_ip PrefixLen 1000
+hares -modify dbyapss_ip PingTimeout 10
+hares -modify dbyapss_ip Enabled 1
+hares -add dbyapss_bkup_mount Mount dbyapss
+hares -modify dbyapss_bkup_mount MountPoint "/global/dbyapss/bkup"
+hares -modify dbyapss_bkup_mount BlockDevice "/dev/vx/dsk/dgdbyapssbkup/lvbkup"
+hares -modify dbyapss_bkup_mount FSType vxfs
+hares -modify dbyapss_bkup_mount MountOpt defaults
+hares -modify dbyapss_bkup_mount FsckOpt "%-y"
+hares -modify dbyapss_bkup_mount VxFSMountLock 0
+hares -modify dbyapss_bkup_mount SnapUmount 0
+hares -modify dbyapss_bkup_mount CkptUmount 1
+hares -modify dbyapss_bkup_mount RecursiveMnt 0
+hares -modify dbyapss_bkup_mount CacheRestoreAccess 0
+hares -modify dbyapss_bkup_mount Enabled 1
+hares -add dbyapss_db_mount Mount dbyapss
+hares -modify dbyapss_db_mount MountPoint "/global/dbyapss/db"
+hares -modify dbyapss_db_mount BlockDevice "/dev/vx/dsk/dgdbyapssdb/lvdb"
+hares -modify dbyapss_db_mount FSType vxfs
+hares -modify dbyapss_db_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyapss_db_mount FsckOpt "%-y"
+hares -modify dbyapss_db_mount VxFSMountLock 0
+hares -modify dbyapss_db_mount SnapUmount 0
+hares -modify dbyapss_db_mount CkptUmount 1
+hares -modify dbyapss_db_mount RecursiveMnt 0
+hares -modify dbyapss_db_mount CacheRestoreAccess 0
+hares -modify dbyapss_db_mount Enabled 1
+hares -add dbyapss_redo1_mount Mount dbyapss
+hares -modify dbyapss_redo1_mount MountPoint "/global/dbyapss/redo1"
+hares -modify dbyapss_redo1_mount BlockDevice "/dev/vx/dsk/dgdbyapssredo1/lvredo1"
+hares -modify dbyapss_redo1_mount FSType vxfs
+hares -modify dbyapss_redo1_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyapss_redo1_mount FsckOpt "%-y"
+hares -modify dbyapss_redo1_mount VxFSMountLock 0
+hares -modify dbyapss_redo1_mount SnapUmount 0
+hares -modify dbyapss_redo1_mount CkptUmount 1
+hares -modify dbyapss_redo1_mount RecursiveMnt 0
+hares -modify dbyapss_redo1_mount CacheRestoreAccess 0
+hares -modify dbyapss_redo1_mount Enabled 1
+hares -add dbyapss_redo2_mount Mount dbyapss
+hares -modify dbyapss_redo2_mount MountPoint "/global/dbyapss/redo2"
+hares -modify dbyapss_redo2_mount BlockDevice "/dev/vx/dsk/dgdbyapssredo2/lvredo2"
+hares -modify dbyapss_redo2_mount FSType vxfs
+hares -modify dbyapss_redo2_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyapss_redo2_mount FsckOpt "%-y"
+hares -modify dbyapss_redo2_mount VxFSMountLock 0
+hares -modify dbyapss_redo2_mount SnapUmount 0
+hares -modify dbyapss_redo2_mount CkptUmount 1
+hares -modify dbyapss_redo2_mount RecursiveMnt 0
+hares -modify dbyapss_redo2_mount CacheRestoreAccess 0
+hares -modify dbyapss_redo2_mount Enabled 1
+hares -add dbyapss_nic_proxy Proxy dbyapss
+hares -modify dbyapss_nic_proxy TargetResName NIC_monitor
+hares -modify dbyapss_nic_proxy Enabled 1
+hares -link dbyapss_app dbyapss_bkup_mount
+hares -link dbyapss_app dbyapss_db_mount
+hares -link dbyapss_app dbyapss_ip
+hares -link dbyapss_app dbyapss_redo1_mount
+hares -link dbyapss_app dbyapss_redo2_mount
+hares -link dbyapss_bkup_mount dbyapss_dgdbyapssbkup
+hares -link dbyapss_db_mount dbyapss_dgdbyapssdb
+hares -link dbyapss_ip dbyapss_nic_proxy
+hares -link dbyapss_redo1_mount dbyapss_dgdbyapssredo1
+hares -link dbyapss_redo2_mount dbyapss_dgdbyapssredo2
+lp05d19:/var/tmp # vi dbyapss.cmd
+lp05d19:/var/tmp # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # cd /global/dbyapss
+lp05d19:/global/dbyapss # ls -ltra
+total 8
+drwxr-xr-x 4 oracle dba    96 Nov  4  2008 redo1
+drwxr-xr-x 4 oracle dba    96 Nov  4  2008 redo2
+drwxr-xr-x 5 oracle dba  8192 Dec 22  2011 bkup
+drwxr-xr-x 5 oracle dba    96 Aug 18  2016 db
+drwxr-xr-x 1 root   root   32 Feb 19 14:09 .
+drwxr-xr-x 1 root   root   92 Feb 19 14:10 ..
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL|FAULTED
+B  dbyapss         lp05d20              Y          N               OFFLINE
+D  dbyapss         Mount                dbyapss_bkup_mount   lp05d19
+D  dbyapss         Mount                dbyapss_db_mount     lp05d19
+D  dbyapss         Mount                dbyapss_redo1_mount  lp05d19
+D  dbyapss         Mount                dbyapss_redo2_mount  lp05d19
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hagrp -clear dbyapss -sys lp05d19
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STOPPING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE_REVERSE_PROPAGATE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/global/dbyapss # w
+ 12:57:17 up 32 days, 23:33,  5 users,  load average: 0.02, 0.07, 0.08
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+qplinux  pts/1    10.30.17.19      08:32    0.00s  0.23s  0.01s sshd: qplinux [priv]
+qqlinux  pts/2    160.46.128.71    11:33    1:17m  0.07s  0.04s sshd: qqlinux [priv]
+qpiorpos pts/3    10.30.17.19      10:57    4:05   0.02s  0.02s /usr/bin/ksh -i
+qxz0e1u  pts/4    160.50.18.150    11:54   38:20   0.02s  0.02s -ksh
+qqlinux  pts/5    160.46.128.71    12:20    1:09   0.20s  0.04s sshd: qqlinux [priv]
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss #
+lp05d19:/global/dbyapss # hagrp
+VCS INFO V-16-1-10601 Usage:
+        hagrp -add <group>
+        hagrp -delete <group>
+
+        hagrp -link <parent group> <child group> <dependency>
+        hagrp -unlink <parent group> <child group>
+
+        hagrp -clear <group> [-sys <system>]
+                [-clus <cluster> | -localclus]
+        hagrp -clearadminwait [-fault] <group> -sys <system>
+        hagrp -flush [-force] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+
+        hagrp -online [-force] [-nopre] <group> -sys <system>
+                [-checkpartial <system>]
+                [-clus <cluster> | -localclus]
+        hagrp -online [-force] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -online [-force] <group> -site <site>
+        hagrp -online [-propagate] [-force] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -online [-propagate] [-force] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -online [-propagate] <group> -site <site>
+
+        hagrp -offline [-force] [-ifprobed] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-force] [-ifprobed] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-force] [-ifprobed] <group> -site <site>
+        hagrp -offline [-propagate] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-propagate] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-propagate] <group> -site <site>
+
+        hagrp -switch <group> -to <system>
+                [-clus <cluster> | -localclus [-nopre]]
+        hagrp -switch <group> -any [-clus <cluster> | -localclus]
+
+        hagrp -switch <group> -site <site>
+        hagrp -migrate <group> -to <system>
+
+        hagrp -freeze <group> -persistent
+        hagrp -freeze <group> [-clus <cluster> | -localclus]
+
+        hagrp -unfreeze <group> -persistent
+        hagrp -unfreeze <group> [-clus <cluster> | -localclus]
+
+        hagrp -enable <group> [-sys <system>]
+        hagrp -disable <group> [-sys <system>]
+        hagrp -autoenable <group> -sys <system>
+
+        hagrp -enableresources <group>
+        hagrp -disableresources <group>
+
+        hagrp -ignore <group> -clus <cluster>
+
+        hagrp -display [<group(s)>] [-attribute <attribute(s)>]
+                [-sys <system(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -state [<group(s)>] [-sys <system(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -list [<conditional(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -value <group> <attr> [<system>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -local <group> <attr>
+        hagrp -global <group> <attr> <value> ... | <key> ...
+                 | {<key> <value>} ...
+
+        hagrp -dep [<group(s)>]
+        hagrp -resources <group> [-clus <cluster> | -localclus]
+
+        hagrp -wait <group> <attr> <value> [-clus <cluster>]
+                [-sys <system>] [-time <timeout>]
+
+        hagrp -forecast <group> [-policy <failoverpolicy>] [-verbose]
+        hagrp [-help [-modify|-link|-list]]
+
+lp05d19:/global/dbyapss # hagrp -htq
+VCS WARNING V-16-1-10603 Unknown option: -htq
+VCS INFO V-16-1-10601 Usage:
+        hagrp -add <group>
+        hagrp -delete <group>
+
+        hagrp -link <parent group> <child group> <dependency>
+        hagrp -unlink <parent group> <child group>
+
+        hagrp -clear <group> [-sys <system>]
+                [-clus <cluster> | -localclus]
+        hagrp -clearadminwait [-fault] <group> -sys <system>
+        hagrp -flush [-force] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+
+        hagrp -online [-force] [-nopre] <group> -sys <system>
+                [-checkpartial <system>]
+                [-clus <cluster> | -localclus]
+        hagrp -online [-force] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -online [-force] <group> -site <site>
+        hagrp -online [-propagate] [-force] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -online [-propagate] [-force] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -online [-propagate] <group> -site <site>
+
+        hagrp -offline [-force] [-ifprobed] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-force] [-ifprobed] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-force] [-ifprobed] <group> -site <site>
+        hagrp -offline [-propagate] <group> -sys <system>
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-propagate] <group> -any
+                [-clus <cluster> | -localclus]
+        hagrp -offline [-propagate] <group> -site <site>
+
+        hagrp -switch <group> -to <system>
+                [-clus <cluster> | -localclus [-nopre]]
+        hagrp -switch <group> -any [-clus <cluster> | -localclus]
+
+        hagrp -switch <group> -site <site>
+        hagrp -migrate <group> -to <system>
+
+        hagrp -freeze <group> -persistent
+        hagrp -freeze <group> [-clus <cluster> | -localclus]
+
+        hagrp -unfreeze <group> -persistent
+        hagrp -unfreeze <group> [-clus <cluster> | -localclus]
+
+        hagrp -enable <group> [-sys <system>]
+        hagrp -disable <group> [-sys <system>]
+        hagrp -autoenable <group> -sys <system>
+
+        hagrp -enableresources <group>
+        hagrp -disableresources <group>
+
+        hagrp -ignore <group> -clus <cluster>
+
+        hagrp -display [<group(s)>] [-attribute <attribute(s)>]
+                [-sys <system(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -state [<group(s)>] [-sys <system(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -list [<conditional(s)>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -value <group> <attr> [<system>]
+                [-clus <cluster> | -localclus]
+
+        hagrp -local <group> <attr>
+        hagrp -global <group> <attr> <value> ... | <key> ...
+                 | {<key> <value>} ...
+
+        hagrp -dep [<group(s)>]
+        hagrp -resources <group> [-clus <cluster> | -localclus]
+
+        hagrp -wait <group> <attr> <value> [-clus <cluster>]
+                [-sys <system>] [-time <timeout>]
+
+        hagrp -forecast <group> [-policy <failoverpolicy>] [-verbose]
+        hagrp [-help [-modify|-link|-list]]
+
+lp05d19:/global/dbyapss # cd /var/tmp
+lp05d19:/var/tmp # ls -lrta
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+-rw-r--r-- 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwxrwxrwt 1 root    root         0 Feb 21 12:36 .rdh
+drwxrwxrwt 1 root    root       732 Feb 21 13:04 .
+lp05d19:/var/tmp # nslookup 160.52.103.74
+74.103.52.160.in-addr.arpa      name = dbyapss.bmw.co.at.
+
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link/ether 78:ac:44:17:06:7c brd ff:ff:ff:ff:ff:ff
+3: eth6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 1000
+    link/ether 70:b5:e8:e3:8c:6f brd ff:ff:ff:ff:ff:ff
+    inet 169.254.0.2/16 brd 169.254.255.255 scope global eth6
+       valid_lft forever preferred_lft forever
+    inet6 fe80::72b5:e8ff:fee3:8c6f/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 78:ac:44:17:06:7d brd ff:ff:ff:ff:ff:ff
+    inet 160.52.99.224/24 brd 160.52.99.255 scope global eth1
+       valid_lft forever preferred_lft forever
+    inet6 2a03:1e82:860c:506::2011/64 scope global deprecated
+       valid_lft forever preferred_lft 0sec
+    inet6 fe80::7aac:44ff:fe17:67d/64 scope link
+       valid_lft forever preferred_lft forever
+5: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 78:ac:44:17:06:7e brd ff:ff:ff:ff:ff:ff
+    inet 160.52.91.40/24 brd 160.52.91.255 scope global eth2
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7aac:44ff:fe17:67e/64 scope link
+       valid_lft forever preferred_lft forever
+6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 78:ac:44:17:06:7f brd ff:ff:ff:ff:ff:ff
+7: eth5: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether b4:96:91:96:dd:04 brd ff:ff:ff:ff:ff:ff
+8: eth3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link/ether 78:ac:44:17:06:7c brd ff:ff:ff:ff:ff:ff
+9: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 78:ac:44:17:06:7c brd ff:ff:ff:ff:ff:ff
+    inet 160.52.103.78/24 brd 160.52.103.255 scope global bond0
+       valid_lft forever preferred_lft forever
+    inet 160.52.103.74/24 brd 160.52.103.255 scope global secondary bond0:0
+       valid_lft forever preferred_lft forever
+    inet6 2a03:1e82:860a:507::2011/64 scope global deprecated
+       valid_lft forever preferred_lft 0sec
+    inet6 fe80::7aac:44ff:fe17:67c/64 scope link
+       valid_lft forever preferred_lft forever
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # ls -ltra
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+-rw-r--r-- 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwxrwxrwt 1 root    root         0 Feb 21 12:36 .rdh
+drwxrwxrwt 1 root    root       732 Feb 21 13:04 .
+lp05d19:/var/tmp # vi dbyapss.cmd
+lp05d19:/var/tmp # cd /var/tmp
+lp05d19:/var/tmp # cd /lfs/cluster/vcs
+lp05d19:/lfs/cluster/vcs # ls -ltra
+total 48
+-rwxr--r-- 1 root root 2913 Dec 26  2019 dbyrpss_stop
+-rwxr--r-- 1 root root 5883 Dec 26  2019 dbyrpss_start
+-rwxr--r-- 1 root root 1395 Dec 26  2019 dbyrpss_monitor
+-rwxr-xr-x 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+-rwxr-xr-x 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr-xr-x 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+drwxr-xr-x 1 root root   22 Jan  5 09:46 ..
+-rwxr-xr-x 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr-xr-x 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+drwxr-xr-x 1 root root  324 Feb 19 15:06 .
+lp05d19:/lfs/cluster/vcs # ls -l dbyapss*
+-rwxr-xr-x 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr-xr-x 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyapss_oracle_monitor
+lp05d19:/lfs/cluster/vcs # ls -l dbyapss*
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr-xr-x 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyapss_oracle_start
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyapss_oracle_stop
+lp05d19:/lfs/cluster/vcs # ls -l dbyapss*
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+lp05d19:/lfs/cluster/vcs # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # ls -ltra
+total 48
+-rwxr--r-- 1 root root 2913 Dec 26  2019 dbyrpss_stop
+-rwxr--r-- 1 root root 5883 Dec 26  2019 dbyrpss_start
+-rwxr--r-- 1 root root 1395 Dec 26  2019 dbyrpss_monitor
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+drwxr-xr-x 1 root root   22 Jan  5 09:46 ..
+-rwxr-xr-x 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr-xr-x 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+drwxr-xr-x 1 root root  324 Feb 19 15:06 .
+lp05d19:/lfs/cluster/vcs # ls -lrt dbyopss*
+-rwxr-xr-x 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr-xr-x 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+lp05d19:/lfs/cluster/vcs # chmod lp05d19:/lfs/cluster/vcs # chmod 744 dbyapss_oracle_start
+chmod: missing operand after ‘lp05d19:/lfs/cluster/vcs’
+Try 'chmod --help' for more information.
+lp05d19:/lfs/cluster/vcs # ls -lrt dbyopss*
+-rwxr-xr-x 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr-xr-x 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyopss_oracle_monitor
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyopss_oracle_start
+lp05d19:/lfs/cluster/vcs # chmod 744 dbyopss_oracle_stop
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # ls -l dbyapss*
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+lp05d19:/lfs/cluster/vcs # ls -l dbyopss*
+-rwxr--r-- 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr--r-- 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+lp05d19:/lfs/cluster/vcs # hastatus -sum | grep dbyapss
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hares -display -attribute State -group dbyapss -sys lp05d19
+#Resource              Attribute             System     Value
+dbyapss_app            State                 lp05d19    OFFLINE|STATE UNKNOWN
+dbyapss_bkup_mount     State                 lp05d19    ONLINE
+dbyapss_db_mount       State                 lp05d19    ONLINE
+dbyapss_dgdbyapssbkup  State                 lp05d19    ONLINE
+dbyapss_dgdbyapssdb    State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo1 State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo2 State                 lp05d19    ONLINE
+dbyapss_ip             State                 lp05d19    ONLINE
+dbyapss_nic_proxy      State                 lp05d19    ONLINE
+dbyapss_redo1_mount    State                 lp05d19    ONLINE
+dbyapss_redo2_mount    State                 lp05d19    ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # haconf -makerw
+lp05d19:/lfs/cluster/vcs # cd /var/tmp/
+lp05d19:/var/tmp # ls -ltra
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwxrwxrwt 1 root    root         0 Feb 21 13:19 .rdh
+drwxrwxrwt 1 root    root       732 Feb 21 13:31 .
+lp05d19:/var/tmp # cat dbyopss.cmd
+hagrp -add dbyopss
+hagrp -modify dbyopss SystemList  lp05d19 0 lp05d20 1
+hagrp -modify dbyopss AutoStartList  lp05d19 lp05d20
+hagrp -modify dbyopss SourceFile "./main.cf"
+hares -add dbyopss_app Application dbyopss
+hares -modify dbyopss_app StartProgram "/lfs/cluster/vcs/dbyopss_start"
+hares -modify dbyopss_app StopProgram "/lfs/cluster/vcs/dbyopss_stop"
+hares -modify dbyopss_app MonitorProgram "/lfs/cluster/vcs/dbyopss_monitor"
+hares -modify dbyopss_app User root
+hares -modify dbyopss_app PidFiles -delete -keys
+hares -modify dbyopss_app MonitorProcesses -delete -keys
+hares -modify dbyopss_app UseSUDash 0
+hares -modify dbyopss_app StartOnly 0
+hares -modify dbyopss_app Enabled 1
+hares -add dbyopss_dgdbyopssbkup DiskGroup dbyopss
+hares -modify dbyopss_dgdbyopssbkup Critical 0
+hares -modify dbyopss_dgdbyopssbkup DiskGroup dgdbyopssbkup
+hares -modify dbyopss_dgdbyopssbkup StartVolumes 1
+hares -modify dbyopss_dgdbyopssbkup StopVolumes 1
+hares -modify dbyopss_dgdbyopssbkup MonitorReservation 0
+hares -modify dbyopss_dgdbyopssbkup tempUseFence INVALID
+hares -modify dbyopss_dgdbyopssbkup Reservation ClusterDefault
+hares -modify dbyopss_dgdbyopssbkup ClearClone 0
+hares -modify dbyopss_dgdbyopssbkup ForceImport 1
+hares -modify dbyopss_dgdbyopssbkup Enabled 1
+hares -add dbyopss_dgdbyopssdb DiskGroup dbyopss
+hares -modify dbyopss_dgdbyopssdb Critical 0
+hares -modify dbyopss_dgdbyopssdb DiskGroup dgdbyopssdb
+hares -modify dbyopss_dgdbyopssdb StartVolumes 1
+hares -modify dbyopss_dgdbyopssdb StopVolumes 1
+hares -modify dbyopss_dgdbyopssdb MonitorReservation 0
+hares -modify dbyopss_dgdbyopssdb tempUseFence INVALID
+hares -modify dbyopss_dgdbyopssdb Reservation ClusterDefault
+hares -modify dbyopss_dgdbyopssdb ClearClone 0
+hares -modify dbyopss_dgdbyopssdb ForceImport 1
+hares -modify dbyopss_dgdbyopssdb Enabled 1
+hares -add dbyopss_dgdbyopssredo1 DiskGroup dbyopss
+hares -modify dbyopss_dgdbyopssredo1 Critical 0
+hares -modify dbyopss_dgdbyopssredo1 DiskGroup dgdbyopssredo1
+hares -modify dbyopss_dgdbyopssredo1 StartVolumes 1
+hares -modify dbyopss_dgdbyopssredo1 StopVolumes 1
+hares -modify dbyopss_dgdbyopssredo1 MonitorReservation 0
+hares -modify dbyopss_dgdbyopssredo1 tempUseFence INVALID
+hares -modify dbyopss_dgdbyopssredo1 Reservation ClusterDefault
+hares -modify dbyopss_dgdbyopssredo1 ClearClone 0
+hares -modify dbyopss_dgdbyopssredo1 ForceImport 1
+hares -modify dbyopss_dgdbyopssredo1 Enabled 1
+hares -add dbyopss_dgdbyopssredo2 DiskGroup dbyopss
+hares -modify dbyopss_dgdbyopssredo2 Critical 0
+hares -modify dbyopss_dgdbyopssredo2 DiskGroup dgdbyopssredo2
+hares -modify dbyopss_dgdbyopssredo2 StartVolumes 1
+hares -modify dbyopss_dgdbyopssredo2 StopVolumes 1
+hares -modify dbyopss_dgdbyopssredo2 MonitorReservation 0
+hares -modify dbyopss_dgdbyopssredo2 tempUseFence INVALID
+hares -modify dbyopss_dgdbyopssredo2 Reservation ClusterDefault
+hares -modify dbyopss_dgdbyopssredo2 ClearClone 0
+hares -modify dbyopss_dgdbyopssredo2 ForceImport 1
+hares -modify dbyopss_dgdbyopssredo2 Enabled 1
+hares -add dbyopss_ip IP dbyopss
+hares -modify dbyopss_ip Device bond0
+hares -modify dbyopss_ip Address "160.52.103.75"
+hares -modify dbyopss_ip NetMask "255.255.255.0"
+hares -modify dbyopss_ip Options "broadcast 160.52.103.255"
+hares -modify dbyopss_ip PrefixLen 1000
+hares -modify dbyopss_ip PingTimeout 10
+hares -modify dbyopss_ip Enabled 1
+hares -add dbyopss_bkup_mount Mount dbyopss
+hares -modify dbyopss_bkup_mount MountPoint "/global/dbyopss/bkup"
+hares -modify dbyopss_bkup_mount BlockDevice "/dev/vx/dsk/dgdbyopssbkup/lvbkup"
+hares -modify dbyopss_bkup_mount FSType vxfs
+hares -modify dbyopss_bkup_mount MountOpt defaults
+hares -modify dbyopss_bkup_mount FsckOpt "%-y"
+hares -modify dbyopss_bkup_mount VxFSMountLock 0
+hares -modify dbyopss_bkup_mount SnapUmount 0
+hares -modify dbyopss_bkup_mount CkptUmount 1
+hares -modify dbyopss_bkup_mount RecursiveMnt 0
+hares -modify dbyopss_bkup_mount CacheRestoreAccess 0
+hares -modify dbyopss_bkup_mount Enabled 1
+hares -add dbyopss_db_mount Mount dbyopss
+hares -modify dbyopss_db_mount MountPoint "/global/dbyopss/db"
+hares -modify dbyopss_db_mount BlockDevice "/dev/vx/dsk/dgdbyopssdb/lvdb"
+hares -modify dbyopss_db_mount FSType vxfs
+hares -modify dbyopss_db_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyopss_db_mount FsckOpt "%-y"
+hares -modify dbyopss_db_mount VxFSMountLock 0
+hares -modify dbyopss_db_mount SnapUmount 0
+hares -modify dbyopss_db_mount CkptUmount 1
+hares -modify dbyopss_db_mount RecursiveMnt 0
+hares -modify dbyopss_db_mount CacheRestoreAccess 0
+hares -modify dbyopss_db_mount Enabled 1
+hares -add dbyopss_redo1_mount Mount dbyopss
+hares -modify dbyopss_redo1_mount MountPoint "/global/dbyopss/redo1"
+hares -modify dbyopss_redo1_mount BlockDevice "/dev/vx/dsk/dgdbyopssredo1/lvredo1"
+hares -modify dbyopss_redo1_mount FSType vxfs
+hares -modify dbyopss_redo1_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyopss_redo1_mount FsckOpt "%-y"
+hares -modify dbyopss_redo1_mount VxFSMountLock 0
+hares -modify dbyopss_redo1_mount SnapUmount 0
+hares -modify dbyopss_redo1_mount CkptUmount 1
+hares -modify dbyopss_redo1_mount RecursiveMnt 0
+hares -modify dbyopss_redo1_mount CacheRestoreAccess 0
+hares -modify dbyopss_redo1_mount Enabled 1
+hares -add dbyopss_redo2_mount Mount dbyopss
+hares -modify dbyopss_redo2_mount MountPoint "/global/dbyopss/redo2"
+hares -modify dbyopss_redo2_mount BlockDevice "/dev/vx/dsk/dgdbyopssredo2/lvredo2"
+hares -modify dbyopss_redo2_mount FSType vxfs
+hares -modify dbyopss_redo2_mount MountOpt "mincache=direct,convosync=direct"
+hares -modify dbyopss_redo2_mount FsckOpt "%-y"
+hares -modify dbyopss_redo2_mount VxFSMountLock 0
+hares -modify dbyopss_redo2_mount SnapUmount 0
+hares -modify dbyopss_redo2_mount CkptUmount 1
+hares -modify dbyopss_redo2_mount RecursiveMnt 0
+hares -modify dbyopss_redo2_mount CacheRestoreAccess 0
+hares -modify dbyopss_redo2_mount Enabled 1
+hares -add dbyopss_nic_proxy Proxy dbyopss
+hares -modify dbyopss_nic_proxy TargetResName NIC_monitor
+hares -modify dbyopss_nic_proxy Enabled 1
+hares -link dbyopss_app dbyopss_bkup_mount
+hares -link dbyopss_app dbyopss_db_mount
+hares -link dbyopss_app dbyopss_ip
+hares -link dbyopss_app dbyopss_redo1_mount
+hares -link dbyopss_app dbyopss_redo2_mount
+hares -link dbyopss_bkup_mount dbyopss_dgdbyopssbkup
+hares -link dbyopss_db_mount dbyopss_dgdbyopssdb
+hares -link dbyopss_ip dbyopss_nic_proxy
+hares -link dbyopss_redo1_mount dbyopss_dgdbyopssredo1
+hares -link dbyopss_redo2_mount dbyopss_dgdbyopssredo2
+lp05d19:/var/tmp # ls -ltra
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwxrwxrwt 1 root    root         0 Feb 21 13:19 .rdh
+drwxrwxrwt 1 root    root       732 Feb 21 13:31 .
+lp05d19:/var/tmp # cd /var/tmp/
+lp05d19:/var/tmp # ls -ltra
+total 6700
+drwxrwxr-x 1  720021 800223      20 Dec 10 11:46 biosctl
+drwxr-xr-x 1 root    root        38 Jan  5 09:33 rudder
+drwx------ 1 root    root         6 Jan  5 09:33 systemd-private-dbfcbb7ad2c846f2b2d175322b1439a1-ntpd.service-JHl9Bb
+drwxr-xr-x 1 root    root       234 Jan  5 09:35 ..
+-rw------- 1 root    root     18192 Jan  5 09:57 ossec-hids-2.8.3-1.2.x86_64.rpm
+-rw------- 1 root    root    234349 Jan  5 09:57 ossec-hids-client-2.8.3-1.2.x86_64.rpm
+drwx------ 1 root    root        12 Jan  6 08:33 zypptest
+drwx------ 1 root    root         6 Jan 19 13:24 systemd-private-1f6c968109ec4215bc039ce51b48f00c-ntpd.service-PrU0cd
+-rw-rw---- 1 qqnagio nagios     110 Jan 20 15:39 eventhandler.log
+drwxrwx--- 1 qqnagio nagios     288 Jan 20 16:06 check_interfaces
+-rw------- 1 root    root   6560526 Feb 12 13:14 rudder-agent-latest.SLES.12.x86_64.rpm
+-rw------- 1 root    root      1406 Feb 17 08:59 LP05D19-044_0
+drwxrwxrwt 1 root    root       104 Feb 19 21:36 .oracle
+-rw-rw---- 1 qqnagio nagios    5780 Feb 21 10:00 saninfo.state
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:34 dbyrpss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:50 dbyapss.cmd
+-rwxr-xr-x 1 root    root      6515 Feb 21 11:51 dbyopss.cmd
+drwxrwxrwt 1 root    root         0 Feb 21 13:19 .rdh
+drwxrwxrwt 1 root    root       732 Feb 21 13:37 .
+lp05d19:/var/tmp # sh dbyopss.cmd
+VCS NOTICE V-16-1-10136 Group added; populating SystemList and setting the Parallel attribute recommended before adding resources
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+lp05d19:/var/tmp # haconf -dump -makero
+lp05d19:/var/tmp # sleep 30
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hagrp -online dbyopss -sys lp05d19
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         IP              dbyopss_ip           lp05d19              W_ONLINE
+F  dbyopss         Mount           dbyopss_bkup_mount   lp05d19              W_ONLINE
+F  dbyopss         Mount           dbyopss_redo2_mount  lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # hares -display -attribute State -group dbyapss -sys lp05d19
+#Resource              Attribute             System     Value
+dbyapss_app            State                 lp05d19    OFFLINE|STATE UNKNOWN
+dbyapss_bkup_mount     State                 lp05d19    ONLINE
+dbyapss_db_mount       State                 lp05d19    ONLINE
+dbyapss_dgdbyapssbkup  State                 lp05d19    ONLINE
+dbyapss_dgdbyapssdb    State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo1 State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo2 State                 lp05d19    ONLINE
+dbyapss_ip             State                 lp05d19    ONLINE
+dbyapss_nic_proxy      State                 lp05d19    ONLINE
+dbyapss_redo1_mount    State                 lp05d19    ONLINE
+dbyapss_redo2_mount    State                 lp05d19    ONLINE
+lp05d19:/var/tmp # hares -display -attribute State -group dbyopss -sys lp05d19
+#Resource              Attribute             System     Value
+dbyopss_app            State                 lp05d19    OFFLINE|STATE UNKNOWN
+dbyopss_bkup_mount     State                 lp05d19    ONLINE
+dbyopss_db_mount       State                 lp05d19    ONLINE
+dbyopss_dgdbyopssbkup  State                 lp05d19    ONLINE
+dbyopss_dgdbyopssdb    State                 lp05d19    ONLINE
+dbyopss_dgdbyopssredo1 State                 lp05d19    ONLINE
+dbyopss_dgdbyopssredo2 State                 lp05d19    ONLINE
+dbyopss_ip             State                 lp05d19    ONLINE
+dbyopss_nic_proxy      State                 lp05d19    ONLINE
+dbyopss_redo1_mount    State                 lp05d19    ONLINE
+dbyopss_redo2_mount    State                 lp05d19    ONLINE
+lp05d19:/var/tmp # hagrp -autoenable dbyapss_app -sys lp05d19
+VCS WARNING V-16-1-12130 Group dbyapss_app does not exist
+lp05d19:/var/tmp # hagrp -autoenable dbyapss_app^Csys lp05d19
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # hares -probe dbyapss_app -sys lp05d19
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # hares -display -attribute State -group dbyapss -sys lp05d19
+#Resource              Attribute             System     Value
+dbyapss_app            State                 lp05d19    OFFLINE|STATE UNKNOWN
+dbyapss_bkup_mount     State                 lp05d19    ONLINE
+dbyapss_db_mount       State                 lp05d19    ONLINE
+dbyapss_dgdbyapssbkup  State                 lp05d19    ONLINE
+dbyapss_dgdbyapssdb    State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo1 State                 lp05d19    ONLINE
+dbyapss_dgdbyapssredo2 State                 lp05d19    ONLINE
+dbyapss_ip             State                 lp05d19    ONLINE
+dbyapss_nic_proxy      State                 lp05d19    ONLINE
+dbyapss_redo1_mount    State                 lp05d19    ONLINE
+dbyapss_redo2_mount    State                 lp05d19    ONLINE
+lp05d19:/var/tmp # hares -display -attribute State -group dbyapss -sys lp05d20
+#Resource              Attribute             System     Value
+dbyapss_app            State                 lp05d20    OFFLINE
+dbyapss_bkup_mount     State                 lp05d20    OFFLINE
+dbyapss_db_mount       State                 lp05d20    OFFLINE
+dbyapss_dgdbyapssbkup  State                 lp05d20    OFFLINE
+dbyapss_dgdbyapssdb    State                 lp05d20    OFFLINE
+dbyapss_dgdbyapssredo1 State                 lp05d20    OFFLINE
+dbyapss_dgdbyapssredo2 State                 lp05d20    OFFLINE
+dbyapss_ip             State                 lp05d20    OFFLINE
+dbyapss_nic_proxy      State                 lp05d20    ONLINE
+dbyapss_redo1_mount    State                 lp05d20    OFFLINE
+dbyapss_redo2_mount    State                 lp05d20    OFFLINE
+lp05d19:/var/tmp # hares -display -attribute State -group dbyopss -sys lp05d19
+#Resource              Attribute             System     Value
+dbyopss_app            State                 lp05d19    OFFLINE|STATE UNKNOWN
+dbyopss_bkup_mount     State                 lp05d19    ONLINE
+dbyopss_db_mount       State                 lp05d19    ONLINE
+dbyopss_dgdbyopssbkup  State                 lp05d19    ONLINE
+dbyopss_dgdbyopssdb    State                 lp05d19    ONLINE
+dbyopss_dgdbyopssredo1 State                 lp05d19    ONLINE
+dbyopss_dgdbyopssredo2 State                 lp05d19    ONLINE
+dbyopss_ip             State                 lp05d19    ONLINE
+dbyopss_nic_proxy      State                 lp05d19    ONLINE
+dbyopss_redo1_mount    State                 lp05d19    ONLINE
+dbyopss_redo2_mount    State                 lp05d19    ONLINE
+lp05d19:/var/tmp # hares -display -attribute State -group dbyopss -sys lp05d20
+#Resource              Attribute             System     Value
+dbyopss_app            State                 lp05d20    OFFLINE
+dbyopss_bkup_mount     State                 lp05d20    OFFLINE
+dbyopss_db_mount       State                 lp05d20    OFFLINE
+dbyopss_dgdbyopssbkup  State                 lp05d20    OFFLINE
+dbyopss_dgdbyopssdb    State                 lp05d20    OFFLINE
+dbyopss_dgdbyopssredo1 State                 lp05d20    OFFLINE
+dbyopss_dgdbyopssredo2 State                 lp05d20    OFFLINE
+dbyopss_ip             State                 lp05d20    OFFLINE
+dbyopss_nic_proxy      State                 lp05d20    ONLINE
+dbyopss_redo1_mount    State                 lp05d20    OFFLINE
+dbyopss_redo2_mount    State                 lp05d20    OFFLINE
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp #
+lp05d19:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+
+-- RESOURCES ONLINING
+-- Group           Type            Resource             System               IState
+
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/var/tmp # cd /lfs/cluster/vcs
+lp05d19:/lfs/cluster/vcs # ls -ltra
+total 48
+-rwxr--r-- 1 root root 2913 Dec 26  2019 dbyrpss_stop
+-rwxr--r-- 1 root root 5883 Dec 26  2019 dbyrpss_start
+-rwxr--r-- 1 root root 1395 Dec 26  2019 dbyrpss_monitor
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+drwxr-xr-x 1 root root   22 Jan  5 09:46 ..
+-rwxr--r-- 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr--r-- 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+drwxr-xr-x 1 root root  324 Feb 19 15:06 .
+lp05d19:/lfs/cluster/vcs # ls -ltra
+total 80
+-rwxr--r-- 1 root root 1395 Nov 10  2013 dbyopss_monitor
+-rwxr--r-- 1 root root 1395 Nov 10  2013 dbyapss_monitor
+-rwxr--r-- 1 root root 5883 Dec 15  2014 dbyopss_start
+-rwxr--r-- 1 root root 2913 Dec 15  2014 dbyapss_stop
+-rwxr--r-- 1 root root 5883 Dec 15  2014 dbyapss_start
+-rwxr--r-- 1 root root 2913 Dec 15  2014 dbyopss_stop
+-rwxr--r-- 1 root root 2913 Dec 26  2019 dbyrpss_stop
+-rwxr--r-- 1 root root 5883 Dec 26  2019 dbyrpss_start
+-rwxr--r-- 1 root root 1395 Dec 26  2019 dbyrpss_monitor
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+drwxr-xr-x 1 root root   22 Jan  5 09:46 ..
+-rwxr--r-- 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr--r-- 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+drwxr-xr-x 1 root root  484 Feb 21 14:24 .
+lp05d19:/lfs/cluster/vcs # ls -ltr dbyopss*
+-rwxr--r-- 1 root root 1395 Nov 10  2013 dbyopss_monitor
+-rwxr--r-- 1 root root 5883 Dec 15  2014 dbyopss_start
+-rwxr--r-- 1 root root 2913 Dec 15  2014 dbyopss_stop
+-rwxr--r-- 1 root root 1548 Feb 19 15:05 dbyopss_oracle_monitor
+-rwxr--r-- 1 root root 6393 Feb 19 15:06 dbyopss_oracle_start
+-rwxr--r-- 1 root root 3149 Feb 19 15:06 dbyopss_oracle_stop
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # ls -ltr dbyapss*
+-rwxr--r-- 1 root root 1395 Nov 10  2013 dbyapss_monitor
+-rwxr--r-- 1 root root 2913 Dec 15  2014 dbyapss_stop
+-rwxr--r-- 1 root root 5883 Dec 15  2014 dbyapss_start
+-rwxr--r-- 1 root root 3149 Nov  5 08:31 dbyapss_oracle_stop
+-rwxr--r-- 1 root root 6393 Nov  5 08:31 dbyapss_oracle_start
+-rwxr--r-- 1 root root 1548 Nov  5 08:31 dbyapss_oracle_monitor
+lp05d19:/lfs/cluster/vcs # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+	
+A  lp05d19              RUNNING              0
+A  lp05d20              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp05d19              Y          N               ONLINE
+B  NIC             lp05d20              Y          N               ONLINE
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs # hares -display dbyapss
+VCS WARNING V-16-1-40130 Resource dbyapss does not exist in the local cluster
+lp05d19:/lfs/cluster/vcs # hares -display dbyopss_app
+#Resource    Attribute             System     Value
+dbyopss_app  Group                 global     dbyopss
+dbyopss_app  Type                  global     Application
+dbyopss_app  AutoStart             global     1
+dbyopss_app  Critical              global     1
+dbyopss_app  Enabled               global     1
+dbyopss_app  LastOnline            global     lp05d20
+dbyopss_app  MonitorOnly           global     0
+dbyopss_app  ResourceOwner         global
+dbyopss_app  TriggerEvent          global     0
+dbyopss_app  ArgListValues         lp05d19    User      1       root    StartProgram    1       /lfs/cluster/vcs/dbyopss_start  StopProgram     1       /lfs/cluster/vcs/dbyopss_stop        CleanProgram    1       ""      MonitorProgram  1       /lfs/cluster/vcs/dbyopss_monitor        PidFiles        0       MonitorProcesses     0       EnvFile 1       ""      UseSUDash       1       0       State   1       0       IState  1       0       StartOnly       1       0   DelayAfterOnline 1       0       DelayAfterOffline       1       0
+dbyopss_app  ArgListValues         lp05d20    User      1       root    StartProgram    1       /lfs/cluster/vcs/dbyopss_start  StopProgram     1       /lfs/cluster/vcs/dbyopss_stop        CleanProgram    1       ""      MonitorProgram  1       /lfs/cluster/vcs/dbyopss_monitor        PidFiles        0       MonitorProcesses     0       EnvFile 1       ""      UseSUDash       1       0       State   1       2       IState  1       0       StartOnly       1       0   DelayAfterOnline 1       0       DelayAfterOffline       1       0
+dbyopss_app  ConfidenceLevel       lp05d19    0
+dbyopss_app  ConfidenceLevel       lp05d20    100
+dbyopss_app  ConfidenceMsg         lp05d19
+dbyopss_app  ConfidenceMsg         lp05d20
+dbyopss_app  Flags                 lp05d19
+dbyopss_app  Flags                 lp05d20
+dbyopss_app  IState                lp05d19    not waiting
+dbyopss_app  IState                lp05d20    not waiting
+dbyopss_app  MonitorMethod         lp05d19    Traditional
+dbyopss_app  MonitorMethod         lp05d20    Traditional
+dbyopss_app  Probed                lp05d19    1
+dbyopss_app  Probed                lp05d20    1
+dbyopss_app  Start                 lp05d19    0
+dbyopss_app  Start                 lp05d20    1
+dbyopss_app  State                 lp05d19    OFFLINE
+dbyopss_app  State                 lp05d20    ONLINE
+dbyopss_app  CleanProgram          global
+dbyopss_app  ComputeStats          global     0
+dbyopss_app  DelayAfterOffline     global     0
+dbyopss_app  DelayAfterOnline      global     0
+dbyopss_app  EnvFile               global
+dbyopss_app  ManageFaults          global
+dbyopss_app  MonitorProcesses      global
+dbyopss_app  MonitorProgram        global     /lfs/cluster/vcs/dbyopss_monitor
+dbyopss_app  PidFiles              global
+dbyopss_app  ResContainerInfo      global     Type              Name            Enabled
+dbyopss_app  ResourceInfo          global     State     Stale   Msg             TS
+dbyopss_app  ResourceRecipients    global
+dbyopss_app  StartOnly             global     0
+dbyopss_app  StartProgram          global     /lfs/cluster/vcs/dbyopss_start
+dbyopss_app  StopProgram           global     /lfs/cluster/vcs/dbyopss_stop
+dbyopss_app  TriggerPath           global
+dbyopss_app  TriggerResRestart     global     0
+dbyopss_app  TriggerResStateChange global     0
+dbyopss_app  TriggersEnabled       global
+dbyopss_app  UseSUDash             global     0
+dbyopss_app  User                  global     root
+dbyopss_app  Utilization           global
+dbyopss_app  MonitorTimeStats      lp05d19    Avg       0       TS
+dbyopss_app  MonitorTimeStats      lp05d20    Avg       0       TS
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss" | grep -i online
+B  dbyapss         lp05d20              Y          N               ONLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs # hagrp -switch dbyapss -to lp05d19
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               OFFLINE
+B  dbyapss         lp05d20              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+G  dbyapss         Application     dbyapss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+F  dbyapss         IP              dbyapss_ip           lp05d19              W_ONLINE
+F  dbyapss         Mount           dbyapss_bkup_mount   lp05d19              W_ONLINE
+F  dbyapss         Mount           dbyapss_db_mount     lp05d19              W_ONLINE
+F  dbyapss         Mount           dbyapss_redo2_mount  lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+F  dbyapss         Application     dbyapss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hagrp -switch dbyopss -to lp05d19
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE|STOPPING
+G  dbyopss         Application     dbyopss_app          lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STOPPING|PARTIAL
+G  dbyopss         IP              dbyopss_ip           lp05d20              W_OFFLINE_PROPAGATE
+G  dbyopss         Mount           dbyopss_bkup_mount   lp05d20              W_OFFLINE_PROPAGATE
+G  dbyopss         Mount           dbyopss_db_mount     lp05d20              W_OFFLINE_PROPAGATE
+G  dbyopss         Mount           dbyopss_redo1_mount  lp05d20              W_OFFLINE_PROPAGATE
+G  dbyopss         Mount           dbyopss_redo2_mount  lp05d20              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE|STARTING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         DiskGroup       dbyopss_dgdbyopssbkup lp05d19              W_ONLINE
+F  dbyopss         DiskGroup       dbyopss_dgdbyopssdb  lp05d19              W_ONLINE
+F  dbyopss         DiskGroup       dbyopss_dgdbyopssredo1 lp05d19              W_ONLINE
+F  dbyopss         DiskGroup       dbyopss_dgdbyopssredo2 lp05d19              W_ONLINE
+F  dbyopss         IP              dbyopss_ip           lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         IP              dbyopss_ip           lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               STARTING|PARTIAL
+B  dbyopss         lp05d20              Y          N               OFFLINE
+F  dbyopss         Application     dbyopss_app          lp05d19              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE
+B  dbyopss         lp05d20              Y          N               OFFLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE
+B  dbyopss         lp05d20              Y          N               OFFLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hagrp -switch dbyopss -to lp05d20
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+G  dbyopss         Application     dbyopss_app          lp05d19              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+G  dbyopss         Application     dbyopss_app          lp05d19              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+G  dbyopss         Application     dbyopss_app          lp05d19              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+G  dbyopss         Application     dbyopss_app          lp05d19              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs # hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               ONLINE|STOPPING
+B  dbyopss         lp05d20              Y          N               OFFLINE
+G  dbyopss         Application     dbyopss_app          lp05d19              W_OFFLINE_PROPAGATE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         IP              dbyopss_ip           lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss" | grep -i ONLINE
+B  dbyapss         lp05d19              Y          N               ONLINE
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               STARTING|PARTIAL
+F  dbyopss         Application     dbyopss_app          lp05d20              W_ONLINE
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss"
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyapss         lp05d20              Y          N               OFFLINE
+B  dbyopss         lp05d19              Y          N               OFFLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #
+lp05d19:/lfs/cluster/vcs #  hastatus -sum | egrep "dbyapss|dbyopss" | grep -i ONLINE
+B  dbyapss         lp05d19              Y          N               ONLINE
+B  dbyopss         lp05d20              Y          N               ONLINE
+lp05d19:/lfs/cluster/vcs # date
+Sun Feb 21 14:52:17 CET 2021
+lp05d19:/lfs/cluster/vcs # ^C
+lp05d19:/lfs/cluster/vcs # exit
+exit
+qplinux@lp05d19:~> exit
+logout
+Connection to lpagpam006.bmwgroup.net. closed.
+===================================================================================================================
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $

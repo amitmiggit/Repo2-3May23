@@ -1,0 +1,5 @@
+We found that kernel is tainted due to AV process  we also got hanging call trace on this server , as a workaround AV is  disabled . we had similar kind of issue on li19dkocruat01vm which is now running since 12 days after disabling AV  , earlier  li19dkocruat01vm  server was getting into  freeze state immediately after restart now in stable state .  similar workaround is set on li19dkocruat02vm. Kindly let us how we can fix AV issue as AV is tainting Kernel .
+
+
+qxz0tod@li19dkocruat01vm:~> uptime
+18:34pm  up 12 days  6:45,  1 user,  load average: 0.05, 0.08, 0.03

@@ -1,0 +1,51 @@
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ get_rmb_password lpdbvdm07k
+Administrator|4CEDF9181C71
+Administrator2|C44622C2E0C7
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ get_rmb_password lpdbvdm08k
+Administrator|6D54B9955600
+Administrator2|B8CC61970AB7
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $
+
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ ssh -l Administrator 160.46.16.103
+The authenticity of host '160.46.16.103 (160.46.16.103)' can't be established.
+ECDSA key fingerprint is SHA256:WG44PyBdESGJ9fBWJbHQE/Hss8M5vZvfQM09kckgOf0.
+Are you sure you want to continue connecting (yes/no)? yes
+Administrator@160.46.16.103's password:
+/admin1-> pwd
+cmdstat
+        status       : 2
+        status_tag   : COMMAND PROCESSING FAILED
+        error        : 253
+        error_tag    : COMMAND NOT RECOGNIZED
+/admin1-> help
+[Usage]
+    show   [<options>] [<target>] [<properties>]
+           [<propertyname>== <propertyvalue>]
+    set    [<options>] [<target>] <propertyname>=<value>
+    cd     [<options>] [<target>]
+    create [<options>] <target> [<property of new target>=<value>]
+           [<property of new target>=<value>]
+    delete [<options>] <target>
+    exit   [<options>]
+    reset  [<options>] [<target>]
+    start  [<options>] [<target>]
+    stop   [<options>] [<target>]
+    version [<options>]
+    help   [<options>] [<help topics>]
+    load -source <URI> [<options>] [<target>]
+    dump -destination <URI> [<options>] [<target>]
+
+/admin1-> racadm
+/admin1-> racadm
+racadm>>
+
+admin1/system1-> racadm serveraction hardreset
+Server power operation successful
+
+/admin1/system1-> racadm serveraction powerdown
+Server power operation successful
+
+/admin1/system1-> racadm serveraction powerup
+Server power operation successful 
+
+

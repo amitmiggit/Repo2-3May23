@@ -1,0 +1,13 @@
+Hello Team, 
+
+Below is the document on BMW plant server and Control Center. 
+After multiple  update and passing information we are missing simple thing which caused an escalation . Below mentioned steps which are marked in red color .. need to follow without fail in the each task. 
+NOTE: Please update the work details in the incidents . 
+
+BMW Plant Server - Contact Control Center 
+==================================
+In BMW environment Plant servers are critical server (which includes all type of servers - Test , Integration and Production) 
+Irrespective of the type of the server all Plant server are treated as critical server and any alerts or issues on these servers will be addressed on highest priority. 
+
+Incident, Task and PM ticket on plant server have more importance  and need to work on them and get  completed respective work on tickets. 
+

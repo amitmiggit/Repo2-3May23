@@ -1,0 +1,44 @@
+lp01d65:~ # hastatus -sum | grep -i online
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               ONLINE
+B  dbe00w1         lp01d65              Y          N               ONLINE
+B  dbhiqaw1        lp01d65              Y          N               ONLINE
+B  dbkiqaw1        lp01d66              Y          N               ONLINE
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # hagrp -offline dbauqaw1 -sys lp01d65
+lp01d65:~ # hagrp -offline dbe00w1 -sys lp01d65
+lp01d65:~ # hagrp -offline dbhiqaw1 -sys lp01d65
+lp01d65:~ # hagrp -offline dbkiqaw1 -sys lp01d66
+lp01d65:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp01d65              RUNNING              0
+A  lp01d66              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               OFFLINE
+B  dbauqaw1        lp01d66              Y          N               OFFLINE
+B  dbe00w1         lp01d65              Y          N               OFFLINE
+B  dbe00w1         lp01d66              Y          N               OFFLINE
+B  dbhiqaw1        lp01d65              Y          N               OFFLINE
+B  dbhiqaw1        lp01d66              Y          N               OFFLINE
+B  dbkiqaw1        lp01d65              Y          N               OFFLINE
+B  dbkiqaw1        lp01d66              Y          N               OFFLINE
+lp01d65:~ #
+
+
+
+
+for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9$i; done
+for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9$i; done
+for i in `lsof /lfs/oracle |awk '{print $2}'`;do kill -9$i; done
+umount /lfs/oracle
+umount /lfs/oracle_audit 

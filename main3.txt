@@ -1,0 +1,227 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ fullcheck lp01d65
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : JJ7PNR2
+ Node name    : lp01d65
+ Local time   : Sat Oct  9 14:23:01 CEST 2021
+====================================================================================================
+ FQDN: lp01d65.muc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 12 (x86_64)
+ OSVer: VERSION = 12
+ OSVer: PATCHLEVEL = 4
+ OSVer: # This file is deprecated and will be removed in a future service pack or release.
+ OSVer: # Please check /etc/os-release for details about this release.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2021.04.03. 18:57:29
+ Uptime: Uptime: 188d 19h 25m 32s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M20-Q4-12.4                                                                        [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: 4.12.14-95.57-default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.22-100.27.3.x86_64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BootL: /dev/sda: GRUB (GRUB)                                                                 [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LPFC: Driver module version: 12.0.0.10
+ LPFC:  HOST     MODEL          WWN                 STATE                   SPEED    SLOT  FW Rev       FW Target    FWOK
+ LPFC:   host15  LPe31002-M6-D  0x100000109b57ad59  Link Down               unknown  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host16  LPe31002-M6-D  0x100000109b57ad5a  Link Up - Ready Fabric  16 Gbit  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host17  LPe31002-M6-D  0x100000109b57ad1d  Link Down               unknown  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host18  LPe31002-M6-D  0x100000109b57ad1e  Link Up - Ready Fabric  16 Gbit  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC: Firmware upgrade needed                                                               [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID                 DRIVER     DRVVER   SPEED      DPLX  LINK  MAC ADDRESS        IP / SUBNET       IPV6 / PREFIX
+ ETH:  eth0   0000:17:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   e4:43:4b:23:25:a4  <bond0>
+ ETH:  eth1   0000:17:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   e4:43:4b:23:25:a5  10.100.37.14/24   2a03:1e80:a04:544::1:9/64
+ ETH:  eth2   0000:18:00.0           ixgbe      5.1.0-k  1000Mb/s   Full  yes   e4:43:4b:23:25:a6  160.48.156.50/24  2a03:1e80:a03:528::1:12/64
+ ETH:  eth3   0000:65:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   b4:96:91:3b:55:de  <bond0>
+ ETH:  eth4   0000:18:00.1           ixgbe      5.1.0-k  -          -     no    e4:43:4b:23:25:a7
+ ETH:  eth5   0000:65:00.0           ixgbe      5.1.0-k  -          -     no    b4:96:91:3b:55:dc
+ ETH:  eth6   usb-0000:00:14.0-14.3  cdc_ether  -        -          -     yes   4c:d9:8f:37:78:a7  169.254.0.2/16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BOND: Version: 3.7.1
+ BOND:   BONDDEV  OSDEV/IP          IPV6                       ACTIVE  PRIMARY  STATUS  FAILCOUNT  MAC ADDRESS
+ BOND:    bond0   160.46.157.27/24  2a03:1e80:a01:52c::1:0/64
+ BOND:            eth0                                            +             up      0          e4:43:4b:23:25:a4
+ BOND:            eth3                                                          up      0          b4:96:91:3b:55:de
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LLDP: Interface  Link state  Speed      Duplex  Switch Chassis           Switch Port   VLAN ID
+ LLDP: eth0       UP          10000Mb/s  Full    ASMUCDH565.bmwgroup.net  Ethernet1/52  2030
+ LLDP: eth1       UP          10000Mb/s  Full    ASMUCDB562.bmwgroup.net  Ethernet1/50  3530
+ LLDP: eth2       UP          1000Mb/s   Full    ASMUCDA568.bmwgroup.net  Ethernet1/50  3017
+ LLDP: eth3       UP          10000Mb/s  Full    ASMUCDH566.bmwgroup.net  Ethernet1/52  2030
+ LLDP: eth4       DOWN        -          -       -                        -             -
+ LLDP: eth5       DOWN        -          -       -                        -             -
+ LLDP: eth6       UP                             Not Present              Not Present   unknown
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ServiceTag: JJ7PNR2 (42520676222)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BIOS: 2.8.2 (2.11.2)                                                                   [MED][NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAID: 25.5.5.0005 (25.5.8.0001)                                                        [LOW][NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ IDRAC: 4.40.40.00 (Build 26) (4.40.40.00 (Build 26))                                   [ACT] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ PSU: Redundancy overall status: Full (Full)                                                  [OK]
+ PSU: Power supplies:
+ PSU: Loc      S/N              Manufacturer         Type     Rev      FW         Wattage    Status
+ PSU: All PSUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAM: Memory overall status: Ok (Ok)                                                          [OK]
+ RAM: Memory:
+ RAM:    Total: 393216  MB (384 GB)
+ RAM:    Slots: 12/24
+ RAM: Modules:
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM: All DIMMs good                                                                          [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ CPU: CPU overall status: Ok (Ok)                                                             [OK]
+ CPU:   Location  Speed      State    No.Cores  Status
+ CPU:   CPU1      3400  MHz  Present  6         Ok
+ CPU:   CPU2      -          -        -         -
+ CPU: All CPUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ FAN: Fan overall status: Full (Full)                                                         [OK]
+ FAN:   Name               Current Speed  Status
+ FAN:   System Board Fan3  5760 RPM       Ok
+ FAN:   System Board Fan4  5640 RPM       Ok
+ FAN:   System Board Fan5  5760 RPM       Ok
+ FAN:   System Board Fan6  5760 RPM       Ok
+ FAN: All FANs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ HDD: Controller:
+ HDD:      Type:  PERC H730P Mini
+ HDD: Disks:
+ HDD: Loc    Status  State   Power    Media  Rev   Capacity   Vendor    ProdID        S/N           PartNr
+ HDD: 0:1:0  Ok      Online  Spun Up  HDD    EE05  558.38 GB  DELL(tm)  AL14SXB60ENY  88M0A0GVFEHE  PH01W7HCTB20088M3MUCA01
+ HDD: 0:1:1  Ok      Online  Spun Up  HDD    EE05  558.38 GB  DELL(tm)  AL14SXB60ENY  88M0A0FBFEHE  PH01W7HCTB20088M3MSQA01
+ HDD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ JobQueue: iDRAC jobs: 0 (0)                                                                  [OK]
+ JobQueue: Pending BIOS Settings: 0 (0)                                                       [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#F NOTE: DCODB returned empty string on CriticalEvent/lp01d65 (no critical events)
+# SODB end (0 FW Status notes, no remarks, 0 special configs, 0 events, 0 tags, host:lp01d65)
+
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ fullcheck lp01d66
+====================================================================================================
+ Hardware Type: PowerEdge R740
+ Serial No.   : HRJS2T2
+ Node name    : lp01d66
+ Local time   : Sat Oct  9 14:23:55 CEST 2021
+====================================================================================================
+ FQDN: lp01d66.muc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ OSVer: SUSE Linux Enterprise Server 12 (x86_64)
+ OSVer: VERSION = 12
+ OSVer: PATCHLEVEL = 4
+ OSVer: # This file is deprecated and will be removed in a future service pack or release.
+ OSVer: # Please check /etc/os-release for details about this release.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Uptime: Booted: 2021.01.03. 05:16:03
+ Uptime: Uptime: 279d 8h 7m 52s
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MR: M20-Q4-12.4                                                                        [OLD] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Kernel: 4.12.14-95.57-default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Glibc: 2.22-100.27.3.x86_64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BootL: /dev/sda: GRUB (GRUB)                                                                 [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LPFC: Driver module version: 12.0.0.10
+ LPFC:  HOST     MODEL          WWN                 STATE                   SPEED    SLOT  FW Rev       FW Target    FWOK
+ LPFC:   host15  LPe31002-M6-D  0x100000109b60023a  Link Down               unknown  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host16  LPe31002-M6-D  0x100000109b60023b  Link Up - Ready Fabric  16 Gbit  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host17  LPe31002-M6-D  0x100000109b60e627  Link Down               unknown  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC:   host18  LPe31002-M6-D  0x100000109b60e628  Link Up - Ready Fabric  16 Gbit  ?     12.6.281.21  12.8.522.11  NOK
+ LPFC: Firmware upgrade needed                                                               [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ETH:  OSDEV  PCI ID                 DRIVER     DRVVER   SPEED      DPLX  LINK  MAC ADDRESS        IP / SUBNET       IPV6 / PREFIX
+ ETH:  eth0   0000:17:00.0           ixgbe      5.1.0-k  10000Mb/s  Full  yes   e4:43:4b:56:02:14  <bond0>
+ ETH:  eth1   0000:17:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   e4:43:4b:56:02:15  10.100.37.15/24   2a03:1e80:a04:544::1:a/64
+ ETH:  eth2   0000:18:00.0           ixgbe      5.1.0-k  1000Mb/s   Full  yes   e4:43:4b:56:02:16  160.48.156.76/24  2a03:1e80:a03:528::1:14/64
+ ETH:  eth3   0000:65:00.1           ixgbe      5.1.0-k  10000Mb/s  Full  yes   b4:96:91:40:7b:ee  <bond0>
+ ETH:  eth4   0000:18:00.1           ixgbe      5.1.0-k  -          -     no    e4:43:4b:56:02:17
+ ETH:  eth5   0000:65:00.0           ixgbe      5.1.0-k  -          -     no    b4:96:91:40:7b:ec
+ ETH:  eth6   usb-0000:00:14.0-14.3  cdc_ether  -        -          -     yes   4c:d9:8f:2a:b7:5f  169.254.0.2/16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BOND: Version: 3.7.1
+ BOND:   BONDDEV  OSDEV/IP          IPV6                       ACTIVE  PRIMARY  STATUS  FAILCOUNT  MAC ADDRESS
+ BOND:    bond0   160.46.157.33/24  2a03:1e80:a01:52c::1:1/64
+ BOND:            eth0                                            +             up      1          e4:43:4b:56:02:14
+ BOND:            eth3                                                          up      0          b4:96:91:40:7b:ee
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ LLDP: Interface  Link state  Speed      Duplex  Switch Chassis           Switch Port   VLAN ID
+ LLDP: eth0       UP          10000Mb/s  Full    ASMUCDH433.bmwgroup.net  Ethernet1/52  2030
+ LLDP: eth1       UP          10000Mb/s  Full    ASMUCDB439.bmwgroup.net  Ethernet1/50  3530
+ LLDP: eth2       UP          1000Mb/s   Full    ASMUCDA436.bmwgroup.net  Ethernet1/50  3017
+ LLDP: eth3       UP          10000Mb/s  Full    ASMUCDH434.bmwgroup.net  Ethernet1/52  2030
+ LLDP: eth4       DOWN        -          -       -                        -             -
+ LLDP: eth5       DOWN        -          -       -                        -             -
+ LLDP: eth6       UP                             Not Present              Not Present   unknown
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ServiceTag: HRJS2T2 (38671109174)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ BIOS: 2.8.2 (2.11.2)                                                                   [MED][NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAID: 25.5.5.0005 (25.5.8.0001)                                                        [LOW][NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ IDRAC: 4.40.40.00 (Build 26) (4.40.40.00 (Build 26))                                   [ACT] [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ PSU: Redundancy overall status: Full (Full)                                                  [OK]
+ PSU: Power supplies:
+ PSU: Loc      S/N              Manufacturer         Type     Rev      FW         Wattage    Status
+ PSU: All PSUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RAM: Memory overall status: Ok (Ok)                                                          [OK]
+ RAM: Memory:
+ RAM:    Total: 393216  MB (384 GB)
+ RAM:    Slots: 12/24
+ RAM: Modules:
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM:    32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,   32768 MB @ : Ok,
+ RAM: All DIMMs good                                                                          [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ CPU: CPU overall status: Ok (Ok)                                                             [OK]
+ CPU:   Location  Speed      State    No.Cores  Status
+ CPU:   CPU1      3400  MHz  Present  6         Ok
+ CPU:   CPU2      -          -        -         -
+ CPU: All CPUs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ FAN: Fan overall status: Full (Full)                                                         [OK]
+ FAN:   Name               Current Speed  Status
+ FAN:   System Board Fan3  3480 RPM       Ok
+ FAN:   System Board Fan4  3240 RPM       Ok
+ FAN:   System Board Fan5  3480 RPM       Ok
+ FAN:   System Board Fan6  3600 RPM       Ok
+ FAN: All FANs good                                                                           [OK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ HDD: Controller:
+ HDD:      Type:  PERC H730P Mini
+ HDD: Disks:
+ HDD: Loc    Status  State   Power    Media  Rev   Capacity   Vendor    ProdID        S/N           PartNr
+ HDD: 0:1:0  Ok      Online  Spun Up  HDD    EE05  558.38 GB  DELL(tm)  AL14SXB60ENY  Y8W0A0PLFEHE  PH01W7HCTB2008BI4QDYA01
+ HDD: 0:1:1  Ok      Online  Spun Up  HDD    EE05  558.38 GB  DELL(tm)  AL14SXB60ENY  Y8W0A0PKFEHE  PH01W7HCTB2008BI4QDUA01
+ HDD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ JobQueue: iDRAC jobs: 0 (13)                                                                [NOK]
+ JobQueue: Pending BIOS Settings: 0 (50)                                                     [NOK]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#F NOTE: DCODB returned empty string on CriticalEvent/lp01d66 (no critical events)
+# SODB end (0 FW Status notes, no remarks, 0 special configs, 0 events, 0 tags, host:lp01d66)
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $

@@ -1,0 +1,81 @@
+server-unix:eu|024c-cluster-migrate-package-cleanup
+
+Change task
+
+(1) Description of the Task to be done
+
+Cleanup after Cluster Migration
+
+ATTENTION: The requester hereby explicitly confirms that the operations responsible approved this task. 
+
+Please see http://unix.bmwgroup.net/tasks for further information on task execution timing, lead time and when the task contacts are contacted.
+
+__________
+(2) Required Information
+
+Source Cluster:  lp10d47/48 
+
+Destination Cluster:  lp10d49/50
+
+--- Maximum of 6 packages in total, except for cluster evacuations
+package(s) to be transferred: 
+
+dbapdm75
+dbipm75
+dbipsc75
+dbipso75
+dbipst75
+dbpampus
+dbpsat75
+
+
+Preferred Node:  
+lp10d49.w10: dbapdm75, dbipsc75, dbipso75
+lp10d50.w10: dbipst75, dbpsat75, dbipm75, dbpampus
+
+New IP necessary:  < Y / N >N
+
+
+--- There is no package limit if this is an evacuation (cluster replacement)
+Cluster evacuation: < Y / N >Y
+
+
+---- NFS Shares
+NFS Shares to migrate?
+Yes - Please migrate the NFS - Shares to the new cluster
+
+NFS Shares to remove on old Cluster? 
+
+---- User 
+User IDs to move:
+Remove User IDs at Cleanup: <Y / N >
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+
+Actions by OS Operations:
+- Remove Package Config on old Cluster
+- Remove LUN Visibility on old Cluster (Storm Tool)
+- Remove old IP Address (if applicable)
+- Umount NFS Shares on old Cluster if requested
+- CMDB Update
+
+Actions by CMCO: 
+- Remove Access Rights to NFS Shares ( if needed)
+
+__________
+(4)
+Minimum lead time: -
+Minimum solution time: 3d
+
+__________
+(5) Contact Information
+Contact person for questions from server ops during task planing:
+oracle.gma.change@bmw.de
+
+Contact person for questions from server ops during execution:
+Henk.Nel@partner.bmw.co.za

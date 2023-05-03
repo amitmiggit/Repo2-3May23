@@ -1,0 +1,625 @@
+
+
+configure_veritas.sh dbgussw4_create_TAS000004496836_cluster
+san_shortinfo | egrep -i "520F|5210|5211|5212"
+san_rescan -o
+TAS000005751160 / CRQ000001719148
+New disk ordered for File system with storm ID 000356218
+configure_veritas.sh dbgussw4_create_TAS000004496836_cluster
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.12+How+to+reserve+an+IP+in+the+CMDB 
+https://atc.bmwgroup.net/confluence/display/IAAS18/3.7.2.10+Reserve+IP 
+
+
+
+san_rescan -o
+
+
+===========================================================
+Work Info History
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 04:16:19
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [355720] Storage Order
+Notes	 [355720] Storage Order
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:34:58
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Config file created
+Notes	 [INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ cat dbekanw7_oracle_redo_TAS000005728769.cluster
+#########################################################################
+#
+# With vi replace with %s/(variable)/new_value/g
+#
+# REPLACE lp07d25 with the physical IP-Name of the first node e.g. lttxtdb01
+# REPLACE lp07d26 with the physical IP-Name of the second node e.g. lttxtdb02
+# REPLACE dbekanw7 with the virtual IP-Name e.g. itfqdb00
+# REPLACE 160.46.22.11 with the virtual IP e.g. 10.145.92.61
+    or 2a03:1e80:a01:56c::1:36
+# => If the SG does not have a dedicated Backup IP-Name, comment out the "ip"
+#    for the interface  below!
+# CURRENTLY NOT **USUALLY*** NEEDED!! REPLACE (pkgbu_ip) with the virtual BACKUP IP e.g. 10.145.98.22 or 2a03:1e80:a04:53e::1:208
+# CURRENTLY NOT **USUALLY*** NEEDED!! REPLACE (pkgbu_name) with the virtual Backup IP-Name e.g. itfqdb00b
+#
+# !! DO NOT CONFIGURE SMALLER THAN DEFAULT VALUES WITHOUT AN OK FROM FG-941 !!!
+#
+#########################################################################
+
+HOST lp07d25 lp07d26
+
+#########################################################################
+# Service group section
+sg dbekanw7
+node lp07d25 lp07d26
+# Primary Virtuell IP
+ip 160.46.22.11 dbekanw7
+# NetBackup Virtuell IP
+#######ip (pkgbu_ip) (pkgbu_name)
+# VCS Script Templates
+app oracle module=oracle
+
+#########################################################################
+# Disk group section 1
+# DG DB
+dg dgdbekanw7db
+
+# LDEV SN STORAGE_TYPE
+# e.g.: for B2 Mirrored
+# 10:30 28275 B2_GS
+# 10:58 28270 B2_GS
+# or for Class C2 Unmirrored
+# 10:31 28275 C2_GS
+51:4B   98053   B1_GS3
+51:4B   98172   B1_GS3
+
+lv  lvdb max
+fs  lvdb 8192
+mnt lvdb /global/dbekanw7/db owner=oracle:dba chmod=770 opts=mincache=direct,convosync=direct
+#########################################################################
+# Disk group section 2
+# DG BKUP
+dg dgdbekanw7bkup
+# LDEV SN TYPE
+51:6D   98053   B1_GS3
+51:6D   98172   B1_GS3
+
+lv lvbkup max
+fs lvbkup 8192
+mnt lvbkup /global/dbekanw7/bkup owner=oracle:dba chmod=770 opts=defaults
+#########################################################################
+#
+# REDO Filesystems are OPTIONAL
+#
+#########################################################################
+# Disk group section 3
+# DG REDO1
+dg dgdbekanw7redo1
+# LDEV SN TYPE
+51:3F   98053   B1_GS3
+51:3F   98172   B1_GS3
+
+lv lvredo1 max
+fs lvredo1 1024
+mnt lvredo1 /global/dbekanw7/redo1 owner=oracle:dba chmod=770 opts=mincache=direct,convosync=direct
+#########################################################################
+# Disk group section 4
+# DG REDO2
+dg dgdbekanw7redo2
+# LDEV SN TYPE
+51:4A   98053   B1_GS3
+51:4A   98172   B1_GS3
+
+lv lvredo2 max
+fs lvredo2 1024
+mnt lvredo2 /global/dbekanw7/redo2 owner=oracle:dba chmod=770 opts=mincache=direct,convosync=direct
+#########################################################################
+
+[INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:56:46
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Resource group created in CMDB
+Notes	 [OK] Resource group created in CMDB
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:58:25
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 DBGNONBILL
+Notes	 2
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:45:50
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Package available
+Notes	 lp07d25:/lfs/cluster/vcs # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               ONLINE
+B  dbekanw7        lp07d26              Y          N               OFFLINE
+lp07d25:/lfs/cluster/vcs # df -hT | grep -i dbekanw7
+/dev/vx/dsk/dgdbekanw7db/lvdb                    vxfs       57G   72M   56G   1% /global/dbekanw7/db
+/dev/vx/dsk/dgdbekanw7redo1/lvredo1              vxfs       15G   22M   14G   1% /global/dbekanw7/redo1
+/dev/vx/dsk/dgdbekanw7bkup/lvbkup                vxfs      226G   81M  224G   1% /global/dbekanw7/bkup
+/dev/vx/dsk/dgdbekanw7redo2/lvredo2              vxfs       15G   22M   14G   1% /global/dbekanw7/redo2
+lp07d25:/lfs/cluster/vcs # ls -ld /global/dbekanw7
+drwxr-xr-x 1 root root 32 Jun 25 08:37 /global/dbekanw7
+lp07d25:/lfs/cluster/vcs # ls -ld /global/dbekanw7/*
+drwxrwx--- 3 oracle dba 96 Jun 25 08:37 /global/dbekanw7/bkup
+drwxrwx--- 4 oracle dba 96 Jun 25 08:43 /global/dbekanw7/db
+drwxrwx--- 3 oracle dba 96 Jun 25 08:37 /global/dbekanw7/redo1
+drwxrwx--- 3 oracle dba 96 Jun 25 08:37 /global/dbekanw7/redo2
+lp07d25:/lfs/cluster/vcs #
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:42:15
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Package creation Log
+Notes	 [INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh dbekanw7_oracle_redo_TAS000005728769.cluster
+
+ _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+ |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+  \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+Processing file 'dbekanw7_oracle_redo_TAS000005728769.cluster'
+
+-> Checking File validity                        [OK]    file exist: dbekanw7_oracle_redo_TAS000005728769.cluster
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on lp07d25 lp07d26
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [OK]    found dbekanw7
+-> Fetching module for Apps                      [OK]    fetched
+
+
+Running remote sanity check
+
+-> Copy template to remote host 'lp07d25'        [OK]    copied
+-> Running sanity check on 'lp07d25'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package dbekanw7...
+08:37:04 Sanity checking IP 160.46.22.11
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/dbekanw7_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/dbekanw7/db
+Sanity checking mount /global/dbekanw7/bkup
+Sanity checking mount /global/dbekanw7/redo1
+Sanity checking mount /global/dbekanw7/redo2
+***************************************
+
+-> Sanity check                                  [OK]    success
+-> Copy template to remote host 'lp07d26'        [OK]    copied
+-> Running sanity check on 'lp07d26'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package dbekanw7...
+08:37:20 Sanity checking IP 160.46.22.11
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/dbekanw7_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/dbekanw7/db
+Sanity checking mount /global/dbekanw7/bkup
+Sanity checking mount /global/dbekanw7/redo1
+Sanity checking mount /global/dbekanw7/redo2
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+Deploying application scripts
+
+-> Preparing files                               [OK]    staged
+-> Distributing files                            [OK]    distributed
+
+
+Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on lp07d25
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+08:37:35 Initializing disk hitachi_vsp0_516d                              OK
+08:37:35 Disabling thin provisioning on disk hitachi_vsp0_516d            OK
+08:37:35 Initializing disk hitachi_vsp1_516d                              OK
+08:37:36 Disabling thin provisioning on disk hitachi_vsp1_516d            OK
+08:37:36 Creating disk group with name dgdbekanw7bkup and disks
+hitachi_vsp0_516d hitachi_vsp1_516d                                      OK
+08:37:37 Renaming disk hitachi_vsp0_516d in diskgroup dgdbekanw7bkup to
+12_98053_516d                                                            OK
+08:37:37 Renaming disk hitachi_vsp1_516d in diskgroup dgdbekanw7bkup to
+10_98172_516d                                                            OK
+08:37:37 Creating volume lvbkup in diskgroup dgdbekanw7bkup with size
+230437M                                                                  OK
+08:37:40 Renaming plex lvbkup-03 in diskgroup dgdbekanw7bkup to
+lvbkup_drl-98053                                                         OK
+08:37:40 Renaming plex lvbkup-02 in diskgroup dgdbekanw7bkup to
+lvbkup-98172                                                             OK
+08:37:40 Renaming plex lvbkup-01 in diskgroup dgdbekanw7bkup to
+lvbkup-98053                                                             OK
+08:37:40 Renaming plex lvbkup-04 in diskgroup dgdbekanw7bkup to
+lvbkup_drl-98172                                                         OK
+08:37:40 Renaming plex lvbkup_dcl-01 in diskgroup dgdbekanw7bkup to
+lvbkup_dcl-98053                                                         OK
+08:37:40 Renaming plex lvbkup_dcl-02 in diskgroup dgdbekanw7bkup to
+lvbkup_dcl-98172                                                         OK
+08:37:40 Setting read policy for volume lvbkup in diskgroup
+dgdbekanw7bkup to plex lvbkup-98053                                      OK
+08:37:40 Exec: /sbin/mkfs.vxfs -o bsize=8192
+/dev/vx/dsk/dgdbekanw7bkup/lvbkup 2>&1 >/dev/null                        OK
+08:37:40 Exec: /bin/mount -t vxfs /dev/vx/dsk/dgdbekanw7bkup/lvbkup
+/global/dbekanw7/bkup                                                    OK
+08:37:40 Exec: /bin/chown oracle:dba /global/dbekanw7/bkup                OK
+08:37:40 Exec: /bin/chmod 770 /global/dbekanw7/bkup                       OK
+08:37:40 Exec: /bin/umount /global/dbekanw7/bkup                          OK
+08:37:40 Initializing disk hitachi_vsp0_514b                              OK
+08:37:41 Disabling thin provisioning on disk hitachi_vsp0_514b            OK
+08:37:41 Initializing disk hitachi_vsp1_514b                              OK
+08:37:41 Disabling thin provisioning on disk hitachi_vsp1_514b            OK
+08:37:41 Creating disk group with name dgdbekanw7db and disks
+hitachi_vsp0_514b hitachi_vsp1_514b                                      OK
+08:37:43 Renaming disk hitachi_vsp0_514b in diskgroup dgdbekanw7db to
+12_98053_514b                                                            OK
+08:37:43 Renaming disk hitachi_vsp1_514b in diskgroup dgdbekanw7db to
+10_98172_514b                                                            OK
+08:37:43 Creating volume lvdb in diskgroup dgdbekanw7db with size 57575M  OK
+08:37:45 Renaming plex lvdb-03 in diskgroup dgdbekanw7db to
+lvdb_drl-98172                                                           OK
+08:37:45 Renaming plex lvdb-01 in diskgroup dgdbekanw7db to lvdb-98053    OK
+08:37:45 Renaming plex lvdb-02 in diskgroup dgdbekanw7db to lvdb-98172    OK
+08:37:45 Renaming plex lvdb-04 in diskgroup dgdbekanw7db to
+lvdb_drl-98053                                                           OK
+08:37:45 Renaming plex lvdb_dcl-01 in diskgroup dgdbekanw7db to
+lvdb_dcl-98053                                                           OK
+08:37:45 Renaming plex lvdb_dcl-02 in diskgroup dgdbekanw7db to
+lvdb_dcl-98172                                                           OK
+08:37:45 Setting read policy for volume lvdb in diskgroup dgdbekanw7db to
+plex lvdb-98053                                                          OK
+08:37:45 Exec: /sbin/mkfs.vxfs -o bsize=8192
+/dev/vx/dsk/dgdbekanw7db/lvdb 2>&1 >/dev/null                            OK
+08:37:45 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+/dev/vx/dsk/dgdbekanw7db/lvdb /global/dbekanw7/db                        OK
+08:37:45 Exec: /bin/chown oracle:dba /global/dbekanw7/db                  OK
+08:37:45 Exec: /bin/chmod 770 /global/dbekanw7/db                         OK
+08:37:45 Exec: /bin/umount /global/dbekanw7/db                            OK
+08:37:46 Initializing disk hitachi_vsp0_513f                              OK
+08:37:46 Disabling thin provisioning on disk hitachi_vsp0_513f            OK
+08:37:46 Initializing disk hitachi_vsp1_513f                              OK
+08:37:46 Disabling thin provisioning on disk hitachi_vsp1_513f            OK
+08:37:46 Creating disk group with name dgdbekanw7redo1 and disks
+hitachi_vsp0_513f hitachi_vsp1_513f                                      OK
+08:37:48 Renaming disk hitachi_vsp0_513f in diskgroup dgdbekanw7redo1 to
+12_98053_513f                                                            OK
+08:37:48 Renaming disk hitachi_vsp1_513f in diskgroup dgdbekanw7redo1 to
+10_98172_513f                                                            OK
+08:37:48 Creating volume lvredo1 in diskgroup dgdbekanw7redo1 with size
+14359M                                                                   OK
+08:37:50 Renaming plex lvredo1-03 in diskgroup dgdbekanw7redo1 to
+lvredo1_drl-98053                                                        OK
+08:37:50 Renaming plex lvredo1-02 in diskgroup dgdbekanw7redo1 to
+lvredo1-98172                                                            OK
+08:37:50 Renaming plex lvredo1-01 in diskgroup dgdbekanw7redo1 to
+lvredo1-98053                                                            OK
+08:37:51 Renaming plex lvredo1-04 in diskgroup dgdbekanw7redo1 to
+lvredo1_drl-98172                                                        OK
+08:37:51 Renaming plex lvredo1_dcl-01 in diskgroup dgdbekanw7redo1 to
+lvredo1_dcl-98053                                                        OK
+08:37:51 Renaming plex lvredo1_dcl-02 in diskgroup dgdbekanw7redo1 to
+lvredo1_dcl-98172                                                        OK
+08:37:51 Setting read policy for volume lvredo1 in diskgroup
+dgdbekanw7redo1 to plex lvredo1-98053                                    OK
+08:37:51 Exec: /sbin/mkfs.vxfs -o bsize=1024
+/dev/vx/dsk/dgdbekanw7redo1/lvredo1 2>&1 >/dev/null                      OK
+08:37:51 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+/dev/vx/dsk/dgdbekanw7redo1/lvredo1 /global/dbekanw7/redo1               OK
+08:37:51 Exec: /bin/chown oracle:dba /global/dbekanw7/redo1               OK
+08:37:51 Exec: /bin/chmod 770 /global/dbekanw7/redo1                      OK
+08:37:51 Exec: /bin/umount /global/dbekanw7/redo1                         OK
+08:37:51 Initializing disk hitachi_vsp0_514a                              OK
+08:37:51 Disabling thin provisioning on disk hitachi_vsp0_514a            OK
+08:37:51 Initializing disk hitachi_vsp1_514a                              OK
+08:37:52 Disabling thin provisioning on disk hitachi_vsp1_514a            OK
+08:37:52 Creating disk group with name dgdbekanw7redo2 and disks
+hitachi_vsp0_514a hitachi_vsp1_514a                                      OK
+08:37:54 Renaming disk hitachi_vsp0_514a in diskgroup dgdbekanw7redo2 to
+12_98053_514a                                                            OK
+08:37:54 Renaming disk hitachi_vsp1_514a in diskgroup dgdbekanw7redo2 to
+10_98172_514a                                                            OK
+08:37:54 Creating volume lvredo2 in diskgroup dgdbekanw7redo2 with size
+14359M                                                                   OK
+08:37:56 Renaming plex lvredo2-01 in diskgroup dgdbekanw7redo2 to
+lvredo2-98053                                                            OK
+08:37:56 Renaming plex lvredo2-02 in diskgroup dgdbekanw7redo2 to
+lvredo2-98172                                                            OK
+08:37:56 Renaming plex lvredo2-04 in diskgroup dgdbekanw7redo2 to
+lvredo2_drl-98053                                                        OK
+08:37:56 Renaming plex lvredo2-03 in diskgroup dgdbekanw7redo2 to
+lvredo2_drl-98172                                                        OK
+08:37:56 Renaming plex lvredo2_dcl-01 in diskgroup dgdbekanw7redo2 to
+lvredo2_dcl-98053                                                        OK
+08:37:56 Renaming plex lvredo2_dcl-02 in diskgroup dgdbekanw7redo2 to
+lvredo2_dcl-98172                                                        OK
+08:37:56 Setting read policy for volume lvredo2 in diskgroup
+dgdbekanw7redo2 to plex lvredo2-98053                                    OK
+08:37:56 Exec: /sbin/mkfs.vxfs -o bsize=1024
+/dev/vx/dsk/dgdbekanw7redo2/lvredo2 2>&1 >/dev/null                      OK
+08:37:56 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+/dev/vx/dsk/dgdbekanw7redo2/lvredo2 /global/dbekanw7/redo2               OK
+08:37:56 Exec: /bin/chown oracle:dba /global/dbekanw7/redo2               OK
+08:37:56 Exec: /bin/chmod 770 /global/dbekanw7/redo2                      OK
+08:37:56 Exec: /bin/umount /global/dbekanw7/redo2                         OK
+08:37:58 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:37:58 Exec: /opt/VRTS/bin/hagrp -add dbekanw7                          VCS NOTICE V-16-1-10136 Group added; populating SystemList and setting the Parallel attribute recommended before adding resources
+OK
+08:37:58 Exec: /opt/VRTS/bin/hagrp -modify dbekanw7 SystemList -add
+lp07d25 0                                                                OK
+08:37:58 Exec: /opt/VRTS/bin/hagrp -modify dbekanw7 SystemList -add
+lp07d26 1                                                                OK
+08:37:58 Exec: /opt/VRTS/bin/hagrp -modify dbekanw7 AutoStartList -add
+lp07d25                                                                  OK
+08:37:58 Exec: /opt/VRTS/bin/hagrp -modify dbekanw7 AutoStartList -add
+lp07d26                                                                  OK
+08:37:58 Exec: /opt/VRTS/bin/hares -add dbekanw7_nic_proxy Proxy dbekanw7 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:37:58 Exec: /opt/VRTS/bin/hares -modify dbekanw7_nic_proxy
+TargetResName NIC_monitor                                                OK
+08:37:58 Exec: /opt/VRTS/bin/hares -modify dbekanw7_nic_proxy Enabled 1   OK
+08:37:58 Exec: sleep 1                                                    OK
+08:37:59 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:01 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:01 Exec: /opt/VRTS/bin/hares -add dbekanw7_dbekanw7_ip IP dbekanw7  VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip Address
+160.46.22.11                                                             OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip NetMask
+255.255.255.0                                                            OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip Options
+"broadcast 160.46.22.255"                                                OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip Device
+bond0                                                                    OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip Critical
+1                                                                        OK
+08:38:01 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dbekanw7_ip Enabled 1 OK
+08:38:01 Exec: /opt/VRTS/bin/hares -link dbekanw7_dbekanw7_ip
+dbekanw7_nic_proxy                                                       OK
+08:38:01 Exec: sleep 1                                                    OK
+08:38:02 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:03 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:03 Exec: /opt/VRTS/bin/hares -add dbekanw7_oracle_app Application
+dbekanw7                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:03 Exec: /opt/VRTS/bin/hares -modify dbekanw7_oracle_app
+StartProgram /lfs/cluster/vcs/dbekanw7_oracle_start                      OK
+08:38:03 Exec: /opt/VRTS/bin/hares -modify dbekanw7_oracle_app
+StopProgram /lfs/cluster/vcs/dbekanw7_oracle_stop                        OK
+08:38:03 Exec: /opt/VRTS/bin/hares -modify dbekanw7_oracle_app
+MonitorProgram /lfs/cluster/vcs/dbekanw7_oracle_monitor                  OK
+08:38:03 Exec: /opt/VRTS/bin/hares -modify dbekanw7_oracle_app Enabled 1  OK
+08:38:03 Exec: /opt/VRTS/bin/hares -modify dbekanw7_oracle_app Critical 1 OK
+08:38:03 Exec: hares -link dbekanw7_oracle_app dbekanw7_dbekanw7_ip       OK
+08:38:03 Exec: sleep 1                                                    OK
+08:38:04 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:04 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:04 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbekanw7/db"    OK
+08:38:04 Exec: /opt/VRTS/bin/hares -add dbekanw7_dgdbekanw7db DiskGroup
+dbekanw7                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:04 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7db
+DiskGroup dgdbekanw7db                                                   OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7db
+StartVolumes 1                                                           OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7db
+StopVolumes 1                                                            OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7db Enabled
+1                                                                        OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7db Critical
+1                                                                        OK
+08:38:05 Exec: /opt/VRTS/bin/hares -add dbekanw7_global_dbekanw7_db_mount
+Mount dbekanw7                                                           VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount BlockDevice
+/dev/vx/dsk/dgdbekanw7db/lvdb                                            OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount MountPoint /global/dbekanw7/db         OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount FsckOpt %-y                            OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount FSType vxfs                            OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount Enabled 1                              OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount Critical 1                             OK
+08:38:05 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_db_mount MountOpt
+mincache=direct,convosync=direct                                         OK
+08:38:05 Exec: /opt/VRTS/bin/hares -link
+dbekanw7_global_dbekanw7_db_mount dbekanw7_dgdbekanw7db                  OK
+08:38:05 Exec: /opt/VRTS/bin/hares -link dbekanw7_oracle_app
+dbekanw7_global_dbekanw7_db_mount                                        OK
+08:38:05 Exec: sleep 1                                                    OK
+08:38:06 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:06 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:06 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbekanw7/bkup"  OK
+08:38:06 Exec: /opt/VRTS/bin/hares -add dbekanw7_dgdbekanw7bkup DiskGroup
+dbekanw7                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7bkup
+DiskGroup dgdbekanw7bkup                                                 OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7bkup
+StartVolumes 1                                                           OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7bkup
+StopVolumes 1                                                            OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7bkup
+Enabled 1                                                                OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7bkup
+Critical 1                                                               OK
+08:38:06 Exec: /opt/VRTS/bin/hares -add
+dbekanw7_global_dbekanw7_bkup_mount Mount dbekanw7                       VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount BlockDevice
+/dev/vx/dsk/dgdbekanw7bkup/lvbkup                                        OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount MountPoint /global/dbekanw7/bkup     OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount FsckOpt %-y                          OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount FSType vxfs                          OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount Enabled 1                            OK
+08:38:06 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_bkup_mount Critical 1                           OK
+08:38:06 Exec: /opt/VRTS/bin/hares -link
+dbekanw7_global_dbekanw7_bkup_mount dbekanw7_dgdbekanw7bkup              OK
+08:38:06 Exec: /opt/VRTS/bin/hares -link dbekanw7_oracle_app
+dbekanw7_global_dbekanw7_bkup_mount                                      OK
+08:38:06 Exec: sleep 1                                                    OK
+08:38:07 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:08 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:08 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbekanw7/redo1" OK
+08:38:08 Exec: /opt/VRTS/bin/hares -add dbekanw7_dgdbekanw7redo1
+DiskGroup dbekanw7                                                       VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo1
+DiskGroup dgdbekanw7redo1                                                OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo1
+StartVolumes 1                                                           OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo1
+StopVolumes 1                                                            OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo1
+Enabled 1                                                                OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo1
+Critical 1                                                               OK
+08:38:08 Exec: /opt/VRTS/bin/hares -add
+dbekanw7_global_dbekanw7_redo1_mount Mount dbekanw7                      VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount BlockDevice
+/dev/vx/dsk/dgdbekanw7redo1/lvredo1                                      OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount MountPoint /global/dbekanw7/redo1   OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount FsckOpt %-y                         OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount FSType vxfs                         OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount Enabled 1                           OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount Critical 1                          OK
+08:38:08 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo1_mount MountOpt
+mincache=direct,convosync=direct                                         OK
+08:38:08 Exec: /opt/VRTS/bin/hares -link
+dbekanw7_global_dbekanw7_redo1_mount dbekanw7_dgdbekanw7redo1            OK
+08:38:08 Exec: /opt/VRTS/bin/hares -link dbekanw7_oracle_app
+dbekanw7_global_dbekanw7_redo1_mount                                     OK
+08:38:08 Exec: sleep 1                                                    OK
+08:38:09 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+08:38:10 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+08:38:10 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbekanw7/redo2" OK
+08:38:10 Exec: /opt/VRTS/bin/hares -add dbekanw7_dgdbekanw7redo2
+DiskGroup dbekanw7                                                       VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo2
+DiskGroup dgdbekanw7redo2                                                OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo2
+StartVolumes 1                                                           OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo2
+StopVolumes 1                                                            OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo2
+Enabled 1                                                                OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify dbekanw7_dgdbekanw7redo2
+Critical 1                                                               OK
+08:38:10 Exec: /opt/VRTS/bin/hares -add
+dbekanw7_global_dbekanw7_redo2_mount Mount dbekanw7                      VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount BlockDevice
+/dev/vx/dsk/dgdbekanw7redo2/lvredo2                                      OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount MountPoint /global/dbekanw7/redo2   OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount FsckOpt %-y                         OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount FSType vxfs                         OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount Enabled 1                           OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount Critical 1                          OK
+08:38:10 Exec: /opt/VRTS/bin/hares -modify
+dbekanw7_global_dbekanw7_redo2_mount MountOpt
+mincache=direct,convosync=direct                                         OK
+08:38:10 Exec: /opt/VRTS/bin/hares -link
+dbekanw7_global_dbekanw7_redo2_mount dbekanw7_dgdbekanw7redo2            OK
+08:38:10 Exec: /opt/VRTS/bin/hares -link dbekanw7_oracle_app
+dbekanw7_global_dbekanw7_redo2_mount                                     OK
+08:38:10 Exec: sleep 1                                                    OK
+08:38:11 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:50:40
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Switch Test
+Notes	 lp07d25:/global/dbapdm50 # hagrp -switch dbekanw7 -to lp07d26
+lp07d25:/global/dbapdm50 # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               OFFLINE
+B  dbekanw7        lp07d26              Y          N               STARTING|PARTIAL
+F  dbekanw7        IP              dbekanw7_dbekanw7_ip lp07d26              W_ONLINE
+lp07d25:/global/dbapdm50 # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               OFFLINE
+B  dbekanw7        lp07d26              Y          N               STARTING|PARTIAL
+F  dbekanw7        IP              dbekanw7_dbekanw7_ip lp07d26              W_ONLINE
+lp07d25:/global/dbapdm50 # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               OFFLINE
+B  dbekanw7        lp07d26              Y          N               STARTING|PARTIAL
+F  dbekanw7        Application     dbekanw7_oracle_app  lp07d26              W_ONLINE
+lp07d25:/global/dbapdm50 # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               OFFLINE
+B  dbekanw7        lp07d26              Y          N               ONLINE
+lp07d25:/global/dbapdm50 # hagrp -switch dbekanw7 -to lp07d25
+lp07d25:/global/dbapdm50 # hastatus -sum | grep -i dbekanw7
+B  dbekanw7        lp07d25              Y          N               ONLINE
+B  dbekanw7        lp07d26              Y          N               OFFLINE
+lp07d25:/global/dbapdm50 # df -hT | grep -i dbekanw7
+/dev/vx/dsk/dgdbekanw7redo2/lvredo2              vxfs       15G   22M   14G   1% /global/dbekanw7/redo2
+/dev/vx/dsk/dgdbekanw7bkup/lvbkup                vxfs      226G   81M  224G   1% /global/dbekanw7/bkup
+/dev/vx/dsk/dgdbekanw7redo1/lvredo1              vxfs       15G   22M   14G   1% /global/dbekanw7/redo1
+/dev/vx/dsk/dgdbekanw7db/lvdb                    vxfs       57G   72M   56G   1% /global/dbekanw7/db
+lp07d25:/global/dbapdm50 #
+Task ID	 TAS000005728769
+Submit Date	 25.06.2021 08:58:11
+Submitter	 qxy7563
+Source	 
+View Access	 Internal
+Summary	 [OK] Package is pingable
+Notes	 [INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ ping dbekanw7.w7
+PING dbekanw7.w7 (160.46.22.11) 56(84) bytes of data.
+64 bytes from 160.46.22.11: icmp_seq=1 ttl=57 time=11.7 ms
+64 bytes from 160.46.22.11: icmp_seq=2 ttl=57 time=11.7 ms
+^C
+--- dbekanw7.w7 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 11.775/11.782/11.789/0.007 ms
+[INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ dbekanw7.w7 hostname
+lp07d25
+[INSTSERV][qxy7563][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+Printed by qxz12n2 on Monday, 28.06.2021 18:35:02

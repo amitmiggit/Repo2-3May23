@@ -1,0 +1,53 @@
+lppgb01804vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    35G  5.2G   28G  16% /
+udev                                   tmpfs  4.1G  120K  4.1G   1% /dev
+tmpfs                                  tmpfs  4.1G   24K  4.1G   1% /dev/shm
+/dev/xvda1                             ext2   277M   41M  223M  16% /boot
+/dev/xvda5                             ext3   1.9G   43M  1.8G   3% /home
+/dev/xvda6                             ext3   4.7G  495M  4.0G  11% /lfs/postgres
+/dev/mapper/dgpc01804app-lvapp         xfs     57G   45G   12G  81% /global/pc01804
+/dev/mapper/dgpc01804archive-lvarchive xfs    957G  555G  402G  59% /global/pc01804/archive
+/dev/mapper/dgpc01804xlog-lvxlog       xfs     15G  945M   14G   7% /global/pc01804/xlog
+lppgb01804vm:~ #
+lppgb01804vm:~ # df -hTP /global/pc01804
+Filesystem                     Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc01804app-lvapp xfs    57G   45G   12G  80% /global/pc01804
+lppgb01804vm:~ #
+lppgb01804vm:~ #
+lppgb01804vm:~ # vgextend dgpc01804app /dev/xvdc
+  No physical volume label read from /dev/xvdc
+  Physical volume "/dev/xvdc" successfully created
+  Volume group "dgpc01804app" successfully extended
+lppgb01804vm:~ # lvextend -l +100%FREE /dev/mapper/dgpc01804app-lvapp
+  Extending logical volume lvapp to 168.72 GiB
+  Logical volume lvapp successfully resized
+lppgb01804vm:~ # xfs_growfs /global/pc01804
+meta-data=/dev/mapper/dgpc01804app-lvapp isize=256    agcount=4, agsize=3685632 blks
+         =                       sectsz=512   attr=2
+data     =                       bsize=4096   blocks=14742528, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal               bsize=4096   blocks=7198, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 14742528 to 44228608
+lppgb01804vm:~ # df -hTP /global/pc01804
+Filesystem                     Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpc01804app-lvapp xfs   169G   45G  124G  27% /global/pc01804
+lppgb01804vm:~ #
+lppgb01804vm:~ #
+lppgb01804vm:~ #
+lppgb01804vm:~ #
+lppgb01804vm:~ # df -hTP
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    35G  5.2G   28G  16% /
+udev                                   tmpfs  4.1G  124K  4.1G   1% /dev
+tmpfs                                  tmpfs  4.1G   24K  4.1G   1% /dev/shm
+/dev/xvda1                             ext2   277M   41M  223M  16% /boot
+/dev/xvda5                             ext3   1.9G   43M  1.8G   3% /home
+/dev/xvda6                             ext3   4.7G  495M  4.0G  11% /lfs/postgres
+/dev/mapper/dgpc01804app-lvapp         xfs    169G   45G  124G  27% /global/pc01804
+/dev/mapper/dgpc01804archive-lvarchive xfs    957G  555G  402G  59% /global/pc01804/archive
+/dev/mapper/dgpc01804xlog-lvxlog       xfs     15G  945M   14G   7% /global/pc01804/xlog
+lppgb01804vm:~ #

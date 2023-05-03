@@ -1,0 +1,348 @@
+Requirement
+
+(2) Required Information
+
+Source Cluster: lpdbhsid05/06
+
+Destination Cluster: lpgssdb03/04
+--- Maximum of 6 packages in total, execept for cluster evacuations
+package(s) to be transferred:
+
+plgsscotde02
+plgsstde01
+plgsstde03
+
+Preferred Node: lpgssdb03
+
+New IP necessary:  < Y / N >N
+
+--- There is no package limit if this is an evacuation (cluster replacement)
+Cluster evacuation: < Y / N >N
+
+
+---- NFS Shares
+NFS Shares to migrate?
+
+No
+
+NFS Shares to remove on old Cluster? 
+
+=========================================HASTATUS - SOURCE =================================================================
+lpdbhsid05:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpdbhsid05           RUNNING              0
+A  lpdbhsid06           RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpdbhsid05           Y          N               ONLINE
+B  NIC             lpdbhsid06           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid05           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid06           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid05           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid06           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid05           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid06           Y          N               ONLINE
+B  plgsstde03      lpdbhsid05           Y          N               ONLINE
+B  plgsstde03      lpdbhsid06           Y          N               OFFLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  plgsscotde04
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  plgsscotde04    Application     plgsscotde04_oracle_app
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04bkup
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04db
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04redo1
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04redo2
+H  plgsscotde04    IP              plgsscotde04_plgsscotde04_ip
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_bkup_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_db_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_redo1_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_redo2_mount
+H  plgsscotde04    Proxy           plgsscotde04_nic_proxy
+lpdbhsid05:~ #
+
+
+lpdbhsid05:~ # hastatus -sum | grep -i online
+B  NIC             lpdbhsid05           Y          N               ONLINE
+B  NIC             lpdbhsid06           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid05           Y          N               ONLINE    -----To be migrated online on is online on lpdbhsid05
+B  plgsstde01      lpdbhsid06           Y          N               ONLINE    -----To be migrated online on is online on lpdbhsid06
+B  plgsstde03      lpdbhsid05           Y          N               ONLINE    -----To be migrated online on is online on lpdbhsid05
+lpdbhsid05:~ #
+lpdbhsid05:~ #
+lpdbhsid05:~ #
+lpdbhsid05:~ # hastatus -sum | grep -i offline
+B  plgsscotde02    lpdbhsid06           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid05           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid06           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid05           Y          N               OFFLINE
+B  plgsstde03      lpdbhsid06           Y          N               OFFLINE
+lpdbhsid05:~ #
+
+
+
+lpdbhsid06:~ #  hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpdbhsid05           RUNNING              0
+A  lpdbhsid06           RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpdbhsid05           Y          N               ONLINE
+B  NIC             lpdbhsid06           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid05           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid06           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid05           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid06           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid05           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid06           Y          N               ONLINE
+B  plgsstde03      lpdbhsid05           Y          N               ONLINE
+B  plgsstde03      lpdbhsid06           Y          N               OFFLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  plgsscotde04
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  plgsscotde04    Application     plgsscotde04_oracle_app
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04bkup
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04db
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04redo1
+H  plgsscotde04    DiskGroup       plgsscotde04_dgplgsscotde04redo2
+H  plgsscotde04    IP              plgsscotde04_plgsscotde04_ip
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_bkup_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_db_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_redo1_mount
+H  plgsscotde04    Mount           plgsscotde04_global_plgsscotde04_redo2_mount
+H  plgsscotde04    Proxy           plgsscotde04_nic_proxy
+lpdbhsid06:~ #
+lpdbhsid06:~ #
+lpdbhsid06:~ #
+lpdbhsid06:~ #  hastatus -sum | grep -i online
+B  NIC             lpdbhsid05           Y          N               ONLINE
+B  NIC             lpdbhsid06           Y          N               ONLINE
+B  plgsscotde02    lpdbhsid05           Y          N               ONLINE
+B  plgsstde01      lpdbhsid06           Y          N               ONLINE
+B  plgsstde03      lpdbhsid05           Y          N               ONLINE
+lpdbhsid06:~ #
+lpdbhsid06:~ #
+lpdbhsid06:~ #  hastatus -sum | grep -i offline
+B  plgsscotde02    lpdbhsid06           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid05           Y          N               OFFLINE
+B  plgsscotde04    lpdbhsid06           Y          N               OFFLINE
+B  plgsstde01      lpdbhsid05           Y          N               OFFLINE
+B  plgsstde03      lpdbhsid06           Y          N               OFFLINE
+lpdbhsid06:~ #
+
+========================================HASTATUS Target==============
+
+lpgssdb03:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpgssdb03            RUNNING              0
+A  lpgssdb04            RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpgssdb03            Y          N               ONLINE
+B  NIC             lpgssdb04            Y          N               ONLINE
+B  plgsscotde04    lpgssdb03            Y          N               ONLINE
+B  plgsscotde04    lpgssdb04            Y          N               OFFLINE
+lpgssdb03:~ #
+lpgssdb03:~ #
+lpgssdb03:~ # hastatus -sum | grep -i online
+B  NIC             lpgssdb03            Y          N               ONLINE
+B  NIC             lpgssdb04            Y          N               ONLINE
+B  plgsscotde04    lpgssdb03            Y          N               ONLINE
+lpgssdb03:~ #
+lpgssdb03:~ #
+lpgssdb03:~ # hastatus -sum | grep -i offline
+B  plgsscotde04    lpgssdb04            Y          N               OFFLINE
+lpgssdb03:~ #
+
+
+lpgssdb04:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lpgssdb03            RUNNING              0
+A  lpgssdb04            RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lpgssdb03            Y          N               ONLINE
+B  NIC             lpgssdb04            Y          N               ONLINE
+B  plgsscotde04    lpgssdb03            Y          N               ONLINE
+B  plgsscotde04    lpgssdb04            Y          N               OFFLINE
+lpgssdb04:~ #
+lpgssdb04:~ #
+lpgssdb04:~ #
+lpgssdb04:~ # hastatus -sum | grep -i online
+B  NIC             lpgssdb03            Y          N               ONLINE
+B  NIC             lpgssdb04            Y          N               ONLINE
+B  plgsscotde04    lpgssdb03            Y          N               ONLINE
+lpgssdb04:~ #
+lpgssdb04:~ #
+lpgssdb04:~ #
+lpgssdb04:~ # hastatus -sum | grep -i offline
+B  plgsscotde04    lpgssdb04            Y          N               OFFLINE
+lpgssdb04:~ #
+
+
+
+=================================
+Disk group version at Source 
+================================
+
+lpdbhsid05:~ # for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done
+dgoracle_lpdbhsid05  version:   190
+dgplgsscotde02bkup  version:   190
+dgplgsscotde02db  version:   190
+dgplgsscotde02redo1  version:   190
+dgplgsscotde02redo2  version:   190
+dgplgsstde03bkup  version:   190
+dgplgsstde03db  version:   190
+dgplgsstde03redo1  version:   190
+dgplgsstde03redo2  version:   190
+lpdbhsid05:~ #
+
+lpdbhsid06:~ # for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done
+dgoracle_lpdbhsid06  version:   190
+dgplgsstde01bkup  version:   190
+dgplgsstde01db  version:   190
+dgplgsstde01redo1  version:   190
+dgplgsstde01redo2  version:   190
+lpdbhsid06:~ #
+
+===================================
+Disk group version at Target
+====================================
+lpgssdb03:~ # for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done
+dgoracle_lpgssdb03  version:   280
+dgplgsscotde04bkup  version:   190
+dgplgsscotde04db  version:   190
+dgplgsscotde04redo1  version:   190
+dgplgsscotde04redo2  version:   190
+lpgssdb03:~ #
+
+lpgssdb04:~ # for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done
+dgoracle_lpgssdb04  version:   280
+lpgssdb04:~ #
+
+=============================================================
+
+
+lpdbhsid05:~ # host plgsscotde02
+plgsscotde02.bmwgroup.net has address 160.50.192.90  - New 10.131.197.16
+lpdbhsid05:~ # host plgsstde01
+plgsstde01.bmwgroup.net has address 160.50.192.93  - New 10.131.197.17
+lpdbhsid05:~ # host plgsstde03
+plgsstde03.bmwgroup.net has address 160.50.192.77- New 10.131.197.18
+
+
+lpdbhsid06:~ # host plgsscotde02
+plgsscotde02.bmwgroup.net has address 160.50.192.90
+lpdbhsid06:~ #  host plgsstde01
+plgsstde01.bmwgroup.net has address 160.50.192.93
+lpdbhsid06:~ # host plgsstde03
+plgsstde03.bmwgroup.net has address 160.50.192.77
+
+GetStorm -s lpdbhsid05 -g plgsscotde02
+
+
+PrepMntScr -s lpdbhsid05 -t lpgssdb03 -g plgsscotde02
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpdbhsid05 | grep -i net_id
+| NET_ID        |                  160.50.192.64 |
+| NET_ID        |                  160.48.72.128 |
+| NET_ID        |                  10.101.32.128 |
+| NET_ID        |                  160.48.72.128 |
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpdbhsid06 | grep -i net_id
+| NET_ID        |                  160.50.192.64 |
+| NET_ID        |                  160.48.72.128 |
+| NET_ID        |                  10.101.32.128 |
+| NET_ID        |                  160.48.72.128 |
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpgssdb03 | grep -i net_id
+| NET_ID        |                   10.131.197.0 |
+| NET_ID        |                   10.131.164.0 |
+| NET_ID        |                   10.131.177.0 |
+| NET_ID        |                   10.131.164.0 |
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lpgssdb04 | grep -i net_id
+| NET_ID        |                   10.131.197.0 |
+| NET_ID        |                   10.131.164.0 |
+| NET_ID        |                   10.131.177.0 |
+| NET_ID        |                   10.131.164.0 |
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+=================================================
+
+
+lpdbhsid05:~ # san_shortinfo | grep plgsscotde02 | awk '{print $7}'| sort | uniq -c
+      4 14405 ----14GB
+      4 230490
+lpdbhsid05:~ # san_shortinfo | grep plgsstde01 | awk '{print $7}'| sort | uniq -c
+     22 1048576  - D
+      4 14405  ----14 GB
+      2 518602
+lpdbhsid05:~ # san_shortinfo | grep plgsstde03 | awk '{print $7}'| sort | uniq -c
+      6 1048576  - D
+      4 14405  ----14GB
+      4 2097152
+      2 518602
+
+	  
+	22+6 = 1048576
+	
+	14 GB - 6 -
+	225 GB - 2 -
+	506 GB - 2 - 
+	1 TB - 14 - 
+	2 TB - 2 - 
+  	
+==============================================================================
+	  
+lpdbhsid06:~ # san_shortinfo | grep plgsscotde02 | awk '{print $7}'| sort | uniq -c
+      4 14405
+      4 230490
+lpdbhsid06:~ # san_shortinfo | grep plgsstde01 | awk '{print $7}'| sort | uniq -c
+     22 1048576
+      4 14405
+      2 518602
+lpdbhsid06:~ # san_shortinfo | grep plgsstde03 | awk '{print $7}'| sort | uniq -c
+      6 1048576
+      4 14405
+      4 2097152
+      2 518602
+
+
+Ticket [325131] has been submitted successfully to the storage provider.Ticket Automation Requested
+
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+
+Cluster package -Migrate preperation -TAS000006381959
+
+san_shortinfo |egrep -i "dban12|wcs143|dbipsc12cl|wcs142|dbtdhw12cl|wcs141"|wc -l
+ls -lrt | egrep -i "dban12|wcs143|dbipsc12cl|wcs142|dbtdhw12cl|wcs141"
+
+TAS000005198837 - reference LSAN=Y
+TAS000005329012 - reference LSAN=N
+TAS000006378493 
+########CMD FILE CREATION ###############################
+p09d09:~ # hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dbqaro92  > /var/tmp/dbqaro92.cmd
+lp09d09:~ # hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dbqari92  > /var/tmp/dbqari92.cmd
+lp09d09:~ # hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dbstr1w9  > /var/tmp/dbstr1w9.cmd
+
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dban12 > /var/tmp/dban12.cmd
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep wcs143 > /var/tmp/wcs143.cmd
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dbipsc12cl > /var/tmp/dbipsc12cl.cmd
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep wcs142 > /var/tmp/wcs142.cmd
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep dbtdhw12cl > /var/tmp/dbtdhw12cl.cmd
+hacf -cftocmd /etc/VRTSvcs/conf/config -display | grep wcs141 > /var/tmp/wcs141.cmd
+Mount point created 
+lp09d15:/var/tmp # cat dbqari92.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+lp09d15:/var/tmp # cat dbqaro92.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+lp09d15:/var/tmp # cat dbstr1w9.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+lp09d15:/var/tmp # cd /global
+lp09d15:/global # ll
+cat dbipsc12cl.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+cat wcs142.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+cat dbtdhw12cl.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+cat wcs141.cmd |grep "MountPoint " | awk -F \" '{print $2}' | xargs mkdir -p
+===================================
+File System Extension 
+1-storm ticket
+scan storage device on both cluster node
+scan san storage devices on single node/standalone
+dg name 
+df -hT | grep packagename
+/dev/dsk/dg-name/lv-name
+vxdg list | grep -i dg-name
+ 
+2-package name
+3-mount point / FS NAme
+4-db backup redo1 redo2
+================================
+===========================================
+###cluster package creation
+1-IP /New ip is required / to assign cluster package 
+IP change not required
+devices 
+ 
+####cluster package removal 
+Steps-
+search package on source server
+search File system related with package on source server
+have screen of nslookup of package-name
+write a mail to oracle.operations.partner@list.bmw.com in case of any issue/clarification.
+package san_shortinfo
+FS unmounted and DG destroyed
+package IP removed from CMDB 
+package detail removed from CMDB
+remove package detail from /etc/fstab 
+if LSAN=Y then raise a san resturn request to storage team else not required
+/global/instserv/bin/san_return --wipe -f LUN_return_list_migration.txt -s lp09d11 -t TAS000006289661
+
+
+Checks by OS Operations:
+====Cluster Prep Migration ==============
+- Check SAN / LUN Availability
+- Check IP Adress Availability
+- Check NFS Exports
+- Checking of Attribute PingTimeout on target cluster
+
+Actions:
+- Request LUN Mappings by Storm Tool
+- Request new IP Adress (if needed) with Name <package>_new
+- Inform CMCO to request NFS Share Access Rights ( if needed)
+
+================cluster package clean up ================
+
+Pkg running fine on target standalone cluster
+Notes	 Pkg running fine on target standalone cluster
+
+Visibility Removal Ticket [360371] from source submitted successfully
+Notes	 Visibility Removal Ticket [360371] from source submitted successfully
+
+Pkg removed from source cluster
+Notes	 Pkg removed from source cluster
+
+We will close the task once visibility will remove from source cluster
+Notes	 We will close the task once visibility will remove from source cluster
+
+Visibility got removed successfully
+Notes	 Visibility got removed successfully
+
+DBGNONBILL
+1
+
+hastatus -sum |egrep -i 'dbbrvow1|dbbrvaw1|dbkgow1|dbkgaw1'
+ haconf -makerw
+lp10d35:~ #
+lp10d35:~ # 
+for i in dbstrs10 dbdlpw10 dbecaw10 dbispa10 dbprcw10
+
+for i in dbbrvow1 dbbrvaw1 dbkgow1 dbkgaw1
+do
+echo -e "\n =============== Package Name: $i ==============="
+hagrp -resources $i
+ done
+ 
+dbbrvow1
+dbbrvaw1
+dbkgow1
+dbkgaw1
+
+
+hastatus -sum | grep -i dbbrvow1
+hastatus -sum | grep -i dbbrvaw1
+hastatus -sum | grep -i dbkgow1
+hastatus -sum | grep -i dbkgaw1
+
+dbbrvow1
+dbbrvaw1
+dbkgow1
+dbkgaw1
+
+
+for GRP in $(hagrp -resources dbbrvow1); do hares -delete ${GRP}; done
+for GRP in $(hagrp -resources dbbrvaw1); do hares -delete ${GRP}; done
+for GRP in $(hagrp -resources dbkgow1); do hares -delete ${GRP}; done
+for GRP in $(hagrp -resources dbkgaw1); do hares -delete ${GRP}; done
+
+lp01d61:~ # for i in dbbrvow1 dbbrvaw1 dbkgow1 dbkgaw1; do echo -e "\n =============== Package Name: $i ==============="; hagrp -resources $i;  done
+
+ =============== Package Name: dbbrvow1 ===============
+
+
+ =============== Package Name: dbbrvaw1 ===============
+
+
+ =============== Package Name: dbkgow1 ===============
+
+
+ =============== Package Name: dbkgaw1 ===============
+
+lp01d61:~ # hagrp -delete dbbrvow1
+lp01d61:~ # hagrp -delete dbbrvaw1
+lp01d61:~ # hagrp -delete dbkgow1
+lp01d61:~ # hagrp -delete dbkgaw1
+lp01d61:~ #
+lp01d61:~ # haconf -dump -makero
+

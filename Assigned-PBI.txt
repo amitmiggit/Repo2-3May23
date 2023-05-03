@@ -1,0 +1,21 @@
+PBI000000388057 ----Sanjeev A
+PBI000000388107 ----Sanjeev A
+PBI000000388134   --Sanjeev A
+PBI000000388232 ---Ajay  Ji
+PBI000000388320  --Ajay Ji
+
+================
+PBI000000386889 ---Raised for SAP
+==================
+lpxcph51:/var/log # xzgrep emerg messages-20210*
+messages-20210428.xz:2021-04-27T08:12:40.970320+02:00 lpxcph51 sbd[17155]:    emerg: do_exit: Rebooting system: reboot
+messages-20210428.xz:2021-04-27T08:58:18.141751+02:00 lpxcph51 sbd[6026]:    emerg: do_exit: Rebooting system: reboot
+messages-20210722:2021-07-21T11:25:15.269011+02:00 lpxcph51 sbd[5628]:    emerg: do_exit: Rebooting system: reboot
+messages-20210722:2021-07-21T11:56:47.657176+02:00 lpxcph51 sbd[5966]:    emerg: do_exit: Rebooting system: reboot
+messages-20210723:2021-07-22T11:33:33.826848+02:00 lpxcph51 sbd[6007]:    emerg: do_exit: Rebooting system: reboot
+messages-20210723:2021-07-22T14:50:21.311665+02:00 lpxcph51 sbd[10526]:    emerg: do_exit: Rebooting system: reboot
+messages-20210723:2021-07-22T15:54:06.734674+02:00 lpxcph51 sbd[14081]:    emerg: do_exit: Rebooting system: reboot
+lpxcph51:/var/log # 
+===================
+
+ 

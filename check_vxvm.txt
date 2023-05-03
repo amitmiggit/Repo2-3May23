@@ -1,0 +1,590 @@
+qqnagio@lp06d32:~/prod/local/lib/nagios/plugins> ./check_vxvm
+OK - Veritas Volume Manager OK
+qqnagio@lp06d32:~/prod/local/lib/nagios/plugins>
+#!/usr/bin/perl
+
+use strict;
+use Data::Dumper;
+use constant SERVICENAME => "serviceprofile_os_GENERIC_fs_check_vxvm";
+
+################################################################################
+#
+#   Name            : vx.pl
+#   Description     : This software will check the volumes and report
+#                     through logger
+#
+#   Author          : Dave Murphy
+#   Date            : 2nd November 1999
+#
+#   Modification History
+#   --------------------
+#
+#       Version 1.0 : Taken from vxchk.pl written by Pavan Ketty
+#                     Added checks for failed or failing Disks
+#
+#       Changed On      : 27/03/2002
+#       Changed By      : John Henry
+#       Change          : Added Veritas Volume Replicator testing
+#
+#       Changed On      : 09/10/2002
+#       Changed By      : Dave Murphy
+#       Change          : Added Removal of temporary file and converted for use with
+#                 Big Brother
+#
+#       Changed On      : 19/11/2002
+#       Changed By      : Bill Silvester
+#       Change          : Changed removal of temporary file (was "unlink TMP_FILE" -
+#                 now "unlink $sdstmp")
+#
+#       Changed On      : 19/01/2005
+#       Changed By      : Dave Murphy
+#       Change          : Catered for NOTHOTUSE flag on the dm check as it's not an error
+#
+#       Changed On      : 23/10/2006
+#       Changed By      : Gerhard Lausser
+#       Change          : Plex Status ENABLED SNAPDONE considered harmless
+#
+#       Changed On      : 30/10/2006
+#       Changed By      : Gerhard Lausser
+#       Change          : Plex Status ENABLED TEMPRMSD considered harmless
+#
+#       Changed On      : 06/11/2006
+#       Changed By      : Gerhard Lausser
+#       Change          : Plex Status ENABLED SNAPTMP considered harmless
+#
+#       Changed On      : 14/12/2006
+#       Changed By      : Gerhard Lausser
+#       Change          : Volume Status ENABLED NEEDSYNC considered harmless
+#
+#       Changed On      : 20/08/2007
+#       Changed By      : Paul Guenkel
+#       Change          : Plex Status "-" considered harmless
+#
+#       Changed On      : 20/09/2007
+#       Changed By      : Gerhard Lausser
+#       Change          : Also check vxdisk multipaths (linux only)
+#
+#       Changed On      : 30/10/2007
+#       Changed By      : Gerhard Lausser
+#       Change          : Count controllers with listctlr and lspci and
+#                         alert if veritas sees less controllers than the os
+#
+#       Changed On      : 23/11/2012
+#       Changed By      : Lorant Halmagyi
+#       Change          : TPA#000000000115234
+#                         Excluded backup hostgroup from check mentioned above (30/10/2007)
+#                         Backup servers may have tape devices connected (Backup SAN), which
+#                         triggered false alarms
+#
+#       Changed On      : 11/12/2017
+#       Changed By      : Benny Warwel
+#       Change          : fix PCID calculation for ignored FC adapters
+#
+#
+################################################################################
+
+my $STATE_OK = 0;
+my $STATE_WARNING = 1;
+my $STATE_CRITICAL = 2;
+my $STATE_UNKNOWN = 3;
+my ($exitcode, $exitmsg, $sdstmp, $script, $vxprint, $vxdisk, $vxdmpadm, $verbose);
+my (@wmessages, @cmessages, @umessages);
+my (%Volumes, $VolumeName, %Disks, $DiskName, $PhysicalDisk, $DiskState);
+my ($PlexName, %Rvgs, $RvgName, $LinkName);
+my ($HostName, $Dummy, $Enabled, $Active);
+my (%Devices);
+my ($DeviceName, $DeviceType, $DeviceDisk, $DeviceGroup, $DeviceStatus);
+my (@cdevices, @cctrls, $numpciadapters, @vxadapters);
+my (%Controllers);
+my ($ControllerName);
+my $defaultignore = {
+  pcis => [],
+  scsi_hosts => [],
+};
+our $ignore = {};
+
+$verbose = ($ARGV[0] eq "-v") ? 1 : 0;
+
+($script = $0) =~ s|^.*/||;
+
+sub read_tolerated_errors {
+  my $cfgfile = sprintf "%s/public/%s.cfg", $ENV{HOME}, SERVICENAME;
+  our $ignore;
+  $cfgfile =~ s/GENERIC/$^O/g;
+  if (-f $cfgfile) {
+    if (-r $cfgfile) {
+      eval {
+        require $cfgfile;
+      };
+      if ($@) {
+        printf "syntax error in %s\n%s\n", $cfgfile, $@;
+        exit 3;
+      }
+    } else {
+      printf "cannot read %s\n", $cfgfile;
+      exit 3;
+    }
+  }
+  foreach (keys %{$defaultignore}) {
+    if (! exists $ignore->{$_}) {
+      $ignore->{$_} = $defaultignore->{$_}
+    }
+  }
+  foreach (@{$ignore->{scsi_hosts}}) {
+    if (-f "/sys/class/scsi_host/".$_."/info") {
+      my $text = do { local( @ARGV, $/ ) = "/sys/class/scsi_host/".$_."/info" ; <> } ;
+      if ($text =~ /.*bus\s+(\w+)\s+device\s+(\w+)\s+(.*)/) {
+
+        my $target = readlink "/sys/class/scsi_host/$_";
+        my $pci_id;
+
+        if ( $target =~ /\/\w+:(\w+:\w+\.\w+)\/$_\/scsi_host/ ) {
+                $pci_id = $1;
+        }
+
+        push(@{$ignore->{pcis}}, $pci_id);
+
+      }
+    }
+  }
+}
+
+read_tolerated_errors;
+$verbose && printf STDERR "ignore: %s\n", Data::Dumper::Dumper($ignore);
+
+unless (-f "/etc/vx/volboot") {
+        printf "OK - Veritas Volume Manager not installed";
+        exit 0;
+}
+
+if ($^O eq "linux") {
+  #
+  # 20101202 KB
+  # do not check VxVm on 5.0 MP4 cause it might crash vxconfigd on
+  # servers with many objects (luns)
+  #
+  #
+  # rpm -q --queryformat='%{VERSION}' VRTSvxvm-common
+  # returns e.g. 5.0.40.00
+
+  my $check_vxvm_version = 'rpm -q --queryformat=\'%{VERSION}\' VRTSvxvm-common';
+  my $VXVM_VERSION = 'not_defined';
+
+  open(VXVM_VERSION, "$check_vxvm_version 2>&1 |");
+
+        while(<VXVM_VERSION>)
+        {
+                chomp();
+                $VXVM_VERSION=$_;
+        }
+
+  close(VXVM_VERSION);
+
+  if( $VXVM_VERSION =~ /^5.0.40.*/ )
+  {
+        printf "OK, not checking VxVm on this host, cause monitoring may crash vxconfigd on this VxVM version: <$VXVM_VERSION>, see Veritas-Case 413-186-368\n";
+        exit 0;
+  }
+} elsif ($^O eq "solaris") {
+  #bash-2.05$ pkginfo -x VRTSvxvm
+  #VRTSvxvm        Binaries for VERITAS Volume Manager by Symantec
+  #                (sparc) 5.0,REV=05.11.2006.17.55
+}
+
+
+$exitcode = $STATE_OK;
+
+# We should only get here if Veritas is running on the box
+
+if (-x "/usr/sbin/vxprint") {
+        $vxprint = "/usr/sbin/vxprint";
+} elsif (-x "/usr/bin/vxprint") {
+        $vxprint = "/usr/bin/vxprint";
+} else {
+        push(@umessages, "Unable to use the vxprint command");
+        $exitcode = $STATE_UNKNOWN ;
+}
+
+#
+# see if commands will work
+# when vxconfigd has problems or is not started the vx comands will not work
+# Example errors:
+# vxconfigd not startet: VxVM vxprint ERROR V-5-1-684 IPC failure: Configuration daemon is not accessible
+# vxconfigd hangs: VxVM vxdisk ERROR V-5-1-462 Cannot get records from vxconfigd: Memory allocation failure
+#
+
+open VXPRINT,   "$vxprint -ht 2>&1|";
+
+        my @VX_MSG=<VXPRINT>;
+
+close VXPRINT;
+
+foreach my $msg ( @VX_MSG )
+{
+        if( $msg =~ /VxVM.*ERROR.*/ )
+        {
+                chomp($msg);
+                print "WARNING: vxconfigd problem <$msg>\n";
+                # exit $STATE_WARNING;
+                exit $STATE_CRITICAL;
+        }
+}
+
+
+
+$vxdisk = "/opt/VRTS/bin/vxdisk";
+$vxdmpadm = "/opt/VRTS/bin/vxdmpadm";
+
+
+open FAILING,   "$vxprint -a | grep blabla=on |";
+open VXPRINT,   "$vxprint -ht |";
+
+%Volumes = ();          # Clear down the structures
+
+while (<FAILING>) {
+        chomp;
+        next if /^[A-Z]/;      # Ignore Uppercase entries (Headings etc)
+
+        ( $Dummy, $DiskName ) = split;
+        push(@cmessages, "$HostName warning Veritas Disk $DiskName is online failing");
+        $exitcode = $STATE_CRITICAL ;
+}
+
+close FAILING;
+
+while (<VXPRINT>) {
+        chomp;
+        next if /^$/;           # Ignore Blank Lines
+        next if /^[A-Z]/;       # Ignore Uppercase entries (Headings etc)
+        next if /^sd/;          # Ignore Sub-disk Lines
+        next if /^dg/;          # Ignore Disk Group Lines
+
+        /^dm/   && do {                                                         # Store All of the Disk info
+                ( $Dummy, $DiskName, $PhysicalDisk, $Dummy, $Dummy, $Dummy, $DiskState ) = split;
+                $Disks{$DiskName}->{PhysicalDisk} = $PhysicalDisk;
+                $Disks{$DiskName}->{DiskState} = $DiskState;
+        };
+        /^v /   && do {                                                         # Store all of the Volume info
+                ( $Dummy, $VolumeName, $Dummy, $Enabled, $Active ) = split;
+                $Volumes{$VolumeName}->{Enabled} = $Enabled;
+                $Volumes{$VolumeName}->{Active} = $Active;
+        };
+        /^pl /  && do {
+                ( $Dummy, $PlexName, $VolumeName, $Enabled, $Active ) = split;
+                push @{$Volumes{$VolumeName}->{PlexName}}, $PlexName;           # Need to put the plex names into an array
+                $Volumes{$VolumeName}{$PlexName}->{Enabled} = $Enabled;
+                $Volumes{$VolumeName}{$PlexName}->{Active} = $Active;
+        };
+        /^rv /  && do {         # Store all of the Replicator Volume info
+                ( $Dummy, $RvgName, $Dummy, $Enabled, $Active ) = split;
+                $Rvgs{$RvgName}->{Enabled} = $Enabled;
+                $Rvgs{$RvgName}->{Active} = $Active;
+        };
+        /^rl /  && do {         # Store all of the Replicator Link info
+                ( $Dummy, $LinkName, $RvgName, $Enabled, $Active ) = split;
+                push @{$Rvgs{$RvgName}->{LinkName}}, $LinkName;                 # Need to put the plex names into an array
+                $Rvgs{$RvgName}{$LinkName}->{Enabled} = $Enabled;
+                $Rvgs{$RvgName}{$LinkName}->{Active} = $Active;
+        };
+}
+
+close VXPRINT;
+
+foreach $DiskName ( keys %Disks ) {
+
+        my $Disk = $Disks{$DiskName};
+
+        unless ( $Disk->{DiskState} eq '-' or $Disk->{DiskState} eq 'NOHOTUSE' or $Disk->{DiskState} eq 'REMOVED' or $Disk->{DiskState} eq 'FAILING' ) {
+                push(@cmessages, "$HostName Error Veritas Disk $DiskName is $Disk->{DiskState}");
+                $exitcode = $STATE_CRITICAL;
+        }
+}
+
+foreach $VolumeName ( keys %Volumes ) {
+
+        my $Vol = $Volumes{$VolumeName};                                                        # Pointing to the Volume structure
+
+        foreach $PlexName ( @{$Vol->{PlexName}} ) {                             # Need to pull out the array that defines the Plexes
+
+                my $Plex = $Volumes{$VolumeName}{$PlexName};                    # Pointing to the Plex structure
+
+                unless ( $Plex->{Enabled} eq "ENABLED" && $Plex->{Active}  eq "ACTIVE" ) {
+                        if    ( $VolumeName eq '-' and $Plex->{Enabled} eq "DISABLED" && $Plex->{Active} eq '-' ) {
+                                # DISABLED and "-" is ok.
+                                }
+                        elsif ( $VolumeName eq '-' ) {                          # The plex is disassociated from the volume
+                                push(@wmessages, "$HostName warning Veritas Plex $PlexName is not attached to any volume");
+                                $exitcode = $STATE_WARNING if ($exitcode != $STATE_CRITICAL);
+                                }
+                        elsif ( $Plex->{Enabled} eq "ENABLED" && $Plex->{Active}  eq "SNAPDONE" ) {
+                                # ENABLED SNAPDONE is ok.
+                                # http://blogs.sun.com/Cookbook/entry/what_is_flashsnap
+                                }
+                        elsif ( $Plex->{Enabled} eq "ENABLED" && $Plex->{Active}  eq "TEMPRMSD" ) {
+                                # ENABLED TEMPRMSD is ok.
+                                # http://support.veritas.com/docs/245300 ist laut Alf harmlos.
+                                }
+                        elsif ( $Plex->{Enabled} eq "ENABLED" && $Plex->{Active}  eq "SNAPTMP" ) {
+                                # ENABLED SNAPTMP is ok.
+                                # http://ftp.support.veritas.com/pub/support/products/VolumeManager_UNIX/250785.pdf
+                                }
+                        elsif ( $Plex->{Enabled} eq "ENABLED" && $Plex->{Active}  eq "TEMP" ) {
+                                # ENABLED TEMP is ok.
+                                # http://ftp.support.veritas.com/pub/support/products/VolumeManager_UNIX/250785.pdf
+                                }
+                        elsif ( $Plex->{Enabled} eq "DISABLED" && $Plex->{Active} eq "REMOVED" ) {
+                                # DISABLED REMOVED is ok. Related to Disk REMOVED. This is the normal situation during swapping a damaged disk.
+                                push(@wmessages, "$HostName warning Veritas Plex $PlexName is $Plex->{Enabled} and $Plex->{Active}");
+                                $exitcode = $STATE_WARNING if ($exitcode != $STATE_CRITICAL);
+                                }
+                        else {
+                                push(@cmessages, "$HostName warning Veritas Plex $PlexName is $Plex->{Enabled} and $Plex->{Active}");
+                                $exitcode = $STATE_CRITICAL;
+                                }
+                        }
+                }
+
+        next if $VolumeName eq '-';
+
+        unless ( $Vol->{Enabled} eq "ENABLED" && $Vol->{Active}  eq "ACTIVE" ) {
+                if ( $Vol->{Enabled} eq "ENABLED" && $Vol->{Active}  eq "SYNC" ) {
+                        push(@wmessages, "$HostName warning Veritas Volume $VolumeName is $Vol->{Enabled} and $Vol->{Active}");
+                        $exitcode = $STATE_WARNING if ($exitcode != $STATE_CRITICAL);
+                        # google volume sync ...
+                } elsif ( $Vol->{Enabled} eq "ENABLED" && $Vol->{Active}  eq "NEEDSYNC" ) {
+                        push(@wmessages, "$HostName warning Veritas Volume $VolumeName is $Vol->{Enabled} and $Vol->{Active}");
+                        $exitcode = $STATE_WARNING if ($exitcode != $STATE_CRITICAL);
+                        # google volume sync ...
+                } else {
+                        push(@cmessages, "$HostName warning Veritas Volume $VolumeName is $Vol->{Enabled} and $Vol->{Active}");
+                        $exitcode = $STATE_CRITICAL;
+                }
+        }
+}
+
+foreach $RvgName ( keys %Rvgs ) {
+
+        my $Rvg = $Rvgs{$RvgName};                                                      # Pointing to the Rvg structure
+
+        foreach $LinkName ( @{$Rvg->{LinkName}} ) {             # Need to pull out the array that defines the Links
+
+                my $Link = $Rvgs{$RvgName}{$LinkName};                  # Pointing to the Link structure
+
+
+                unless ( ( $Link->{Enabled} eq "CONNECT" || $Link->{Enabled} eq "ENABLED" ) &&
+                         $Link->{Active}  eq "ACTIVE" ) {
+                        if ( $RvgName eq '-' ) {                                # The link is disassociated from the Rvg
+                                push(@wmessages, "$HostName warning Veritas Link $LinkName is not attached to any Replicator Group");
+                                $exitcode = $STATE_WARNING if ($exitcode != $STATE_CRITICAL);
+                                }
+                        else {
+                                push(@cmessages, "$HostName warning Veritas Link $LinkName is $Link->{Enabled} and $Link->{Active}");
+                                $exitcode = $STATE_CRITICAL;
+                                }
+                        }
+                }
+
+        next if $RvgName eq '-';
+
+        unless ( $Rvg->{Enabled} eq "ENABLED" && $Rvg->{Active}  eq "ACTIVE" ) {
+                push(@cmessages, "$HostName warning Veritas Volume Replicator Group $RvgName is $Rvg->{Enabled} and $Rvg->{Active}");
+                $exitcode = $STATE_CRITICAL;
+        }
+}
+
+if (($^O eq "linux") && (scalar keys %Disks)) {
+  # now find raw devices and get their status
+  open VXDISK, "sudo $vxdisk -q -o alldgs list |";
+  while (<VXDISK>) {
+          chomp;
+          next if /^$/;           # Ignore Blank Lines
+
+          /^[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+\s+[^\s]+/   && do {
+                ( $DeviceName, $DeviceType, $DeviceDisk, $DeviceGroup, $DeviceStatus ) = split;
+                $Devices{$DeviceName}->{Disk} = $DeviceDisk;
+                $Devices{$DeviceName}->{Group} = $DeviceGroup;
+                $Devices{$DeviceName}->{Status} = $DeviceStatus;
+          };
+  }
+  close VXDISK;
+  foreach my $DeviceName (keys %Devices) {
+        next if $Devices{$DeviceName}->{Group} eq "-";
+        open VXDISK, "sudo $vxdisk list $DeviceName|";
+        while (<VXDISK>) {
+                chomp;
+                /^(\w+)\s+state=(\w+)/ && do {
+                        $Devices{$DeviceName}->{Paths}->{$1} = $2;
+                };
+        }
+        close VXDISK;
+        if ( grep /disabled/,  map { $Devices{$DeviceName}->{Paths}->{$_} }
+              keys %{$Devices{$DeviceName}->{Paths}} ) {
+                push(@cdevices, $DeviceName);
+        }
+  }
+  if (@cdevices) {
+        push(@cmessages, sprintf "device(s) %s have failed paths",
+                join(",", @cdevices));
+        $exitcode = $STATE_WARNING;
+        foreach my $DeviceName (@cdevices) {
+                if ($Devices{$DeviceName}->{Group} !~ m/\(.*\)/) {
+                        $exitcode = $STATE_CRITICAL;
+                        last;
+                }
+        }
+  }
+  open VXDMPADM, "sudo $vxdmpadm listctlr all |";
+  while (<VXDMPADM>) {
+    next if /^CTLR.NAME/;
+    next if /^====/;
+    next if /OTHER_DISKS/;
+    if (/^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/) {
+      next if $2 eq "Disk";
+      $Controllers{$1}->{$4} = $3;
+      if ($3 eq "DISABLED") {
+        push(@cctrls, "$1:$4");
+      }
+    }
+  }
+  close VXDMPADM;
+  if ($verbose) {
+    printf STDERR "veritas found controllers: %s\n", Data::Dumper::Dumper(\%Controllers);
+  }
+  if (@cctrls) {
+        push(@cmessages, sprintf "controllers(s) %s have failed paths",
+                join(",", @cctrls));
+        $exitcode = $STATE_CRITICAL;
+  }
+  # fcal adapters known to veritas: c0, c1, ...
+  @vxadapters = grep {!/c360/} keys %Controllers;
+  $numpciadapters = 0;
+  open LSPCI, "/sbin/lspci -m|";
+  while (<LSPCI>) {
+    my($pci, $device) = split(/\s/, $_, 2);
+    if ($device =~ /.*ibre.*/) {
+      if (! grep { $pci eq $_ } @{$ignore->{pcis}}) {
+        $numpciadapters++;
+      } else {
+        $verbose && printf STDERR "skipping ignored pci no %s\n", $pci;
+      }
+    }
+  }
+  close LSPCI;
+  if (scalar(@vxadapters) < $numpciadapters) {
+    # TPA#000000000115234
+    if ($^O eq "linux") {
+      my @packages = qx{rpm -qa};
+      my $returncode = $? >> 8;
+      if ($returncode != 0) {
+        # assign $! numerically
+        $! = $returncode  if ! $!;
+        print "external command 'rpm -qa' returned with a nonzero value: $! \n";
+        exit $STATE_CRITICAL;
+      }
+      if (scalar(grep { m/NetBackupServer/ixms } @packages) == 0) {
+        # not a backup server
+        push(@cmessages,
+                sprintf "%d fcal adapters installed, but veritas sees only %d",
+                $numpciadapters, scalar(@vxadapters));
+        $exitcode = $STATE_CRITICAL;
+      }
+    } else {
+      push(@cmessages,
+              sprintf "%d fcal adapters installed, but veritas sees only %d",
+              $numpciadapters, scalar(@vxadapters));
+      $exitcode = $STATE_CRITICAL;
+    }
+  }
+  #
+  # sudo /opt/VRTS/bin/vxdmpadm listctlr all
+  # es wird vermutet, dass einzelne controller verschwinden
+  # dass statt c0, c1, c2, c3 nur noch c1, c2, c3 aufgelistet werden.
+  #
+  # vxdisk list <dev> zeigt in diesem fall vermutlich nur die drei
+  # restlichen controller mit status=enabled an
+  #
+  # die Anzahl der Controller muss zwischengespeichert werden
+  my $currentcontrollers = join(" ", sort keys %Controllers);
+  if ($verbose) {
+    printf STDERR "found controllers: %s\n", $currentcontrollers;
+  }
+  if (-f $ENV{HOME}.'/var/tmp/check_vxvm.listctlr') {
+    open(LISTCTLR, $ENV{HOME}.'/var/tmp/check_vxvm.listctlr');
+    my $expectedcontrollers = <LISTCTLR>;
+    chomp $expectedcontrollers;
+    close LISTCTLR;
+    if ($currentcontrollers ne $expectedcontrollers) {
+      my @temparr = split(" ", $currentcontrollers);
+      my $numcurrentcontrollers = scalar @temparr;
+      @temparr = split(" ", $expectedcontrollers);
+      my $numexpectedcontrollers = scalar @temparr;
+      @temparr = ();
+      if ($numcurrentcontrollers < $numexpectedcontrollers) {
+        $exitcode = $STATE_CRITICAL;
+        push(@cmessages, sprintf "expected controllers %s, but found %s",
+            $expectedcontrollers, $currentcontrollers);
+        open(PROTOCOL, ">>".$ENV{HOME}.'/var/tmp/check_vxvm.diagnosis');
+        printf PROTOCOL "============================ %s ====================\n",
+            scalar localtime;
+        printf PROTOCOL "\nsudo vxdmpadm listctlr all\n";
+        my $vxdmpadmlistctlrall = `sudo $vxdmpadm listctlr all`;
+        printf PROTOCOL "%s\n", $vxdmpadmlistctlrall;
+        printf PROTOCOL "\nsudo vxdisk list\n";
+        my $vxdisklist = `sudo $vxdisk list`;
+        printf PROTOCOL "%s\n", $vxdisklist;
+        foreach my $DeviceName (keys %Devices) {
+          next if $Devices{$DeviceName}->{Disk} eq "-";
+          printf PROTOCOL "\nsudo vxdisk list %s\n", $DeviceName;
+          my $vxdisklistdev = `sudo $vxdisk list $DeviceName`;
+          printf PROTOCOL "%s\n", $vxdisklistdev;
+        }
+        printf PROTOCOL "\n\n";
+        close PROTOCOL;
+      } else {
+        $exitcode = $STATE_WARNING;
+        push(@wmessages, sprintf "expected controllers %s, but found %s",
+            $expectedcontrollers, $currentcontrollers);
+        # generate a warning just for documentation purposes and
+        # reset the counter
+        open(LISTCTLR, ">".$ENV{HOME}.'/var/tmp/check_vxvm.listctlr');
+        printf LISTCTLR "%s\n", $currentcontrollers;
+        close LISTCTLR;
+      }
+    }
+  } else {
+    open(LISTCTLR, ">".$ENV{HOME}.'/var/tmp/check_vxvm.listctlr');
+    printf LISTCTLR "%s\n", $currentcontrollers;
+    close LISTCTLR;
+  }
+}
+
+
+SWITCH: {
+        $exitcode == $STATE_OK  && do {
+                                $exitmsg = "OK - Veritas Volume Manager OK\n";
+                                last SWITCH;
+        };
+        $exitcode == $STATE_WARNING     && do {
+                                $exitmsg = sprintf "WARNING - Veritas Volume Manager possible problem detected - %s\n", $wmessages[0];
+                                last SWITCH;
+        };
+        $exitcode == $STATE_CRITICAL    && do {
+                                $exitmsg = sprintf "CRITICAL - Veritas Volume Manager problem detected - %s\n", $cmessages[0];
+                                last SWITCH;
+        };
+        $exitcode == $STATE_UNKNOWN     && do {
+                                $exitmsg = sprintf "CRITICAL - Veritas Volume Manager problem detected - %s\n", $umessages[0];
+                                last SWITCH;
+        };
+
+}
+
+print $exitmsg;
+if ($verbose) {
+  map { printf "%s\n", $_; } @cmessages, @wmessages, @umessages;
+}
+exit $exitcode;
+qqnagio@lp02db001:~/prod/local/lib/nagios/plugins>
+
+
+

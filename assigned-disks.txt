@@ -1,0 +1,22 @@
+* Scanning for new Veritas Disks
+ - New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   VSP_20175_0334    | sdep  03:34   3C   50304  57622 | sdex  03:34   4C   50304  57622 |
+   VSP_20175_0335    | sdeq  03:35   3C   50304  57622 | sdey  03:35   4C   50304  57622 |
+   VSP_20175_0336    | sder  03:36   3C   50304  57622 | sdez  03:36   4C   50304  57622 |
+   VSP_20175_0337    | sdes  03:37   3C   50304  57622 | sdfa  03:37   4C   50304  57622 |
+   VSP_20297_0334    | sdfb  03:34   4C   50304  57622 | sdet  03:34   3C   50304  57622 |
+   VSP_20297_0335    | sdfc  03:35   4C   50304  57622 | sdeu  03:35   3C   50304  57622 |
+   VSP_20297_0336    | sdfd  03:36   4C   50304  57622 | sdev  03:36   3C   50304  57622 |
+   VSP_20297_0337    | sdfe  03:37   4C   50304  57622 | sdew  03:37   3C   50304  57622 |
+
+ - Found 8 new Veritas device(s): 'VSP_20175_0334 VSP_20175_0335 VSP_20175_0336 VSP_20175_0337 VSP_20297_0334 VSP_20297_0335 VSP_20297_0336 VSP_20297_0337'
+
+** Clearing failing disks, if any...
+ - No failing disks found
+
+** Normal exit after 9 sec.
+
+lp30tnp05:~ #

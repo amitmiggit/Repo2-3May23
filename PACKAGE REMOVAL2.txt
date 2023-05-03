@@ -1,0 +1,8 @@
+tufin_decom_ip -r TAS000006756742 -s dbqar389 -i 172.25.196.145
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ tufin_decom_ip -r TAS000006756742 -s dbqar389 -i 172.25.196.145
+-> Querying valid IP addresses for dbqar389
+-> ERROR: No valid IP address found documented to dbqar389
+![INSTSERV][qxz10kv][lpinstiaas02] ~ $
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $

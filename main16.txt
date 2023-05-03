@@ -1,0 +1,75 @@
+[‎10/‎9/‎2021 7:19 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Hi Manogna
+[‎10/‎9/‎2021 7:20 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+Hi
+is this regarding TAS000005972398 
+[‎10/‎9/‎2021 7:21 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+TAS000005972398 - Veritas-Upgrade-Cleanup 
+# SERVER_NAME(s):         lp01d65/66
+# PACKAGE_IPNAME(s):   
+dbauqaw1
+dbhiqaw1
+dbkiqaw1
+dbe00w1 
+yes
+is it to be performed
+[‎10/‎9/‎2021 7:21 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+pre checks are still in progress
+I will let you know once my checkes aree done
+[‎10/‎9/‎2021 7:21 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+yes
+[‎10/‎9/‎2021 7:22 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+ok
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎10/‎9/‎2021 7:43 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+few mins, i am stopping dbs
+[‎10/‎9/‎2021 7:45 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+Hi
+pre checks are done
+you can start your task
+[‎10/‎9/‎2021 7:46 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+OK , Thanks
+[‎10/‎9/‎2021 7:46 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+please let me know once done
+[‎10/‎9/‎2021 7:46 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+6 hours is the DT
+right
+I will connect you once done
+[‎10/‎9/‎2021 7:47 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+ok sure
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook.
+[‎10/‎9/‎2021 10:20 PM] Medam ManognaLakshmi, (ManognaLakshmi.Medam@partner.bmw.de): 
+Hi anji
+[‎10/‎9/‎2021 10:20 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+Hello All
+[‎10/‎9/‎2021 10:28 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Hi All , DGV DLV Upgrade is done
+[‎10/‎9/‎2021 10:29 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+Ok
+[‎10/‎9/‎2021 10:29 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+please start services at your end 
+Please validate
+[‎10/‎9/‎2021 10:30 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+Ok
+I will let you know
+[‎10/‎9/‎2021 10:31 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+probably how much time ?
+tentative i Mean
+as my shift is about to end I will add some other person from shift
+[‎10/‎9/‎2021 10:32 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+it will take time
+please add your colleague 
+[‎10/‎9/‎2021 10:44 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+As I don't want to leave the work  
+so it will be nice if you will tell any estimated time
+[‎10/‎9/‎2021 10:45 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+Ok, I am in progress , estimated time 15-20min
+[‎10/‎9/‎2021 10:45 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Thanks
+[‎10/‎9/‎2021 11:10 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Any update ?
+[‎10/‎9/‎2021 11:10 PM] Yenumula Anjireddy, (Anjireddy.Yenumula@partner.bmw.de): 
+Yes, all looks ok
+Thanks you
+[‎10/‎9/‎2021 11:10 PM] Misra Amit, (Amit.Misra@partner.bmw.de): 
+Thanks  I am closing task

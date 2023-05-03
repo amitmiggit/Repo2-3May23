@@ -1,0 +1,72 @@
+downtime -a -h 6 -c "TAS000005972398 qxz10kv" lp01d65.muc
+
+
+downtime -a -h 6 -c "TAS000005972398 qxz10kv" lp01d66.muc
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 6 -c "TAS000005972398 qxz10kv" lp01d65.muc
+Argument: lp01d65.muc
+[1633788088] SCHEDULE_HOST_DOWNTIME;lp01d65.muc;1633788088;1633809688;1;0;21600;remote;TAS000005972398 qxz10kv
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 6 -c "TAS000005972398 qxz10kv" lp01d66.muc
+Argument: lp01d66.muc
+[1633788103] SCHEDULE_HOST_DOWNTIME;lp01d66.muc;1633788103;1633809703;1;0;21600;remote;TAS000005972398 qxz10kv
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lp01d65k
+.------------------------------------------------.
+|                    lp01d65k                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lp01d65k |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |                    lp01d65.muc |
+| ALIAS         |                                |
+| IP_ADDRESS    |                  160.48.156.78 |
+| NSI           |                           0S1R |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.48.156.1 |
+| NET_ID        |                   160.48.156.0 |
+| INT_VLAN      |                           3017 |
+| SUB_AREA      |                                |
+| BROADCAST     |                 160.48.156.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ get_rmb_password lp01d65k
+Administrator|E24048056390
+Administrator2|C761D367F4F2
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ c6000 lp01d66k
+.------------------------------------------------.
+|                    lp01d66k                    |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                       lp01d66k |
+| DOMAIN        |                            muc |
+| LOG_SERVER_ID |                    lp01d66.muc |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 160.48.156.146 |
+| NSI           |                           YGJH |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.48.156.1 |
+| NET_ID        |                   160.48.156.0 |
+| INT_VLAN      |                           3017 |
+| SUB_AREA      |                                |
+| BROADCAST     |                 160.48.156.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ get_rmb_password lp01d66k
+Administrator|39DA1E9EFD17
+Administrator2|FBFD878BA778
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+
+
+
+
+
+

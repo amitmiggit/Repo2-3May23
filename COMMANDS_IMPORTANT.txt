@@ -1,0 +1,1 @@
+for i in li19esign02 li19esign06 li19mpuat01vm li19mpuat02vm li19dkcredit01vm li19dkcredit02vm li19dkocruat01vm li19dkocruat02vm; do vmc migrate $i; done

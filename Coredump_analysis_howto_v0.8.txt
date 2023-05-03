@@ -1,0 +1,162 @@
+
+0.)lpdebug01 good to know:
+
+All the needed files on the server are stored on a separate filesystem under /global/debug/data:
+debuginfo/	-Kernel debuginfo location
+vmlinux/	-Kernel location
+workdir/	-where the coredumps, and all the Problem Ticket related data is stored.
+
+
+
+Under the workdir, the following naming scheme has to be used for the directories: YYYY-MM-DD_SERVERNAME.
+Example:2019-12-11_lptms01
+
+
+
+
+
+Crashdump Analysis
+
+
+1.) Copy the coredump to the lpdebug01.
+	-in most cases the lpdebug01 has a direct access to the servers. Just place your key under ~/.ssh and you can use scp to copy files to the debug server. 
+	 It can happen, that there is a firewall between the node and the debug server. In this case try to do the scp from the source node, sometimes the Firewal rules are only applied for one way.
+	 If you still can't copy the file, then you have to copy it first to the jumpserver, and from the jumpserver you can copy it to lpdebug01 with scp or rootscp.
+
+2.) Opening a coredump
+	For opening a coredump, we use the crash utility. as parameter it requires the dump, the kernel, and the kernel debug file.
+	To determine the correct kernel version, use the get_kernel_version command:
+
+	qxl0736@lpdebug01 /global/debug/data/workdir/2020-01-08_lpbkvvs06 $ get_kernel_version lpbkvvs06.31268
+	3.0.101-108.101-xen
+	
+	With this information you can add the kernel, and the debug files to the command from the previously mentioned locations:
+
+	
+	qxl0736@lpdebug01 /global/debug/data/workdir/2020-01-08_lpbkvvs06 $ crash lpbkvvs06.31268 ../../vmlinux/vmlinux-3.0.101-108.101-xen.gz ../../debuginfo/vmlinux-3.0.101-108.101-xen.debug
+
+	
+	After a while this opens the coredump, and you have multiple commands to extract information from the coredump.
+
+
+
+	Some coredumps can't be opened with a certain version of crash. There are multiple versions of crash available on the server, which you can try:
+	/usr/bin/crash
+	/global/debug/app/utils/dumputils/crash
+	/home/qxl0736/crash/usr_1/bin/crash
+
+	If none of them can't open the dump, there is a good chance that it is corrupt (mostly the main reason beghind this is a full filesystem, and an incomplete dump due to this --> check the source servers filesystem)
+
+
+3.)extracting information from the coredump:
+	
+	There are various commands you can work with, the mostly used are the following:
+	bt	-	shows the last running processes backtrace
+	foreach bt	shows the backtrace of all processes
+	foreach files	shows all the open files listed by processes
+	kmem -i		displays memory, and swap usage
+	log		displays the last log entries before the crash
+	mod		displays all the loaded kernel modules
+	mount		lists all mounts
+	ps		Displays the processes at the time of the crash (has multiple options, -a -m -S....)
+	runq		lists all the processes which where running on a CPU at the time of the crash
+	sys		Displays some system information (kernel version, load, uptime, etc)
+
+
+	With the commands above you can filter out trivial cases, like when a server ran out of memory due to the application, or crashed with a kernel bug.
+
+
+
+
+
+4.) Advanced coredump analysis
+	Some parts of the above mentioned tasks are partialy automated on the lpdebug01. To access these tools, you have to become root first 
+
+	lpdebug01:~ # sudo -s
+
+	Then you have to source the scripts:
+	
+	lpdebug01:~ # source /home/qxl0736/PM_helper.sh
+	
+	Some functions you can use:
+
+	srvinfo  <FQDN>                   -         Logs on to server, and check OS  version and if it's VM or Physical
+	ndir     <Server>     		  -         Creates workdir under /global/debug/data/workdir
+	dumpfind <server>       	  -         Check for existing folder for the server
+	myrsync  <server> <file>	  -         Copy <file> from <Server> to current directory
+	myssh    <server> [command]       -         SSH with defined user to server [and execute command if defined]
+	core_info [corefile]              -         Extracts info from largest coredump in directory, or from defined dump
+	get_supportconfig <server>        -         Creates supportconfig on destination server, and donloads it to current directory
+	
+	do_the_dump <server>              -         Checks servertype, collects, extracts, and analytes coredump
+	
+
+
+	This displays a help during the source explaining what you can do with the tools.
+	It is worth mentioning, that the copy, ssh, and information gathering from the source server only works, if it is not blocked by firewall.
+	The ssh, and rsync commands only work passwordless, if you have added a key.
+	
+
+
+
+	A coredump analysis task would look like the following:
+	-determine the server type with srvinfo
+	-create a workdirectory with ndir
+	-copy the coredump with myrsync to the workdir (if it does not work, then try to scp it from the source, or copy it through a jumpserver)
+	-extract information from the coredump with core_info (this can take hours)
+	-the extracted information is located under ./output
+
+
+	You can also use a tool to analyze the extracted information, just execute /home/qxl0736/bin/analyz_e_core_out.sh while standing in the directory of the dump
+	From the output the kernel version, load, memory, CPU usage process status, process real and virtual memory usage, and errors in the logs are visible.
+
+
+
+	There is also fully automated command, which does all the mentioned things above, but it is still experimental, and does not work always:
+	do_the_dump <server>
+
+
+
+
+5.) Other usefull tool(s)
+	/global/debug/app/bin/ftpupload.sh
+		With this tool you can upload any file to Suse with the -n option  (-v for veritas and -b for beyondtrust is obsolete, and shoudl not be used!)
+
+	core_load and core_load2 <dumpfile>
+		you can open the coredumps with these commands.It will search the needed kernel, and debug file, and start the crash utility
+	
+	get_supportconfig <server>
+		this executes a supportconfig -l on the remote server, and then moves the supportconfig file to the current directory (this can sometimes take very long)
+	
+	
+	get_coredump <server>
+		Find and copy the coredump of the server to the current directory.
+
+
+
+		
+Examples:
+
+	2019-09-07_lp34d35
+	POssible issue with CPU:
+
+	[256934.072002] CPU: 9 PID: 26060 Comm: cf-agent Tainted: P           OE    X 4.4.121-92.109.2.17964.0.PTF.1107256-default #1
+	
+	In this case, the server crashed mutiple times, and the log always contained an issue on CPU9
+
+	
+
+	2020-01-13_ltste02
+	Server has a kernel version(4.4.121-92.92 and 4.4.121-92.80), which has a bug, and needs an update:
+	
+
+	2018-05-09_lpintra21
+	Server ran out of memory due to the httpd applicaiton
+		less then 7% free memory: 0% / 178.9 MB
+		[38165.632918] Out of memory: Kill process 12177 (httpd) score 118 or sacrifice child
+
+	
+
+
+
+

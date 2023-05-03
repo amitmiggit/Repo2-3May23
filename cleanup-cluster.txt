@@ -1,0 +1,79 @@
+lp01d61:~ # san_shortinfo |egrep -i 'dbbrvow1'|wc -l
+10
+lp01d61:~ # san_shortinfo |egrep -i 'dbbrvaw1'|wc -l
+26
+lp01d61:~ # san_shortinfo |egrep -i 'dbkgow1'|wc -l
+8
+lp01d61:~ # san_shortinfo |egrep -i 'dbkgaw1'|wc -l
+20
+lp01d61:~ # san_shortinfo |egrep -i 'dbbrvow1'
+hitachi_vsp0_010b  | sdcr  01:0B   7D   97714   115245 | sddz  01:0B   8D   97714   115245 | dgdbbrvow1db
+hitachi_vsp0_010c  | sdcs  01:0C   7D   97714    14405 | sdeb  01:0C   8D   97714    14405 | dgdbbrvow1bkup
+hitachi_vsp0_010d  | sdcw  01:0D   7D   97714    14405 | sded  01:0D   8D   97714    14405 | dgdbbrvow1redo1
+hitachi_vsp0_010e  | sdcy  01:0E   7D   97714    14405 | sdee  01:0E   8D   97714    14405 | dgdbbrvow1redo2
+hitachi_vsp0_025d  | sddu  02:5D   7D   97714    14405 | sdfm  02:5D   8D   97714    14405 | dgdbbrvow1bkup
+hitachi_vsp1_010b  | sdo   01:0B   8D   97717   115245 | sdis  01:0B   7D   97717   115245 | dgdbbrvow1db
+hitachi_vsp1_010c  | sdp   01:0C   8D   97717    14405 | sdiu  01:0C   7D   97717    14405 | dgdbbrvow1bkup
+hitachi_vsp1_010d  | sdq   01:0D   8D   97717    14405 | sdiv  01:0D   7D   97717    14405 | dgdbbrvow1redo1
+hitachi_vsp1_010e  | sdr   01:0E   8D   97717    14405 | sdiw  01:0E   7D   97717    14405 | dgdbbrvow1redo2
+hitachi_vsp1_025d  | sdag  02:5D   8D   97717    14405 | sdjp  02:5D   7D   97717    14405 | dgdbbrvow1bkup
+lp01d61:~ # san_shortinfo |egrep -i 'dbbrvaw1'
+hitachi_vsp0_0001  | sdbo  00:01   7D   97714   230490 | sdcv  00:01   8D   97714   230490 | dgdbbrvaw1db
+hitachi_vsp0_0113  | sdcz  01:13   7D   97714    14405 | sdeg  01:13   8D   97714    14405 | dgdbbrvaw1redo1
+hitachi_vsp0_0114  | sddb  01:14   7D   97714    14405 | sdei  01:14   8D   97714    14405 | dgdbbrvaw1redo2
+hitachi_vsp0_0115  | sddd  01:15   7D   97714   230490 | sdek  01:15   8D   97714   230490 | dgdbbrvaw1db
+hitachi_vsp0_0116  | sdde  01:16   7D   97714   230490 | sdem  01:16   8D   97714   230490 | dgdbbrvaw1db
+hitachi_vsp0_0117  | sddf  01:17   7D   97714    57622 | sdeo  01:17   8D   97714    57622 | dgdbbrvaw1bkup
+hitachi_vsp0_0269  | sddw  02:69   7D   97714    57622 | sdfn  02:69   8D   97714    57622 | dgdbbrvaw1bkup
+hitachi_vsp0_5004  | sdec  50:04   7D   97714   230490 | sdfs  50:04   8D   97714   230490 | dgdbbrvaw1db
+hitachi_vsp0_5021  | sdgt  50:21   7D   97714   518602 | sdif  50:21   8D   97714   518602 | dgdbbrvaw1bkup
+hitachi_vsp0_504a  | sdgx  50:4A   7D   97714   518602 | sdii  50:4A   8D   97714   518602 | dgdbbrvaw1db
+hitachi_vsp0_510f  | sdfw  51:0F   7D   97714   230490 | sdhk  51:0F   8D   97714   230490 | dgdbbrvaw1bkup
+hitachi_vsp0_5110  | sdfx  51:10   7D   97714   115245 | sdhl  51:10   8D   97714   115245 | dgdbbrvaw1bkup
+hitachi_vsp0_512b  | sdgv  51:2B   7D   97714   518602 | sdih  51:2B   8D   97714   518602 | dgdbbrvaw1bkup
+hitachi_vsp1_0001  | sdd   00:01   8D   97717   230490 | sdhz  00:01   7D   97717   230490 | dgdbbrvaw1db
+hitachi_vsp1_0113  | sds   01:13   8D   97717    14405 | sdiz  01:13   7D   97717    14405 | dgdbbrvaw1redo1
+hitachi_vsp1_0114  | sdt   01:14   8D   97717    14405 | sdja  01:14   7D   97717    14405 | dgdbbrvaw1redo2
+hitachi_vsp1_0115  | sdu   01:15   8D   97717   230490 | sdjc  01:15   7D   97717   230490 | dgdbbrvaw1db
+hitachi_vsp1_0116  | sdv   01:16   8D   97717   230490 | sdje  01:16   7D   97717   230490 | dgdbbrvaw1db
+hitachi_vsp1_0117  | sdw   01:17   8D   97717    57622 | sdjf  01:17   7D   97717    57622 | dgdbbrvaw1bkup
+hitachi_vsp1_0269  | sdah  02:69   8D   97717    57622 | sdjq  02:69   7D   97717    57622 | dgdbbrvaw1bkup
+hitachi_vsp1_5004  | sdak  50:04   8D   97717   230490 | sdjt  50:04   7D   97717   230490 | dgdbbrvaw1db
+hitachi_vsp1_5021  | sdbx  50:21   8D   97717   518602 | sdlc  50:21   7D   97717   518602 | dgdbbrvaw1bkup
+hitachi_vsp1_504a  | sdbz  50:4A   8D   97717   518602 | sdle  50:4A   7D   97717   518602 | dgdbbrvaw1db
+hitachi_vsp1_510f  | sdbh  51:0F   8D   97717   230490 | sdkq  51:0F   7D   97717   230490 | dgdbbrvaw1bkup
+hitachi_vsp1_5110  | sdbi  51:10   8D   97717   115245 | sdkr  51:10   7D   97717   115245 | dgdbbrvaw1bkup
+hitachi_vsp1_512b  | sdby  51:2B   8D   97717   518602 | sdld  51:2B   7D   97717   518602 | dgdbbrvaw1bkup
+lp01d61:~ # san_shortinfo |egrep -i 'dbkgow1'
+hitachi_vsp0_509d  | sdff  50:9D   7D   97714   115245 | sdgw  50:9D   8D   97714   115245 | dgdbkgow1db
+hitachi_vsp0_509e  | sdfg  50:9E   7D   97714    57622 | sdgy  50:9E   8D   97714    57622 | dgdbkgow1bkup
+hitachi_vsp0_509f  | sdfi  50:9F   7D   97714    14405 | sdgz  50:9F   8D   97714    14405 | dgdbkgow1redo1
+hitachi_vsp0_50a0  | sdfk  50:A0   7D   97714    14405 | sdhc  50:A0   8D   97714    14405 | dgdbkgow1redo2
+hitachi_vsp1_509d  | sdaz  50:9D   8D   97717   115245 | sdki  50:9D   7D   97717   115245 | dgdbkgow1db
+hitachi_vsp1_509e  | sdba  50:9E   8D   97717    57622 | sdkj  50:9E   7D   97717    57622 | dgdbkgow1bkup
+hitachi_vsp1_509f  | sdbb  50:9F   8D   97717    14405 | sdkk  50:9F   7D   97717    14405 | dgdbkgow1redo1
+hitachi_vsp1_50a0  | sdbc  50:A0   8D   97717    14405 | sdkl  50:A0   7D   97717    14405 | dgdbkgow1redo2
+lp01d61:~ # san_shortinfo |egrep -i 'dbkgaw1'
+hitachi_vsp0_5099  | sdez  50:99   7D   97714   115245 | sdgo  50:99   8D   97714   115245 | dgdbkgaw1db
+hitachi_vsp0_509a  | sdfb  50:9A   7D   97714    57622 | sdgq  50:9A   8D   97714    57622 | dgdbkgaw1bkup
+hitachi_vsp0_509b  | sdfd  50:9B   7D   97714    14405 | sdgs  50:9B   8D   97714    14405 | dgdbkgaw1redo1
+hitachi_vsp0_509c  | sdfe  50:9C   7D   97714    14405 | sdgu  50:9C   8D   97714    14405 | dgdbkgaw1redo2
+hitachi_vsp0_5111  | sdfy  51:11   7D   97714    57622 | sdhm  51:11   8D   97714    57622 | dgdbkgaw1bkup
+hitachi_vsp0_5118  | sdgb  51:18   7D   97714   115245 | sdhn  51:18   8D   97714   115245 | dgdbkgaw1db
+hitachi_vsp0_5119  | sdgk  51:19   7D   97714   115245 | sdhw  51:19   8D   97714   115245 | dgdbkgaw1db
+hitachi_vsp0_511a  | sdgm  51:1A   7D   97714   230490 | sdhy  51:1A   8D   97714   230490 | dgdbkgaw1bkup
+hitachi_vsp0_511b  | sdgp  51:1B   7D   97714   115245 | sdib  51:1B   8D   97714   115245 | dgdbkgaw1db
+hitachi_vsp0_511e  | sdgr  51:1E   7D   97714   230490 | sdie  51:1E   8D   97714   230490 | dgdbkgaw1db
+hitachi_vsp1_5099  | sdav  50:99   8D   97717   115245 | sdke  50:99   7D   97717   115245 | dgdbkgaw1db
+hitachi_vsp1_509a  | sdaw  50:9A   8D   97717    57622 | sdkf  50:9A   7D   97717    57622 | dgdbkgaw1bkup
+hitachi_vsp1_509b  | sdax  50:9B   8D   97717    14405 | sdkg  50:9B   7D   97717    14405 | dgdbkgaw1redo1
+hitachi_vsp1_509c  | sday  50:9C   8D   97717    14405 | sdkh  50:9C   7D   97717    14405 | dgdbkgaw1redo2
+hitachi_vsp1_5111  | sdbj  51:11   8D   97717    57622 | sdks  51:11   7D   97717    57622 | dgdbkgaw1bkup
+hitachi_vsp1_5118  | sdbl  51:18   8D   97717   115245 | sdkt  51:18   7D   97717   115245 | dgdbkgaw1db
+hitachi_vsp1_5119  | sdbt  51:19   8D   97717   115245 | sdky  51:19   7D   97717   115245 | dgdbkgaw1db
+hitachi_vsp1_511a  | sdbu  51:1A   8D   97717   230490 | sdkz  51:1A   7D   97717   230490 | dgdbkgaw1bkup
+hitachi_vsp1_511b  | sdbv  51:1B   8D   97717   115245 | sdla  51:1B   7D   97717   115245 | dgdbkgaw1db
+hitachi_vsp1_511e  | sdbw  51:1E   8D   97717   230490 | sdlb  51:1E   7D   97717   230490 | dgdbkgaw1db
+lp01d61:~ # date
+Wed Apr 27 17:40:13 CEST 2022
+lp01d61:~ #

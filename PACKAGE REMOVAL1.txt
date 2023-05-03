@@ -1,0 +1,135 @@
+san_return -f pkgremoval-LDEV-BOX-pairs-dbqar389 -s lp34d56 -t TAS000006756742
+
+
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $ san_return -f pkgremoval-LDEV-BOX-pairs-dbqar389 -s lp34d56 -t TAS000006756742
+defined(@array) is deprecated at /global/instserv/bin/perl/Log/Log4perl/Config.pm line 870.
+        (Maybe you should just omit the defined()?)
+# --- For a detailed log, please see: '/global/instserv/logs/san_return/lp34d56_TAS000006756742_2022_11_30_181758.log'
+# --- User 'qqinstserv' fired command: /global/instserv/bin/san_return -f pkgremoval-LDEV-BOX-pairs-dbqar389 -s lp34d56 -t TAS000006756742
+# --- Remedy ticketnumber: TAS000006756742
+# --- Displaying input file 'pkgremoval-LDEV-BOX-pairs-dbqar389' ...:
+10538 00:2E
+10538 02:8B
+10538 06:0C
+10538 06:0D
+10538 06:0E
+10538 06:0F
+10565 00:2E
+10565 02:8B
+10565 06:0C
+10565 06:0D
+10565 06:0E
+10565 06:0F
+                                                             ... done
+lp34d56: # --- Fetching cluster partner list ...
+lp34d56:                                                     ... done
+lp34d55: # --- Checking SLES version ...
+lp34d55:                                                     ... done
+lp34d55: # --- Checking Veritas version ...
+lp34d55:                                                     ... done
+lp34d55: # --- Checking availability of needed commands ...
+lp34d55:                                                     ... done
+lp34d55: # --- Getting 'pvinfo' data ...
+lp34d55:                                                     ... done
+lp34d55: # --- Building LUN records ...
+lp34d55:                                                     ... done
+lp34d55: # --- Getting 'pvinfo -i' data ...
+lp34d55:                                                     ... done
+lp34d55: # --- Getting Veritas device information  ...
+lp34d55:                                                     ... done
+lp34d55: # --- Listing LUNs before being unconfigured ...:
+lp34d55: ENCLR-SN CU:LDEV VxDMP PHYSICAL DEVICES (PATHS)     SIZE
+lp34d55: ======== ======= ===== ======================== ========
+lp34d55: 10538    00:2E   hitachi_vspg1k0_002e sdch,sdhz                  230490
+lp34d55: 10538    02:8B   hitachi_vspg1k0_028b sddf,sdix                   57622
+lp34d55: 10538    06:0C   hitachi_vspg1k0_060c sdex,sdkp                  230490
+lp34d55: 10538    06:0D   hitachi_vspg1k0_060d sdey,sdkq                   57622
+lp34d55: 10538    06:0E   hitachi_vspg1k0_060e sdez,sdkr                   14405
+lp34d55: 10538    06:0F   hitachi_vspg1k0_060f sdfa,sdks                   14405
+lp34d55: 10565    00:2E   hitachi_vspg1k1_002e sdfd,sdl                   230490
+lp34d55: 10565    02:8B   hitachi_vspg1k1_028b sdaj,sdgb                   57622
+lp34d55: 10565    06:0C   hitachi_vspg1k1_060c sdcb,sdht                  230490
+lp34d55: 10565    06:0D   hitachi_vspg1k1_060d sdcc,sdhu                   57622
+lp34d55: 10565    06:0E   hitachi_vspg1k1_060e sdcd,sdhv                   14405
+lp34d55: 10565    06:0F   hitachi_vspg1k1_060f sdce,sdhw                   14405
+lp34d55:                                                     ... done
+lp34d55: # --- Starting LUN removal, for a detailed log see /global/instserv/logs/san_return/lp34d56_TAS000006756742_2022_11_30_181758.log on server lpinstiaas02
+lp34d55: # --- Placing '/etc/.donotrescan' file to avoid redetection of unconfigured LUNs ...
+lp34d55:                                                     ... done
+lp34d55: # --- Removing selected LUNs from Veritas control ...
+lp34d55:                                                     ... done
+lp34d55: # --- Unconfiguring LUN paths ...
+lp34d55:                                                     ... done
+lp34d55: # --- Verifying removal of OS SCSI paths ...
+lp34d55:                                                     ... done
+lp34d55: # --- Scanning devices and refreshing VxDMP device name database ...
+lp34d55:                                                     ... done
+lp34d55: # --- Verifying removal of VxDMP devices ...
+lp34d55:                                                     ... done
+
+######### 'lp34d55' finished ###################################################################
+
+lp34d56: # --- Checking SLES version ...
+lp34d56:                                                     ... done
+lp34d56: # --- Checking Veritas version ...
+lp34d56:                                                     ... done
+lp34d56: # --- Checking availability of needed commands ...
+lp34d56:                                                     ... done
+lp34d56: # --- Getting 'pvinfo' data ...
+lp34d56:                                                     ... done
+lp34d56: # --- Building LUN records ...
+lp34d56:                                                     ... done
+lp34d56: # --- Getting 'pvinfo -i' data ...
+lp34d56:                                                     ... done
+lp34d56: # --- Getting Veritas device information  ...
+lp34d56:                                                     ... done
+lp34d56: # --- Listing LUNs before being unconfigured ...:
+lp34d56: ENCLR-SN CU:LDEV VxDMP PHYSICAL DEVICES (PATHS)     SIZE
+lp34d56: ======== ======= ===== ======================== ========
+lp34d56: 10538    00:2E   hitachi_vspg1k0_002e sdfd,sdl                   230490
+lp34d56: 10538    02:8B   hitachi_vspg1k0_028b sdaj,sdgb                   57622
+lp34d56: 10538    06:0C   hitachi_vspg1k0_060c sdcb,sdht                  230490
+lp34d56: 10538    06:0D   hitachi_vspg1k0_060d sdcc,sdhu                   57622
+lp34d56: 10538    06:0E   hitachi_vspg1k0_060e sdcd,sdhv                   14405
+lp34d56: 10538    06:0F   hitachi_vspg1k0_060f sdce,sdhw                   14405
+lp34d56: 10565    00:2E   hitachi_vspg1k1_002e sdch,sdhz                  230490
+lp34d56: 10565    02:8B   hitachi_vspg1k1_028b sddf,sdix                   57622
+lp34d56: 10565    06:0C   hitachi_vspg1k1_060c sdex,sdkp                  230490
+lp34d56: 10565    06:0D   hitachi_vspg1k1_060d sdey,sdkq                   57622
+lp34d56: 10565    06:0E   hitachi_vspg1k1_060e sdez,sdkr                   14405
+lp34d56: 10565    06:0F   hitachi_vspg1k1_060f sdfa,sdks                   14405
+lp34d56:                                                     ... done
+lp34d56: # --- Starting LUN removal, for a detailed log see /global/instserv/logs/san_return/lp34d56_TAS000006756742_2022_11_30_181758.log on server lpinstiaas02
+lp34d56: # --- Placing '/etc/.donotrescan' file to avoid redetection of unconfigured LUNs ...
+lp34d56:                                                     ... done
+lp34d56: # --- Removing selected LUNs from Veritas control ...
+lp34d56:                                                     ... done
+lp34d56: # --- Unconfiguring LUN paths ...
+lp34d56:                                                     ... done
+lp34d56: # --- Verifying removal of OS SCSI paths ...
+lp34d56:                                                     ... done
+lp34d56: # --- Scanning devices and refreshing VxDMP device name database ...
+lp34d56:                                                     ... done
+lp34d56: # --- Verifying removal of VxDMP devices ...
+lp34d56:                                                     ... done
+
+######### 'lp34d56' finished ###################################################################
+
+# --- Creating STORM (SoD) return LUN list  ...
+                                                             ... done
+# --- Listing the contents of STORM return file '/global/instserv/logs/san_return/lp34d56_TAS000006756742_2022_11_30_181758_XoLbmqF8.out'.
+# --- Please check and in case correct it ... :
+/dev/sdcd              00  00  00 2B         06:0e VSP-G1x00 00010565
+/dev/sdcb              00  00  00 2B         06:0c VSP-G1x00 00010565
+/dev/sddf              00  00  00 2B         02:8b VSP-G1x00 00010538
+/dev/sdfd              00  00  00 1B         00:2e VSP-G1x00 00010565
+/dev/sdey              00  00  00 2B         06:0d VSP-G1x00 00010538
+/dev/sdez              00  00  00 2B         06:0e VSP-G1x00 00010538
+/dev/sdex              00  00  00 2B         06:0c VSP-G1x00 00010538
+/dev/sdaj              00  00  00 2B         02:8b VSP-G1x00 00010565
+/dev/sdce              00  00  00 2B         06:0f VSP-G1x00 00010565
+/dev/sdfa              00  00  00 2B         06:0f VSP-G1x00 00010538
+/dev/sdch              00  00  00 2B         00:2e VSP-G1x00 00010538
+/dev/sdcc              00  00  00 2B         06:0d VSP-G1x00 00010565
+                                                             ... done
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $

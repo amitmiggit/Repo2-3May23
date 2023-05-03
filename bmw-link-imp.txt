@@ -1,0 +1,18 @@
+
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.4+SLES12+In-Place+Upgrade
+bmw@consalco.com----we can ask hardrest server to team.
+lpbkrrcmdb5/6
+
+5.6.1.17 Migration of VCS Cluster Package (VCS Service group) 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.9+Migration+VCS+Cluster+Package 
+
+TAS000004951241 
+
+
+===================================
+CRQ000001451340 | TAS000004933238  
+5.6.1.17 Migration of VCS Cluster Package (VCS Service group) -prep task given 
+
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=848558020 

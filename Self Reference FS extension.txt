@@ -1,0 +1,384 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ rootssh lppgb00084vm
+lppgb00084vm:~ # df -hT  /global/pc00084/archive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vgpc00084archive-lvarchive xfs   5.5T  4.5T  1.1T  81% /global/pc00084/archive
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ # df -hT /dev/mapper/vgpc00084archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vgpc00084archive-lvarchive xfs   5.5T  4.5T  1.1T  81% /global/pc00084/archive
+lppgb00084vm:~ # vgs
+  VG               #PV #LV #SN Attr   VSize   VFree
+  vgpc00084app       2   1   0 wz--n-   1.49t      0
+  vgpc00084archive   2   1   0 wz--n-   6.00t 517.94g
+  vgpc00084xlog      2   1   0 wz--n- 281.20g  28.12g
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    5.5T  4.5T  1.1T  81% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ # pvs
+  PV         VG               Fmt  Attr PSize    PFree
+  /dev/xvdae vgpc00084app     lvm2 a--  1023.87g      0
+  /dev/xvdaf vgpc00084archive lvm2 a--     2.00t      0
+  /dev/xvdf  vgpc00084app     lvm2 a--   506.32g      0
+  /dev/xvdg  vgpc00084xlog    lvm2 a--    56.24g  28.12g
+  /dev/xvdh  vgpc00084archive lvm2 a--     4.00t 517.94g
+  /dev/xvdw  vgpc00084xlog    lvm2 a--   224.96g      0
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    5.5T  4.5T  1.1T  81% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    5.5T  4.5T  1.1T  81% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ # vgdisplay
+  --- Volume group ---
+  VG Name               vgpc00084archive
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  110
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               6.00 TiB
+  PE Size               4.00 MiB
+  Total PE              1572798
+  Alloc PE / Size       1440206 / 5.49 TiB
+  Free  PE / Size       132592 / 517.94 GiB
+  VG UUID               OcMLJI-Ked3-mLxE-6p9F-H6Q1-gQFs-P1n8lY
+
+  --- Volume group ---
+  VG Name               vgpc00084app
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  52
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               1.49 TiB
+  PE Size               4.00 MiB
+  Total PE              391729
+  Alloc PE / Size       391729 / 1.49 TiB
+  Free  PE / Size       0 / 0
+  VG UUID               kkBnHv-qV0V-ZT3I-SIQe-2x8V-C9Nj-BJtKge
+
+  --- Volume group ---
+  VG Name               vgpc00084xlog
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  17
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               281.20 GiB
+  PE Size               4.00 MiB
+  Total PE              71987
+  Alloc PE / Size       64788 / 253.08 GiB
+  Free  PE / Size       7199 / 28.12 GiB
+  VG UUID               fwQugT-KyXy-VRYm-GJVT-LSs6-4DXk-Pob7fv
+
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    5.5T  4.5T  1.1T  81% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    5.5T  4.5T  1.1T  81% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT /dev/mapper/vgpc00084archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vgpc00084archive-lvarchive xfs   5.5T  4.5T  1.1T  81% /global/pc00084/archive
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # pvcreate /dev/xvdb
+  Physical volume "/dev/xvdb" successfully created
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ # vgs
+  VG               #PV #LV #SN Attr   VSize   VFree
+  vgpc00084app       2   1   0 wz--n-   1.49t      0
+  vgpc00084archive   2   1   0 wz--n-   6.00t 517.94g
+  vgpc00084xlog      2   1   0 wz--n- 281.20g  28.12g
+lppgb00084vm:~ # vgextend vgpc00084archive /dev/xvdb
+  Volume group "vgpc00084archive" successfully extended
+lppgb00084vm:~ # vgs
+  VG               #PV #LV #SN Attr   VSize   VFree
+  vgpc00084app       2   1   0 wz--n-   1.49t     0
+  vgpc00084archive   3   1   0 wz--n-  10.00t  4.51t
+  vgpc00084xlog      2   1   0 wz--n- 281.20g 28.12g
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    5.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+lppgb00084vm:~ # pvs
+  PV         VG               Fmt  Attr PSize    PFree
+  /dev/xvdae vgpc00084app     lvm2 a--  1023.87g      0
+  /dev/xvdaf vgpc00084archive lvm2 a--     2.00t      0
+  /dev/xvdb  vgpc00084archive lvm2 a--     4.00t   4.00t
+  /dev/xvdf  vgpc00084app     lvm2 a--   506.32g      0
+  /dev/xvdg  vgpc00084xlog    lvm2 a--    56.24g  28.12g
+  /dev/xvdh  vgpc00084archive lvm2 a--     4.00t 517.94g
+  /dev/xvdw  vgpc00084xlog    lvm2 a--   224.96g      0
+lppgb00084vm:~ #
+lppgb00084vm:~ # vgs
+  VG               #PV #LV #SN Attr   VSize   VFree
+  vgpc00084app       2   1   0 wz--n-   1.49t     0
+  vgpc00084archive   3   1   0 wz--n-  10.00t  4.51t
+  vgpc00084xlog      2   1   0 wz--n- 281.20g 28.12g
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # lvs
+  LV        VG               Attr      LSize   Pool Origin Data%  Move Log Copy%  Convert
+  lvapp     vgpc00084app     -wi-ao---   1.49t
+  lvarchive vgpc00084archive -wi-ao---   5.49t
+  lvxlog    vgpc00084xlog    -wi-ao--- 253.08g
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT /dev/mapper/vgpc00084archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vgpc00084archive-lvarchive xfs   5.5T  4.5T  1.1T  81% /global/pc00084/archive
+lppgb00084vm:~ #
+lppgb00084vm:~ # lvextend -L +4096G /dev/mapper/vgpc00084archive-lvarchive
+  Extending logical volume lvarchive to 9.49 TiB
+  Logical volume lvarchive successfully resized
+lppgb00084vm:~ #
+lppgb00084vm:~ # xfs_growfs /global/pc00084/archive
+meta-data=/dev/mapper/vgpc00084archive-lvarchive isize=256    agcount=134, agsize=11010048 blks
+         =                       sectsz=512   attr=2
+data     =                       bsize=4096   blocks=1474770944, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal               bsize=4096   blocks=21504, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 1474770944 to 2548512768
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    9.5T  4.5T  5.1T  47% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ #
+lppgb00084vm:~ #
+lppgb00084vm:~ # df -hT /dev/mapper/vgpc00084archive-lvarchive
+Filesystem                             Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vgpc00084archive-lvarchive xfs   9.5T  4.5T  5.1T  47% /global/pc00084/archive
+lppgb00084vm:~ # exit
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ rootssh lppgb00084vm
+lppgb00084vm:~ # lsblk
+NAME                                MAJ:MIN  RM    SIZE RO MOUNTPOINT
+xvda                                202:0     0   44.8G  0
+├─xvda1                             202:1     0  305.9M  0 /boot
+├─xvda2                             202:2     0      1G  0 [SWAP]
+├─xvda3                             202:3     0   38.4G  0 /
+├─xvda4                             202:4     0      1K  0
+└─xvda5                             202:5     0      5G  0 /home
+xvdf                                202:80    0  506.3G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdg                                202:96    0   56.2G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdh                                202:112   0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    9.5T  0 /global/pc00084/archive
+xvdw                                202:5632  0    225G  0
+└─vgpc00084xlog-lvxlog (dm-2)       253:2     0  253.1G  0 /global/pc00084/xlog
+xvdae                               202:7680  0 1023.9G  0
+└─vgpc00084app-lvapp (dm-1)         253:1     0    1.5T  0 /global/pc00084
+xvdaf                               202:7936  0      2T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    9.5T  0 /global/pc00084/archive
+xvdb                                202:16    0      4T  0
+└─vgpc00084archive-lvarchive (dm-0) 253:0     0    9.5T  0 /global/pc00084/archive
+lppgb00084vm:~ # df -hT
+Filesystem                             Type   Size  Used Avail Use% Mounted on
+/dev/xvda3                             ext3    38G   15G   22G  40% /
+udev                                   tmpfs   17G  132K   17G   1% /dev
+tmpfs                                  tmpfs   17G   84K   17G   1% /dev/shm
+/dev/xvda1                             ext2   297M   42M  240M  15% /boot
+/dev/xvda5                             ext3   5.0G  166M  4.6G   4% /home
+/dev/mapper/vgpc00084app-lvapp         xfs    1.5T  829G  702G  55% /global/pc00084
+/dev/mapper/vgpc00084archive-lvarchive xfs    9.5T  4.5T  5.1T  47% /global/pc00084/archive
+/dev/mapper/vgpc00084xlog-lvxlog       xfs    254G  3.5G  250G   2% /global/pc00084/xlog
+lppgb00084vm:~ # exit

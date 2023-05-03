@@ -1,0 +1,30 @@
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ get_rmb_password lpapp01k
+Administrator|6322A3B41C8E
+Administrator2|3B5AE2309C9E
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ ping lpapp01k
+PING lpapp01k.bmwgroup.net (160.48.145.172) 56(84) bytes of data.
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=1 ttl=60 time=1.17 ms
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=2 ttl=60 time=1.21 ms
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=3 ttl=60 time=1.24 ms
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=4 ttl=60 time=1.23 ms
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=5 ttl=60 time=1.23 ms
+^C64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=6 ttl=60 time=1.39 ms
+64 bytes from lpapp01k.bmwgroup.net (160.48.145.172): icmp_seq=7 ttl=60 time=1.25 ms
+^C
+--- lpapp01k.bmwgroup.net ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6009ms
+rtt min/avg/max/mdev = 1.171/1.250/1.395/0.077 ms
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ get_rmb_password lpapp02k
+Administrator|FAE563D8E0A1
+Administrator2|71574911ECCE
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ ping lpapp02k
+PING lpapp02k.bmwgroup.net (160.48.145.192) 56(84) bytes of data.
+64 bytes from lpapp02k.bmwgroup.net (160.48.145.192): icmp_seq=1 ttl=60 time=0.974 ms
+64 bytes from lpapp02k.bmwgroup.net (160.48.145.192): icmp_seq=2 ttl=60 time=1.00 ms
+64 bytes from lpapp02k.bmwgroup.net (160.48.145.192): icmp_seq=3 ttl=60 time=0.958 ms
+64 bytes from lpapp02k.bmwgroup.net (160.48.145.192): icmp_seq=4 ttl=60 time=0.950 ms
+^C
+--- lpapp02k.bmwgroup.net ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 0.950/0.971/1.004/0.037 ms
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $

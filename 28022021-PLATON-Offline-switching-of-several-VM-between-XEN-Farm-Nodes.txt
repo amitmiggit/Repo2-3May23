@@ -1,0 +1,37 @@
+downtime -a -h 4 -c "TAS000005380823" lpsbxendb006.bmwgroup.net
+downtime -a -h 4 -c "TAS000005380823" lpdbapex0020vm.bmwgroup.net
+
+(2) Required Information
+Please describe exactly your request:
+
+Please switch the following VM's, to their requested partner nodes:
+	Date: 28 Feb 2021	Requests for LINUX environments only.	CRQ: CRQ000001622685	
+	SLOT 4.  Time, 12:00 - 16:00 (CET)		Also please provide Business contact detail below.	
+				
+	VM Detail  (APPD)	To host node	Downtime confirmed with business	Requested by
+1	lpdbapex0020vm (APPD-13543)	lpsbxendb006	Yes, Kuchler Andreas, FG-821; not critical on Sunday	Waldemar Ebers
+
+Please lock these VM's, once the switch is completed, with note "PLATON ITEE requirement", 
+
+Downtime allowed?  yes
+
+Please change predefined answer if necessary:
+Task can be implemented at any time within the start-/end time: yes
+Technical contact must be explicitly informed before begin and after end of this task: no 
+
+__________
+(3) Additional Information (optional)
+Rollback-Plan: (if none is provided, in case of errors the task is stopped where it is and if provided the contact person is contacted to deliver a rollback plan to server operations)
+
+Switch back to source Node, mark the task as failed and inform the Change Coordinator via e-mail.
+
+__________
+(4) Lead Times to be considered for this task
+---- During office hours: see header
+---- Outside office hours: see header
+
+__________
+(5) Contact Information
+In case of any issues during task execution, please contact the CMCO.
+Mail: tian.vaneijk@partner.bmw.co.za
++27 82 607 0040

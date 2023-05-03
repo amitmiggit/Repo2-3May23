@@ -1,0 +1,63 @@
+
+
+
+Great effort by the team!! Thank you Sanjiv1, Sanjeev2 and provisioning team for this assistance!! I can say we have Champions in this team!!
+ 
+Regards, 
+ 
+Arvind K Soni | Delivery Associate Director | NTTData Linux Support for BMW Group,
+
+=====================
+Hello All, 
+
+Cluster node lp30d04 is back online and all the missing configuration are corrected and DB team and App team are validated. 
+
+Appreciate and Thanks to Sanjeev Arora , Afraz for their support
+
+
+Thanks and Regards
+
+Sanjiv Soraganvi
+
+====================================
+Hello All, 
+
+As we discussed and worked on the cluster node lp30d04 
+Server is reinstalled, configured, and joined  the cluster.  Below are the details discussed and resolved the missing ones.
+1)Netbackup symlync added 
+2))NFS share mounted
+3)Huge page disabled 
+4) oraInst.loc and oratab files recreated 
+5)Rebooted the server 
+6)DB and Application validated by respective team and 04 node looks good at this in time 
+
+
+Thanks and Regards
+
+Sanjiv Soraganvi
+
+========================
+Hello All, 
+
+Server lp30d04 is down (Oracle Cluster node) On booting server is not accessible over network. 
+Many service are failed to start and need to reinstall the server . Sent an e-mail to Oracle team and also asked shift Lead Raj to open a high priority ticket to Oracle team to reinstall the server. 
+
+On getting approval will reinstall the server. 
+This server need to bring up today and join the cluster 
+
+
+===========================
+Hello JoseLuis
+
+Server is not coming up fully over the network and we found some services  are getting failed .. 
+Server doesn’t looks good .. need to reinstall the Server .. We see currently all the cluster packages are running on node lp30d03. 
+Node lp30d04 is empty and reinstall can be done quickly 
+Below are the action plant 
+1)	Reinstall the server with latest OS version 
+2)	Once the server is up validate from OS side 
+3)	Scan all SAN LUNS 
+4)	Make sure all local file system are mounted (/lfs/oracle and lfsoracle_audit) 
+5)	Mount all NFS shares on respective mount points
+6)	Handover the system to Oracle DB tem for validation. 
+7)	On approved window do a package move to respective  servers . 
+

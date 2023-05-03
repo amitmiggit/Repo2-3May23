@@ -1,0 +1,386 @@
+lp01d65:~ # history
+    1  2021-10-09 13:12:56 ##############--- 20211009.131256 ---##############
+    2  2021-10-09 13:12:58 uptime
+    3  2021-10-09 13:13:08 hastatus -sum
+    4  2021-10-09 13:14:11 hastatus -summ | grep ONLINE
+    5  2021-10-09 13:14:24 hastatus -sum
+    6  2021-10-09 13:14:30 hastatus -summ | grep ONLINE
+    7  2021-10-09 13:15:34 date
+    8  2021-10-09 13:20:42 hostname -f
+    9  2021-10-09 13:22:14 /var/tmp/check_dlv_dgv.sh
+   10  2021-10-09 13:43:28 cat /etc/SuSE-release
+   11  2021-10-09 13:49:03 vxdisk -o alldgs list
+   12  2021-10-09 14:03:38 haclus -value EngineVersion
+   13  2021-10-09 14:25:40 cat /etc/VRTSvcs/conf/config/main.cf
+   14  2021-10-09 14:29:34 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   15  2021-10-09 14:30:58 hastatus -sum
+   16  2021-10-09 14:31:21 hastatus -sum | grep -i online
+   17  2021-10-09 14:31:55 df -hT
+   18  2021-10-09 14:33:16 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   19  2021-10-09 14:33:20 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   20  2021-10-09 14:44:28 vxdg list
+   21  2021-10-09 14:44:38 date
+   22  2021-10-09 14:49:34 df -hT;df -TH -t vxfs;df -TH -t vxfs|wc -l;cat /etc/fstab;cat /etc/passwd;cat /etc/group;vxdg list; hares -list;xprint -htq;vxdisk -o alldgs list;hares -display;rpm -qa|grep -i veritas; rpm -qa|grep -i vxfs;rpm -qa|grep -i vrts;rpm -qa|grep -i vrts
+   23  2021-10-09 14:50:24 df -hT;df -TH -t vxfs;df -TH -t vxfs|wc -l;cat /etc/fstab;cat /etc/passwd;cat /etc/group;vxdg list; hares -list;xprint -htq;vxdisk -o alldgs list;hares -display;rpm -qa|grep -i veritas; rpm -qa|grep -i vxfs;rpm -qa|grep -i vrts;rpm -qa|grep -i vrts;
+   24  2021-10-09 14:55:59 clear
+   25  2021-10-09 14:56:03 clear
+   26  2021-10-09 14:56:44 df -hT;df -TH -t vxfs;df -TH -t vxfs|wc -l;cat /etc/fstab;cat /etc/passwd;cat /etc/group;vxdg list; hares -list;vxprint -htq;vxdisk -o alldgs list;hares -display;rpm -qa|grep -i veritas; rpm -qa|grep -i vxfs;rpm -qa|grep -i vrts
+   27  2021-10-09 15:08:08 hostname -f
+   28  2021-10-09 15:18:04 haststatus -sum | grep -i online
+   29  2021-10-09 15:18:24 hastatus -sum | grep -i online
+   30  2021-10-09 15:36:21 uname -r
+   31  2021-10-09 15:36:24 uptime
+   32  2021-10-09 15:36:29 cat /etc/fstab
+   33  2021-10-09 15:36:37 df -hT
+   34  2021-10-09 15:36:41 ifconfig
+   35  2021-10-09 15:39:08 vxprint -htq
+   36  2021-10-09 15:39:20 vxdisk -o alldgs list
+   37  2021-10-09 15:39:37 df -TH -t vxfs|wc -l
+   38  2021-10-09 15:40:38 blkid
+   39  2021-10-09 15:40:59 san_shortinfo
+   40  2021-10-09 15:46:14 history
+   41  2021-10-09 16:08:30 vxdg list
+   42  2021-10-09 16:09:37 hastatus -sum
+   43  2021-10-09 16:11:05 hastatus -sum | grep -i online
+   44  2021-10-09 16:12:20 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   45  2021-10-09 16:12:50 /var/tmp/check_dlv_dgv.sh
+   46  2021-10-09 16:25:07 hastatus -sum | grep -i online
+   47  2021-10-09 16:27:37 hagrp -offline dbauqaw1 -sys lp01d65
+   48  2021-10-09 16:28:04 hagrp -offline dbe00w1 -sys lp01d65
+   49  2021-10-09 16:28:20 hagrp -offline dbhiqaw1 -sys lp01d65
+   50  2021-10-09 16:29:01 hagrp -offline dbkiqaw1 -sys lp01d66
+   51  2021-10-09 16:29:38 hastatus -sum
+   52  2021-10-09 16:30:28 vxdg list
+   53  2021-10-09 16:30:39 for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9$i; done
+   54  2021-10-09 16:30:51 for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9 $i; done
+   55  2021-10-09 16:31:02 for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9 $i;done
+   56  2021-10-09 16:31:26 for i in `lsof /lfs/oracle |awk '{print $2}'`;do kill -9$i;done
+   57  2021-10-09 16:31:42 for i in `lsof /lfs/oracle |awk '{print $2}'`;do kill -9 $i;done
+   58  2021-10-09 16:32:02 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+   59  2021-10-09 16:32:22 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+   60  2021-10-09 16:32:33 df -hT
+   61  2021-10-09 16:32:53 umount /lfs/oracle
+   62  2021-10-09 16:33:02 umount /lfs/oracle_audit
+   63  2021-10-09 16:33:22 for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9 $i;done
+   64  2021-10-09 16:33:44 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+   65  2021-10-09 16:33:49 umount /lfs/oracle_audit
+   66  2021-10-09 16:33:55 history
+   67  2021-10-09 16:35:25 hastatus -sum
+   68  2021-10-09 16:35:29 df -hT
+   69  2021-10-09 16:36:17 zypper up VRTSodm VRTSvxfs VRTSvxvm
+   70  2021-10-09 16:38:01 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   71  2021-10-09 16:45:34 vxdg import dgoracle_lp01d65
+   72  2021-10-09 16:45:34 vxdg import dgdbauqaw1bkup
+   73  2021-10-09 16:45:34 vxdg import dgdbauqaw1db
+   74  2021-10-09 16:45:34 vxdg import dgdbauqaw1redo1
+   75  2021-10-09 16:45:44 vxdg import dgdbauqaw1redo2
+   76  2021-10-09 16:46:07 vxdg import dgdbe00w1apps
+   77  2021-10-09 16:46:07 vxdg import dgdbe00w1bkup
+   78  2021-10-09 16:46:08 vxdg import dgdbe00w1db
+   79  2021-10-09 16:46:08 vxdg import dgdbe00w1redo1
+   80  2021-10-09 16:46:10 vxdg import dgdbe00w1redo2
+   81  2021-10-09 16:46:19 vxdg import dgdbhiqaw1apps
+   82  2021-10-09 16:46:19 vxdg import dgdbhiqaw1bkup
+   83  2021-10-09 16:46:19 vxdg import dgdbhiqaw1db
+   84  2021-10-09 16:46:19 vxdg import dgdbhiqaw1redo1
+   85  2021-10-09 16:46:21 vxdg import dgdbhiqaw1redo2
+   86  2021-10-09 17:04:44 for DG in dgoracle_lp01d65 dgdbauqaw1bkup dgdbauqaw1db dgdbauqaw1redo1 dgdbauqaw1redo2 dgdbe00w1apps dgdbe00w1bkup dgdbe00w1db dgdbe00w1redo1 dgdbe00w1redo2 dgdbhiqaw1apps dgdbhiqaw1bkup dgdbhiqaw1db dgdbhiqaw1redo1 dgdbhiqaw1redo2 ; do echo "Upgrading $DG"; vxdg upgrade $DG && sleep 1 && vxdg -q list $DG | egrep -i ^version:| awk '{print "Version: "$NF}'; done
+   87  2021-10-09 17:22:48 mkdir /DLVUPGRADE
+   88  2021-10-09 17:30:12 mount /dev/vx/dsk/dgdbauqaw1bkup/lvbkup /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+   89  2021-10-09 17:30:50 mount /dev/vx/dsk/dgdbauqaw1bkup/lvbkup /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+   90  2021-10-09 17:31:20 umount /DLVUPGRADE
+   91  2021-10-09 17:31:41  mount /dev/vx/dsk/dgdbauqaw1bkup/lvbkup /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+   92  2021-10-09 17:32:05 umount /DLVUPGRADE
+   93  2021-10-09 17:32:20 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1bkup/lvbkup  | egrep version
+   94  2021-10-09 17:34:52 mount /dev/vx/dsk/dgdbauqaw1db/lvdb /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+   95  2021-10-09 17:35:06 umount /DLVUPGRADE
+   96  2021-10-09 17:35:21 mount /dev/vx/dsk/dgdbauqaw1db/lvdb /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+   97  2021-10-09 17:35:55 umount /DLVUPGRADE
+   98  2021-10-09 17:36:07 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1db/lvdb | egrep version
+   99  2021-10-09 17:37:15 mount /dev/vx/dsk/dgdbauqaw1redo1/lvredo1 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  100  2021-10-09 17:37:47 umount /DLVUPGRADE
+  101  2021-10-09 17:37:58 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo1/lvredo1 | egrep version
+  102  2021-10-09 17:38:41 mount /dev/vx/dsk/dgdbauqaw1redo2/lvredo2 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  103  2021-10-09 17:39:12 umount /DLVUPGRADE
+  104  2021-10-09 17:39:25 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo2/lvredo2 | egrep version
+  105  2021-10-09 17:40:18 mount /dev/vx/dsk/dgdbe00w1apps/lvapps /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  106  2021-10-09 17:40:43 umount /DLVUPGRADE
+  107  2021-10-09 17:40:57 mount /dev/vx/dsk/dgdbe00w1apps/lvapps /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  108  2021-10-09 17:41:18 umount /DLVUPGRADE
+  109  2021-10-09 17:41:30 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1apps/lvapps | egrep version
+  110  2021-10-09 17:42:29 mount /dev/vx/dsk/dgdbe00w1bkup/lvbkup /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  111  2021-10-09 17:42:52 umount /DLVUPGRADE
+  112  2021-10-09 17:43:03 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1bkup/lvbkup | egrep version
+  113  2021-10-09 17:44:11 mount /dev/vx/dsk/dgdbe00w1db/lvdb /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  114  2021-10-09 17:44:35 umount /DLVUPGRADE
+  115  2021-10-09 17:44:45 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1db/lvdb | egrep version
+  116  2021-10-09 17:45:48 mount /dev/vx/dsk/dgdbe00w1redo1/lvredo1 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  117  2021-10-09 17:46:08 umount /DLVUPGRADE
+  118  2021-10-09 17:46:18 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo1/lvredo1 | egrep version
+  119  2021-10-09 17:47:07 mount /dev/vx/dsk/dgdbe00w1redo2/lvredo2 /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  120  2021-10-09 17:47:28 umount /DLVUPGRADE
+  121  2021-10-09 17:47:38 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo2/lvredo2 | egrep version
+  122  2021-10-09 17:48:21 mount /dev/vx/dsk/dgdbhiqaw1apps/lvapps /DLVUPGRADE;for DLV in 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  123  2021-10-09 17:48:32 umount /DLVUPGRADE
+  124  2021-10-09 17:48:45 mount /dev/vx/dsk/dgdbhiqaw1apps/lvapps /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  125  2021-10-09 17:49:11  umount /DLVUPGRADE
+  126  2021-10-09 17:49:21 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1apps/lvapps | egrep version
+  127  2021-10-09 17:50:25 mount /dev/vx/dsk/dgdbhiqaw1bkup/lvbkup /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  128  2021-10-09 17:50:48 umount /DLVUPGRADE
+  129  2021-10-09 17:50:58 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1bkup/lvbkup | egrep version
+  130  2021-10-09 17:51:49 mount /dev/vx/dsk/dgdbhiqaw1db/lvdb /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  131  2021-10-09 17:52:15 umount /DLVUPGRADE
+  132  2021-10-09 17:52:20 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1db/lvdb | egrep version
+  133  2021-10-09 17:53:41 mount /dev/vx/dsk/dgdbhiqaw1redo1/lvredo1 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  134  2021-10-09 17:54:05 umount /DLVUPGRADE
+  135  2021-10-09 17:54:16 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo1/lvredo1 | egrep version
+  136  2021-10-09 17:55:25 mount /dev/vx/dsk/dgdbhiqaw1redo2/lvredo2 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  137  2021-10-09 17:56:02  umount /DLVUPGRADE
+  138  2021-10-09 17:56:14 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo2/lvredo2 | egrep version
+  139  2021-10-09 17:57:29 mount /dev/vx/dsk/dgoracle_lp01d65/lvoracle /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  140  2021-10-09 17:57:56 umount /DLVUPGRADE
+  141  2021-10-09 17:58:55 umount /lfs/oracle
+  142  2021-10-09 18:00:11 umount /lfs/oracle
+  143  2021-10-09 18:00:59 for i in `lsof /lfs/oracle |awk '{print $2}'`;do kill -9 $i;done
+  144  2021-10-09 18:01:19 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+  145  2021-10-09 18:01:36 umount /lfs/oracle
+  146  2021-10-09 18:02:32 mount /dev/vx/dsk/dgoracle_lp01d65/lvoracle /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  147  2021-10-09 18:02:56 umount /DLVUPGRADE
+  148  2021-10-09 18:03:06 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracle | egrep version
+  149  2021-10-09 18:04:01 umount /lfs/oracle_audit
+  150  2021-10-09 18:04:36 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+  151  2021-10-09 18:04:51 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+  152  2021-10-09 18:05:03 umount /lfs/oracle_audit
+  153  2021-10-09 18:05:42 mount /dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  154  2021-10-09 18:05:54 umount /DLVUPGRADE
+  155  2021-10-09 18:06:05 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit | egrep version
+  156  2021-10-09 18:23:52 /var/tmp/check_dlv_dgv.sh
+  157  2021-10-09 18:25:32 history
+  158  2021-10-09 18:26:07 history | grep version
+  159  2021-10-09 18:30:02 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1bkup/lvbkup  | egrep version
+  160  2021-10-09 18:30:02 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1db/lvdb | egrep version
+  161  2021-10-09 18:30:02 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo1/lvredo1 | egrep version
+  162  2021-10-09 18:30:06 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo2/lvredo2 | egrep version
+  163  2021-10-09 18:30:19 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1apps/lvapps | egrep version
+  164  2021-10-09 18:30:19 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1bkup/lvbkup | egrep version
+  165  2021-10-09 18:30:19 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1db/lvdb | egrep version
+  166  2021-10-09 18:30:19 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo1/lvredo1 | egrep version
+  167  2021-10-09 18:30:19 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo2/lvredo2 | egrep version
+  168  2021-10-09 18:30:22 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1apps/lvapps | egrep version
+  169  2021-10-09 18:30:35 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1bkup/lvbkup | egrep version
+  170  2021-10-09 18:30:35 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1db/lvdb | egrep version
+  171  2021-10-09 18:30:35 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo1/lvredo1 | egrep version
+  172  2021-10-09 18:30:35 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo2/lvredo2 | egrep version
+  173  2021-10-09 18:30:35 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracle | egrep version
+  174  2021-10-09 18:30:37 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit | egrep version
+  175  2021-10-09 18:31:18 cat /var/tmp/check_dlv_dgv.sh
+  176  2021-10-09 18:32:02 df -hT
+  177  2021-10-09 18:32:28 cat /etc/fstab
+  178  2021-10-09 18:50:04 hastatus -sum
+  179  2021-10-09 18:51:09 hagrp -online dbauqaw1 -sys lp01d65
+  180  2021-10-09 18:51:30 hagrp -online dbe00w1 -sys lp01d65
+  181  2021-10-09 18:51:56 hagrp -online dbhiqaw1 -sys lp01d65
+  182  2021-10-09 18:52:18 hagrp -online dbkiqaw1 -sys lp01d66
+  183  2021-10-09 18:52:33 hastatus -sum
+  184  2021-10-09 18:52:54 hastatus -sum
+  185  2021-10-09 18:53:03 hastatus -sum
+  186  2021-10-09 18:53:16 hastatus -sum
+  187  2021-10-09 18:53:28 hastatus -sum
+  188  2021-10-09 18:53:54 /var/tmp/check_dlv_dgv.sh
+  189  2021-10-09 18:54:15 ps -ef | grep pmon
+  190  2021-10-09 18:56:52 df -hT
+  191  2021-10-09 19:48:34 history
+lp01d65:~ # exit
+exit
+qplinux@lp01d65:~> exit
+logout
+Connection to lp01d65.muc closed.
+Connection to lpagpam007.bmwgroup.net. closed.
+===================================================================================================================
+
+ Your Session Information was:
+  * session_started=Sat Oct  9 13:12:40 CEST 2021
+  * real_user=qxz10kv
+  * target_user=qplinux
+  * target_server=lp01d65.muc
+  * psmp_server=lpagpam007.bmwgroup.net. (10.30.17.17)
+  * session_ended=Sat Oct  9 19:48:45 CEST 2021
+  * session_duration=0d:6h:36m:5s (23765 sec)
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+=========================
+
+
+lp01d66:~ # history
+    1  2021-10-09 13:17:44 ##############--- 20200620.153959 ---##############
+    2  2020-06-20 15:40:13 vxdisk list | grep -i fail ; cat /tmp/vxedit.sh ; sh /tmp/vxedit.sh ; vxprint | grep -i deta ; cat /tmp/vxplex.sh ; sh /tmp/vxplex.sh ; su - qqnagio
+    3  2021-10-09 13:17:44 ##############--- 20200717.220520 ---##############
+    4  2020-07-17 22:05:23 uptime
+    5  2020-07-17 22:05:27 top
+    6  2020-07-17 22:07:43 cd /var/log/sa
+    7  2020-07-17 22:07:43 ls
+    8  2020-07-17 22:07:44 ls -rlt
+    9  2020-07-17 22:08:05 sar -q -f sa20200716
+   10  2020-07-17 22:08:19 sar -q -f /var/log/sa/sa20200716
+   11  2021-10-09 13:17:44 ##############--- 20200723.065645 ---##############
+   12  2021-10-09 13:17:44 ##############--- 20200724.152203 ---##############
+   13  2020-07-24 15:22:04 cd /tmp/;./vxplex.sh;./vxedit.sh;su - qqnagio;
+   14  2021-10-09 13:17:44 ##############--- 20200727.034419 ---##############
+   15  2020-07-27 03:45:10 /sbin/vxdisk list | grep online.*failing | awk '{print $4;}' | sort -u > /var/tmp/DG_with_failing_online_disks
+   16  2020-07-27 03:45:10 for DG in `cat /var/tmp/DG_with_failing_online_disks`; do   echo Diskgroup $DG\: ;   FD="$(/sbin/vxprint -g $DG | awk '/dm.*FAILING/ {print $2;}')";   for D in $FD ; do   /sbin/vxedit -g $DG set failing=off $D;   done;   LV='';   LV="$(/sbin/vxprint -g $DG | awk '/^v /{print $2;}'| grep -v dcl)" ;   for L in $LV ; do   echo LV=$L ;   /usr/sbin/vxassist -g $DG remove log $L logtype=drl;   /usr/sbin/vxassist -g $DG remove log $L logtype=drl;   echo adding drl log to [${L}]@${DG} ;   /usr/sbin/vxassist -g $DG addlog $L logtype=drl loglen=2112 nlog=2 mirror=enclosure ;   done;   done;
+   17  2020-07-27 03:56:47 exit
+   18  2020-07-27 03:45:09 vxdisk list | egrep 'DEV|fail'
+   19  2020-07-27 03:45:09 vxprint |grep -i deta*
+   20  2020-07-27 03:45:09 vxdisk list | egrep 'DEV|fail' > /tmp/vxdisk.list
+   21  2020-07-27 03:45:09 while read var1 va2 var3 var4 var5; do  vxedit -g $var4 set failing=off $var3 ; done < /tmp/vxdisk.list
+   22  2020-07-27 03:45:09 cd /tmp
+   23  2020-07-27 03:45:09 ./vxplex.sh
+   24  2020-07-27 03:45:09 cd
+   25  2020-07-27 03:45:09 /bin/bash
+   26  2020-07-27 03:56:49 exit
+   27  2021-10-09 13:17:44 ##############--- 20200731.112807 ---##############
+   28  2021-10-09 13:17:44 ##############--- 20200802.055833 ---##############
+   29  2021-10-09 13:17:44 ##############--- 20200802.074652 ---##############
+   30  2021-10-09 13:17:44 ##############--- 20200802.081229 ---##############
+   31  2020-08-02 08:12:33 hastatus
+   32  2020-08-02 08:12:40 hastatus -sum
+   33  2020-08-02 08:17:16 vxdg import dgoracle_$(uname -n)
+   34  2020-08-02 08:17:29 mount /lfs/oracle
+   35  2020-08-02 08:17:34 mount /lfs/oracle_audit
+   36  2020-08-02 08:17:48 systemctl restart syslog
+   37  2020-08-02 08:17:59 df -hP /lfs/oracle*
+   38  2020-08-02 10:36:57 exit
+   39  2020-08-02 10:36:59 exit
+   40  2021-10-09 13:17:44 ##############--- 20200829.180912 ---##############
+   41  2020-08-29 18:09:29 vxdisk list | egrep 'DEV|fail'
+   42  2020-08-29 18:09:29 vxprint |grep -i deta*
+   43  2020-08-29 18:09:29 vxdisk list | egrep 'DEV|fail' > /tmp/vxdisk.list
+   44  2020-08-29 18:09:29 while read var1 va2 var3 var4 var5; do  vxedit -g $var4 set failing=off $var3 ; done < /tmp/vxdisk.list
+   45  2020-08-29 18:09:29 cd /tmp
+   46  2020-08-29 18:09:29 ./vxplex.sh
+   47  2020-08-29 18:09:29 cd
+   48  2020-08-29 18:09:29 /sbin/vxctl fixnames;
+   49  2020-08-29 18:09:30   su - qqnagio -c /lfs/opt/nagios/prod/local/lib/nagios/plugins/check_san_mirror
+   50  2020-08-29 18:09:32   su - qqnagio -c /lfs/opt/nagios/prod/local/lib/nagios/plugins/check_vxvm
+   51  2020-08-29 18:10:22 vxprint|egrep -i 'Disk group|deta*'
+   52  2020-08-29 18:10:35 vxplex -g
+   53  2020-08-29 18:11:05 vxplex -g dgdbkiqaw1db att lvdb lvdb_drl-97714
+   54  2020-08-29 18:11:13 vxplex -g dgdbkiqaw1db att lvdb lvdb_drl-97717
+   55  2020-08-29 18:15:51 exit
+   56  2021-10-09 13:17:44 ##############--- 20201128.133403 ---##############
+   57  2020-11-28 13:34:37 vxdisk list | egrep 'DEV|fail'
+   58  2020-11-28 13:34:37 vxprint |grep -i deta*
+   59  2020-11-28 13:34:37 cd /tmp
+   60  2020-11-28 13:34:37 ./vxplex.sh
+   61  2020-11-28 13:34:37 cd
+   62  2020-11-28 13:34:37 /sbin/vxctl fixnames;
+   63  2020-11-28 13:35:20 su - qqnagio -c /lfs/opt/nagios/prod/local/lib/nagios/plugins/check_vxvm
+   64  2020-11-28 13:35:35 vxdisk list | egrep 'DEV|fail'
+   65  2020-11-28 13:35:35 vxprint |grep -i deta*
+   66  2020-11-28 13:35:35 cd /tmp
+   67  2020-11-28 13:35:35 ./vxplex.sh
+   68  2020-11-28 13:35:35 cd
+   69  2020-11-28 13:35:35 /sbin/vxctl fixnames;
+   70  2020-11-28 13:35:38 su - qqnagio -c /lfs/opt/nagios/prod/local/lib/nagios/plugins/check_vxvm
+   71  2020-11-28 13:36:26 vxdisk list | egrep -i 'det|fail'
+   72  2020-11-28 13:37:27 vxedit -g dgdbkiqaw1db set failing=off 13_97714_a021
+   73  2020-11-28 13:37:37 vxedit -g dgdbkiqaw1db set failing=off 13_97714_50c4
+   74  2020-11-28 13:37:46 vxedit -g dgdbkiqaw1db set failing=off 19_97717_a021
+   75  2020-11-28 13:37:55 vxedit -g dgdbkiqaw1db set failing=off 19_97717_50c4
+   76  2020-11-28 13:38:23 vxprint |grep -i deta*
+   77  2020-11-28 13:39:41 vxplex -g dgdbkiqaw1db att lvdb lvdb_drl-97714
+   78  2020-11-28 13:40:07 vxplex -g dgdbkiqaw1db att lvdb lvdb_drl-97717
+   79  2020-11-28 13:44:37 exit
+   80  2021-10-09 13:17:44 ##############--- 20211009.131743 ---##############
+   81  2021-10-09 13:23:38 /var/tmp/check_dlv_dgv.sh
+   82  2021-10-09 13:43:38 cat /etc/SuSE-release
+   83  2021-10-09 14:03:44 haclus -value EngineVersion
+   84  2021-10-09 14:25:48 cat /etc/VRTSvcs/conf/config/main.cf
+   85  2021-10-09 14:29:42 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+   86  2021-10-09 14:44:49 vxdg list
+   87  2021-10-09 14:45:33 date
+   88  2021-10-09 15:04:03 vxprint -htq
+   89  2021-10-09 15:09:15 hostname -f
+   90  2021-10-09 15:46:30 hastatus -sum | grep -i online
+   91  2021-10-09 15:47:01 uname -r
+   92  2021-10-09 15:47:04 uptime
+   93  2021-10-09 15:47:19  cat /etc/fstab
+   94  2021-10-09 15:47:24  cat /etc/fstab | wc -l
+   95  2021-10-09 15:47:29 df -hT
+   96  2021-10-09 15:49:09 ifconfig
+   97  2021-10-09 15:49:21 vxprint -htq
+   98  2021-10-09 15:49:41  vxdisk -o alldgs list
+   99  2021-10-09 15:52:12 vxdisk -o alldgs list
+  100  2021-10-09 15:52:38 san_shortinfo
+  101  2021-10-09 16:08:38 vxdg list
+  102  2021-10-09 16:12:26 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+  103  2021-10-09 16:12:58 /var/tmp/check_dlv_dgv.sh
+  104  2021-10-09 16:34:16 for i in `lsof /lfs/oracle_audit |awk '{print $2}'`;do kill -9 $i;done
+  105  2021-10-09 16:34:26 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+  106  2021-10-09 16:34:40 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+  107  2021-10-09 16:34:50 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+  108  2021-10-09 16:35:12 umount /lfs/oracle
+  109  2021-10-09 16:35:16 umount /lfs/oracle_audit
+  110  2021-10-09 16:35:41 df -hT
+  111  2021-10-09 16:38:14 zypper up VRTSodm VRTSvxfs VRTSvxvm
+  112  2021-10-09 16:39:20 rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+  113  2021-10-09 16:39:32 date
+  114  2021-10-09 17:02:36 vxdg import dgoracle_lp01d66
+  115  2021-10-09 17:02:36 vxdg import dgdbkiqaw1apps
+  116  2021-10-09 17:02:36 vxdg import dgdbkiqaw1bkup
+  117  2021-10-09 17:02:36 vxdg import dgdbkiqaw1db
+  118  2021-10-09 17:02:37 vxdg import dgdbkiqaw1redo1
+  119  2021-10-09 17:03:11 vxdg import dgdbkiqaw1redo2
+  120  2021-10-09 17:06:24 for DG in dgoracle_lp01d66 dgdbkiqaw1apps dgdbkiqaw1bkup dgdbkiqaw1db dgdbkiqaw1redo1 dgdbkiqaw1redo2 ; do echo "Upgrading $DG"; vxdg upgrade $DG && sleep 1 && vxdg -q list $DG | egrep -i ^version:| awk '{print "Version: "$NF}'; done
+  121  2021-10-09 17:22:57 mkdir /DLVUPGRADE
+  122  2021-10-09 18:09:28 mount /dev/vx/dsk/dgdbkiqaw1apps/lvapps /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  123  2021-10-09 18:09:51 umount /DLVUPGRADE
+  124  2021-10-09 18:10:10 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbkiqaw1apps/lvapps | egrep version
+  125  2021-10-09 18:10:52 mount /dev/vx/dsk/dgdbkiqaw1bkup/lvbkup /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  126  2021-10-09 18:11:19 umount /DLVUPGRADE
+  127  2021-10-09 18:11:30 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbkiqaw1bkup/lvbkup | egrep version
+  128  2021-10-09 18:12:06 mount /dev/vx/dsk/dgdbkiqaw1db/lvdb /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  129  2021-10-09 18:12:31 umount /DLVUPGRADE
+  130  2021-10-09 18:12:44 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbkiqaw1db/lvdb | egrep version
+  131  2021-10-09 18:13:26 mount /dev/vx/dsk/dgdbkiqaw1redo1/lvredo1 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  132  2021-10-09 18:13:51 umount /DLVUPGRADE
+  133  2021-10-09 18:14:04 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbkiqaw1redo1/lvredo1 | egrep version
+  134  2021-10-09 18:14:39 mount /dev/vx/dsk/dgdbkiqaw1redo2/lvredo2 /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  135  2021-10-09 18:15:21 umount /DLVUPGRADE
+  136  2021-10-09 18:15:38 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbkiqaw1redo2/lvredo2 | egrep version
+  137  2021-10-09 18:16:04 df -hT
+  138  2021-10-09 18:16:31 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+  139  2021-10-09 18:16:42 for i in `lsof /lfs/oracle|awk '{print $2}'`;do kill -9 $i;done
+  140  2021-10-09 18:17:01 umount /lfs/oracle
+  141  2021-10-09 18:17:23 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+  142  2021-10-09 18:17:26 for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+  143  2021-10-09 18:17:37 umount /lfs/oracle_audit
+  144  2021-10-09 18:20:33 mount /dev/vx/dsk/dgoracle_lp01d66/lvoracle /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  145  2021-10-09 18:20:51 umount /DLVUPGRADE
+  146  2021-10-09 18:21:03 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d66/lvoracle | egrep version
+  147  2021-10-09 18:21:53 mount /dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done
+  148  2021-10-09 18:22:11 umount /DLVUPGRADE
+  149  2021-10-09 18:22:23 /opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit | egrep version
+  150  2021-10-09 18:24:51  /var/tmp/check_dlv_dgv.sh
+  151  2021-10-09 18:54:36 /var/tmp/check_dlv_dgv.sh
+  152  2021-10-09 19:49:13 history
+lp01d66:~ # exit
+exit
+qplinux@lp01d66:~> exit
+logout
+Connection to lp01d66.muc closed.
+Connection to lpagpam006.bmwgroup.net. closed.
+===================================================================================================================
+
+ Your Session Information was:
+  * session_started=Sat Oct  9 13:17:27 CEST 2021
+  * real_user=qxz10kv
+  * target_user=qplinux
+  * target_server=lp01d66.muc
+  * psmp_server=lpagpam006.bmwgroup.net. (10.30.17.19)
+  * session_ended=Sat Oct  9 19:49:18 CEST 2021
+  * session_duration=0d:6h:31m:51s (23511 sec)
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $

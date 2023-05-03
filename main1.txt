@@ -1,0 +1,230 @@
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lp01d65 -x
+******************************************
+Server: lp01d65.muc
+******************************************
+machine type:          PowerEdge R740
+vendor:                DELL
+OS version:            SP4
+OS name:               SLES 12
+serial number:         JJ7PNR2
+Instserv:              lpinstiaas01
+Logical ID:            SLOG-70166
+Rudder UUID:           d0a32568-e4a4-4421-9ccc-edd95fd1f59a
+Rudder PolSrv:         cm-relay-bss-sles12-emea-oracle.bmwgroup.net
+country:               DEUTSCHLAND | MUNCHEN
+location:              01.50 / 013.4 / -1.0 / RZ1RA1
+lampe:                 H12
+rack ID:               RZ-004199
+description:           Provision - 13/2/2019 - CRQ000001071828
+modul:                 ORACLE
+usage:                 IPS-Q;P01 PROD
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .muc
+nagios:                Y
+virtual server:        N
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           10707494
+warranty until:        31-MAR-23
+BU-Name:               W01-BU
+BU-EMail:              Laszlo.Barna@partner.bmw.de
+accountable BU-EMail:  Wolfgang.Lippert@bmw.de,Christian.Basler@bmw.de
+criticality:           HIGH CRITICAL
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ cmdb lp01d66 -x
+******************************************
+Server: lp01d66.muc
+******************************************
+machine type:          PowerEdge R740
+vendor:                DELL
+OS version:            SP4
+OS name:               SLES 12
+serial number:         HRJS2T2
+Instserv:              lpinstiaas01
+Logical ID:            SLOG-70165
+Rudder UUID:           5359ee0a-6509-4bf9-a311-8965965d9623
+Rudder PolSrv:         cm-relay-bss-sles12-emea-oracle.bmwgroup.net
+country:               DEUTSCHLAND | MUNCHEN
+location:              01.50 / 019.0 / -3 / RZ3-RA1
+lampe:                 W3
+rack ID:               RZ-002382
+description:           Provision - 14/02/2019 - CRQ000001071828
+modul:                 ORACLE
+usage:                 IPS-Q;P01 PROD
+service owner:         NTT_DATA
+status:                Produktiv
+DNS domain:            .muc
+nagios:                Y
+virtual server:        N
+service contract:      IAAS_NTT_LI-UX_SRV
+Inventar Nr:           10707495
+warranty until:        31-MAR-23
+BU-Name:               W01-BU
+BU-EMail:              Laszlo.Barna@partner.bmw.de
+accountable BU-EMail:  Wolfgang.Lippert@bmw.de,Christian.Basler@bmw.de
+criticality:           HIGH CRITICAL
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+
+===================================================================
+
+lp01d65:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp01d65              RUNNING              0
+A  lp01d66              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               ONLINE
+B  dbauqaw1        lp01d66              Y          N               OFFLINE
+B  dbe00w1         lp01d65              Y          N               ONLINE
+B  dbe00w1         lp01d66              Y          N               OFFLINE
+B  dbhiqaw1        lp01d65              Y          N               ONLINE
+B  dbhiqaw1        lp01d66              Y          N               OFFLINE
+B  dbkiqaw1        lp01d65              Y          N               OFFLINE
+B  dbkiqaw1        lp01d66              Y          N               ONLINE
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # hastatus -summ | grep ONLINE
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               ONLINE
+B  dbe00w1         lp01d65              Y          N               ONLINE
+B  dbhiqaw1        lp01d65              Y          N               ONLINE
+B  dbkiqaw1        lp01d66              Y          N               ONLINE
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # date
+Sat Oct  9 13:15:34 CEST 2021
+lp01d65:~ #
+
+========================================================================================
+
+dbauqaw1
+dbhiqaw1
+dbkiqaw1
+dbe00w1
+
+===========================================================================================================================================
+
+rootscp /global/instserv/bin/check_dlv_dgv.sh lp01d65.bmwgroup.net:/var/tmp/
+
+============================================================================================================================================
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ rootscp /global/instserv/bin/check_dlv_dgv.sh lp01d65.muc:/var/tmp/
+check_dlv_dgv.sh                                                                                                           100%   17KB  17.3KB/s   00:00
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ rootscp /global/instserv/bin/check_dlv_dgv.sh lp01d66.muc:/var/tmp/
+check_dlv_dgv.sh                                                                                                           100%   17KB  17.3KB/s   00:00
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $
+
+======================================================
+
+lp01d65:~ # /var/tmp/check_dlv_dgv.sh
+
+Checking host lp01d65 SLES Release 12-SP4 VxVM Version 7.4.1 PL: 2705
+Installed VxVM Version: 7.4.1 PL 2705 on lp01d65
+VxVM 7.4.1 supports: DLV 11-15
+VxVM 7.4.1 supports: DGV MAX 280
+VRTvcs Installed Version: 7.4.1 PL 0000 on lp01d65
+
+
+Checking DiskLayout DLVs .. 7.4.1 Max supported DLV is 15
+
+LV /dev/vx/dsk/dgdbauqaw1bkup/lvbkup has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbauqaw1db/lvdb has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbauqaw1redo1/lvredo1 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbauqaw1redo2/lvredo2 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbe00w1apps/lvapps has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbe00w1bkup/lvbkup has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbe00w1db/lvdb has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbe00w1redo1/lvredo1 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbe00w1redo2/lvredo2 has DLV 10 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbhiqaw1apps/lvapps has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbhiqaw1bkup/lvbkup has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbhiqaw1db/lvdb has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbhiqaw1redo1/lvredo1 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbhiqaw1redo2/lvredo2 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d65/lvoracle has DLV 13 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit has DLV 13 ERROR NOK: UPDATE TO DLV 15
+
+Checking DiskGroup DGVs .. 7.4.1 Max supported DGV is 280
+
+DG dgdbauqaw1bkup has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbauqaw1db has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbauqaw1redo1 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbauqaw1redo2 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbe00w1apps has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbe00w1bkup has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbe00w1db has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbe00w1redo1 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbe00w1redo2 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbhiqaw1apps has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbhiqaw1bkup has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbhiqaw1db has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbhiqaw1redo1 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbhiqaw1redo2 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgoracle_lp01d65 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+
+Extra Patch Level Check for 7.4.1
+
+OK: VRTSvxvm Patch Level is 2705
+OK: VRTSodm Patch Level is 1700
+OK: VRTSvxfs Patch Level is 1700
+
+OK: Veritas VRTSvxvm 7.4.1 and VRTSvcs 7.4.1 Versions match
+
+lp01d65:~ #
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+lp01d66:~ # /var/tmp/check_dlv_dgv.sh
+
+Checking host lp01d66 SLES Release 12-SP4 VxVM Version 7.4.1 PL: 2705
+Installed VxVM Version: 7.4.1 PL 2705 on lp01d66
+VxVM 7.4.1 supports: DLV 11-15
+VxVM 7.4.1 supports: DGV MAX 280
+VRTvcs Installed Version: 7.4.1 PL 0000 on lp01d66
+
+
+Checking DiskLayout DLVs .. 7.4.1 Max supported DLV is 15
+
+LV /dev/vx/dsk/dgdbkiqaw1apps/lvapps has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbkiqaw1bkup/lvbkup has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbkiqaw1db/lvdb has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbkiqaw1redo1/lvredo1 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgdbkiqaw1redo2/lvredo2 has DLV 9 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d66/lvoracle has DLV 13 ERROR NOK: UPDATE TO DLV 15
+LV /dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit has DLV 13 ERROR NOK: UPDATE TO DLV 15
+
+Checking DiskGroup DGVs .. 7.4.1 Max supported DGV is 280
+
+DG dgdbkiqaw1apps has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbkiqaw1bkup has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbkiqaw1db has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbkiqaw1redo1 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgdbkiqaw1redo2 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+DG dgoracle_lp01d66 has DGV 240 ERROR NOK: UPDATE TO DGV 280
+
+Extra Patch Level Check for 7.4.1
+
+OK: VRTSvxvm Patch Level is 2705
+OK: VRTSodm Patch Level is 1700
+OK: VRTSvxfs Patch Level is 1700
+
+OK: Veritas VRTSvxvm 7.4.1 and VRTSvcs 7.4.1 Versions match
+
+lp01d66:~ #
+
+=============================================================================================================================
+
+
+
+

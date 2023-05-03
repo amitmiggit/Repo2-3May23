@@ -1,0 +1,1081 @@
+lpefp18:~ # vxprint -htq
+Disk group: dgpefpcs0020
+
+dg dgpefpcs0020 default      default  22000    1454509171.290.lpefp05
+
+dm 1_10650_09dd hitachi_vspg1k0_09dd auto 65536 4294901456 -
+dm 1_10650_10e1 hitachi_vspg1k0_10e1 auto 65536 1061995824 -
+dm 1_10650_10e2 hitachi_vspg1k0_10e2 auto 65536 1061995824 -
+dm 1_10650_10e3 hitachi_vspg1k0_10e3 auto 65536 1061995824 -
+dm 1_10650_10e4 hitachi_vspg1k0_10e4 auto 65536 1061995824 -
+dm 1_10650_10e5 hitachi_vspg1k0_10e5 auto 65536 1061995824 -
+dm 13_10652_09dd hitachi_vspg1k1_09dd auto 65536 4294901456 -
+dm 13_10652_10e1 hitachi_vspg1k1_10e1 auto 65536 1061995824 -
+dm 13_10652_10e2 hitachi_vspg1k1_10e2 auto 65536 1061995824 -
+dm 13_10652_10e3 hitachi_vspg1k1_10e3 auto 65536 1061995824 -
+dm 13_10652_10e4 hitachi_vspg1k1_10e4 auto 65536 1061995824 -
+dm 13_10652_10e5 hitachi_vspg1k1_10e5 auto 65536 1061995824 -
+
+v  lvsapdata3   -            ENABLED  ACTIVE   4294897664 PREFER  lvsapdata3-10652 fsgen
+pl lvsapdata3-10650 lvsapdata3 ENABLED ACTIVE  4294897664 CONCAT  -        RW
+sd 1_10650_09dd-01 lvsapdata3-10650 1_10650_09dd 0 4294897664 0   hitachi_vspg1k0_09dd ENA
+pl lvsapdata3-10652 lvsapdata3 ENABLED ACTIVE  4294897664 CONCAT  -        RW
+sd 13_10652_09dd-01 lvsapdata3-10652 13_10652_09dd 0 4294897664 0 hitachi_vspg1k1_09dd ENA
+pl lvsapdata3_drl-10650 lvsapdata3 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09dd-02 lvsapdata3_drl-10650 1_10650_09dd 4294897664 2112 LOG hitachi_vspg1k0_09dd ENA
+pl lvsapdata3_drl-10652 lvsapdata3 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09dd-02 lvsapdata3_drl-10652 13_10652_09dd 4294897664 2112 LOG hitachi_vspg1k1_09dd ENA
+dc lvsapdata18_dco lvsapdata3 lvsapdata18_dcl
+v  lvsapdata18_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata18_dcl-10650 lvsapdata18_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_10e5-04 lvsapdata18_dcl-10650 1_10650_10e5 1061972928 2112 0 hitachi_vspg1k0_10e5 ENA
+pl lvsapdata18_dcl-10652 lvsapdata18_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_10e5-04 lvsapdata18_dcl-10652 13_10652_10e5 1061972928 2112 0 hitachi_vspg1k1_10e5 ENA
+
+v  lvsapdata101 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata101-10652 fsgen
+pl lvsapdata101-10650 lvsapdata101 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10e1-01 lvsapdata101-10650 1_10650_10e1 0 1061995824 0 hitachi_vspg1k0_10e1 ENA
+sd 1_10650_10e2-01 lvsapdata101-10650 1_10650_10e2 0 1061995824 1061995824 hitachi_vspg1k0_10e2 ENA
+sd 1_10650_10e3-01 lvsapdata101-10650 1_10650_10e3 0 1061995824 2123991648 hitachi_vspg1k0_10e3 ENA
+sd 1_10650_10e4-01 lvsapdata101-10650 1_10650_10e4 0 1061995824 3185987472 hitachi_vspg1k0_10e4 ENA
+sd 1_10650_10e5-01 lvsapdata101-10650 1_10650_10e5 0 1061968704 4247983296 hitachi_vspg1k0_10e5 ENA
+pl lvsapdata101-10652 lvsapdata101 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10e1-01 lvsapdata101-10652 13_10652_10e1 0 1061995824 0 hitachi_vspg1k1_10e1 ENA
+sd 13_10652_10e2-01 lvsapdata101-10652 13_10652_10e2 0 1061995824 1061995824 hitachi_vspg1k1_10e2 ENA
+sd 13_10652_10e3-01 lvsapdata101-10652 13_10652_10e3 0 1061995824 2123991648 hitachi_vspg1k1_10e3 ENA
+sd 13_10652_10e4-01 lvsapdata101-10652 13_10652_10e4 0 1061995824 3185987472 hitachi_vspg1k1_10e4 ENA
+sd 13_10652_10e5-01 lvsapdata101-10652 13_10652_10e5 0 1061968704 4247983296 hitachi_vspg1k1_10e5 ENA
+pl lvsapdata101_drl-10650 lvsapdata101 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10e5-02 lvsapdata101_drl-10650 1_10650_10e5 1061970816 2112 LOG hitachi_vspg1k0_10e5 ENA
+pl lvsapdata101_drl-10652 lvsapdata101 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10e5-02 lvsapdata101_drl-10652 13_10652_10e5 1061970816 2112 LOG hitachi_vspg1k1_10e5 ENA
+dc lvsapdata101_dco lvsapdata101 lvsapdata101_dcl
+v  lvsapdata101_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata101_dcl-10650 lvsapdata101_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10e5-03 lvsapdata101_dcl-10650 1_10650_10e5 1061968704 2112 0 hitachi_vspg1k0_10e5 ENA
+pl lvsapdata101_dcl-10652 lvsapdata101_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10e5-03 lvsapdata101_dcl-10652 13_10652_10e5 1061968704 2112 0 hitachi_vspg1k1_10e5 ENA
+
+Disk group: dgpefpcs0001
+
+dg dgpefpcs0001 default      default  1000     1329918311.57.lpefp05
+
+dm 1_10650_10c7 hitachi_vspg1k0_10c7 auto 65536 235946912 -
+dm 1_10650_1103 hitachi_vspg1k0_1103 auto 65536 235946912 -
+dm 13_10652_10c7 hitachi_vspg1k1_10c7 auto 65536 235946912 -
+dm 13_10652_1103 hitachi_vspg1k1_1103 auto 65536 235946912 -
+
+v  lvapps       -            ENABLED  ACTIVE   201326592 PREFER   lvapps-10652 fsgen
+pl lvapps-10650 lvapps       ENABLED  ACTIVE   201326592 CONCAT   -        RW
+sd 1_10650_10c7-01 lvapps-10650 1_10650_10c7 0 201326592 0        hitachi_vspg1k0_10c7 ENA
+pl lvapps-10652 lvapps       ENABLED  ACTIVE   201326592 CONCAT   -        RW
+sd 13_10652_10c7-01 lvapps-10652 13_10652_10c7 0 201326592 0      hitachi_vspg1k1_10c7 ENA
+pl lvapps_drl-10650 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 1_10650_10c7-02 lvapps_drl-10650 1_10650_10c7 201326592 2112 LOG hitachi_vspg1k0_10c7 ENA
+pl lvapps_drl-10652 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_10652_10c7-02 lvapps_drl-10652 13_10652_10c7 201326592 2112 LOG hitachi_vspg1k1_10c7 ENA
+dc lvapps_dco   lvapps       lvapps_dcl
+v  lvapps_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvapps_dcl-10650 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 1_10650_1103-01 lvapps_dcl-10650 1_10650_1103 0 2112 0         hitachi_vspg1k0_1103 ENA
+pl lvapps_dcl-10652 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_10652_1103-01 lvapps_dcl-10652 13_10652_1103 0 2112 0       hitachi_vspg1k1_1103 ENA
+
+v  lvsapEFP     -            ENABLED  ACTIVE   117440512 PREFER   lvsapEFP-10652 fsgen
+pl lvsapEFP-10650 lvsapEFP   ENABLED  ACTIVE   117440512 CONCAT   -        RW
+sd 1_10650_1103-02 lvsapEFP-10650 1_10650_1103 2112 117440512 0   hitachi_vspg1k0_1103 ENA
+pl lvsapEFP-10652 lvsapEFP   ENABLED  ACTIVE   117440512 CONCAT   -        RW
+sd 13_10652_1103-02 lvsapEFP-10652 13_10652_1103 2112 117440512 0 hitachi_vspg1k1_1103 ENA
+pl lvsapEFP_drl-10650 lvsapEFP ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 1_10650_10c7-03 lvsapEFP_drl-10650 1_10650_10c7 201328704 2112 LOG hitachi_vspg1k0_10c7 ENA
+pl lvsapEFP_drl-10652 lvsapEFP ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 13_10652_10c7-03 lvsapEFP_drl-10652 13_10652_10c7 201328704 2112 LOG hitachi_vspg1k1_10c7 ENA
+dc lvsapEFP_dco lvsapEFP     lvsapEFP_dcl
+v  lvsapEFP_dcl -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapEFP_dcl-10650 lvsapEFP_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 1_10650_1103-03 lvsapEFP_dcl-10650 1_10650_1103 117442624 2112 0 hitachi_vspg1k0_1103 ENA
+pl lvsapEFP_dcl-10652 lvsapEFP_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 13_10652_1103-03 lvsapEFP_dcl-10652 13_10652_1103 117442624 2112 0 hitachi_vspg1k1_1103 ENA
+
+Disk group: dgpefpcs0002
+
+dg dgpefpcs0002 default      default  20000    1329918338.67.lpefp05
+
+dm 1_10650_110a hitachi_vspg1k0_110a auto 65536 2147417808 -
+dm 1_10650_110b hitachi_vspg1k0_110b auto 65536 2147417808 -
+dm 1_10650_110c hitachi_vspg1k0_110c auto 65536 2147417808 -
+dm 1_10650_110d hitachi_vspg1k0_110d auto 65536 2147417808 -
+dm 1_10650_110e hitachi_vspg1k0_110e auto 65536 2147417808 -
+dm 1_10650_110f hitachi_vspg1k0_110f auto 65536 2147417808 -
+dm 1_10650_1106 hitachi_vspg1k0_1106 auto 65536 2147417808 -
+dm 1_10650_1107 hitachi_vspg1k0_1107 auto 65536 2147417808 -
+dm 1_10650_1108 hitachi_vspg1k0_1108 auto 65536 2147417808 -
+dm 1_10650_1109 hitachi_vspg1k0_1109 auto 65536 2147417808 -
+dm 1_10650_1110 hitachi_vspg1k0_1110 auto 65536 2147417808 -
+dm 1_10650_1111 hitachi_vspg1k0_1111 auto 65536 2147417808 -
+dm 1_10650_1112 hitachi_vspg1k0_1112 auto 65536 2147417808 -
+dm 1_10650_1113 hitachi_vspg1k0_1113 auto 65536 2147417808 -
+dm 1_10650_1114 hitachi_vspg1k0_1114 auto 65536 2147417808 -
+dm 1_10650_1115 hitachi_vspg1k0_1115 auto 65536 2147417808 -
+dm 1_10650_1116 hitachi_vspg1k0_1116 auto 65536 2147417808 -
+dm 1_10650_1117 hitachi_vspg1k0_1117 auto 65536 2147417808 -
+dm 1_10650_1118 hitachi_vspg1k0_1118 auto 65536 2147417808 -
+dm 1_10650_1375 hitachi_vspg1k0_1375 auto 65536 4294901456 -
+dm 1_10650_1376 hitachi_vspg1k0_1376 auto 65536 4294901456 -
+dm 1_10650_1378 hitachi_vspg1k0_1378 auto 65536 8589868752 -
+dm 13_10652_110a hitachi_vspg1k1_110a auto 65536 2147417808 -
+dm 13_10652_110b hitachi_vspg1k1_110b auto 65536 2147417808 -
+dm 13_10652_110c hitachi_vspg1k1_110c auto 65536 2147417808 -
+dm 13_10652_110d hitachi_vspg1k1_110d auto 65536 2147417808 -
+dm 13_10652_110e hitachi_vspg1k1_110e auto 65536 2147417808 -
+dm 13_10652_110f hitachi_vspg1k1_110f auto 65536 2147417808 -
+dm 13_10652_1106 hitachi_vspg1k1_1106 auto 65536 2147417808 -
+dm 13_10652_1107 hitachi_vspg1k1_1107 auto 65536 2147417808 -
+dm 13_10652_1108 hitachi_vspg1k1_1108 auto 65536 2147417808 -
+dm 13_10652_1109 hitachi_vspg1k1_1109 auto 65536 2147417808 -
+dm 13_10652_1110 hitachi_vspg1k1_1110 auto 65536 2147417808 -
+dm 13_10652_1111 hitachi_vspg1k1_1111 auto 65536 2147417808 -
+dm 13_10652_1112 hitachi_vspg1k1_1112 auto 65536 2147417808 -
+dm 13_10652_1113 hitachi_vspg1k1_1113 auto 65536 2147417808 -
+dm 13_10652_1114 hitachi_vspg1k1_1114 auto 65536 2147417808 -
+dm 13_10652_1115 hitachi_vspg1k1_1115 auto 65536 2147417808 -
+dm 13_10652_1116 hitachi_vspg1k1_1116 auto 65536 2147417808 -
+dm 13_10652_1117 hitachi_vspg1k1_1117 auto 65536 2147417808 -
+dm 13_10652_1118 hitachi_vspg1k1_1118 auto 65536 2147417808 -
+dm 13_10652_1375 hitachi_vspg1k1_1375 auto 65536 4294901456 -
+dm 13_10652_1376 hitachi_vspg1k1_1376 auto 65536 4294901456 -
+dm 13_10652_1378 hitachi_vspg1k1_1378 auto 65536 8589868752 -
+
+v  lvbkup       -            ENABLED  ACTIVE   57980447456 PREFER lvbkup-10652 fsgen
+pl lvbkup-10650 lvbkup       ENABLED  ACTIVE   57980447456 CONCAT -        RW
+sd 1_10650_110a-01 lvbkup-10650 1_10650_110a 0 2147417808 0       hitachi_vspg1k0_110a ENA
+sd 1_10650_110b-01 lvbkup-10650 1_10650_110b 0 2147417808 2147417808 hitachi_vspg1k0_110b ENA
+sd 1_10650_110c-01 lvbkup-10650 1_10650_110c 0 2147417808 4294835616 hitachi_vspg1k0_110c ENA
+sd 1_10650_110d-01 lvbkup-10650 1_10650_110d 0 2147417808 6442253424 hitachi_vspg1k0_110d ENA
+sd 1_10650_110e-01 lvbkup-10650 1_10650_110e 0 2147417808 8589671232 hitachi_vspg1k0_110e ENA
+sd 1_10650_110f-01 lvbkup-10650 1_10650_110f 0 2147417808 10737089040 hitachi_vspg1k0_110f ENA
+sd 1_10650_1106-01 lvbkup-10650 1_10650_1106 0 2147417808 12884506848 hitachi_vspg1k0_1106 ENA
+sd 1_10650_1107-01 lvbkup-10650 1_10650_1107 0 2147417808 15031924656 hitachi_vspg1k0_1107 ENA
+sd 1_10650_1108-01 lvbkup-10650 1_10650_1108 0 2147417808 17179342464 hitachi_vspg1k0_1108 ENA
+sd 1_10650_1109-01 lvbkup-10650 1_10650_1109 0 2147417808 19326760272 hitachi_vspg1k0_1109 ENA
+sd 1_10650_1110-01 lvbkup-10650 1_10650_1110 0 2147417808 21474178080 hitachi_vspg1k0_1110 ENA
+sd 1_10650_1111-01 lvbkup-10650 1_10650_1111 0 2147417808 23621595888 hitachi_vspg1k0_1111 ENA
+sd 1_10650_1112-01 lvbkup-10650 1_10650_1112 0 2147417808 25769013696 hitachi_vspg1k0_1112 ENA
+sd 1_10650_1113-01 lvbkup-10650 1_10650_1113 0 2147417808 27916431504 hitachi_vspg1k0_1113 ENA
+sd 1_10650_1114-01 lvbkup-10650 1_10650_1114 0 2147417808 30063849312 hitachi_vspg1k0_1114 ENA
+sd 1_10650_1115-01 lvbkup-10650 1_10650_1115 0 2147417808 32211267120 hitachi_vspg1k0_1115 ENA
+sd 1_10650_1116-01 lvbkup-10650 1_10650_1116 0 2147417808 34358684928 hitachi_vspg1k0_1116 ENA
+sd 1_10650_1117-01 lvbkup-10650 1_10650_1117 0 2147417808 36506102736 hitachi_vspg1k0_1117 ENA
+sd 1_10650_1118-02 lvbkup-10650 1_10650_1118 0 2147255248 38653520544 hitachi_vspg1k0_1118 ENA
+sd 1_10650_1375-01 lvbkup-10650 1_10650_1375 0 4294901456 40800775792 hitachi_vspg1k0_1375 ENA
+sd 1_10650_1376-01 lvbkup-10650 1_10650_1376 0 4294901456 45095677248 hitachi_vspg1k0_1376 ENA
+sd 1_10650_1378-01 lvbkup-10650 1_10650_1378 0 8589868752 49390578704 hitachi_vspg1k0_1378 ENA
+pl lvbkup-10652 lvbkup       ENABLED  ACTIVE   57980447456 CONCAT -        RW
+sd 13_10652_110a-01 lvbkup-10652 13_10652_110a 0 2147417808 0     hitachi_vspg1k1_110a ENA
+sd 13_10652_110b-01 lvbkup-10652 13_10652_110b 0 2147417808 2147417808 hitachi_vspg1k1_110b ENA
+sd 13_10652_110c-01 lvbkup-10652 13_10652_110c 0 2147417808 4294835616 hitachi_vspg1k1_110c ENA
+sd 13_10652_110d-01 lvbkup-10652 13_10652_110d 0 2147417808 6442253424 hitachi_vspg1k1_110d ENA
+sd 13_10652_110e-01 lvbkup-10652 13_10652_110e 0 2147417808 8589671232 hitachi_vspg1k1_110e ENA
+sd 13_10652_110f-01 lvbkup-10652 13_10652_110f 0 2147417808 10737089040 hitachi_vspg1k1_110f ENA
+sd 13_10652_1106-01 lvbkup-10652 13_10652_1106 0 2147417808 12884506848 hitachi_vspg1k1_1106 ENA
+sd 13_10652_1107-01 lvbkup-10652 13_10652_1107 0 2147417808 15031924656 hitachi_vspg1k1_1107 ENA
+sd 13_10652_1108-01 lvbkup-10652 13_10652_1108 0 2147417808 17179342464 hitachi_vspg1k1_1108 ENA
+sd 13_10652_1109-01 lvbkup-10652 13_10652_1109 0 2147417808 19326760272 hitachi_vspg1k1_1109 ENA
+sd 13_10652_1110-01 lvbkup-10652 13_10652_1110 0 2147417808 21474178080 hitachi_vspg1k1_1110 ENA
+sd 13_10652_1111-01 lvbkup-10652 13_10652_1111 0 2147417808 23621595888 hitachi_vspg1k1_1111 ENA
+sd 13_10652_1112-01 lvbkup-10652 13_10652_1112 0 2147417808 25769013696 hitachi_vspg1k1_1112 ENA
+sd 13_10652_1113-01 lvbkup-10652 13_10652_1113 0 2147417808 27916431504 hitachi_vspg1k1_1113 ENA
+sd 13_10652_1114-01 lvbkup-10652 13_10652_1114 0 2147417808 30063849312 hitachi_vspg1k1_1114 ENA
+sd 13_10652_1115-01 lvbkup-10652 13_10652_1115 0 2147417808 32211267120 hitachi_vspg1k1_1115 ENA
+sd 13_10652_1116-01 lvbkup-10652 13_10652_1116 0 2147417808 34358684928 hitachi_vspg1k1_1116 ENA
+sd 13_10652_1117-01 lvbkup-10652 13_10652_1117 0 2147417808 36506102736 hitachi_vspg1k1_1117 ENA
+sd 13_10652_1118-01 lvbkup-10652 13_10652_1118 0 2147255248 38653520544 hitachi_vspg1k1_1118 ENA
+sd 13_10652_1375-01 lvbkup-10652 13_10652_1375 0 4294901456 40800775792 hitachi_vspg1k1_1375 ENA
+sd 13_10652_1376-01 lvbkup-10652 13_10652_1376 0 4294901456 45095677248 hitachi_vspg1k1_1376 ENA
+sd 13_10652_1378-01 lvbkup-10652 13_10652_1378 0 8589868752 49390578704 hitachi_vspg1k1_1378 ENA
+pl lvbkup_drl-10650 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 1_10650_1118-01 lvbkup_drl-10650 1_10650_1118 2147257360 2112 LOG hitachi_vspg1k0_1118 ENA
+pl lvbkup_drl-10652 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_10652_1118-02 lvbkup_drl-10652 13_10652_1118 2147257360 2112 LOG hitachi_vspg1k1_1118 ENA
+dc lvbkup_dco   lvbkup       lvbkup_dcl
+v  lvbkup_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvbkup_dcl-10650 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 1_10650_1118-03 lvbkup_dcl-10650 1_10650_1118 2147255248 2112 0 hitachi_vspg1k0_1118 ENA
+pl lvbkup_dcl-10652 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_10652_1118-03 lvbkup_dcl-10652 13_10652_1118 2147255248 2112 0 hitachi_vspg1k1_1118 ENA
+
+Disk group: dgpefpcs0003
+
+dg dgpefpcs0003 default      default  13000    1329918355.81.lpefp05
+
+dm 1_10650_137c hitachi_vspg1k0_137c auto 65536 471961632 -
+dm 1_10650_137d hitachi_vspg1k0_137d auto 65536 471961632 -
+dm 1_10650_137e hitachi_vspg1k0_137e auto 65536 471961632 -
+dm 1_10650_137f hitachi_vspg1k0_137f auto 65536 471961632 -
+dm 1_10650_1380 hitachi_vspg1k0_1380 auto 65536 471961632 -
+dm 13_10652_137c hitachi_vspg1k1_137c auto 65536 471961632 -
+dm 13_10652_137d hitachi_vspg1k1_137d auto 65536 471961632 -
+dm 13_10652_137e hitachi_vspg1k1_137e auto 65536 471961632 -
+dm 13_10652_137f hitachi_vspg1k1_137f auto 65536 471961632 -
+dm 13_10652_1380 hitachi_vspg1k1_1380 auto 65536 471961632 -
+
+v  lvEFP        -            ENABLED  ACTIVE   2359776592 PREFER  lvEFP-10652 fsgen
+pl lvEFP-10650  lvEFP        ENABLED  ACTIVE   2359776592 CONCAT  -        RW
+sd 1_10650_137c-01 lvEFP-10650 1_10650_137c 0  471961632 0        hitachi_vspg1k0_137c ENA
+sd 1_10650_137d-01 lvEFP-10650 1_10650_137d 0  471961632 471961632 hitachi_vspg1k0_137d ENA
+sd 1_10650_137e-01 lvEFP-10650 1_10650_137e 0  471961632 943923264 hitachi_vspg1k0_137e ENA
+sd 1_10650_137f-01 lvEFP-10650 1_10650_137f 0  471961632 1415884896 hitachi_vspg1k0_137f ENA
+sd 1_10650_1380-01 lvEFP-10650 1_10650_1380 0  471930064 1887846528 hitachi_vspg1k0_1380 ENA
+pl lvEFP-10652  lvEFP        ENABLED  ACTIVE   2359776592 CONCAT  -        RW
+sd 13_10652_137c-01 lvEFP-10652 13_10652_137c 0 471961632 0       hitachi_vspg1k1_137c ENA
+sd 13_10652_137d-01 lvEFP-10652 13_10652_137d 0 471961632 471961632 hitachi_vspg1k1_137d ENA
+sd 13_10652_137e-01 lvEFP-10652 13_10652_137e 0 471961632 943923264 hitachi_vspg1k1_137e ENA
+sd 13_10652_137f-01 lvEFP-10652 13_10652_137f 0 471961632 1415884896 hitachi_vspg1k1_137f ENA
+sd 13_10652_1380-02 lvEFP-10652 13_10652_1380 0 471930064 1887846528 hitachi_vspg1k1_1380 ENA
+pl lvEFP_drl-10650 lvEFP     ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 1_10650_1380-02 lvEFP_drl-10650 1_10650_1380 471930064 2112 LOG hitachi_vspg1k0_1380 ENA
+pl lvEFP_drl-10652 lvEFP     ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_10652_1380-01 lvEFP_drl-10652 13_10652_1380 471930064 2112 LOG hitachi_vspg1k1_1380 ENA
+dc lvEFP_dco    lvEFP        lvEFP_dcl
+v  lvEFP_dcl    -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvEFP_dcl-10650 lvEFP_dcl ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 1_10650_1380-03 lvEFP_dcl-10650 1_10650_1380 471932176 2112 0  hitachi_vspg1k0_1380 ENA
+pl lvEFP_dcl-10652 lvEFP_dcl ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 13_10652_1380-03 lvEFP_dcl-10652 13_10652_1380 471932176 2112 0 hitachi_vspg1k1_1380 ENA
+
+Disk group: dgpefpcs0004
+
+dg dgpefpcs0004 default      default  6000     1454509215.308.lpefp05
+
+dm 1_10650_10a0 hitachi_vspg1k0_10a0 auto 65536 1061995824 -
+dm 1_10650_109c hitachi_vspg1k0_109c auto 65536 1061995824 -
+dm 1_10650_109d hitachi_vspg1k0_109d auto 65536 1061995824 -
+dm 1_10650_109e hitachi_vspg1k0_109e auto 65536 1061995824 -
+dm 1_10650_109f hitachi_vspg1k0_109f auto 65536 1061995824 -
+dm 13_10652_10a0 hitachi_vspg1k1_10a0 auto 65536 1061995824 -
+dm 13_10652_109c hitachi_vspg1k1_109c auto 65536 1061995824 -
+dm 13_10652_109d hitachi_vspg1k1_109d auto 65536 1061995824 -
+dm 13_10652_109e hitachi_vspg1k1_109e auto 65536 1061995824 -
+dm 13_10652_109f hitachi_vspg1k1_109f auto 65536 1061995824 -
+
+v  lvsapdata102 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata102-10652 fsgen
+pl lvsapdata102-10650 lvsapdata102 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10a0-01 lvsapdata102-10650 1_10650_10a0 0 1061995824 0 hitachi_vspg1k0_10a0 ENA
+sd 1_10650_109c-01 lvsapdata102-10650 1_10650_109c 0 1061995824 1061995824 hitachi_vspg1k0_109c ENA
+sd 1_10650_109d-01 lvsapdata102-10650 1_10650_109d 0 1061995824 2123991648 hitachi_vspg1k0_109d ENA
+sd 1_10650_109e-01 lvsapdata102-10650 1_10650_109e 0 1061995824 3185987472 hitachi_vspg1k0_109e ENA
+sd 1_10650_109f-01 lvsapdata102-10650 1_10650_109f 0 1061968704 4247983296 hitachi_vspg1k0_109f ENA
+pl lvsapdata102-10652 lvsapdata102 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10a0-01 lvsapdata102-10652 13_10652_10a0 0 1061995824 0 hitachi_vspg1k1_10a0 ENA
+sd 13_10652_109c-01 lvsapdata102-10652 13_10652_109c 0 1061995824 1061995824 hitachi_vspg1k1_109c ENA
+sd 13_10652_109d-01 lvsapdata102-10652 13_10652_109d 0 1061995824 2123991648 hitachi_vspg1k1_109d ENA
+sd 13_10652_109e-01 lvsapdata102-10652 13_10652_109e 0 1061995824 3185987472 hitachi_vspg1k1_109e ENA
+sd 13_10652_109f-01 lvsapdata102-10652 13_10652_109f 0 1061968704 4247983296 hitachi_vspg1k1_109f ENA
+pl lvsapdata102_drl-10650 lvsapdata102 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_109f-02 lvsapdata102_drl-10650 1_10650_109f 1061970816 2112 LOG hitachi_vspg1k0_109f ENA
+pl lvsapdata102_drl-10652 lvsapdata102 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_109f-02 lvsapdata102_drl-10652 13_10652_109f 1061970816 2112 LOG hitachi_vspg1k1_109f ENA
+dc lvsapdata102_dco lvsapdata102 lvsapdata102_dcl
+v  lvsapdata102_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata102_dcl-10650 lvsapdata102_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_109f-03 lvsapdata102_dcl-10650 1_10650_109f 1061968704 2112 0 hitachi_vspg1k0_109f ENA
+pl lvsapdata102_dcl-10652 lvsapdata102_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_109f-03 lvsapdata102_dcl-10652 13_10652_109f 1061968704 2112 0 hitachi_vspg1k1_109f ENA
+
+Disk group: dgpefpcs0005
+
+dg dgpefpcs0005 default      default  0        1454509259.326.lpefp05
+
+dm 1_10650_10a1 hitachi_vspg1k0_10a1 auto 65536 1061995824 -
+dm 1_10650_10a2 hitachi_vspg1k0_10a2 auto 65536 1061995824 -
+dm 1_10650_10a3 hitachi_vspg1k0_10a3 auto 65536 1061995824 -
+dm 1_10650_10a4 hitachi_vspg1k0_10a4 auto 65536 1061995824 -
+dm 1_10650_10a5 hitachi_vspg1k0_10a5 auto 65536 1061995824 -
+dm 13_10652_10a1 hitachi_vspg1k1_10a1 auto 65536 1061995824 -
+dm 13_10652_10a2 hitachi_vspg1k1_10a2 auto 65536 1061995824 -
+dm 13_10652_10a3 hitachi_vspg1k1_10a3 auto 65536 1061995824 -
+dm 13_10652_10a4 hitachi_vspg1k1_10a4 auto 65536 1061995824 -
+dm 13_10652_10a5 hitachi_vspg1k1_10a5 auto 65536 1061995824 -
+
+v  lvsapdata103 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata103-10652 fsgen
+pl lvsapdata103-10650 lvsapdata103 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10a1-01 lvsapdata103-10650 1_10650_10a1 0 1061995824 0 hitachi_vspg1k0_10a1 ENA
+sd 1_10650_10a2-01 lvsapdata103-10650 1_10650_10a2 0 1061995824 1061995824 hitachi_vspg1k0_10a2 ENA
+sd 1_10650_10a3-01 lvsapdata103-10650 1_10650_10a3 0 1061995824 2123991648 hitachi_vspg1k0_10a3 ENA
+sd 1_10650_10a4-01 lvsapdata103-10650 1_10650_10a4 0 1061995824 3185987472 hitachi_vspg1k0_10a4 ENA
+sd 1_10650_10a5-01 lvsapdata103-10650 1_10650_10a5 0 1061968704 4247983296 hitachi_vspg1k0_10a5 ENA
+pl lvsapdata103-10652 lvsapdata103 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10a1-01 lvsapdata103-10652 13_10652_10a1 0 1061995824 0 hitachi_vspg1k1_10a1 ENA
+sd 13_10652_10a2-01 lvsapdata103-10652 13_10652_10a2 0 1061995824 1061995824 hitachi_vspg1k1_10a2 ENA
+sd 13_10652_10a3-01 lvsapdata103-10652 13_10652_10a3 0 1061995824 2123991648 hitachi_vspg1k1_10a3 ENA
+sd 13_10652_10a4-01 lvsapdata103-10652 13_10652_10a4 0 1061995824 3185987472 hitachi_vspg1k1_10a4 ENA
+sd 13_10652_10a5-01 lvsapdata103-10652 13_10652_10a5 0 1061968704 4247983296 hitachi_vspg1k1_10a5 ENA
+pl lvsapdata103_drl-10650 lvsapdata103 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10a5-02 lvsapdata103_drl-10650 1_10650_10a5 1061970816 2112 LOG hitachi_vspg1k0_10a5 ENA
+pl lvsapdata103_drl-10652 lvsapdata103 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10a5-02 lvsapdata103_drl-10652 13_10652_10a5 1061970816 2112 LOG hitachi_vspg1k1_10a5 ENA
+dc lvsapdata103_dco lvsapdata103 lvsapdata103_dcl
+v  lvsapdata103_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata103_dcl-10650 lvsapdata103_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10a5-03 lvsapdata103_dcl-10650 1_10650_10a5 1061968704 2112 0 hitachi_vspg1k0_10a5 ENA
+pl lvsapdata103_dcl-10652 lvsapdata103_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10a5-03 lvsapdata103_dcl-10652 13_10652_10a5 1061968704 2112 0 hitachi_vspg1k1_10a5 ENA
+
+Disk group: dgpefpcs0006
+
+dg dgpefpcs0006 default      default  4000     1454509303.344.lpefp05
+
+dm 1_10650_10aa hitachi_vspg1k0_10aa auto 65536 1061995824 -
+dm 1_10650_10a6 hitachi_vspg1k0_10a6 auto 65536 1061995824 -
+dm 1_10650_10a7 hitachi_vspg1k0_10a7 auto 65536 1061995824 -
+dm 1_10650_10a8 hitachi_vspg1k0_10a8 auto 65536 1061995824 -
+dm 1_10650_10a9 hitachi_vspg1k0_10a9 auto 65536 1061995824 -
+dm 13_10652_10aa hitachi_vspg1k1_10aa auto 65536 1061995824 -
+dm 13_10652_10a6 hitachi_vspg1k1_10a6 auto 65536 1061995824 -
+dm 13_10652_10a7 hitachi_vspg1k1_10a7 auto 65536 1061995824 -
+dm 13_10652_10a8 hitachi_vspg1k1_10a8 auto 65536 1061995824 -
+dm 13_10652_10a9 hitachi_vspg1k1_10a9 auto 65536 1061995824 -
+
+v  lvsapdata104 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata104-10652 fsgen
+pl lvsapdata104-10650 lvsapdata104 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10aa-01 lvsapdata104-10650 1_10650_10aa 0 1061995824 0 hitachi_vspg1k0_10aa ENA
+sd 1_10650_10a6-01 lvsapdata104-10650 1_10650_10a6 0 1061995824 1061995824 hitachi_vspg1k0_10a6 ENA
+sd 1_10650_10a7-01 lvsapdata104-10650 1_10650_10a7 0 1061995824 2123991648 hitachi_vspg1k0_10a7 ENA
+sd 1_10650_10a8-01 lvsapdata104-10650 1_10650_10a8 0 1061995824 3185987472 hitachi_vspg1k0_10a8 ENA
+sd 1_10650_10a9-02 lvsapdata104-10650 1_10650_10a9 0 1061968704 4247983296 hitachi_vspg1k0_10a9 ENA
+pl lvsapdata104-10652 lvsapdata104 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10aa-01 lvsapdata104-10652 13_10652_10aa 0 1061995824 0 hitachi_vspg1k1_10aa ENA
+sd 13_10652_10a6-01 lvsapdata104-10652 13_10652_10a6 0 1061995824 1061995824 hitachi_vspg1k1_10a6 ENA
+sd 13_10652_10a7-01 lvsapdata104-10652 13_10652_10a7 0 1061995824 2123991648 hitachi_vspg1k1_10a7 ENA
+sd 13_10652_10a8-01 lvsapdata104-10652 13_10652_10a8 0 1061995824 3185987472 hitachi_vspg1k1_10a8 ENA
+sd 13_10652_10a9-02 lvsapdata104-10652 13_10652_10a9 0 1061968704 4247983296 hitachi_vspg1k1_10a9 ENA
+pl lvsapdata104_drl-10650 lvsapdata104 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10a9-01 lvsapdata104_drl-10650 1_10650_10a9 1061970816 2112 LOG hitachi_vspg1k0_10a9 ENA
+pl lvsapdata104_drl-10652 lvsapdata104 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10a9-01 lvsapdata104_drl-10652 13_10652_10a9 1061970816 2112 LOG hitachi_vspg1k1_10a9 ENA
+dc lvsapdata104_dco lvsapdata104 lvsapdata104_dcl
+v  lvsapdata104_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata104_dcl-10650 lvsapdata104_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10a9-03 lvsapdata104_dcl-10650 1_10650_10a9 1061968704 2112 0 hitachi_vspg1k0_10a9 ENA
+pl lvsapdata104_dcl-10652 lvsapdata104_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10a9-03 lvsapdata104_dcl-10652 13_10652_10a9 1061968704 2112 0 hitachi_vspg1k1_10a9 ENA
+
+Disk group: dgpefpcs0007
+
+dg dgpefpcs0007 default      default  30000    1454509348.362.lpefp05
+
+dm 1_10650_10ab hitachi_vspg1k0_10ab auto 65536 1061995824 -
+dm 1_10650_10ac hitachi_vspg1k0_10ac auto 65536 1061995824 -
+dm 1_10650_10ad hitachi_vspg1k0_10ad auto 65536 1061995824 -
+dm 1_10650_10ae hitachi_vspg1k0_10ae auto 65536 1061995824 -
+dm 1_10650_10af hitachi_vspg1k0_10af auto 65536 1061995824 -
+dm 13_10652_10ab hitachi_vspg1k1_10ab auto 65536 1061995824 -
+dm 13_10652_10ac hitachi_vspg1k1_10ac auto 65536 1061995824 -
+dm 13_10652_10ad hitachi_vspg1k1_10ad auto 65536 1061995824 -
+dm 13_10652_10ae hitachi_vspg1k1_10ae auto 65536 1061995824 -
+dm 13_10652_10af hitachi_vspg1k1_10af auto 65536 1061995824 -
+
+v  lvsapdata105 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata105-10652 fsgen
+pl lvsapdata105-10650 lvsapdata105 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10ab-01 lvsapdata105-10650 1_10650_10ab 0 1061995824 0 hitachi_vspg1k0_10ab ENA
+sd 1_10650_10ac-01 lvsapdata105-10650 1_10650_10ac 0 1061995824 1061995824 hitachi_vspg1k0_10ac ENA
+sd 1_10650_10ad-01 lvsapdata105-10650 1_10650_10ad 0 1061995824 2123991648 hitachi_vspg1k0_10ad ENA
+sd 1_10650_10ae-01 lvsapdata105-10650 1_10650_10ae 0 1061995824 3185987472 hitachi_vspg1k0_10ae ENA
+sd 1_10650_10af-02 lvsapdata105-10650 1_10650_10af 0 1061968704 4247983296 hitachi_vspg1k0_10af ENA
+pl lvsapdata105-10652 lvsapdata105 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10ab-01 lvsapdata105-10652 13_10652_10ab 0 1061995824 0 hitachi_vspg1k1_10ab ENA
+sd 13_10652_10ac-01 lvsapdata105-10652 13_10652_10ac 0 1061995824 1061995824 hitachi_vspg1k1_10ac ENA
+sd 13_10652_10ad-01 lvsapdata105-10652 13_10652_10ad 0 1061995824 2123991648 hitachi_vspg1k1_10ad ENA
+sd 13_10652_10ae-01 lvsapdata105-10652 13_10652_10ae 0 1061995824 3185987472 hitachi_vspg1k1_10ae ENA
+sd 13_10652_10af-02 lvsapdata105-10652 13_10652_10af 0 1061968704 4247983296 hitachi_vspg1k1_10af ENA
+pl lvsapdata105_drl-10650 lvsapdata105 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10af-01 lvsapdata105_drl-10650 1_10650_10af 1061970816 2112 LOG hitachi_vspg1k0_10af ENA
+pl lvsapdata105_drl-10652 lvsapdata105 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10af-01 lvsapdata105_drl-10652 13_10652_10af 1061970816 2112 LOG hitachi_vspg1k1_10af ENA
+dc lvsapdata105_dco lvsapdata105 lvsapdata105_dcl
+v  lvsapdata105_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata105_dcl-10650 lvsapdata105_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10af-03 lvsapdata105_dcl-10650 1_10650_10af 1061968704 2112 0 hitachi_vspg1k0_10af ENA
+pl lvsapdata105_dcl-10652 lvsapdata105_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10af-03 lvsapdata105_dcl-10652 13_10652_10af 1061968704 2112 0 hitachi_vspg1k1_10af ENA
+
+Disk group: dgpefpcs0008
+
+dg dgpefpcs0008 default      default  24000    1454509393.380.lpefp05
+
+dm 1_10650_10b0 hitachi_vspg1k0_10b0 auto 65536 1061995824 -
+dm 1_10650_10b1 hitachi_vspg1k0_10b1 auto 65536 1061995824 -
+dm 1_10650_10b2 hitachi_vspg1k0_10b2 auto 65536 1061995824 -
+dm 1_10650_10b3 hitachi_vspg1k0_10b3 auto 65536 1061995824 -
+dm 1_10650_10b4 hitachi_vspg1k0_10b4 auto 65536 1061995824 -
+dm 13_10652_10b0 hitachi_vspg1k1_10b0 auto 65536 1061995824 -
+dm 13_10652_10b1 hitachi_vspg1k1_10b1 auto 65536 1061995824 -
+dm 13_10652_10b2 hitachi_vspg1k1_10b2 auto 65536 1061995824 -
+dm 13_10652_10b3 hitachi_vspg1k1_10b3 auto 65536 1061995824 -
+dm 13_10652_10b4 hitachi_vspg1k1_10b4 auto 65536 1061995824 -
+
+v  lvsapdata106 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata106-10652 fsgen
+pl lvsapdata106-10650 lvsapdata106 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10b0-01 lvsapdata106-10650 1_10650_10b0 0 1061995824 0 hitachi_vspg1k0_10b0 ENA
+sd 1_10650_10b1-01 lvsapdata106-10650 1_10650_10b1 0 1061995824 1061995824 hitachi_vspg1k0_10b1 ENA
+sd 1_10650_10b2-01 lvsapdata106-10650 1_10650_10b2 0 1061995824 2123991648 hitachi_vspg1k0_10b2 ENA
+sd 1_10650_10b3-01 lvsapdata106-10650 1_10650_10b3 0 1061995824 3185987472 hitachi_vspg1k0_10b3 ENA
+sd 1_10650_10b4-01 lvsapdata106-10650 1_10650_10b4 0 1061968704 4247983296 hitachi_vspg1k0_10b4 ENA
+pl lvsapdata106-10652 lvsapdata106 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10b0-01 lvsapdata106-10652 13_10652_10b0 0 1061995824 0 hitachi_vspg1k1_10b0 ENA
+sd 13_10652_10b1-01 lvsapdata106-10652 13_10652_10b1 0 1061995824 1061995824 hitachi_vspg1k1_10b1 ENA
+sd 13_10652_10b2-01 lvsapdata106-10652 13_10652_10b2 0 1061995824 2123991648 hitachi_vspg1k1_10b2 ENA
+sd 13_10652_10b3-01 lvsapdata106-10652 13_10652_10b3 0 1061995824 3185987472 hitachi_vspg1k1_10b3 ENA
+sd 13_10652_10b4-02 lvsapdata106-10652 13_10652_10b4 0 1061968704 4247983296 hitachi_vspg1k1_10b4 ENA
+pl lvsapdata106_drl-10650 lvsapdata106 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10b4-02 lvsapdata106_drl-10650 1_10650_10b4 1061970816 2112 LOG hitachi_vspg1k0_10b4 ENA
+pl lvsapdata106_drl-10652 lvsapdata106 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10b4-01 lvsapdata106_drl-10652 13_10652_10b4 1061970816 2112 LOG hitachi_vspg1k1_10b4 ENA
+dc lvsapdata106_dco lvsapdata106 lvsapdata106_dcl
+v  lvsapdata106_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata106_dcl-10650 lvsapdata106_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10b4-03 lvsapdata106_dcl-10650 1_10650_10b4 1061968704 2112 0 hitachi_vspg1k0_10b4 ENA
+pl lvsapdata106_dcl-10652 lvsapdata106_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10b4-03 lvsapdata106_dcl-10652 13_10652_10b4 1061968704 2112 0 hitachi_vspg1k1_10b4 ENA
+
+Disk group: dgpefpcs0009
+
+dg dgpefpcs0009 default      default  18000    1454509438.398.lpefp05
+
+dm 1_10650_10b5 hitachi_vspg1k0_10b5 auto 65536 1061995824 -
+dm 1_10650_10b6 hitachi_vspg1k0_10b6 auto 65536 1061995824 -
+dm 1_10650_10b7 hitachi_vspg1k0_10b7 auto 65536 1061995824 -
+dm 1_10650_10b8 hitachi_vspg1k0_10b8 auto 65536 1061995824 -
+dm 1_10650_10b9 hitachi_vspg1k0_10b9 auto 65536 1061995824 -
+dm 13_10652_10b5 hitachi_vspg1k1_10b5 auto 65536 1061995824 -
+dm 13_10652_10b6 hitachi_vspg1k1_10b6 auto 65536 1061995824 -
+dm 13_10652_10b7 hitachi_vspg1k1_10b7 auto 65536 1061995824 -
+dm 13_10652_10b8 hitachi_vspg1k1_10b8 auto 65536 1061995824 -
+dm 13_10652_10b9 hitachi_vspg1k1_10b9 auto 65536 1061995824 -
+
+v  lvsapdata107 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata107-10652 fsgen
+pl lvsapdata107-10650 lvsapdata107 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10b5-01 lvsapdata107-10650 1_10650_10b5 0 1061995824 0 hitachi_vspg1k0_10b5 ENA
+sd 1_10650_10b6-01 lvsapdata107-10650 1_10650_10b6 0 1061995824 1061995824 hitachi_vspg1k0_10b6 ENA
+sd 1_10650_10b7-01 lvsapdata107-10650 1_10650_10b7 0 1061995824 2123991648 hitachi_vspg1k0_10b7 ENA
+sd 1_10650_10b8-01 lvsapdata107-10650 1_10650_10b8 0 1061995824 3185987472 hitachi_vspg1k0_10b8 ENA
+sd 1_10650_10b9-01 lvsapdata107-10650 1_10650_10b9 0 1061968704 4247983296 hitachi_vspg1k0_10b9 ENA
+pl lvsapdata107-10652 lvsapdata107 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10b5-01 lvsapdata107-10652 13_10652_10b5 0 1061995824 0 hitachi_vspg1k1_10b5 ENA
+sd 13_10652_10b6-01 lvsapdata107-10652 13_10652_10b6 0 1061995824 1061995824 hitachi_vspg1k1_10b6 ENA
+sd 13_10652_10b7-01 lvsapdata107-10652 13_10652_10b7 0 1061995824 2123991648 hitachi_vspg1k1_10b7 ENA
+sd 13_10652_10b8-01 lvsapdata107-10652 13_10652_10b8 0 1061995824 3185987472 hitachi_vspg1k1_10b8 ENA
+sd 13_10652_10b9-01 lvsapdata107-10652 13_10652_10b9 0 1061968704 4247983296 hitachi_vspg1k1_10b9 ENA
+pl lvsapdata107_drl-10650 lvsapdata107 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10b9-02 lvsapdata107_drl-10650 1_10650_10b9 1061970816 2112 LOG hitachi_vspg1k0_10b9 ENA
+pl lvsapdata107_drl-10652 lvsapdata107 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10b9-02 lvsapdata107_drl-10652 13_10652_10b9 1061970816 2112 LOG hitachi_vspg1k1_10b9 ENA
+dc lvsapdata107_dco lvsapdata107 lvsapdata107_dcl
+v  lvsapdata107_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata107_dcl-10650 lvsapdata107_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10b9-03 lvsapdata107_dcl-10650 1_10650_10b9 1061968704 2112 0 hitachi_vspg1k0_10b9 ENA
+pl lvsapdata107_dcl-10652 lvsapdata107_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10b9-03 lvsapdata107_dcl-10652 13_10652_10b9 1061968704 2112 0 hitachi_vspg1k1_10b9 ENA
+
+Disk group: dgpefpcs0010
+
+dg dgpefpcs0010 default      default  11000    1454510240.416.lpefp05
+
+dm 1_10650_10ba hitachi_vspg1k0_10ba auto 65536 1061995824 -
+dm 1_10650_10bb hitachi_vspg1k0_10bb auto 65536 1061995824 -
+dm 1_10650_10bf hitachi_vspg1k0_10bf auto 65536 1061995824 -
+dm 1_10650_10c0 hitachi_vspg1k0_10c0 auto 65536 1061995824 -
+dm 1_10650_10c1 hitachi_vspg1k0_10c1 auto 65536 1061995824 -
+dm 13_10652_10ba hitachi_vspg1k1_10ba auto 65536 1061995824 -
+dm 13_10652_10bb hitachi_vspg1k1_10bb auto 65536 1061995824 -
+dm 13_10652_10bf hitachi_vspg1k1_10bf auto 65536 1061995824 -
+dm 13_10652_10c0 hitachi_vspg1k1_10c0 auto 65536 1061995824 -
+dm 13_10652_10c1 hitachi_vspg1k1_10c1 auto 65536 1061995824 -
+
+v  lvsapdata108 -            ENABLED  ACTIVE   5309953088 PREFER  lvsapdata108-10652 fsgen
+pl lvsapdata108-10650 lvsapdata108 ENABLED ACTIVE 5309953088 CONCAT -      RW
+sd 1_10650_10ba-01 lvsapdata108-10650 1_10650_10ba 0 1061995824 0 hitachi_vspg1k0_10ba ENA
+sd 1_10650_10bb-01 lvsapdata108-10650 1_10650_10bb 0 1061995824 1061995824 hitachi_vspg1k0_10bb ENA
+sd 1_10650_10bf-01 lvsapdata108-10650 1_10650_10bf 0 1061995824 2123991648 hitachi_vspg1k0_10bf ENA
+sd 1_10650_10c0-01 lvsapdata108-10650 1_10650_10c0 0 1061995824 3185987472 hitachi_vspg1k0_10c0 ENA
+sd 1_10650_10c1-02 lvsapdata108-10650 1_10650_10c1 0 1061969792 4247983296 hitachi_vspg1k0_10c1 ENA
+pl lvsapdata108-10652 lvsapdata108 ENABLED ACTIVE 5309953088 CONCAT -      RW
+sd 13_10652_10ba-01 lvsapdata108-10652 13_10652_10ba 0 1061995824 0 hitachi_vspg1k1_10ba ENA
+sd 13_10652_10bb-01 lvsapdata108-10652 13_10652_10bb 0 1061995824 1061995824 hitachi_vspg1k1_10bb ENA
+sd 13_10652_10bf-01 lvsapdata108-10652 13_10652_10bf 0 1061995824 2123991648 hitachi_vspg1k1_10bf ENA
+sd 13_10652_10c0-01 lvsapdata108-10652 13_10652_10c0 0 1061995824 3185987472 hitachi_vspg1k1_10c0 ENA
+sd 13_10652_10c1-02 lvsapdata108-10652 13_10652_10c1 0 1061969792 4247983296 hitachi_vspg1k1_10c1 ENA
+pl lvsapdata108_drl-10650 lvsapdata108 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10c1-01 lvsapdata108_drl-10650 1_10650_10c1 1061971904 2112 LOG hitachi_vspg1k0_10c1 ENA
+pl lvsapdata108_drl-10652 lvsapdata108 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10c1-01 lvsapdata108_drl-10652 13_10652_10c1 1061971904 2112 LOG hitachi_vspg1k1_10c1 ENA
+dc lvsapdata108_dco lvsapdata108 lvsapdata108_dcl
+v  lvsapdata108_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata108_dcl-10650 lvsapdata108_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10c1-03 lvsapdata108_dcl-10650 1_10650_10c1 1061969792 2112 0 hitachi_vspg1k0_10c1 ENA
+pl lvsapdata108_dcl-10652 lvsapdata108_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10c1-03 lvsapdata108_dcl-10652 13_10652_10c1 1061969792 2112 0 hitachi_vspg1k1_10c1 ENA
+
+Disk group: dgpefpcs0011
+
+dg dgpefpcs0011 default      default  15000    1479742400.468.lpefp13
+
+dm 1_10650_10ca hitachi_vspg1k0_10ca auto 65536 1061995824 -
+dm 1_10650_10cb hitachi_vspg1k0_10cb auto 65536 1061995824 -
+dm 1_10650_10c2 hitachi_vspg1k0_10c2 auto 65536 1061995824 -
+dm 1_10650_10c3 hitachi_vspg1k0_10c3 auto 65536 1061995824 -
+dm 1_10650_10c9 hitachi_vspg1k0_10c9 auto 65536 1061995824 -
+dm 13_10652_10ca hitachi_vspg1k1_10ca auto 65536 1061995824 -
+dm 13_10652_10cb hitachi_vspg1k1_10cb auto 65536 1061995824 -
+dm 13_10652_10c2 hitachi_vspg1k1_10c2 auto 65536 1061995824 -
+dm 13_10652_10c3 hitachi_vspg1k1_10c3 auto 65536 1061995824 -
+dm 13_10652_10c9 hitachi_vspg1k1_10c9 auto 65536 1061995824 -
+
+v  lvsapdata109 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata109-10652 fsgen
+pl lvsapdata109-10650 lvsapdata109 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10ca-01 lvsapdata109-10650 1_10650_10ca 0 1061995824 0 hitachi_vspg1k0_10ca ENA
+sd 1_10650_10cb-01 lvsapdata109-10650 1_10650_10cb 0 1061995824 1061995824 hitachi_vspg1k0_10cb ENA
+sd 1_10650_10c2-01 lvsapdata109-10650 1_10650_10c2 0 1061995824 2123991648 hitachi_vspg1k0_10c2 ENA
+sd 1_10650_10c3-01 lvsapdata109-10650 1_10650_10c3 0 1061995824 3185987472 hitachi_vspg1k0_10c3 ENA
+sd 1_10650_10c9-01 lvsapdata109-10650 1_10650_10c9 0 1061968704 4247983296 hitachi_vspg1k0_10c9 ENA
+pl lvsapdata109-10652 lvsapdata109 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10ca-01 lvsapdata109-10652 13_10652_10ca 0 1061995824 0 hitachi_vspg1k1_10ca ENA
+sd 13_10652_10cb-01 lvsapdata109-10652 13_10652_10cb 0 1061995824 1061995824 hitachi_vspg1k1_10cb ENA
+sd 13_10652_10c2-01 lvsapdata109-10652 13_10652_10c2 0 1061995824 2123991648 hitachi_vspg1k1_10c2 ENA
+sd 13_10652_10c3-01 lvsapdata109-10652 13_10652_10c3 0 1061995824 3185987472 hitachi_vspg1k1_10c3 ENA
+sd 13_10652_10c9-01 lvsapdata109-10652 13_10652_10c9 0 1061968704 4247983296 hitachi_vspg1k1_10c9 ENA
+pl lvsapdata109_drl-10650 lvsapdata109 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10c9-02 lvsapdata109_drl-10650 1_10650_10c9 1061970816 2112 LOG hitachi_vspg1k0_10c9 ENA
+pl lvsapdata109_drl-10652 lvsapdata109 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10c9-02 lvsapdata109_drl-10652 13_10652_10c9 1061970816 2112 LOG hitachi_vspg1k1_10c9 ENA
+dc lvsapdata109_dco lvsapdata109 lvsapdata109_dcl
+v  lvsapdata109_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata109_dcl-10650 lvsapdata109_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10c9-03 lvsapdata109_dcl-10650 1_10650_10c9 1061968704 2112 0 hitachi_vspg1k0_10c9 ENA
+pl lvsapdata109_dcl-10652 lvsapdata109_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10c9-03 lvsapdata109_dcl-10652 13_10652_10c9 1061968704 2112 0 hitachi_vspg1k1_10c9 ENA
+
+Disk group: dgpefpcs0012
+
+dg dgpefpcs0012 default      default  12000    1486622984.562.lpefp13
+
+dm 1_10650_10cc hitachi_vspg1k0_10cc auto 65536 1061995824 -
+dm 1_10650_10cd hitachi_vspg1k0_10cd auto 65536 1061995824 -
+dm 1_10650_10ce hitachi_vspg1k0_10ce auto 65536 1061995824 -
+dm 1_10650_10cf hitachi_vspg1k0_10cf auto 65536 1061995824 -
+dm 1_10650_10d0 hitachi_vspg1k0_10d0 auto 65536 1061995824 -
+dm 13_10652_10cc hitachi_vspg1k1_10cc auto 65536 1061995824 -
+dm 13_10652_10cd hitachi_vspg1k1_10cd auto 65536 1061995824 -
+dm 13_10652_10ce hitachi_vspg1k1_10ce auto 65536 1061995824 -
+dm 13_10652_10cf hitachi_vspg1k1_10cf auto 65536 1061995824 -
+dm 13_10652_10d0 hitachi_vspg1k1_10d0 auto 65536 1061995824 -
+
+v  lvsapdata110 -            ENABLED  ACTIVE   5309843456 PREFER  lvsapdata110-10652 fsgen
+pl lvsapdata110-10650 lvsapdata110 ENABLED ACTIVE 5309843456 CONCAT -      RW
+sd 1_10650_10cc-01 lvsapdata110-10650 1_10650_10cc 0 1061995824 0 hitachi_vspg1k0_10cc ENA
+sd 1_10650_10cd-01 lvsapdata110-10650 1_10650_10cd 0 1061995824 1061995824 hitachi_vspg1k0_10cd ENA
+sd 1_10650_10ce-01 lvsapdata110-10650 1_10650_10ce 0 1061995824 2123991648 hitachi_vspg1k0_10ce ENA
+sd 1_10650_10cf-01 lvsapdata110-10650 1_10650_10cf 0 1061995824 3185987472 hitachi_vspg1k0_10cf ENA
+sd 1_10650_10d0-02 lvsapdata110-10650 1_10650_10d0 0 1061860160 4247983296 hitachi_vspg1k0_10d0 ENA
+pl lvsapdata110-10652 lvsapdata110 ENABLED ACTIVE 5309843456 CONCAT -      RW
+sd 13_10652_10cc-01 lvsapdata110-10652 13_10652_10cc 0 1061995824 0 hitachi_vspg1k1_10cc ENA
+sd 13_10652_10cd-01 lvsapdata110-10652 13_10652_10cd 0 1061995824 1061995824 hitachi_vspg1k1_10cd ENA
+sd 13_10652_10ce-01 lvsapdata110-10652 13_10652_10ce 0 1061995824 2123991648 hitachi_vspg1k1_10ce ENA
+sd 13_10652_10cf-01 lvsapdata110-10652 13_10652_10cf 0 1061995824 3185987472 hitachi_vspg1k1_10cf ENA
+sd 13_10652_10d0-01 lvsapdata110-10652 13_10652_10d0 0 1061860160 4247983296 hitachi_vspg1k1_10d0 ENA
+pl lvsapdata110_drl-10650 lvsapdata110 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10d0-01 lvsapdata110_drl-10650 1_10650_10d0 1061862272 2112 LOG hitachi_vspg1k0_10d0 ENA
+pl lvsapdata110_drl-10652 lvsapdata110 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10d0-02 lvsapdata110_drl-10652 13_10652_10d0 1061862272 2112 LOG hitachi_vspg1k1_10d0 ENA
+dc lvsapdata110_dco lvsapdata110 lvsapdata110_dcl
+v  lvsapdata110_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata110_dcl-10650 lvsapdata110_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10d0-03 lvsapdata110_dcl-10650 1_10650_10d0 1061860160 2112 0 hitachi_vspg1k0_10d0 ENA
+pl lvsapdata110_dcl-10652 lvsapdata110_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10d0-03 lvsapdata110_dcl-10652 13_10652_10d0 1061860160 2112 0 hitachi_vspg1k1_10d0 ENA
+
+Disk group: dgpefpcs0013
+
+dg dgpefpcs0013 default      default  23000    1515784673.492.lpefp13
+
+dm 1_10650_10d1 hitachi_vspg1k0_10d1 auto 65536 1061995824 -
+dm 1_10650_10d2 hitachi_vspg1k0_10d2 auto 65536 1061995824 -
+dm 1_10650_10d3 hitachi_vspg1k0_10d3 auto 65536 1061995824 -
+dm 1_10650_10d4 hitachi_vspg1k0_10d4 auto 65536 1061995824 -
+dm 1_10650_10d5 hitachi_vspg1k0_10d5 auto 65536 1061995824 -
+dm 13_10652_10d1 hitachi_vspg1k1_10d1 auto 65536 1061995824 -
+dm 13_10652_10d2 hitachi_vspg1k1_10d2 auto 65536 1061995824 -
+dm 13_10652_10d3 hitachi_vspg1k1_10d3 auto 65536 1061995824 -
+dm 13_10652_10d4 hitachi_vspg1k1_10d4 auto 65536 1061995824 -
+dm 13_10652_10d5 hitachi_vspg1k1_10d5 auto 65536 1061995824 -
+
+v  lvsapdata111 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata111-10652 fsgen
+pl lvsapdata111-10650 lvsapdata111 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10d1-01 lvsapdata111-10650 1_10650_10d1 0 1061995824 0 hitachi_vspg1k0_10d1 ENA
+sd 1_10650_10d2-01 lvsapdata111-10650 1_10650_10d2 0 1061995824 1061995824 hitachi_vspg1k0_10d2 ENA
+sd 1_10650_10d3-01 lvsapdata111-10650 1_10650_10d3 0 1061995824 2123991648 hitachi_vspg1k0_10d3 ENA
+sd 1_10650_10d4-01 lvsapdata111-10650 1_10650_10d4 0 1061995824 3185987472 hitachi_vspg1k0_10d4 ENA
+sd 1_10650_10d5-02 lvsapdata111-10650 1_10650_10d5 0 1061968704 4247983296 hitachi_vspg1k0_10d5 ENA
+pl lvsapdata111-10652 lvsapdata111 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10d1-01 lvsapdata111-10652 13_10652_10d1 0 1061995824 0 hitachi_vspg1k1_10d1 ENA
+sd 13_10652_10d2-01 lvsapdata111-10652 13_10652_10d2 0 1061995824 1061995824 hitachi_vspg1k1_10d2 ENA
+sd 13_10652_10d3-01 lvsapdata111-10652 13_10652_10d3 0 1061995824 2123991648 hitachi_vspg1k1_10d3 ENA
+sd 13_10652_10d4-01 lvsapdata111-10652 13_10652_10d4 0 1061995824 3185987472 hitachi_vspg1k1_10d4 ENA
+sd 13_10652_10d5-01 lvsapdata111-10652 13_10652_10d5 0 1061968704 4247983296 hitachi_vspg1k1_10d5 ENA
+pl lvsapdata111_drl-10650 lvsapdata111 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10d5-01 lvsapdata111_drl-10650 1_10650_10d5 1061970816 2112 LOG hitachi_vspg1k0_10d5 ENA
+pl lvsapdata111_drl-10652 lvsapdata111 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10d5-02 lvsapdata111_drl-10652 13_10652_10d5 1061970816 2112 LOG hitachi_vspg1k1_10d5 ENA
+dc lvsapdata111_dco lvsapdata111 lvsapdata111_dcl
+v  lvsapdata111_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata111_dcl-10650 lvsapdata111_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10d5-03 lvsapdata111_dcl-10650 1_10650_10d5 1061968704 2112 0 hitachi_vspg1k0_10d5 ENA
+pl lvsapdata111_dcl-10652 lvsapdata111_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10d5-03 lvsapdata111_dcl-10652 13_10652_10d5 1061968704 2112 0 hitachi_vspg1k1_10d5 ENA
+
+Disk group: dgpefpcs0014
+
+dg dgpefpcs0014 default      default  2000     1528124733.502.lpefp13
+
+dm 1_10650_10d6 hitachi_vspg1k0_10d6 auto 65536 1061995824 -
+dm 1_10650_111a hitachi_vspg1k0_111a auto 65536 2147417808 -
+dm 1_10650_1119 hitachi_vspg1k0_1119 auto 65536 2147417808 -
+dm 13_10652_10d6 hitachi_vspg1k1_10d6 auto 65536 1061995824 -
+dm 13_10652_111a hitachi_vspg1k1_111a auto 65536 2147417808 -
+dm 13_10652_1119 hitachi_vspg1k1_1119 auto 65536 2147417808 -
+
+v  lvsapdata112 -            ENABLED  ACTIVE   5356804096 PREFER  lvsapdata112-10652 fsgen
+pl lvsapdata112-10650 lvsapdata112 ENABLED ACTIVE 5356804096 CONCAT -      RW
+sd 1_10650_10d6-01 lvsapdata112-10650 1_10650_10d6 0 1061968480 0 hitachi_vspg1k0_10d6 ENA
+sd 1_10650_111a-01 lvsapdata112-10650 1_10650_111a 0 2147417808 1061968480 hitachi_vspg1k0_111a ENA
+sd 1_10650_1119-01 lvsapdata112-10650 1_10650_1119 0 2147417808 3209386288 hitachi_vspg1k0_1119 ENA
+pl lvsapdata112-10652 lvsapdata112 ENABLED ACTIVE 5356804096 CONCAT -      RW
+sd 13_10652_10d6-02 lvsapdata112-10652 13_10652_10d6 0 1061968480 0 hitachi_vspg1k1_10d6 ENA
+sd 13_10652_111a-01 lvsapdata112-10652 13_10652_111a 0 2147417808 1061968480 hitachi_vspg1k1_111a ENA
+sd 13_10652_1119-01 lvsapdata112-10652 13_10652_1119 0 2147417808 3209386288 hitachi_vspg1k1_1119 ENA
+pl lvsapdata112_drl-10650 lvsapdata112 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10d6-02 lvsapdata112_drl-10650 1_10650_10d6 1061970592 2112 LOG hitachi_vspg1k0_10d6 ENA
+pl lvsapdata112_drl-10652 lvsapdata112 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10d6-01 lvsapdata112_drl-10652 13_10652_10d6 1061970592 2112 LOG hitachi_vspg1k1_10d6 ENA
+dc sapdata112_dco lvsapdata112 sapdata112_dcl
+v  sapdata112_dcl -          ENABLED  ACTIVE   2112     SELECT    -        gen
+pl sapdata112_dcl-10650 sapdata112_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 1_10650_10d6-03 sapdata112_dcl-10650 1_10650_10d6 1061968480 2112 0 hitachi_vspg1k0_10d6 ENA
+pl sapdata112_dcl-10652 sapdata112_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 13_10652_10d6-03 sapdata112_dcl-10652 13_10652_10d6 1061968480 2112 0 hitachi_vspg1k1_10d6 ENA
+
+Disk group: dgpefpcs0015
+
+dg dgpefpcs0015 default      default  19000    1539344833.600.lpefp13
+
+dm 1_10650_10d7 hitachi_vspg1k0_10d7 auto 65536 1061995824 -
+dm 1_10650_111b hitachi_vspg1k0_111b auto 65536 2147417808 -
+dm 1_10650_111c hitachi_vspg1k0_111c auto 65536 2147417808 -
+dm 13_10652_10d7 hitachi_vspg1k1_10d7 auto 65536 1061995824 -
+dm 13_10652_111b hitachi_vspg1k1_111b auto 65536 2147417808 -
+dm 13_10652_111c hitachi_vspg1k1_111c auto 65536 2147417808 -
+
+v  lvsapdata113 -            ENABLED  ACTIVE   5356804096 PREFER  lvsapdata113-10652 fsgen
+pl lvsapdata113-10650 lvsapdata113 ENABLED ACTIVE 5356804096 CONCAT -      RW
+sd 1_10650_10d7-02 lvsapdata113-10650 1_10650_10d7 0 1061968480 0 hitachi_vspg1k0_10d7 ENA
+sd 1_10650_111b-01 lvsapdata113-10650 1_10650_111b 0 2147417808 1061968480 hitachi_vspg1k0_111b ENA
+sd 1_10650_111c-01 lvsapdata113-10650 1_10650_111c 0 2147417808 3209386288 hitachi_vspg1k0_111c ENA
+pl lvsapdata113-10652 lvsapdata113 ENABLED ACTIVE 5356804096 CONCAT -      RW
+sd 13_10652_10d7-03 lvsapdata113-10652 13_10652_10d7 0 1061968480 0 hitachi_vspg1k1_10d7 ENA
+sd 13_10652_111b-01 lvsapdata113-10652 13_10652_111b 0 2147417808 1061968480 hitachi_vspg1k1_111b ENA
+sd 13_10652_111c-01 lvsapdata113-10652 13_10652_111c 0 2147417808 3209386288 hitachi_vspg1k1_111c ENA
+pl lvsapdata113_drl-10650 lvsapdata113 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10d7-03 lvsapdata113_drl-10650 1_10650_10d7 1061970592 2112 LOG hitachi_vspg1k0_10d7 ENA
+pl lvsapdata113_drl-10652 lvsapdata113 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10d7-02 lvsapdata113_drl-10652 13_10652_10d7 1061970592 2112 LOG hitachi_vspg1k1_10d7 ENA
+dc lvsapdata113_dco lvsapdata113 lvsapdata113_dcl
+v  lvsapdata113_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata113_dcl-10650 lvsapdata113_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10d7-01 lvsapdata113_dcl-10650 1_10650_10d7 1061968480 2112 0 hitachi_vspg1k0_10d7 ENA
+pl lvsapdata113_dcl-10652 lvsapdata113_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10d7-01 lvsapdata113_dcl-10652 13_10652_10d7 1061968480 2112 0 hitachi_vspg1k1_10d7 ENA
+
+Disk group: dgpefpcs0016
+
+dg dgpefpcs0016 default      default  29000    1546612248.794.lpefp12
+
+dm 1_10650_10da hitachi_vspg1k0_10da auto 65536 1061995824 -
+dm 1_10650_10db hitachi_vspg1k0_10db auto 65536 1061995824 -
+dm 1_10650_10dc hitachi_vspg1k0_10dc auto 65536 1061995824 -
+dm 1_10650_10d8 hitachi_vspg1k0_10d8 auto 65536 1061995824 -
+dm 1_10650_10d9 hitachi_vspg1k0_10d9 auto 65536 1061995824 -
+dm 13_10652_10da hitachi_vspg1k1_10da auto 65536 1061995824 -
+dm 13_10652_10db hitachi_vspg1k1_10db auto 65536 1061995824 -
+dm 13_10652_10dc hitachi_vspg1k1_10dc auto 65536 1061995824 -
+dm 13_10652_10d8 hitachi_vspg1k1_10d8 auto 65536 1061995824 -
+dm 13_10652_10d9 hitachi_vspg1k1_10d9 auto 65536 1061995824 -
+
+v  lvsapdata114 -            ENABLED  ACTIVE   5309952000 PREFER  lvsapdata114-10652 fsgen
+pl lvsapdata114-10650 lvsapdata114 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 1_10650_10da-01 lvsapdata114-10650 1_10650_10da 0 1061995824 0 hitachi_vspg1k0_10da ENA
+sd 1_10650_10db-01 lvsapdata114-10650 1_10650_10db 0 1061995824 1061995824 hitachi_vspg1k0_10db ENA
+sd 1_10650_10dc-01 lvsapdata114-10650 1_10650_10dc 0 1061995824 2123991648 hitachi_vspg1k0_10dc ENA
+sd 1_10650_10d8-01 lvsapdata114-10650 1_10650_10d8 0 1061995824 3185987472 hitachi_vspg1k0_10d8 ENA
+sd 1_10650_10d9-03 lvsapdata114-10650 1_10650_10d9 0 1061968704 4247983296 hitachi_vspg1k0_10d9 ENA
+pl lvsapdata114-10652 lvsapdata114 ENABLED ACTIVE 5309952000 CONCAT -      RW
+sd 13_10652_10da-01 lvsapdata114-10652 13_10652_10da 0 1061995824 0 hitachi_vspg1k1_10da ENA
+sd 13_10652_10db-01 lvsapdata114-10652 13_10652_10db 0 1061995824 1061995824 hitachi_vspg1k1_10db ENA
+sd 13_10652_10dc-01 lvsapdata114-10652 13_10652_10dc 0 1061995824 2123991648 hitachi_vspg1k1_10dc ENA
+sd 13_10652_10d8-01 lvsapdata114-10652 13_10652_10d8 0 1061995824 3185987472 hitachi_vspg1k1_10d8 ENA
+sd 13_10652_10d9-03 lvsapdata114-10652 13_10652_10d9 0 1061968704 4247983296 hitachi_vspg1k1_10d9 ENA
+pl lvsapdata114_drl-10650 lvsapdata114 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10d9-02 lvsapdata114_drl-10650 1_10650_10d9 1061970816 2112 LOG hitachi_vspg1k0_10d9 ENA
+pl lvsapdata114_drl-10652 lvsapdata114 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10d9-02 lvsapdata114_drl-10652 13_10652_10d9 1061970816 2112 LOG hitachi_vspg1k1_10d9 ENA
+dc lvsapdata114_dco lvsapdata114 lvsapdata114_dcl
+v  lvsapdata114_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata114_dcl-10650 lvsapdata114_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10d9-01 lvsapdata114_dcl-10650 1_10650_10d9 1061968704 2112 0 hitachi_vspg1k0_10d9 ENA
+pl lvsapdata114_dcl-10652 lvsapdata114_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10d9-01 lvsapdata114_dcl-10652 13_10652_10d9 1061968704 2112 0 hitachi_vspg1k1_10d9 ENA
+
+Disk group: dgpefpcs0017
+
+dg dgpefpcs0017 default      default  16000    1567407684.548.lpefp12
+
+dm 1_10650_10e0 hitachi_vspg1k0_10e0 auto 65536 1061995824 -
+dm 1_10650_1377 hitachi_vspg1k0_1377 auto 65536 4294901456 -
+dm 13_10652_10e0 hitachi_vspg1k1_10e0 auto 65536 1061995824 -
+dm 13_10652_1377 hitachi_vspg1k1_1377 auto 65536 4294901456 -
+
+v  lvsapdata115 -            ENABLED  ACTIVE   5356869632 PREFER  lvsapdata115-10652 fsgen
+pl lvsapdata115-10650 lvsapdata115 ENABLED ACTIVE 5356869632 CONCAT -      RW
+sd 1_10650_10e0-02 lvsapdata115-10650 1_10650_10e0 0 1061968176 0 hitachi_vspg1k0_10e0 ENA
+sd 1_10650_1377-01 lvsapdata115-10650 1_10650_1377 0 4294901456 1061968176 hitachi_vspg1k0_1377 ENA
+pl lvsapdata115-10652 lvsapdata115 ENABLED ACTIVE 5356869632 CONCAT -      RW
+sd 13_10652_10e0-03 lvsapdata115-10652 13_10652_10e0 0 1061968176 0 hitachi_vspg1k1_10e0 ENA
+sd 13_10652_1377-01 lvsapdata115-10652 13_10652_1377 0 4294901456 1061968176 hitachi_vspg1k1_1377 ENA
+pl lvsapdata115_drl-10650 lvsapdata115 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 1_10650_10e0-03 lvsapdata115_drl-10650 1_10650_10e0 1061970288 2112 LOG hitachi_vspg1k0_10e0 ENA
+pl lvsapdata115_drl-10652 lvsapdata115 ENABLED ACTIVE LOGONLY CONCAT -     RW
+sd 13_10652_10e0-02 lvsapdata115_drl-10652 13_10652_10e0 1061970288 2112 LOG hitachi_vspg1k1_10e0 ENA
+dc lvsapdata115_dco lvsapdata115 lvsapdata115_dcl
+v  lvsapdata115_dcl -        ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata115_dcl-10650 lvsapdata115_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 1_10650_10e0-01 lvsapdata115_dcl-10650 1_10650_10e0 1061968176 2112 0 hitachi_vspg1k0_10e0 ENA
+pl lvsapdata115_dcl-10652 lvsapdata115_dcl ENABLED ACTIVE 2112 CONCAT -    RW
+sd 13_10652_10e0-01 lvsapdata115_dcl-10652 13_10652_10e0 1061968176 2112 0 hitachi_vspg1k1_10e0 ENA
+
+Disk group: dgpefpcs0018
+
+dg dgpefpcs0018 default      default  17000    1329918469.193.lpefp05
+
+dm 1_10650_09db hitachi_vspg1k0_09db auto 65536 4294901456 -
+dm 1_10650_10c4 hitachi_vspg1k0_10c4 auto 65536 29435792 -
+dm 1_10650_10c5 hitachi_vspg1k0_10c5 auto 65536 29435792 -
+dm 1_10650_10c6 hitachi_vspg1k0_10c6 auto 65536 29435792 -
+dm 13_10652_09db hitachi_vspg1k1_09db auto 65536 4294901456 -
+dm 13_10652_10c4 hitachi_vspg1k1_10c4 auto 65536 29435792 -
+dm 13_10652_10c5 hitachi_vspg1k1_10c5 auto 65536 29435792 -
+dm 13_10652_10c6 hitachi_vspg1k1_10c6 auto 65536 29435792 -
+
+v  lvmirrlogA   -            ENABLED  ACTIVE   31457280 PREFER    lvmirrlogA-10652 fsgen
+pl lvmirrlogA-10650 lvmirrlogA ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 1_10650_10c4-01 lvmirrlogA-10650 1_10650_10c4 0 29435792 0     hitachi_vspg1k0_10c4 ENA
+sd 1_10650_10c5-01 lvmirrlogA-10650 1_10650_10c5 0 2021488 29435792 hitachi_vspg1k0_10c5 ENA
+pl lvmirrlogA-10652 lvmirrlogA ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 13_10652_10c4-01 lvmirrlogA-10652 13_10652_10c4 0 29435792 0   hitachi_vspg1k1_10c4 ENA
+sd 13_10652_10c5-01 lvmirrlogA-10652 13_10652_10c5 0 2021488 29435792 hitachi_vspg1k1_10c5 ENA
+pl lvmirrlogA_drl-10650 lvmirrlogA ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10c5-02 lvmirrlogA_drl-10650 1_10650_10c5 2021488 2112 LOG hitachi_vspg1k0_10c5 ENA
+pl lvmirrlogA_drl-10652 lvmirrlogA ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10c5-02 lvmirrlogA_drl-10652 13_10652_10c5 2021488 2112 LOG hitachi_vspg1k1_10c5 ENA
+dc lvmirrlogA_dco lvmirrlogA lvmirrlogA_dcl
+v  lvmirrlogA_dcl -          ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvmirrlogA_dcl-10650 lvmirrlogA_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 1_10650_10c6-01 lvmirrlogA_dcl-10650 1_10650_10c6 0 2112 0     hitachi_vspg1k0_10c6 ENA
+pl lvmirrlogA_dcl-10652 lvmirrlogA_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 13_10652_10c6-01 lvmirrlogA_dcl-10652 13_10652_10c6 0 2112 0   hitachi_vspg1k1_10c6 ENA
+
+v  lvoriglogB   -            ENABLED  ACTIVE   31457280 PREFER    lvoriglogB-10652 fsgen
+pl lvoriglogB-10650 lvoriglogB ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 1_10650_10c5-03 lvoriglogB-10650 1_10650_10c5 2023600 2023600 0 hitachi_vspg1k0_10c5 ENA
+sd 1_10650_10c6-02 lvoriglogB-10650 1_10650_10c6 2112 29433680 2023600 hitachi_vspg1k0_10c6 ENA
+pl lvoriglogB-10652 lvoriglogB ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 13_10652_10c5-04 lvoriglogB-10652 13_10652_10c5 2023600 2023600 0 hitachi_vspg1k1_10c5 ENA
+sd 13_10652_10c6-02 lvoriglogB-10652 13_10652_10c6 2112 29433680 2023600 hitachi_vspg1k1_10c6 ENA
+pl lvoriglogB_drl-10650 lvoriglogB ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10c5-04 lvoriglogB_drl-10650 1_10650_10c5 4049312 2112 LOG hitachi_vspg1k0_10c5 ENA
+pl lvoriglogB_drl-10652 lvoriglogB ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10c5-03 lvoriglogB_drl-10652 13_10652_10c5 4049312 2112 LOG hitachi_vspg1k1_10c5 ENA
+dc lvoriglogB_dco lvoriglogB lvoriglogB_dcl
+v  lvoriglogB_dcl -          ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoriglogB_dcl-10650 lvoriglogB_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 1_10650_10c5-05 lvoriglogB_dcl-10650 1_10650_10c5 4047200 2112 0 hitachi_vspg1k0_10c5 ENA
+pl lvoriglogB_dcl-10652 lvoriglogB_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 13_10652_10c5-05 lvoriglogB_dcl-10652 13_10652_10c5 4047200 2112 0 hitachi_vspg1k1_10c5 ENA
+
+v  lvsapdata1   -            ENABLED  ACTIVE   4320258048 PREFER  lvsapdata1-10652 fsgen
+pl lvsapdata1-10650 lvsapdata1 ENABLED ACTIVE  4320258048 CONCAT  -        RW
+sd 1_10650_09db-01 lvsapdata1-10650 1_10650_09db 0 4294901456 0   hitachi_vspg1k0_09db ENA
+sd 1_10650_10c5-06 lvsapdata1-10650 1_10650_10c5 4051424 25356592 4294901456 hitachi_vspg1k0_10c5 ENA
+pl lvsapdata1-10652 lvsapdata1 ENABLED ACTIVE  4320258048 CONCAT  -        RW
+sd 13_10652_09db-01 lvsapdata1-10652 13_10652_09db 0 4294901456 0 hitachi_vspg1k1_09db ENA
+sd 13_10652_10c5-06 lvsapdata1-10652 13_10652_10c5 4051424 25356592 4294901456 hitachi_vspg1k1_10c5 ENA
+pl lvsapdata1_drl-10650 lvsapdata1 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10c5-08 lvsapdata1_drl-10650 1_10650_10c5 29410128 2112 LOG hitachi_vspg1k0_10c5 ENA
+pl lvsapdata1_drl-10652 lvsapdata1 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10c5-08 lvsapdata1_drl-10652 13_10652_10c5 29410128 2112 LOG hitachi_vspg1k1_10c5 ENA
+dc lvsapdata16_dco lvsapdata1 lvsapdata16_dcl
+v  lvsapdata16_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata16_dcl-10650 lvsapdata16_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_10c5-07 lvsapdata16_dcl-10650 1_10650_10c5 29408016 2112 0 hitachi_vspg1k0_10c5 ENA
+pl lvsapdata16_dcl-10652 lvsapdata16_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_10c5-07 lvsapdata16_dcl-10652 13_10652_10c5 29408016 2112 0 hitachi_vspg1k1_10c5 ENA
+
+Disk group: dgpefpcs0019
+
+dg dgpefpcs0019 default      default  5000     1329918495.203.lpefp05
+
+dm 1_10650_09dc hitachi_vspg1k0_09dc auto 65536 4294901456 -
+dm 1_10650_10dd hitachi_vspg1k0_10dd auto 65536 29435792 -
+dm 1_10650_10de hitachi_vspg1k0_10de auto 65536 29435792 -
+dm 1_10650_10df hitachi_vspg1k0_10df auto 65536 29435792 -
+dm 13_10652_09dc hitachi_vspg1k1_09dc auto 65536 4294901456 -
+dm 13_10652_10dd hitachi_vspg1k1_10dd auto 65536 29435792 -
+dm 13_10652_10de hitachi_vspg1k1_10de auto 65536 29435792 -
+dm 13_10652_10df hitachi_vspg1k1_10df auto 65536 29435792 -
+
+v  lvmirrlogB   -            ENABLED  ACTIVE   31457280 PREFER    lvmirrlogB-10652 fsgen
+pl lvmirrlogB-10650 lvmirrlogB ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 1_10650_10dd-01 lvmirrlogB-10650 1_10650_10dd 0 29435792 0     hitachi_vspg1k0_10dd ENA
+sd 1_10650_10de-01 lvmirrlogB-10650 1_10650_10de 0 2021488 29435792 hitachi_vspg1k0_10de ENA
+pl lvmirrlogB-10652 lvmirrlogB ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 13_10652_10dd-01 lvmirrlogB-10652 13_10652_10dd 0 29435792 0   hitachi_vspg1k1_10dd ENA
+sd 13_10652_10de-02 lvmirrlogB-10652 13_10652_10de 0 2021488 29435792 hitachi_vspg1k1_10de ENA
+pl lvmirrlogB_drl-10650 lvmirrlogB ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10de-02 lvmirrlogB_drl-10650 1_10650_10de 2021488 2112 LOG hitachi_vspg1k0_10de ENA
+pl lvmirrlogB_drl-10652 lvmirrlogB ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10de-01 lvmirrlogB_drl-10652 13_10652_10de 2021488 2112 LOG hitachi_vspg1k1_10de ENA
+dc lvmirrlogB_dco lvmirrlogB lvmirrlogB_dcl
+v  lvmirrlogB_dcl -          ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvmirrlogB_dcl-10650 lvmirrlogB_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 1_10650_10df-01 lvmirrlogB_dcl-10650 1_10650_10df 0 2112 0     hitachi_vspg1k0_10df ENA
+pl lvmirrlogB_dcl-10652 lvmirrlogB_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 13_10652_10df-01 lvmirrlogB_dcl-10652 13_10652_10df 0 2112 0   hitachi_vspg1k1_10df ENA
+
+v  lvoriglogA   -            ENABLED  ACTIVE   31457280 PREFER    lvoriglogA-10652 fsgen
+pl lvoriglogA-10650 lvoriglogA ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 1_10650_10de-04 lvoriglogA-10650 1_10650_10de 2023600 2023600 0 hitachi_vspg1k0_10de ENA
+sd 1_10650_10df-02 lvoriglogA-10650 1_10650_10df 2112 29433680 2023600 hitachi_vspg1k0_10df ENA
+pl lvoriglogA-10652 lvoriglogA ENABLED ACTIVE  31457280 CONCAT    -        RW
+sd 13_10652_10de-04 lvoriglogA-10652 13_10652_10de 2023600 2023600 0 hitachi_vspg1k1_10de ENA
+sd 13_10652_10df-02 lvoriglogA-10652 13_10652_10df 2112 29433680 2023600 hitachi_vspg1k1_10df ENA
+pl lvoriglogA_drl-10650 lvoriglogA ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10de-03 lvoriglogA_drl-10650 1_10650_10de 4049312 2112 LOG hitachi_vspg1k0_10de ENA
+pl lvoriglogA_drl-10652 lvoriglogA ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10de-03 lvoriglogA_drl-10652 13_10652_10de 4049312 2112 LOG hitachi_vspg1k1_10de ENA
+dc lvoriglogA_dco lvoriglogA lvoriglogA_dcl
+v  lvoriglogA_dcl -          ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoriglogA_dcl-10650 lvoriglogA_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 1_10650_10de-05 lvoriglogA_dcl-10650 1_10650_10de 4047200 2112 0 hitachi_vspg1k0_10de ENA
+pl lvoriglogA_dcl-10652 lvoriglogA_dcl ENABLED ACTIVE 2112 CONCAT -        RW
+sd 13_10652_10de-05 lvoriglogA_dcl-10652 13_10652_10de 4047200 2112 0 hitachi_vspg1k1_10de ENA
+
+v  lvsapdata2   -            ENABLED  ACTIVE   4320258048 PREFER  lvsapdata2-10652 fsgen
+pl lvsapdata2-10650 lvsapdata2 ENABLED ACTIVE  4320258048 CONCAT  -        RW
+sd 1_10650_09dc-01 lvsapdata2-10650 1_10650_09dc 0 4294901456 0   hitachi_vspg1k0_09dc ENA
+sd 1_10650_10de-06 lvsapdata2-10650 1_10650_10de 4051424 25356592 4294901456 hitachi_vspg1k0_10de ENA
+pl lvsapdata2-10652 lvsapdata2 ENABLED ACTIVE  4320258048 CONCAT  -        RW
+sd 13_10652_09dc-01 lvsapdata2-10652 13_10652_09dc 0 4294901456 0 hitachi_vspg1k1_09dc ENA
+sd 13_10652_10de-06 lvsapdata2-10652 13_10652_10de 4051424 25356592 4294901456 hitachi_vspg1k1_10de ENA
+pl lvsapdata2_drl-10650 lvsapdata2 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_10de-08 lvsapdata2_drl-10650 1_10650_10de 29410128 2112 LOG hitachi_vspg1k0_10de ENA
+pl lvsapdata2_drl-10652 lvsapdata2 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_10de-08 lvsapdata2_drl-10652 13_10652_10de 29410128 2112 LOG hitachi_vspg1k1_10de ENA
+dc lvsapdata17_dco lvsapdata2 lvsapdata17_dcl
+v  lvsapdata17_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata17_dcl-10650 lvsapdata17_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_10de-07 lvsapdata17_dcl-10650 1_10650_10de 29408016 2112 0 hitachi_vspg1k0_10de ENA
+pl lvsapdata17_dcl-10652 lvsapdata17_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_10de-07 lvsapdata17_dcl-10652 13_10652_10de 29408016 2112 0 hitachi_vspg1k1_10de ENA
+
+Disk group: dgpefpcs0021
+
+dg dgpefpcs0021 default      default  7000     1646961435.472.lpefp18
+
+dm 1_10650_09de hitachi_vspg1k0_09de auto 65536 4294901456 -
+dm 13_10652_09de hitachi_vspg1k1_09de auto 65536 4294901456 -
+
+v  lvsapdata4   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata4-10652 fsgen
+pl lvsapdata4-10650 lvsapdata4 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09de-01 lvsapdata4-10650 1_10650_09de 0 4294873088 0   hitachi_vspg1k0_09de ENA
+pl lvsapdata4-10652 lvsapdata4 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09de-01 lvsapdata4-10652 13_10652_09de 0 4294873088 0 hitachi_vspg1k1_09de ENA
+pl lvsapdata4_drl-10650 lvsapdata4 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09de-03 lvsapdata4_drl-10650 1_10650_09de 4294875200 2112 LOG hitachi_vspg1k0_09de ENA
+pl lvsapdata4_drl-10652 lvsapdata4 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09de-03 lvsapdata4_drl-10652 13_10652_09de 4294875200 2112 LOG hitachi_vspg1k1_09de ENA
+dc lvsapdata19_dco lvsapdata4 lvsapdata19_dcl
+v  lvsapdata19_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata19_dcl-10650 lvsapdata19_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09de-02 lvsapdata19_dcl-10650 1_10650_09de 4294873088 2112 0 hitachi_vspg1k0_09de ENA
+pl lvsapdata19_dcl-10652 lvsapdata19_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09de-02 lvsapdata19_dcl-10652 13_10652_09de 4294873088 2112 0 hitachi_vspg1k1_09de ENA
+
+Disk group: dgpefpcs0022
+
+dg dgpefpcs0022 default      default  8000     1646961448.478.lpefp18
+
+dm 1_10650_09df hitachi_vspg1k0_09df auto 65536 4294901456 -
+dm 13_10652_09df hitachi_vspg1k1_09df auto 65536 4294901456 -
+
+v  lvsapdata5   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata5-10652 fsgen
+pl lvsapdata5-10650 lvsapdata5 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09df-01 lvsapdata5-10650 1_10650_09df 0 4294873088 0   hitachi_vspg1k0_09df ENA
+pl lvsapdata5-10652 lvsapdata5 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09df-01 lvsapdata5-10652 13_10652_09df 0 4294873088 0 hitachi_vspg1k1_09df ENA
+pl lvsapdata5_drl-10650 lvsapdata5 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09df-03 lvsapdata5_drl-10650 1_10650_09df 4294875200 2112 LOG hitachi_vspg1k0_09df ENA
+pl lvsapdata5_drl-10652 lvsapdata5 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09df-03 lvsapdata5_drl-10652 13_10652_09df 4294875200 2112 LOG hitachi_vspg1k1_09df ENA
+dc lvsapdata20_dco lvsapdata5 lvsapdata20_dcl
+v  lvsapdata20_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata20_dcl-10650 lvsapdata20_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09df-02 lvsapdata20_dcl-10650 1_10650_09df 4294873088 2112 0 hitachi_vspg1k0_09df ENA
+pl lvsapdata20_dcl-10652 lvsapdata20_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09df-02 lvsapdata20_dcl-10652 13_10652_09df 4294873088 2112 0 hitachi_vspg1k1_09df ENA
+
+Disk group: dgpefpcs0023
+
+dg dgpefpcs0023 default      default  10000    1646961463.484.lpefp18
+
+dm 1_10650_09e0 hitachi_vspg1k0_09e0 auto 65536 4294901456 -
+dm 13_10652_09e0 hitachi_vspg1k1_09e0 auto 65536 4294901456 -
+
+v  lvsapdata6   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata6-10652 fsgen
+pl lvsapdata6-10650 lvsapdata6 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09e0-01 lvsapdata6-10650 1_10650_09e0 0 4294873088 0   hitachi_vspg1k0_09e0 ENA
+pl lvsapdata6-10652 lvsapdata6 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09e0-01 lvsapdata6-10652 13_10652_09e0 0 4294873088 0 hitachi_vspg1k1_09e0 ENA
+pl lvsapdata6_drl-10650 lvsapdata6 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09e0-03 lvsapdata6_drl-10650 1_10650_09e0 4294875200 2112 LOG hitachi_vspg1k0_09e0 ENA
+pl lvsapdata6_drl-10652 lvsapdata6 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09e0-03 lvsapdata6_drl-10652 13_10652_09e0 4294875200 2112 LOG hitachi_vspg1k1_09e0 ENA
+dc lvsapdata21_dco lvsapdata6 lvsapdata21_dcl
+v  lvsapdata21_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata21_dcl-10650 lvsapdata21_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e0-02 lvsapdata21_dcl-10650 1_10650_09e0 4294873088 2112 0 hitachi_vspg1k0_09e0 ENA
+pl lvsapdata21_dcl-10652 lvsapdata21_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e0-02 lvsapdata21_dcl-10652 13_10652_09e0 4294873088 2112 0 hitachi_vspg1k1_09e0 ENA
+
+Disk group: dgpefpcs0024
+
+dg dgpefpcs0024 default      default  14000    1646961478.490.lpefp18
+
+dm 1_10650_09e1 hitachi_vspg1k0_09e1 auto 65536 4294901456 -
+dm 13_10652_09e1 hitachi_vspg1k1_09e1 auto 65536 4294901456 -
+
+v  lvsapdata7   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata7-10652 fsgen
+pl lvsapdata7-10650 lvsapdata7 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09e1-01 lvsapdata7-10650 1_10650_09e1 0 4294873088 0   hitachi_vspg1k0_09e1 ENA
+pl lvsapdata7-10652 lvsapdata7 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09e1-01 lvsapdata7-10652 13_10652_09e1 0 4294873088 0 hitachi_vspg1k1_09e1 ENA
+pl lvsapdata7_drl-10650 lvsapdata7 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09e1-03 lvsapdata7_drl-10650 1_10650_09e1 4294875200 2112 LOG hitachi_vspg1k0_09e1 ENA
+pl lvsapdata7_drl-10652 lvsapdata7 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09e1-03 lvsapdata7_drl-10652 13_10652_09e1 4294875200 2112 LOG hitachi_vspg1k1_09e1 ENA
+dc lvsapdata22_dco lvsapdata7 lvsapdata22_dcl
+v  lvsapdata22_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata22_dcl-10650 lvsapdata22_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e1-02 lvsapdata22_dcl-10650 1_10650_09e1 4294873088 2112 0 hitachi_vspg1k0_09e1 ENA
+pl lvsapdata22_dcl-10652 lvsapdata22_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e1-02 lvsapdata22_dcl-10652 13_10652_09e1 4294873088 2112 0 hitachi_vspg1k1_09e1 ENA
+
+Disk group: dgpefpcs0025
+
+dg dgpefpcs0025 default      default  9000     1646961492.496.lpefp18
+
+dm 1_10650_09e2 hitachi_vspg1k0_09e2 auto 65536 4294901456 -
+dm 13_10652_09e2 hitachi_vspg1k1_09e2 auto 65536 4294901456 -
+
+v  lvsapdata8   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata8-10652 fsgen
+pl lvsapdata8-10650 lvsapdata8 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09e2-01 lvsapdata8-10650 1_10650_09e2 0 4294873088 0   hitachi_vspg1k0_09e2 ENA
+pl lvsapdata8-10652 lvsapdata8 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09e2-01 lvsapdata8-10652 13_10652_09e2 0 4294873088 0 hitachi_vspg1k1_09e2 ENA
+pl lvsapdata8_drl-10650 lvsapdata8 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09e2-03 lvsapdata8_drl-10650 1_10650_09e2 4294875200 2112 LOG hitachi_vspg1k0_09e2 ENA
+pl lvsapdata8_drl-10652 lvsapdata8 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09e2-03 lvsapdata8_drl-10652 13_10652_09e2 4294875200 2112 LOG hitachi_vspg1k1_09e2 ENA
+dc lvsapdata23_dco lvsapdata8 lvsapdata23_dcl
+v  lvsapdata23_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata23_dcl-10650 lvsapdata23_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e2-02 lvsapdata23_dcl-10650 1_10650_09e2 4294873088 2112 0 hitachi_vspg1k0_09e2 ENA
+pl lvsapdata23_dcl-10652 lvsapdata23_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e2-02 lvsapdata23_dcl-10652 13_10652_09e2 4294873088 2112 0 hitachi_vspg1k1_09e2 ENA
+
+Disk group: dgpefpcs0026
+
+dg dgpefpcs0026 default      default  25000    1646961506.502.lpefp18
+
+dm 1_10650_09e3 hitachi_vspg1k0_09e3 auto 65536 4294901456 -
+dm 13_10652_09e3 hitachi_vspg1k1_09e3 auto 65536 4294901456 -
+
+v  lvsapdata9   -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata9-10652 fsgen
+pl lvsapdata9-10650 lvsapdata9 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 1_10650_09e3-01 lvsapdata9-10650 1_10650_09e3 0 4294873088 0   hitachi_vspg1k0_09e3 ENA
+pl lvsapdata9-10652 lvsapdata9 ENABLED ACTIVE  4294873088 CONCAT  -        RW
+sd 13_10652_09e3-01 lvsapdata9-10652 13_10652_09e3 0 4294873088 0 hitachi_vspg1k1_09e3 ENA
+pl lvsapdata9_drl-10650 lvsapdata9 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 1_10650_09e3-03 lvsapdata9_drl-10650 1_10650_09e3 4294875200 2112 LOG hitachi_vspg1k0_09e3 ENA
+pl lvsapdata9_drl-10652 lvsapdata9 ENABLED ACTIVE LOGONLY CONCAT  -        RW
+sd 13_10652_09e3-03 lvsapdata9_drl-10652 13_10652_09e3 4294875200 2112 LOG hitachi_vspg1k1_09e3 ENA
+dc lvsapdata24_dco lvsapdata9 lvsapdata24_dcl
+v  lvsapdata24_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata24_dcl-10650 lvsapdata24_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e3-02 lvsapdata24_dcl-10650 1_10650_09e3 4294873088 2112 0 hitachi_vspg1k0_09e3 ENA
+pl lvsapdata24_dcl-10652 lvsapdata24_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e3-02 lvsapdata24_dcl-10652 13_10652_09e3 4294873088 2112 0 hitachi_vspg1k1_09e3 ENA
+
+Disk group: dgpefpcs0027
+
+dg dgpefpcs0027 default      default  21000    1646963059.520.lpefp18
+
+dm 1_10650_09e4 hitachi_vspg1k0_09e4 auto 65536 4294901456 -
+dm 13_10652_09e4 hitachi_vspg1k1_09e4 auto 65536 4294901456 -
+
+v  lvsapdata10  -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata10-10652 fsgen
+pl lvsapdata10-10650 lvsapdata10 ENABLED ACTIVE 4294873088 CONCAT -        RW
+sd 1_10650_09e4-01 lvsapdata10-10650 1_10650_09e4 0 4294873088 0  hitachi_vspg1k0_09e4 ENA
+pl lvsapdata10-10652 lvsapdata10 ENABLED ACTIVE 4294873088 CONCAT -        RW
+sd 13_10652_09e4-01 lvsapdata10-10652 13_10652_09e4 0 4294873088 0 hitachi_vspg1k1_09e4 ENA
+pl lvsapdata10_drl-10650 lvsapdata10 ENABLED ACTIVE LOGONLY CONCAT -       RW
+sd 1_10650_09e4-03 lvsapdata10_drl-10650 1_10650_09e4 4294875200 2112 LOG hitachi_vspg1k0_09e4 ENA
+pl lvsapdata10_drl-10652 lvsapdata10 ENABLED ACTIVE LOGONLY CONCAT -       RW
+sd 13_10652_09e4-03 lvsapdata10_drl-10652 13_10652_09e4 4294875200 2112 LOG hitachi_vspg1k1_09e4 ENA
+dc lvsapdata25_dco lvsapdata10 lvsapdata25_dcl
+v  lvsapdata25_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata25_dcl-10650 lvsapdata25_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e4-02 lvsapdata25_dcl-10650 1_10650_09e4 4294873088 2112 0 hitachi_vspg1k0_09e4 ENA
+pl lvsapdata25_dcl-10652 lvsapdata25_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e4-02 lvsapdata25_dcl-10652 13_10652_09e4 4294873088 2112 0 hitachi_vspg1k1_09e4 ENA
+
+Disk group: dgpefpcs0028
+
+dg dgpefpcs0028 default      default  26000    1646963069.522.lpefp18
+
+dm 1_10650_09e5 hitachi_vspg1k0_09e5 auto 65536 4294901456 -
+dm 13_10652_09e5 hitachi_vspg1k1_09e5 auto 65536 4294901456 -
+
+v  lvsapdata11  -            ENABLED  ACTIVE   4294873088 PREFER  lvsapdata11-10652 fsgen
+pl lvsapdata11-10650 lvsapdata11 ENABLED ACTIVE 4294873088 CONCAT -        RW
+sd 1_10650_09e5-01 lvsapdata11-10650 1_10650_09e5 0 4294873088 0  hitachi_vspg1k0_09e5 ENA
+pl lvsapdata11-10652 lvsapdata11 ENABLED ACTIVE 4294873088 CONCAT -        RW
+sd 13_10652_09e5-01 lvsapdata11-10652 13_10652_09e5 0 4294873088 0 hitachi_vspg1k1_09e5 ENA
+pl lvsapdata11_drl-10650 lvsapdata11 ENABLED ACTIVE LOGONLY CONCAT -       RW
+sd 1_10650_09e5-03 lvsapdata11_drl-10650 1_10650_09e5 4294875200 2112 LOG hitachi_vspg1k0_09e5 ENA
+pl lvsapdata11_drl-10652 lvsapdata11 ENABLED ACTIVE LOGONLY CONCAT -       RW
+sd 13_10652_09e5-03 lvsapdata11_drl-10652 13_10652_09e5 4294875200 2112 LOG hitachi_vspg1k1_09e5 ENA
+dc lvsapdata26_dco lvsapdata11 lvsapdata26_dcl
+v  lvsapdata26_dcl -         ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvsapdata26_dcl-10650 lvsapdata26_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 1_10650_09e5-02 lvsapdata26_dcl-10650 1_10650_09e5 4294873088 2112 0 hitachi_vspg1k0_09e5 ENA
+pl lvsapdata26_dcl-10652 lvsapdata26_dcl ENABLED ACTIVE 2112 CONCAT -      RW
+sd 13_10652_09e5-02 lvsapdata26_dcl-10652 13_10652_09e5 4294873088 2112 0 hitachi_vspg1k1_09e5 ENA
+lpefp18:~ #

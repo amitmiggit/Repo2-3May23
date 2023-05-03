@@ -1,0 +1,34 @@
+- Summary: Power Outage of dedicated racks at DC Aschheim - Scope Financial Services & Alphabet
+
+- Change Manager: Philipp Feldpausch, FG-8-I-1
+
+- Change Coordinator: Karolina Matutyte, FG-8-I-1
+
+- Impact: NO business impact expected
+
+- Downtime: NO DOWNTIME planned for added application list
+
+- Scheduled Start-/End Date: Su. Aug. 16th 06:00:00 CEST to Tu. Aug.18th 20:00:00 CEST 2020
+
+
+- Details:
+
+Su. Aug. 16th 2020 dedicated racks of DC Aschheim will be hard shut down by power outage.
+The provided IT services will failover to EDC FIZ. The focus are Financial Services & Alphabet. 
+Technical verification of IT services avalability and basic business validation.
+
+Mo. Aug. 17th 2020 the IT Services will be provided only by EDC FIZ.
+Mo. Aug. 17th 2020 a standard business day for Financal Services and Alphabet is expected with no business impact (Overall business validation).
+
+Tu. Aug.18th 2020 morning before business hours the failback will be done and the systems will be balanced between Aschheim and FIZ. Technical verification of IT services avalability and basic business validation.
+
+There is no business impact expected.
+
+APPLICATIONS IN SCOPE: see added application list attached in work detail.
+No downtime planned for added application list - only short interruption of availability.
+
+A presentation, stakeholder, the detailed planning and additional information are given here:
+https://atc.bmwgroup.net/confluence/x/MxdvIg
+
+Planning lead: Philipp Feldpausch, FG-8-I-1 & Robert Gaiser, FG-8-I-1
+Execution lead: Boris Staerk, FG-8-I-1 & Robert Gaiser, FG-8-I-1 & Karolina Matutyte, FG-8-I-1

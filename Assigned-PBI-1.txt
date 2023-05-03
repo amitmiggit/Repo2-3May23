@@ -1,0 +1,166 @@
+PBI000000387573 ---Nico Haupt
+PBI000000388258 ---Ajay Ji
+PBI000000388359 ---Sanjeev A
+==========
+
+PBI000000388266 -----Ajay Ji
+PBI000000388434 ------Sanjeev A
+PBI000000388434 ------Sanjeev A
+
+
+
+
+
+lp19pgb03196vm:/usr/openv/netbackup # route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.165.112.1    0.0.0.0         UG    0      0        0 eth0
+10.165.112.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.189.186.0    10.189.186.1    255.255.255.0   UG    0      0        0 eth1
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      0        0 lo
+169.254.0.0     0.0.0.0         255.255.0.0     U     0      0        0 eth0
+lp19pgb03196vm:/usr/openv/netbackup # ifconfig -a
+eth0      Link encap:Ethernet  HWaddr FA:16:4E:B3:15:09
+          inet addr:10.165.112.26  Bcast:10.165.112.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:4126545 errors:0 dropped:518022 overruns:0 frame:0
+          TX packets:3631637 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3650954026 (3481.8 Mb)  TX bytes:414612367 (395.4 Mb)
+
+eth1      Link encap:Ethernet  HWaddr AA:D6:C6:28:5E:13
+          inet addr:10.189.186.3  Bcast:10.189.186.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:567884 errors:0 dropped:517431 overruns:0 frame:0
+          TX packets:60 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:31311134 (29.8 Mb)  TX bytes:2520 (2.4 Kb)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:1983316 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1983316 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:354485124 (338.0 Mb)  TX bytes:354485124 (338.0 Mb)
+
+lp19pgb03196vm:/usr/openv/netbackup # ping 10.189.186.1
+PING 10.189.186.1 (10.189.186.1) 56(84) bytes of data.
+64 bytes from 10.189.186.1: icmp_seq=1 ttl=255 time=6.29 ms
+64 bytes from 10.189.186.1: icmp_seq=2 ttl=255 time=0.986 ms
+64 bytes from 10.189.186.1: icmp_seq=3 ttl=255 time=0.976 ms
+64 bytes from 10.189.186.1: icmp_seq=4 ttl=255 time=0.884 ms
+^C
+--- 10.189.186.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 0.884/2.286/6.299/2.317 ms
+lp19pgb03196vm:/usr/openv/netbackup # iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+lp19pgb03196vm:/usr/openv/netbackup # service BMWfirewall status
+Checking for service BMWfirewall
+lp19pgb03196vm:/usr/openv/netbackup # chkconfig --list | grep -i BMWfirewall
+BMWfirewall               0:off  1:off  2:off  3:off  4:off  5:off  6:off
+lp19pgb03196vm:/usr/openv/netbackup # chkconfig 3:5 BMWfirewall on
+Usage: chkconfig -s service on|off|runlevels
+lp19pgb03196vm:/usr/openv/netbackup # service BMWfirewall restart
+Checking if nf_conntrack is blacklisted...true.
+Shutting down BMWfirewall
+
+Checking SLES version ...                                             [OK]    Found OS SUSE Linux Enterprise Server 11
+Searching for configured BKUP IF ...                                  [OK]    Found: eth1 (10.189.186.3 / lp19pgb03196
+Checking status of configured BKUP IF                                 [OK]    UP
+Checking backup routing ...                                           [OK]
+Checking routing for network 10.165.44.0 ...                          [OK]    Backup route not active
+Checking routing for network 10.186.3.0 ...                           [OK]    Backup route not active
+Checking routing for network 10.186.4.0 ...                           [OK]    Backup route not active
+Checking routing for network 10.186.46.0 ...                          [OK]    Backup route not active
+Checking routing for network 10.186.88.128 ...                        [OK]    Backup route not active
+Checking routing for network 10.189.169.240 ...                       [OK]    Backup route not active
+Checking routes for interface eth1 ...                                [ERROR] Found still active routes:
+10.189.186.0/24 via 10.189.186.1
+Checking reachability of Gateway 10.189.186.1 ...                     [OK]    Gateway 10.189.186.1 pingable
+Starting BMWfirewall
+
+Checking SLES version ...                                             [OK]    Found OS SUSE Linux Enterprise Server 11
+Resolving CORP1 IF lp19pgb03196vm ...                                 [OK]    10.165.112.26 / lp19pgb03196vm.bmwgroup.
+Resolving backup servers                                              [OK]    All required backup servers can be resol
+Searching for configured BKUP IF ...                                  [OK]    Found: eth1 (10.189.186.3 / lp19pgb03196
+Checking status of configured BKUP IF                                 [OK]    UP
+Checking .set_masterserver.conf file ...                              [OK]    Not found, trying to set masterserver fr
+Searching for Netbackup master server                                 [OK]    lp19nb0master.cn.sub found
+Checking file /usr/openv/netbackup/bp.conf ...                        [OK]    /usr/openv/netbackup/bp.conf file readab
+ o Checking SERVER directive ...                                      [OK]    Set up correctly
+ o Checking REQUIRED_INTERFACE directive ...                          [OK]    Not found, correct
+ o Checking CLIENT_NAME directive ...                                 [OK]    Found: lp19pgb03196vmb.bmwgroup.net, cor
+ o Checking BPCD_WHITELIST_PATH directive ...                         [OK]    Found: /, correct
+Checking backup routing ...                                           [OK]
+Initiating /sbin/ifup eth1 ...
+    eth1
+Waiting 10 secs for the interface to come up ...
+Checking route for network 10.165.44.0 ...                            [OK]    Route not active, must be set
+Setting route for network 10.165.44.0 ...                             RTNETLINK answers: No such process
+[ERROR] Command  ip ro add 10.165.44.0/24 via 10.189.186.1 dev eth1 returned with nonzero value, aborting ...
+lp19pgb03196vm:/usr/openv/netbackup # cd /etc/BMWfirewall/
+lp19pgb03196vm:/etc/BMWfirewall # ls
+BKUPNetwork.sh  .BMWfirewall.conf  nagios  netbackup  ntp
+lp19pgb03196vm:/etc/BMWfirewall # xenstore-read /tool/hostname
+lp19xenppg008
+lp19pgb03196vm:/etc/BMWfirewall # ls
+BKUPNetwork.sh  .BMWfirewall.conf  nagios  netbackup  ntp
+lp19pgb03196vm:/etc/BMWfirewall # iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+BMWINPUT   all  --  anywhere             anywhere
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+BMWFORWARD  all  --  anywhere             anywhere
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+BMWOUTPUT  all  --  anywhere             anywhere
+
+Chain BMWFORWARD (1 references)
+target     prot opt source               destination
+
+Chain BMWINPUT (1 references)
+target     prot opt source               destination
+
+Chain BMWOUTPUT (1 references)
+target     prot opt source               destination
+lp19pgb03196vm:/etc/BMWfirewall # cat netbackup
+IPTABLES='echo'
+test -f /usr/sbin/iptables && IPTABLES='/usr/sbin/iptables'
+test -f /sbin/iptables && IPTABLES='/sbin/iptables'
+
+OP='-A'
+[ "$1" = 'stop' ] && OP='-D'
+
+LOGLIMIT='-m limit --limit 6/minute --limit-burst 10'
+BPPORTS='-m multiport --dports 1556,13782,13724'
+BPCONF='/usr/openv/netbackup/bp.conf'
+
+perl -ane 'if (($F[0] eq "SERVER" || $F[0] eq "CLIENT_NAME") && ($h = gethostbyname($F[2])) && $a{$h} != 7) { print jo, $h)) . "\n"; $a{$h} = 7 } END {print "127.0.0.1"}' $BPCONF | \
+xargs -n1 -i -r $IPTABLES $OP BMWINPUT -p tcp -s {} $BPPORTS -j ACCEPT
+$IPTABLES $OP BMWINPUT -p tcp $BPPORTS $LOGLIMIT -j LOG --log-level info --log-prefix 'FW netbackup drop '
+$IPTABLES $OP BMWINPUT -p tcp $BPPORTS -j DROP
+$IPTABLES $OP BMWINPUT -p udp $BPPORTS -j DROP
+lp19pgb03196vm:/etc/BMWfirewall # pwd
+/etc/BMWfirewall
+lp19pgb03196vm:/etc/BMWfirewall #
+lp19pgb03196vm:/etc/BMWfirewall #
+lp19pgb03196vm:/etc/BMWfirewall #
+lp19pgb03196vm:/etc/BMWfirewall # exit
+exit
+qplinux@lp19pgb03196vm:~> exit
+logout
+Connection to lp19pgb03196vm.bmwgroup.net closed.
+Connection to lpagpam005.bmwgroup.net. closed.
+[INSTSERV][qxz12n2][lpinstiaas10] ~ $

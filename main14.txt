@@ -1,0 +1,16 @@
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1bkup/lvbkup  | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1db/lvdb | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo1/lvredo1 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbauqaw1redo2/lvredo2 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1apps/lvapps | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1bkup/lvbkup | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1db/lvdb | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo1/lvredo1 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbe00w1redo2/lvredo2 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1apps/lvapps | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1bkup/lvbkup | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1db/lvdb | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo1/lvredo1 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgdbhiqaw1redo2/lvredo2 | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracle | egrep version
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit | egrep version

@@ -1,0 +1,3093 @@
+lp01d65:~ # hastatus -sum | grep -i online
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               ONLINE
+B  dbe00w1         lp01d65              Y          N               ONLINE
+B  dbhiqaw1        lp01d65              Y          N               ONLINE
+B  dbkiqaw1        lp01d66              Y          N               ONLINE
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # uname -r
+4.12.14-95.57-default
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # uptime
+ 15:36pm  up 188 days 20:38,  2 users,  load average: 0.82, 0.90, 1.18
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # cat /etc/fstab
+###
+### OS mounts
+###
+LABEL=ROOT                    /                             btrfs     defaults                      0 1
+LABEL=BOOT                    /boot                         ext3      defaults                      0 1
+LABEL=ROOT                    /lfs                          btrfs     subvol=@/lfs                  0 0
+LABEL=ROOT                    /home                         btrfs     subvol=@/home                 0 0
+LABEL=ROOT                    /opt                          btrfs     subvol=@/opt                  0 0
+LABEL=ROOT                    /tmp                          btrfs     subvol=@/tmp                  0 0
+LABEL=ROOT                    /var/log                      btrfs     subvol=@/var/log              0 0
+LABEL=ROOT                    /var/opt                      btrfs     subvol=@/var/opt              0 0
+LABEL=ROOT                    /var/spool                    btrfs     subvol=@/var/spool            0 0
+LABEL=ROOT                    /var/cache                    btrfs     subvol=@/var/cache            0 0
+LABEL=ROOT                    /global/local                 btrfs     subvol=@/global/local         0 0
+LABEL=ROOT                    /var/tmp                      btrfs     subvol=@/var/tmp              0 0
+LABEL=ROOT                    /.snapshots                   btrfs     subvol=@/.snapshots           0 0
+LABEL=SWAP                    swap                          swap      pri=42                        0 0
+LABEL=LVVARCRASH              /var/crash                    xfs       defaults                      0 0
+
+###
+### Application mounts
+### Mandatory mount options for SAN/NAS: nofail,x-systemd.device-timeout=20
+###
+
+
+        # NOTE: When adding or modifying VxFS or VxVM entries, add 'nofail'
+        # to the mount options to avoid boot failure during system bootup
+        # if systemd tries to mount filesystem before VxVM and VXFS have
+        # started.
+
+# Added by vxctl 2019-04-11 17:37:17
+/dev/vx/dsk/dgoracle_lp01d65/lvoracle /lfs/oracle vxfs _netdev,nofail,x-systemd.device-timeout=20 0 0
+/dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit /lfs/oracle_audit vxfs _netdev,nofail,x-systemd.device-timeout=20 0 0
+
+nv01100026.bmwgroup.net:/f08195/t026673/dbauqaw1_utlfile /nfs/ora/dbauqaw1_utlfile nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+nv01100026.bmwgroup.net:/f08195/t026672/dbkiqaw1_utlfile  /nfs/ora/dbkiqaw1_utlfile nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+nv02400144.bmwgroup.net:/f05631/t011642      /nfs/ora/Datenexport_LW nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+
+# Added by vxctl 2019-08-14 11:28:18
+
+# Added by vxctl 2019-08-14 11:32:43
+
+# Added by vxctl 2019-08-22 11:59:17
+
+# Added by vxctl 2019-08-23 15:58:18
+
+# Added by vxctl 2020-01-06 10:11:04
+
+# Added by vxctl 2020-01-06 10:26:53
+
+# Added by vxctl 2020-01-06 11:45:03
+
+# Added by vxctl 2020-05-10 17:39:27
+
+# Added by vxctl 2021-02-14 17:44:54
+
+# Added by vxctl 2021-03-28 09:37:34
+
+# Added by vxctl 2021-05-05 07:50:44
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # df -hT
+Filesystem                                               Type      Size  Used Avail Use% Mounted on
+devtmpfs                                                 devtmpfs  188G  8.0K  188G   1% /dev
+tmpfs                                                    tmpfs     188G  4.0K  188G   1% /dev/shm
+tmpfs                                                    tmpfs     188G  7.5M  188G   1% /run
+tmpfs                                                    tmpfs     188G     0  188G   0% /sys/fs/cgroup
+/dev/sda2                                                btrfs     101G   27G   73G  28% /
+/dev/sda2                                                btrfs     101G   27G   73G  28% /home
+/dev/sda2                                                btrfs     101G   27G   73G  28% /.snapshots
+/dev/sda2                                                btrfs     101G   27G   73G  28% /opt
+/dev/sda2                                                btrfs     101G   27G   73G  28% /var/opt
+/dev/sda2                                                btrfs     101G   27G   73G  28% /global/local
+/dev/sda2                                                btrfs     101G   27G   73G  28% /var/log
+/dev/sda2                                                btrfs     101G   27G   73G  28% /lfs
+/dev/sda2                                                btrfs     101G   27G   73G  28% /var/cache
+/dev/sda2                                                btrfs     101G   27G   73G  28% /var/spool
+/dev/sda2                                                btrfs     101G   27G   73G  28% /var/tmp
+/dev/sda2                                                btrfs     101G   27G   73G  28% /tmp
+/dev/mapper/vglocal-lvvarcrash                           xfs        50G   33M   50G   1% /var/crash
+/dev/sda1                                                ext3      976M  101M  824M  11% /boot
+tmpfs                                                    tmpfs     4.0K     0  4.0K   0% /dev/vx
+nv01100026.bmwgroup.net:/f08195/t026672/dbkiqaw1_utlfile nfs       5.0G  2.9G  2.2G  57% /nfs/ora/dbkiqaw1_utlfile
+nv01100026.bmwgroup.net:/f08195/t026673/dbauqaw1_utlfile nfs       5.0G  578M  4.5G  12% /nfs/ora/dbauqaw1_utlfile
+/dev/vx/dsk/dgoracle_lp01d65/lvoracle                    vxfs      175G   60G  116G  34% /lfs/oracle
+/dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit               vxfs       50G  361M   50G   1% /lfs/oracle_audit
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/160
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/66159
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/48952
+/dev/vx/dsk/dgdbe00w1apps/lvapps                         vxfs       15G   22M   14G   1% /global/dbe00w1/apps
+/dev/vx/dsk/dgdbe00w1redo1/lvredo1                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo1
+/dev/vx/dsk/dgdbe00w1redo2/lvredo2                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo2
+/dev/vx/dsk/dgdbe00w1bkup/lvbkup                         vxfs      169G  1.1G  167G   1% /global/dbe00w1/bkup
+/dev/vx/dsk/dgdbe00w1db/lvdb                             vxfs      1.6T  1.2T  390G  76% /global/dbe00w1/db
+/dev/vx/dsk/dgdbauqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbauqaw1/redo2
+/dev/vx/dsk/dgdbauqaw1db/lvdb                            vxfs      619G  451G  167G  73% /global/dbauqaw1/db
+/dev/vx/dsk/dgdbauqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.4G  61% /global/dbauqaw1/redo1
+/dev/vx/dsk/dgdbauqaw1bkup/lvbkup                        vxfs      478G   71G  404G  15% /global/dbauqaw1/bkup
+/dev/vx/dsk/dgdbhiqaw1apps/lvapps                        vxfs      3.5G  107M  3.2G   4% /global/dbhiqaw1/apps
+/dev/vx/dsk/dgdbhiqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbhiqaw1/redo2
+/dev/vx/dsk/dgdbhiqaw1bkup/lvbkup                        vxfs      675G  2.2G  668G   1% /global/dbhiqaw1/bkup
+/dev/vx/dsk/dgdbhiqaw1db/lvdb                            vxfs      5.1T  4.8T  284G  95% /global/dbhiqaw1/db
+/dev/vx/dsk/dgdbhiqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.3G  62% /global/dbhiqaw1/redo1
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/500105
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/44035
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/846785
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # ifconfig
+bond0     Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          inet addr:160.46.157.27  Bcast:160.46.157.255  Mask:255.255.255.0
+          inet6 addr: fe80::e643:4bff:fe23:25a4/64 Scope:Link
+          inet6 addr: 2a03:1e80:a01:52c::1:0/64 Scope:Global
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:5363140228 errors:0 dropped:10024211 overruns:0 frame:0
+          TX packets:19096234359 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1314925249615 (1254010.4 Mb)  TX bytes:24886106126556 (23733240.2 Mb)
+
+bond0:0   Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          inet addr:160.46.157.100  Bcast:160.46.157.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+
+bond0:1   Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          inet addr:160.46.157.28  Bcast:160.46.157.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+
+bond0:2   Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          inet addr:160.46.157.30  Bcast:160.46.157.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+
+eth0      Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:5342152778 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:19095146568 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1313094495938 (1252264.4 Mb)  TX bytes:24885977767758 (23733117.8 Mb)
+
+eth1      Link encap:Ethernet  HWaddr E4:43:4B:23:25:A5
+          inet addr:10.100.37.14  Bcast:10.100.37.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e80:a04:544::1:9/64 Scope:Global
+          inet6 addr: fe80::e643:4bff:fe23:25a5/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:984724935 errors:0 dropped:1 overruns:0 frame:0
+          TX packets:26187609173 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:67905595851 (64759.8 Mb)  TX bytes:39374408340357 (37550361.9 Mb)
+
+eth2      Link encap:Ethernet  HWaddr E4:43:4B:23:25:A6
+          inet addr:160.48.156.50  Bcast:160.48.156.255  Mask:255.255.255.0
+          inet6 addr: fe80::e643:4bff:fe23:25a6/64 Scope:Link
+          inet6 addr: 2a03:1e80:a03:528::1:12/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:110874910 errors:83 dropped:1 overruns:0 frame:83
+          TX packets:37219130 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:7558674230 (7208.5 Mb)  TX bytes:3144806697 (2999.1 Mb)
+
+eth3      Link encap:Ethernet  HWaddr E4:43:4B:23:25:A4
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:20987450 errors:0 dropped:10024176 overruns:0 frame:0
+          TX packets:1087791 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1830753677 (1745.9 Mb)  TX bytes:128358798 (122.4 Mb)
+
+eth6      Link encap:Ethernet  HWaddr 4C:D9:8F:37:78:A7
+          inet addr:169.254.0.2  Bcast:169.254.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::4ed9:8fff:fe37:78a7/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2355291 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2653568 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:118631326 (113.1 Mb)  TX bytes:188349962 (179.6 Mb)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:103586122 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:103586122 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:7239807787 (6904.4 Mb)  TX bytes:7239807787 (6904.4 Mb)
+
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # vxprint -htq
+Disk group: dgoracle_lp01d65
+
+dg dgoracle_lp01d65 default  default  22000    1554997036.12.lp01d65
+
+dm 13_97714_506d hitachi_vsp0_506d auto 65536  471961632 -
+dm 19_97717_506d hitachi_vsp1_506d auto 65536  471961632 -
+
+v  lvoracle     -            ENABLED  ACTIVE   367001600 PREFER   lvoracle-97714 fsgen
+pl lvoracle-97714 lvoracle   ENABLED  ACTIVE   367001600 CONCAT   -        RW
+sd 13_97714_506d-01 lvoracle-97714 13_97714_506d 0 367001600 0    hitachi_vsp0_506d ENA
+pl lvoracle-97717 lvoracle   ENABLED  ACTIVE   367001600 CONCAT   -        RW
+sd 19_97717_506d-01 lvoracle-97717 19_97717_506d 0 367001600 0    hitachi_vsp1_506d ENA
+pl lvoracle_drl-97714 lvoracle ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 13_97714_506d-03 lvoracle_drl-97714 13_97714_506d 367003712 2112 LOG hitachi_vsp0_506d ENA
+pl lvoracle_drl-97717 lvoracle ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 19_97717_506d-03 lvoracle_drl-97717 19_97717_506d 367003712 2112 LOG hitachi_vsp1_506d ENA
+dc lvoracle_dco lvoracle     lvoracle_dcl
+v  lvoracle_dcl -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoracle_dcl-97714 lvoracle_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 13_97714_506d-02 lvoracle_dcl-97714 13_97714_506d 367001600 2112 0 hitachi_vsp0_506d ENA
+pl lvoracle_dcl-97717 lvoracle_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 19_97717_506d-02 lvoracle_dcl-97717 19_97717_506d 367001600 2112 0 hitachi_vsp1_506d ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   104857600 PREFER   lvoracleaudit-97714 fsgen
+pl lvoracleaudit-97714 lvoracleaudit ENABLED ACTIVE 104857600 CONCAT -     RW
+sd 13_97714_506d-04 lvoracleaudit-97714 13_97714_506d 367005824 104857600 0 hitachi_vsp0_506d ENA
+pl lvoracleaudit-97717 lvoracleaudit ENABLED ACTIVE 104857600 CONCAT -     RW
+sd 19_97717_506d-04 lvoracleaudit-97717 19_97717_506d 367005824 104857600 0 hitachi_vsp1_506d ENA
+pl lvoracleaudit_drl-97714 lvoracleaudit ENABLED ACTIVE LOGONLY CONCAT -   RW
+sd 13_97714_506d-06 lvoracleaudit_drl-97714 13_97714_506d 471865536 2112 LOG hitachi_vsp0_506d ENA
+pl lvoracleaudit_drl-97717 lvoracleaudit ENABLED ACTIVE LOGONLY CONCAT -   RW
+sd 19_97717_506d-06 lvoracleaudit_drl-97717 19_97717_506d 471865536 2112 LOG hitachi_vsp1_506d ENA
+dc lvoracleaudit_dco lvoracleaudit lvoracleaudit_dcl
+v  lvoracleaudit_dcl -       ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoracleaudit_dcl-97714 lvoracleaudit_dcl ENABLED ACTIVE 2112 CONCAT -  RW
+sd 13_97714_506d-05 lvoracleaudit_dcl-97714 13_97714_506d 471863424 2112 0 hitachi_vsp0_506d ENA
+pl lvoracleaudit_dcl-97717 lvoracleaudit_dcl ENABLED ACTIVE 2112 CONCAT -  RW
+sd 19_97717_506d-05 lvoracleaudit_dcl-97717 19_97717_506d 471863424 2112 0 hitachi_vsp1_506d ENA
+
+Disk group: dgdbauqaw1bkup
+
+dg dgdbauqaw1bkup default    default  19000    1204122892.114.lp01d03
+
+dm 13_97714_005a hitachi_vsp0_005a auto 65536  117940560 -
+dm 13_97714_008f hitachi_vsp0_008f auto 65536  117940560 -
+dm 13_97714_50e3 hitachi_vsp0_50e3 auto 65536  471961632 -
+dm 13_97714_50e4 hitachi_vsp0_50e4 auto 65536  235946912 -
+dm 13_97714_0090 hitachi_vsp0_0090 auto 65536  117940560 -
+dm 13_97714_5159 hitachi_vsp0_5159 auto 65536  235946912 -
+dm 19_97717_005a hitachi_vsp1_005a auto 65536  117940560 -
+dm 19_97717_008f hitachi_vsp1_008f auto 65536  117940560 -
+dm 19_97717_50e3 hitachi_vsp1_50e3 auto 65536  471961632 -
+dm 19_97717_50e4 hitachi_vsp1_50e4 auto 65536  235946912 -
+dm 19_97717_0090 hitachi_vsp1_0090 auto 65536  117940560 -
+dm 19_97717_5159 hitachi_vsp1_5159 auto 65536  235946912 -
+
+v  lvbkup       -            ENABLED  ACTIVE   1002041344 PREFER  lvbkup-97714 fsgen
+pl lvbkup-97714 lvbkup       ENABLED  ACTIVE   1002041344 CONCAT  -        RW
+sd 13_97714_005a-01 lvbkup-97714 13_97714_005a 0 117940560 0      hitachi_vsp0_005a ENA
+sd 13_97714_008f-01 lvbkup-97714 13_97714_008f 0 117940560 117940560 hitachi_vsp0_008f ENA
+sd 13_97714_0090-01 lvbkup-97714 13_97714_0090 0 58257632 235881120 hitachi_vsp0_0090 ENA
+sd 13_97714_0090-07 lvbkup-97714 13_97714_0090 117839424 101136 294138752 hitachi_vsp0_0090 ENA
+sd 13_97714_50e3-01 lvbkup-97714 13_97714_50e3 0 471961632 294239888 hitachi_vsp0_50e3 ENA
+sd 13_97714_5159-01 lvbkup-97714 13_97714_5159 0 235839824 766201520 hitachi_vsp0_5159 ENA
+pl lvbkup-97717 lvbkup       ENABLED  ACTIVE   1002041344 CONCAT  -        RW
+sd 19_97717_005a-01 lvbkup-97717 19_97717_005a 0 117940560 0      hitachi_vsp1_005a ENA
+sd 19_97717_008f-01 lvbkup-97717 19_97717_008f 0 117940560 117940560 hitachi_vsp1_008f ENA
+sd 19_97717_0090-02 lvbkup-97717 19_97717_0090 0 58257632 235881120 hitachi_vsp1_0090 ENA
+sd 19_97717_0090-07 lvbkup-97717 19_97717_0090 117839424 101136 294138752 hitachi_vsp1_0090 ENA
+sd 19_97717_50e3-01 lvbkup-97717 19_97717_50e3 0 471955824 294239888 hitachi_vsp1_50e3 ENA
+sd 19_97717_5159-01 lvbkup-97717 19_97717_5159 0 235845632 766195712 hitachi_vsp1_5159 ENA
+pl lvbkup_drl-97714 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0090-02 lvbkup_drl-97714 13_97714_0090 58257632 2112 LOG hitachi_vsp0_0090 ENA
+pl lvbkup_drl-97717 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0090-01 lvbkup_drl-97717 19_97717_0090 58257632 2112 LOG hitachi_vsp1_0090 ENA
+dc lvbkup_dco   lvbkup       lvbkup_dcl
+v  lvbkup_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvbkup_dcl-97714 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_50e3-02 lvbkup_dcl-97714 19_97717_50e3 471955824 2112 0 hitachi_vsp1_50e3 ENA
+pl lvbkup_dcl-97717 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_0090-03 lvbkup_dcl-97717 19_97717_0090 58259744 2112 0 hitachi_vsp1_0090 ENA
+
+v  lvdb         -            ENABLED  ACTIVE   295520256 PREFER   lvdb-97714 fsgen
+pl lvdb-97714   lvdb         ENABLED  ACTIVE   295520256 CONCAT   -        RW
+sd 13_97714_50e4-01 lvdb-97714 13_97714_50e4 0 235946912 0        hitachi_vsp0_50e4 ENA
+sd 13_97714_0090-04 lvdb-97714 13_97714_0090 58261856 59573344 235946912 hitachi_vsp0_0090 ENA
+pl lvdb-97717   lvdb         ENABLED  ACTIVE   295520256 CONCAT   -        RW
+sd 19_97717_50e4-01 lvdb-97717 19_97717_50e4 0 235946912 0        hitachi_vsp1_50e4 ENA
+sd 19_97717_0090-04 lvdb-97717 19_97717_0090 58261856 59573344 235946912 hitachi_vsp1_0090 ENA
+pl lvdb_drl-97714 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0090-06 lvdb_drl-97714 13_97714_0090 117837312 2112 LOG hitachi_vsp0_0090 ENA
+pl lvdb_drl-97717 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0090-06 lvdb_drl-97717 19_97717_0090 117837312 2112 LOG hitachi_vsp1_0090 ENA
+dc lvdb_dco     lvdb         lvdb_dcl
+v  lvdb_dcl     -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvdb_dcl-97714 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_50e3-03 lvdb_dcl-97714 19_97717_50e3 471957936 2112 0 hitachi_vsp1_50e3 ENA
+pl lvdb_dcl-97717 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_0090-05 lvdb_dcl-97717 19_97717_0090 117835200 2112 0 hitachi_vsp1_0090 ENA
+
+Disk group: dgdbauqaw1db
+
+dg dgdbauqaw1db default      default  14000    1204122876.104.lp01d03
+
+dm 13_97714_a007 hitachi_vsp0_a007 auto 65536  117819168 -
+dm 13_97714_a008 hitachi_vsp0_a008 auto 65536  117819168 -
+dm 13_97714_a009 hitachi_vsp0_a009 auto 65536  117819168 -
+dm 13_97714_002c hitachi_vsp0_002c auto 65536  117940560 -
+dm 13_97714_006d hitachi_vsp0_006d auto 65536  117940560 -
+dm 13_97714_006e hitachi_vsp0_006e auto 65536  117940560 -
+dm 13_97714_0030 hitachi_vsp0_0030 auto 65536  117940560 -
+dm 13_97714_50ce hitachi_vsp0_50ce auto 65536  471961632 -
+dm 19_97717_a007 hitachi_vsp1_a007 auto 65536  117819168 -
+dm 19_97717_a008 hitachi_vsp1_a008 auto 65536  117819168 -
+dm 19_97717_a009 hitachi_vsp1_a009 auto 65536  117819168 -
+dm 19_97717_002c hitachi_vsp1_002c auto 65536  117940560 -
+dm 19_97717_006d hitachi_vsp1_006d auto 65536  117940560 -
+dm 19_97717_006e hitachi_vsp1_006e auto 65536  117940560 -
+dm 19_97717_0030 hitachi_vsp1_0030 auto 65536  117940560 -
+dm 19_97717_50ce hitachi_vsp1_50ce auto 65536  471961632 -
+
+v  lvdb         -            ENABLED  ACTIVE   1297065184 PREFER  lvdb-97714 fsgen
+pl lvdb-97714   lvdb         ENABLED  ACTIVE   1297065184 CONCAT  -        RW
+sd 13_97714_a007-01 lvdb-97714 13_97714_a007 0 117819168 0        hitachi_vsp0_a007 ENA
+sd 13_97714_a008-01 lvdb-97714 13_97714_a008 0 117819168 117819168 hitachi_vsp0_a008 ENA
+sd 13_97714_a009-01 lvdb-97714 13_97714_a009 0 117814944 235638336 hitachi_vsp0_a009 ENA
+sd 13_97714_0030-01 lvdb-97714 13_97714_0030 0 117940560 353453280 hitachi_vsp0_0030 ENA
+sd 13_97714_002c-01 lvdb-97714 13_97714_002c 0 117940560 471393840 hitachi_vsp0_002c ENA
+sd 13_97714_006d-01 lvdb-97714 13_97714_006d 0 117940560 589334400 hitachi_vsp0_006d ENA
+sd 13_97714_006e-01 lvdb-97714 13_97714_006e 0 117940560 707274960 hitachi_vsp0_006e ENA
+sd 13_97714_50ce-01 lvdb-97714 13_97714_50ce 0 471849664 825215520 hitachi_vsp0_50ce ENA
+pl lvdb-97717   lvdb         ENABLED  ACTIVE   1297065184 CONCAT  -        RW
+sd 19_97717_a007-01 lvdb-97717 19_97717_a007 0 117819168 0        hitachi_vsp1_a007 ENA
+sd 19_97717_a008-01 lvdb-97717 19_97717_a008 0 117819168 117819168 hitachi_vsp1_a008 ENA
+sd 19_97717_a009-02 lvdb-97717 19_97717_a009 0 117814944 235638336 hitachi_vsp1_a009 ENA
+sd 19_97717_0030-01 lvdb-97717 19_97717_0030 0 117940560 353453280 hitachi_vsp1_0030 ENA
+sd 19_97717_002c-01 lvdb-97717 19_97717_002c 0 117940560 471393840 hitachi_vsp1_002c ENA
+sd 19_97717_006d-01 lvdb-97717 19_97717_006d 0 117940560 589334400 hitachi_vsp1_006d ENA
+sd 19_97717_006e-01 lvdb-97717 19_97717_006e 0 117940560 707274960 hitachi_vsp1_006e ENA
+sd 19_97717_50ce-01 lvdb-97717 19_97717_50ce 0 471849664 825215520 hitachi_vsp1_50ce ENA
+pl lvdb_drl-97714 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_a009-02 lvdb_drl-97714 13_97714_a009 117814944 2112 LOG hitachi_vsp0_a009 ENA
+pl lvdb_drl-97717 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_a009-01 lvdb_drl-97717 19_97717_a009 117814944 2112 LOG hitachi_vsp1_a009 ENA
+dc lvdb_dco     lvdb         lvdb_dcl
+v  lvdb_dcl     -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvdb_dcl-97714 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_50ce-02 lvdb_dcl-97714 19_97717_50ce 471849664 2112 0 hitachi_vsp1_50ce ENA
+pl lvdb_dcl-97717 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_a009-03 lvdb_dcl-97717 19_97717_a009 117817056 2112 0 hitachi_vsp1_a009 ENA
+
+Disk group: dgdbauqaw1redo1
+
+dg dgdbauqaw1redo1 default   default  17000    1204122904.120.lp01d03
+
+dm 13_97714_0089 hitachi_vsp0_0089 auto 65536  29435792 -
+dm 19_97717_0089 hitachi_vsp1_0089 auto 65536  29435792 -
+
+v  lvredo1      -            ENABLED  ACTIVE   7294592  PREFER    lvredo1-97714 fsgen
+pl lvredo1-97714 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_0089-01 lvredo1-97714 13_97714_0089 0 7294592 0       hitachi_vsp0_0089 ENA
+pl lvredo1-97717 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_0089-01 lvredo1-97717 19_97717_0089 0 7294592 0       hitachi_vsp1_0089 ENA
+pl lvredo1_drl-97714 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0089-02 lvredo1_drl-97714 13_97714_0089 7294592 2112 LOG hitachi_vsp0_0089 ENA
+pl lvredo1_drl-97717 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0089-02 lvredo1_drl-97717 19_97717_0089 7294592 2112 LOG hitachi_vsp1_0089 ENA
+dc lvredo1_dco  lvredo1      lvredo1_dcl
+v  lvredo1_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo1_dcl-97714 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_0089-03 lvredo1_dcl-97714 13_97714_0089 7296704 2112 0 hitachi_vsp0_0089 ENA
+pl lvredo1_dcl-97717 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_0089-03 lvredo1_dcl-97717 19_97717_0089 7296704 2112 0 hitachi_vsp1_0089 ENA
+
+Disk group: dgdbauqaw1redo2
+
+dg dgdbauqaw1redo2 default   default  5000     1204122917.126.lp01d03
+
+dm 13_97714_008a hitachi_vsp0_008a auto 65536  29435792 -
+dm 19_97717_008a hitachi_vsp1_008a auto 65536  29435792 -
+
+v  lvredo2      -            ENABLED  ACTIVE   7294592  PREFER    lvredo2-97714 fsgen
+pl lvredo2-97714 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_008a-01 lvredo2-97714 13_97714_008a 0 7294592 0       hitachi_vsp0_008a ENA
+pl lvredo2-97717 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_008a-02 lvredo2-97717 19_97717_008a 0 7294592 0       hitachi_vsp1_008a ENA
+pl lvredo2_drl-97714 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_008a-02 lvredo2_drl-97714 13_97714_008a 7294592 2112 LOG hitachi_vsp0_008a ENA
+pl lvredo2_drl-97717 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_008a-01 lvredo2_drl-97717 19_97717_008a 7294592 2112 LOG hitachi_vsp1_008a ENA
+dc lvredo2_dco  lvredo2      lvredo2_dcl
+v  lvredo2_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo2_dcl-97714 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_008a-03 lvredo2_dcl-97714 13_97714_008a 7296704 2112 0 hitachi_vsp0_008a ENA
+pl lvredo2_dcl-97717 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_008a-03 lvredo2_dcl-97717 19_97717_008a 7296704 2112 0 hitachi_vsp1_008a ENA
+
+Disk group: dgdbe00w1apps
+
+dg dgdbe00w1apps default     default  25000    1416216486.36.lp01d51
+
+dm 13_97714_0167 hitachi_vsp0_0167 auto 65536  29435792 -
+dm 19_97717_0167 hitachi_vsp1_0167 auto 65536  29435792 -
+
+v  lvapps       -            ENABLED  ACTIVE   29413376 PREFER    lvapps-97714 fsgen
+pl lvapps-97714 lvapps       ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 13_97714_0167-01 lvapps-97714 13_97714_0167 0 29413376 0       hitachi_vsp0_0167 ENA
+pl lvapps-97717 lvapps       ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 19_97717_0167-01 lvapps-97717 19_97717_0167 0 29413376 0       hitachi_vsp1_0167 ENA
+pl lvapps_drl-97714 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0167-02 lvapps_drl-97714 13_97714_0167 29415488 2112 LOG hitachi_vsp0_0167 ENA
+pl lvapps_drl-97717 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0167-02 lvapps_drl-97717 19_97717_0167 29415488 2112 LOG hitachi_vsp1_0167 ENA
+dc lvapps_dco   lvapps       lvapps_dcl
+v  lvapps_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvapps_dcl-97714 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_97714_0167-03 lvapps_dcl-97714 13_97714_0167 29413376 2112 0 hitachi_vsp0_0167 ENA
+pl lvapps_dcl-97717 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_0167-03 lvapps_dcl-97717 19_97717_0167 29413376 2112 0 hitachi_vsp1_0167 ENA
+
+Disk group: dgdbe00w1bkup
+
+dg dgdbe00w1bkup default     default  15000    1416216492.50.lp01d51
+
+dm 13_97714_0162 hitachi_vsp0_0162 auto 65536  117940560 -
+dm 13_97714_0163 hitachi_vsp0_0163 auto 65536  117940560 -
+dm 13_97714_0164 hitachi_vsp0_0164 auto 65536  117940560 -
+dm 19_97717_0162 hitachi_vsp1_0162 auto 65536  117940560 -
+dm 19_97717_0163 hitachi_vsp1_0163 auto 65536  117940560 -
+dm 19_97717_0164 hitachi_vsp1_0164 auto 65536  117940560 -
+
+v  lvbkup       -            ENABLED  ACTIVE   353800192 PREFER   lvbkup-97714 fsgen
+pl lvbkup-97714 lvbkup       ENABLED  ACTIVE   353800192 CONCAT   -        RW
+sd 13_97714_0162-01 lvbkup-97714 13_97714_0162 0 117940560 0      hitachi_vsp0_0162 ENA
+sd 13_97714_0163-01 lvbkup-97714 13_97714_0163 0 117940560 117940560 hitachi_vsp0_0163 ENA
+sd 13_97714_0164-01 lvbkup-97714 13_97714_0164 0 117919072 235881120 hitachi_vsp0_0164 ENA
+pl lvbkup-97717 lvbkup       ENABLED  ACTIVE   353800192 CONCAT   -        RW
+sd 19_97717_0162-01 lvbkup-97717 19_97717_0162 0 117940560 0      hitachi_vsp1_0162 ENA
+sd 19_97717_0163-01 lvbkup-97717 19_97717_0163 0 117940560 117940560 hitachi_vsp1_0163 ENA
+sd 19_97717_0164-02 lvbkup-97717 19_97717_0164 0 117919072 235881120 hitachi_vsp1_0164 ENA
+pl lvbkup_drl-97714 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0164-02 lvbkup_drl-97714 13_97714_0164 117921184 2112 LOG hitachi_vsp0_0164 ENA
+pl lvbkup_drl-97717 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0164-01 lvbkup_drl-97717 19_97717_0164 117921184 2112 LOG hitachi_vsp1_0164 ENA
+dc lvbkup_dco   lvbkup       lvbkup_dcl
+v  lvbkup_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvbkup_dcl-97714 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_97714_0164-03 lvbkup_dcl-97714 13_97714_0164 117919072 2112 0 hitachi_vsp0_0164 ENA
+pl lvbkup_dcl-97717 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_0164-03 lvbkup_dcl-97717 19_97717_0164 117919072 2112 0 hitachi_vsp1_0164 ENA
+
+Disk group: dgdbe00w1db
+
+dg dgdbe00w1db  default      default  12000    1416216504.80.lp01d51
+
+dm 13_97714_015b hitachi_vsp0_015b auto 65536  471961632 -
+dm 13_97714_015c hitachi_vsp0_015c auto 65536  471961632 -
+dm 13_97714_015d hitachi_vsp0_015d auto 65536  471961632 -
+dm 13_97714_015e hitachi_vsp0_015e auto 65536  471961632 -
+dm 13_97714_015f hitachi_vsp0_015f auto 65536  471961632 -
+dm 13_97714_0160 hitachi_vsp0_0160 auto 65536  471961632 -
+dm 13_97714_0161 hitachi_vsp0_0161 auto 65536  471961632 -
+dm 19_97717_015b hitachi_vsp1_015b auto 65536  471961632 -
+dm 19_97717_015c hitachi_vsp1_015c auto 65536  471961632 -
+dm 19_97717_015d hitachi_vsp1_015d auto 65536  471961632 -
+dm 19_97717_015e hitachi_vsp1_015e auto 65536  471961632 -
+dm 19_97717_015f hitachi_vsp1_015f auto 65536  471961632 -
+dm 19_97717_0160 hitachi_vsp1_0160 auto 65536  471961632 -
+dm 19_97717_0161 hitachi_vsp1_0161 auto 65536  471961632 -
+
+v  lvdb         -            ENABLED  ACTIVE   3303710720 PREFER  lvdb-97714 fsgen
+pl lvdb-97714   lvdb         ENABLED  ACTIVE   3303710720 CONCAT  -        RW
+sd 13_97714_015b-01 lvdb-97714 13_97714_015b 0 471961632 0        hitachi_vsp0_015b ENA
+sd 13_97714_015c-01 lvdb-97714 13_97714_015c 0 471961632 471961632 hitachi_vsp0_015c ENA
+sd 13_97714_015d-01 lvdb-97714 13_97714_015d 0 471961632 943923264 hitachi_vsp0_015d ENA
+sd 13_97714_015e-01 lvdb-97714 13_97714_015e 0 471961632 1415884896 hitachi_vsp0_015e ENA
+sd 13_97714_015f-01 lvdb-97714 13_97714_015f 0 471961632 1887846528 hitachi_vsp0_015f ENA
+sd 13_97714_0160-01 lvdb-97714 13_97714_0160 0 471961632 2359808160 hitachi_vsp0_0160 ENA
+sd 13_97714_0161-01 lvdb-97714 13_97714_0161 0 471940928 2831769792 hitachi_vsp0_0161 ENA
+pl lvdb-97717   lvdb         ENABLED  ACTIVE   3303710720 CONCAT  -        RW
+sd 19_97717_015b-01 lvdb-97717 19_97717_015b 0 471961632 0        hitachi_vsp1_015b ENA
+sd 19_97717_015c-01 lvdb-97717 19_97717_015c 0 471961632 471961632 hitachi_vsp1_015c ENA
+sd 19_97717_015d-01 lvdb-97717 19_97717_015d 0 471961632 943923264 hitachi_vsp1_015d ENA
+sd 19_97717_015e-01 lvdb-97717 19_97717_015e 0 471961632 1415884896 hitachi_vsp1_015e ENA
+sd 19_97717_015f-01 lvdb-97717 19_97717_015f 0 471961632 1887846528 hitachi_vsp1_015f ENA
+sd 19_97717_0160-01 lvdb-97717 19_97717_0160 0 471961632 2359808160 hitachi_vsp1_0160 ENA
+sd 19_97717_0161-02 lvdb-97717 19_97717_0161 0 471940928 2831769792 hitachi_vsp1_0161 ENA
+pl lvdb_drl-97714 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0161-02 lvdb_drl-97714 13_97714_0161 471943040 2112 LOG hitachi_vsp0_0161 ENA
+pl lvdb_drl-97717 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0161-01 lvdb_drl-97717 19_97717_0161 471943040 2112 LOG hitachi_vsp1_0161 ENA
+dc lvdb_dco     lvdb         lvdb_dcl
+v  lvdb_dcl     -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvdb_dcl-97714 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 13_97714_0161-03 lvdb_dcl-97714 13_97714_0161 471940928 2112 0 hitachi_vsp0_0161 ENA
+pl lvdb_dcl-97717 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_0161-03 lvdb_dcl-97717 19_97717_0161 471940928 2112 0 hitachi_vsp1_0161 ENA
+
+Disk group: dgdbe00w1redo1
+
+dg dgdbe00w1redo1 default    default  9000     1416216509.86.lp01d51
+
+dm 13_97714_0165 hitachi_vsp0_0165 auto 65536  29435792 -
+dm 19_97717_0165 hitachi_vsp1_0165 auto 65536  29435792 -
+
+v  lvredo1      -            ENABLED  ACTIVE   29413376 PREFER    lvredo1-97714 fsgen
+pl lvredo1-97714 lvredo1     ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 13_97714_0165-01 lvredo1-97714 13_97714_0165 0 29413376 0      hitachi_vsp0_0165 ENA
+pl lvredo1-97717 lvredo1     ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 19_97717_0165-01 lvredo1-97717 19_97717_0165 0 29413376 0      hitachi_vsp1_0165 ENA
+pl lvredo1_drl-97714 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0165-02 lvredo1_drl-97714 13_97714_0165 29415488 2112 LOG hitachi_vsp0_0165 ENA
+pl lvredo1_drl-97717 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0165-02 lvredo1_drl-97717 19_97717_0165 29415488 2112 LOG hitachi_vsp1_0165 ENA
+dc lvredo1_dco  lvredo1      lvredo1_dcl
+v  lvredo1_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo1_dcl-97714 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_0165-03 lvredo1_dcl-97714 13_97714_0165 29413376 2112 0 hitachi_vsp0_0165 ENA
+pl lvredo1_dcl-97717 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_0165-03 lvredo1_dcl-97717 19_97717_0165 29413376 2112 0 hitachi_vsp1_0165 ENA
+
+Disk group: dgdbe00w1redo2
+
+dg dgdbe00w1redo2 default    default  3000     1416216513.92.lp01d51
+
+dm 13_97714_0166 hitachi_vsp0_0166 auto 65536  29435792 -
+dm 19_97717_0166 hitachi_vsp1_0166 auto 65536  29435792 -
+
+v  lvredo2      -            ENABLED  ACTIVE   29413376 PREFER    lvredo2-97714 fsgen
+pl lvredo2-97714 lvredo2     ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 13_97714_0166-01 lvredo2-97714 13_97714_0166 0 29413376 0      hitachi_vsp0_0166 ENA
+pl lvredo2-97717 lvredo2     ENABLED  ACTIVE   29413376 CONCAT    -        RW
+sd 19_97717_0166-02 lvredo2-97717 19_97717_0166 0 29413376 0      hitachi_vsp1_0166 ENA
+pl lvredo2_drl-97714 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0166-02 lvredo2_drl-97714 13_97714_0166 29415488 2112 LOG hitachi_vsp0_0166 ENA
+pl lvredo2_drl-97717 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0166-01 lvredo2_drl-97717 19_97717_0166 29415488 2112 LOG hitachi_vsp1_0166 ENA
+dc lvredo2_dco  lvredo2      lvredo2_dcl
+v  lvredo2_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo2_dcl-97714 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_0166-03 lvredo2_dcl-97714 13_97714_0166 29413376 2112 0 hitachi_vsp0_0166 ENA
+pl lvredo2_dcl-97717 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_0166-03 lvredo2_dcl-97717 19_97717_0166 29413376 2112 0 hitachi_vsp1_0166 ENA
+
+Disk group: dgdbhiqaw1apps
+
+dg dgdbhiqaw1apps default    default  6000     1204896550.306.lp01d03
+
+dm 13_97714_008b hitachi_vsp0_008b auto 65536  29435792 -
+dm 19_97717_008b hitachi_vsp1_008b auto 65536  29435792 -
+
+v  lvapps       -            ENABLED  ACTIVE   7294592  PREFER    lvapps-97714 fsgen
+pl lvapps-97714 lvapps       ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_008b-01 lvapps-97714 13_97714_008b 0 7294592 0        hitachi_vsp0_008b ENA
+pl lvapps-97717 lvapps       ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_008b-01 lvapps-97717 19_97717_008b 0 7294592 0        hitachi_vsp1_008b ENA
+pl lvapps_drl-97714 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_008b-02 lvapps_drl-97714 13_97714_008b 7294592 2112 LOG hitachi_vsp0_008b ENA
+pl lvapps_drl-97717 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_008b-02 lvapps_drl-97717 19_97717_008b 7294592 2112 LOG hitachi_vsp1_008b ENA
+dc lvapps_dco   lvapps       lvapps_dcl
+v  lvapps_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvapps_dcl-97714 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_97714_008b-03 lvapps_dcl-97714 13_97714_008b 7296704 2112 0 hitachi_vsp0_008b ENA
+pl lvapps_dcl-97717 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_008b-03 lvapps_dcl-97717 19_97717_008b 7296704 2112 0 hitachi_vsp1_008b ENA
+
+Disk group: dgdbhiqaw1bkup
+
+dg dgdbhiqaw1bkup default    default  13000    1204896499.288.lp01d03
+
+dm 13_97714_a01a hitachi_vsp0_a01a auto 65536  117819168 -
+dm 13_97714_a01b hitachi_vsp0_a01b auto 65536  117819168 -
+dm 13_97714_a01c hitachi_vsp0_a01c auto 65536  117819168 -
+dm 13_97714_512d hitachi_vsp0_512d auto 65536  1061995824 -
+dm 19_97717_a01a hitachi_vsp1_a01a auto 65536  117819168 -
+dm 19_97717_a01b hitachi_vsp1_a01b auto 65536  117819168 -
+dm 19_97717_a01c hitachi_vsp1_a01c auto 65536  117819168 -
+dm 19_97717_512d hitachi_vsp1_512d auto 65536  1061995824 -
+
+v  lvbkup       -            ENABLED  ACTIVE   1415316704 PREFER  lvbkup-97714 fsgen
+pl lvbkup-97714 lvbkup       ENABLED  ACTIVE   1415316704 CONCAT  -        RW
+sd 13_97714_a01a-01 lvbkup-97714 13_97714_a01a 0 117819168 0      hitachi_vsp0_a01a ENA
+sd 13_97714_a01b-01 lvbkup-97714 13_97714_a01b 0 117819168 117819168 hitachi_vsp0_a01b ENA
+sd 13_97714_a01c-01 lvbkup-97714 13_97714_a01c 0 117814944 235638336 hitachi_vsp0_a01c ENA
+sd 13_97714_512d-01 lvbkup-97714 13_97714_512d 0 1061863424 353453280 hitachi_vsp0_512d ENA
+pl lvbkup-97717 lvbkup       ENABLED  ACTIVE   1415316704 CONCAT  -        RW
+sd 19_97717_a01a-01 lvbkup-97717 19_97717_a01a 0 117819168 0      hitachi_vsp1_a01a ENA
+sd 19_97717_a01b-01 lvbkup-97717 19_97717_a01b 0 117819168 117819168 hitachi_vsp1_a01b ENA
+sd 19_97717_a01c-02 lvbkup-97717 19_97717_a01c 0 117814944 235638336 hitachi_vsp1_a01c ENA
+sd 19_97717_512d-01 lvbkup-97717 19_97717_512d 0 1061863424 353453280 hitachi_vsp1_512d ENA
+pl lvbkup_drl-97714 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_a01c-02 lvbkup_drl-97714 13_97714_a01c 117814944 2112 LOG hitachi_vsp0_a01c ENA
+pl lvbkup_drl-97717 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_a01c-01 lvbkup_drl-97717 19_97717_a01c 117814944 2112 LOG hitachi_vsp1_a01c ENA
+dc lvbkup_dco   lvbkup       lvbkup_dcl
+v  lvbkup_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvbkup_dcl-97714 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_512d-02 lvbkup_dcl-97714 19_97717_512d 1061863424 2112 0 hitachi_vsp1_512d ENA
+pl lvbkup_dcl-97717 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_a01c-03 lvbkup_dcl-97717 19_97717_a01c 117817056 2112 0 hitachi_vsp1_a01c ENA
+
+Disk group: dgdbhiqaw1db
+
+dg dgdbhiqaw1db default      default  11000    1204896465.254.lp01d03
+
+dm 13_97714_a014 hitachi_vsp0_a014 auto 65536  471859648 -
+dm 13_97714_a015 hitachi_vsp0_a015 auto 65536  471859648 -
+dm 13_97714_a016 hitachi_vsp0_a016 auto 65536  471859648 -
+dm 13_97714_a017 hitachi_vsp0_a017 auto 65536  471859648 -
+dm 13_97714_a027 hitachi_vsp0_a027 auto 65536  471859648 -
+dm 13_97714_0028 hitachi_vsp0_0028 auto 65536  471961632 -
+dm 13_97714_0029 hitachi_vsp0_0029 auto 65536  471961632 -
+dm 13_97714_0042 hitachi_vsp0_0042 auto 65536  471961632 -
+dm 13_97714_0043 hitachi_vsp0_0043 auto 65536  471961632 -
+dm 13_97714_50cd hitachi_vsp0_50cd auto 65536  471961632 -
+dm 13_97714_50c2 hitachi_vsp0_50c2 auto 65536  471961632 -
+dm 13_97714_50c3 hitachi_vsp0_50c3 auto 65536  235946912 -
+dm 13_97714_50f1 hitachi_vsp0_50f1 auto 65536  1061995824 -
+dm 13_97714_5154 hitachi_vsp0_5154 auto 65536  4294901456 -
+dm 19_97717_a014 hitachi_vsp1_a014 auto 65536  471859648 -
+dm 19_97717_a015 hitachi_vsp1_a015 auto 65536  471859648 -
+dm 19_97717_a016 hitachi_vsp1_a016 auto 65536  471859648 -
+dm 19_97717_a017 hitachi_vsp1_a017 auto 65536  471859648 -
+dm 19_97717_a027 hitachi_vsp1_a027 auto 65536  471859648 -
+dm 19_97717_0028 hitachi_vsp1_0028 auto 65536  471961632 -
+dm 19_97717_0029 hitachi_vsp1_0029 auto 65536  471961632 -
+dm 19_97717_0042 hitachi_vsp1_0042 auto 65536  471961632 -
+dm 19_97717_0043 hitachi_vsp1_0043 auto 65536  471961632 -
+dm 19_97717_50cd hitachi_vsp1_50cd auto 65536  471961632 -
+dm 19_97717_50c2 hitachi_vsp1_50c2 auto 65536  471961632 -
+dm 19_97717_50c3 hitachi_vsp1_50c3 auto 65536  235946912 -
+dm 19_97717_50f1 hitachi_vsp1_50f1 auto 65536  1061995824 -
+dm 19_97717_5154 hitachi_vsp1_5154 auto 65536  4294901456 -
+
+v  lvdb         -            ENABLED  ACTIVE   10783664128 PREFER lvdb-97714 fsgen
+pl lvdb-97714   lvdb         ENABLED  ACTIVE   10783664128 CONCAT -        RW
+sd 13_97714_a014-01 lvdb-97714 13_97714_a014 0 471859648 0        hitachi_vsp0_a014 ENA
+sd 13_97714_a015-01 lvdb-97714 13_97714_a015 0 471859648 471859648 hitachi_vsp0_a015 ENA
+sd 13_97714_a016-01 lvdb-97714 13_97714_a016 0 471859648 943719296 hitachi_vsp0_a016 ENA
+sd 13_97714_a017-01 lvdb-97714 13_97714_a017 0 471855424 1415578944 hitachi_vsp0_a017 ENA
+sd 13_97714_a027-01 lvdb-97714 13_97714_a027 0 471859648 1887434368 hitachi_vsp0_a027 ENA
+sd 13_97714_0028-01 lvdb-97714 13_97714_0028 0 471961632 2359294016 hitachi_vsp0_0028 ENA
+sd 13_97714_0029-01 lvdb-97714 13_97714_0029 0 471961632 2831255648 hitachi_vsp0_0029 ENA
+sd 13_97714_0042-01 lvdb-97714 13_97714_0042 0 471961632 3303217280 hitachi_vsp0_0042 ENA
+sd 13_97714_0043-01 lvdb-97714 13_97714_0043 0 471961632 3775178912 hitachi_vsp0_0043 ENA
+sd 13_97714_50c2-01 lvdb-97714 13_97714_50c2 0 471961632 4247140544 hitachi_vsp0_50c2 ENA
+sd 13_97714_50c3-01 lvdb-97714 13_97714_50c3 0 235946912 4719102176 hitachi_vsp0_50c3 ENA
+sd 13_97714_50cd-01 lvdb-97714 13_97714_50cd 0 471961632 4955049088 hitachi_vsp0_50cd ENA
+sd 13_97714_50f1-01 lvdb-97714 13_97714_50f1 0 1061991264 5427010720 hitachi_vsp0_50f1 ENA
+sd 13_97714_5154-01 lvdb-97714 13_97714_5154 0 4294662144 6489001984 hitachi_vsp0_5154 ENA
+pl lvdb-97717   lvdb         ENABLED  ACTIVE   10783664128 CONCAT -        RW
+sd 19_97717_a014-01 lvdb-97717 19_97717_a014 0 471859648 0        hitachi_vsp1_a014 ENA
+sd 19_97717_a015-01 lvdb-97717 19_97717_a015 0 471859648 471859648 hitachi_vsp1_a015 ENA
+sd 19_97717_a016-01 lvdb-97717 19_97717_a016 0 471859648 943719296 hitachi_vsp1_a016 ENA
+sd 19_97717_a017-02 lvdb-97717 19_97717_a017 0 471855424 1415578944 hitachi_vsp1_a017 ENA
+sd 19_97717_a027-01 lvdb-97717 19_97717_a027 0 471859648 1887434368 hitachi_vsp1_a027 ENA
+sd 19_97717_0028-01 lvdb-97717 19_97717_0028 0 471961632 2359294016 hitachi_vsp1_0028 ENA
+sd 19_97717_0029-01 lvdb-97717 19_97717_0029 0 471961632 2831255648 hitachi_vsp1_0029 ENA
+sd 19_97717_0042-01 lvdb-97717 19_97717_0042 0 471961632 3303217280 hitachi_vsp1_0042 ENA
+sd 19_97717_0043-01 lvdb-97717 19_97717_0043 0 471961632 3775178912 hitachi_vsp1_0043 ENA
+sd 19_97717_50c2-01 lvdb-97717 19_97717_50c2 0 471961632 4247140544 hitachi_vsp1_50c2 ENA
+sd 19_97717_50c3-01 lvdb-97717 19_97717_50c3 0 235946912 4719102176 hitachi_vsp1_50c3 ENA
+sd 19_97717_50cd-01 lvdb-97717 19_97717_50cd 0 471961632 4955049088 hitachi_vsp1_50cd ENA
+sd 19_97717_50f1-01 lvdb-97717 19_97717_50f1 0 1061991264 5427010720 hitachi_vsp1_50f1 ENA
+sd 19_97717_5154-01 lvdb-97717 19_97717_5154 0 4294662144 6489001984 hitachi_vsp1_5154 ENA
+pl lvdb_drl-97714 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_50f1-02 lvdb_drl-97714 13_97714_50f1 1061991264 2112 LOG hitachi_vsp0_50f1 ENA
+pl lvdb_drl-97717 lvdb       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_50f1-02 lvdb_drl-97717 19_97717_50f1 1061991264 2112 LOG hitachi_vsp1_50f1 ENA
+dc lvdb_dco     lvdb         lvdb_dcl
+v  lvdb_dcl     -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvdb_dcl-97717 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_a017-03 lvdb_dcl-97717 19_97717_a017 471857536 2112 0 hitachi_vsp1_a017 ENA
+pl lvdb_dcl-97714 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_50f1-03 lvdb_dcl-97714 19_97717_50f1 1061993376 2112 0 hitachi_vsp1_50f1 ENA
+
+Disk group: dgdbhiqaw1redo1
+
+dg dgdbhiqaw1redo1 default   default  21000    1204896518.294.lp01d03
+
+dm 13_97714_008c hitachi_vsp0_008c auto 65536  29435792 -
+dm 19_97717_008c hitachi_vsp1_008c auto 65536  29435792 -
+
+v  lvredo1      -            ENABLED  ACTIVE   7294592  PREFER    lvredo1-97714 fsgen
+pl lvredo1-97714 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_008c-01 lvredo1-97714 13_97714_008c 0 7294592 0       hitachi_vsp0_008c ENA
+pl lvredo1-97717 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_008c-01 lvredo1-97717 19_97717_008c 0 7294592 0       hitachi_vsp1_008c ENA
+pl lvredo1_drl-97714 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_008c-02 lvredo1_drl-97714 13_97714_008c 7294592 2112 LOG hitachi_vsp0_008c ENA
+pl lvredo1_drl-97717 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_008c-02 lvredo1_drl-97717 19_97717_008c 7294592 2112 LOG hitachi_vsp1_008c ENA
+dc lvredo1_dco  lvredo1      lvredo1_dcl
+v  lvredo1_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo1_dcl-97714 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_008c-03 lvredo1_dcl-97714 13_97714_008c 7296704 2112 0 hitachi_vsp0_008c ENA
+pl lvredo1_dcl-97717 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_008c-03 lvredo1_dcl-97717 19_97717_008c 7296704 2112 0 hitachi_vsp1_008c ENA
+
+Disk group: dgdbhiqaw1redo2
+
+dg dgdbhiqaw1redo2 default   default  26000    1204896537.300.lp01d03
+
+dm 13_97714_008d hitachi_vsp0_008d auto 65536  29435792 -
+dm 19_97717_008d hitachi_vsp1_008d auto 65536  29435792 -
+
+v  lvredo2      -            ENABLED  ACTIVE   7294592  PREFER    lvredo2-97714 fsgen
+pl lvredo2-97714 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_008d-01 lvredo2-97714 13_97714_008d 0 7294592 0       hitachi_vsp0_008d ENA
+pl lvredo2-97717 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_008d-02 lvredo2-97717 19_97717_008d 0 7294592 0       hitachi_vsp1_008d ENA
+pl lvredo2_drl-97714 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_008d-02 lvredo2_drl-97714 13_97714_008d 7294592 2112 LOG hitachi_vsp0_008d ENA
+pl lvredo2_drl-97717 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_008d-01 lvredo2_drl-97717 19_97717_008d 7294592 2112 LOG hitachi_vsp1_008d ENA
+dc lvredo2_dco  lvredo2      lvredo2_dcl
+v  lvredo2_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo2_dcl-97714 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_008d-03 lvredo2_dcl-97714 13_97714_008d 7296704 2112 0 hitachi_vsp0_008d ENA
+pl lvredo2_dcl-97717 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_008d-03 lvredo2_dcl-97717 19_97717_008d 7296704 2112 0 hitachi_vsp1_008d ENA
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # vxdisk -o alldgs list
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vsp0_a000 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a01a auto:cdsdisk    13_97714_a01a  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp0_a01b auto:cdsdisk    13_97714_a01b  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp0_a01c auto:cdsdisk    13_97714_a01c  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp0_a01f auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a02a auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a02b auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a02c auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a02d auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a007 auto:cdsdisk    13_97714_a007  dgdbauqaw1db online thinrclm
+hitachi_vsp0_a008 auto:cdsdisk    13_97714_a008  dgdbauqaw1db online thinrclm
+hitachi_vsp0_a009 auto:cdsdisk    13_97714_a009  dgdbauqaw1db online thinrclm
+hitachi_vsp0_a014 auto:cdsdisk    13_97714_a014  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_a015 auto:cdsdisk    13_97714_a015  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_a016 auto:cdsdisk    13_97714_a016  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_a017 auto:cdsdisk    13_97714_a017  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_a020 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a021 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a022 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a023 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a024 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a027 auto:cdsdisk    13_97714_a027  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_a032 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a033 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a034 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a035 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_a036 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_a037 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp0_002a auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_002b auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp0_002c auto:cdsdisk    13_97714_002c  dgdbauqaw1db online thinrclm
+hitachi_vsp0_005a auto:cdsdisk    13_97714_005a  dgdbauqaw1bkup online thinrclm
+hitachi_vsp0_006d auto:cdsdisk    13_97714_006d  dgdbauqaw1db online
+hitachi_vsp0_006e auto:cdsdisk    13_97714_006e  dgdbauqaw1db online
+hitachi_vsp0_008a auto:cdsdisk    13_97714_008a  dgdbauqaw1redo2 online thinrclm
+hitachi_vsp0_008b auto:cdsdisk    13_97714_008b  dgdbhiqaw1apps online thinrclm
+hitachi_vsp0_008c auto:cdsdisk    13_97714_008c  dgdbhiqaw1redo1 online thinrclm
+hitachi_vsp0_008d auto:cdsdisk    13_97714_008d  dgdbhiqaw1redo2 online thinrclm
+hitachi_vsp0_008e auto:cdsdisk    -            (dgdbkiqaw1apps) online thinrclm
+hitachi_vsp0_008f auto:cdsdisk    13_97714_008f  dgdbauqaw1bkup online thinrclm
+hitachi_vsp0_015b auto:cdsdisk    13_97714_015b  dgdbe00w1db  online
+hitachi_vsp0_015c auto:cdsdisk    13_97714_015c  dgdbe00w1db  online
+hitachi_vsp0_015d auto:cdsdisk    13_97714_015d  dgdbe00w1db  online
+hitachi_vsp0_015e auto:cdsdisk    13_97714_015e  dgdbe00w1db  online
+hitachi_vsp0_015f auto:cdsdisk    13_97714_015f  dgdbe00w1db  online
+hitachi_vsp0_0028 auto:cdsdisk    13_97714_0028  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_0029 auto:cdsdisk    13_97714_0029  dgdbhiqaw1db online thinrclm
+hitachi_vsp0_0030 auto:cdsdisk    13_97714_0030  dgdbauqaw1db online thinrclm
+hitachi_vsp0_0042 auto:cdsdisk    13_97714_0042  dgdbhiqaw1db online
+hitachi_vsp0_0043 auto:cdsdisk    13_97714_0043  dgdbhiqaw1db online
+hitachi_vsp0_50cd auto:cdsdisk    13_97714_50cd  dgdbhiqaw1db online
+hitachi_vsp0_50ce auto:cdsdisk    13_97714_50ce  dgdbauqaw1db online
+hitachi_vsp0_50c1 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp0_50c2 auto:cdsdisk    13_97714_50c2  dgdbhiqaw1db online
+hitachi_vsp0_50c3 auto:cdsdisk    13_97714_50c3  dgdbhiqaw1db online
+hitachi_vsp0_50c4 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp0_50e3 auto:cdsdisk    13_97714_50e3  dgdbauqaw1bkup online
+hitachi_vsp0_50e4 auto:cdsdisk    13_97714_50e4  dgdbauqaw1bkup online
+hitachi_vsp0_50f1 auto:cdsdisk    13_97714_50f1  dgdbhiqaw1db online
+hitachi_vsp0_0056 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp0_0057 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp0_0089 auto:cdsdisk    13_97714_0089  dgdbauqaw1redo1 online thinrclm
+hitachi_vsp0_0090 auto:cdsdisk    13_97714_0090  dgdbauqaw1bkup online thinrclm
+hitachi_vsp0_0091 auto:cdsdisk    -            (dgdbkiqaw1redo1) online thinrclm
+hitachi_vsp0_0092 auto:cdsdisk    -            (dgdbkiqaw1redo2) online thinrclm
+hitachi_vsp0_0160 auto:cdsdisk    13_97714_0160  dgdbe00w1db  online
+hitachi_vsp0_0161 auto:cdsdisk    13_97714_0161  dgdbe00w1db  online
+hitachi_vsp0_0162 auto:cdsdisk    13_97714_0162  dgdbe00w1bkup online
+hitachi_vsp0_0163 auto:cdsdisk    13_97714_0163  dgdbe00w1bkup online
+hitachi_vsp0_0164 auto:cdsdisk    13_97714_0164  dgdbe00w1bkup online
+hitachi_vsp0_0165 auto:cdsdisk    13_97714_0165  dgdbe00w1redo1 online
+hitachi_vsp0_0166 auto:cdsdisk    13_97714_0166  dgdbe00w1redo2 online
+hitachi_vsp0_0167 auto:cdsdisk    13_97714_0167  dgdbe00w1apps online
+hitachi_vsp0_0207 auto:cdsdisk    -            (dgdbkiqaw1bkup) online
+hitachi_vsp0_0208 auto:cdsdisk    -            (dgdbkiqaw1bkup) online
+hitachi_vsp0_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp0_506d auto:cdsdisk    13_97714_506d  dgoracle_lp01d65 online
+hitachi_vsp0_512d auto:cdsdisk    13_97714_512d  dgdbhiqaw1bkup online
+hitachi_vsp0_5154 auto:cdsdisk    13_97714_5154  dgdbhiqaw1db online
+hitachi_vsp0_5159 auto:cdsdisk    13_97714_5159  dgdbauqaw1bkup online
+hitachi_vsp1_a000 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a01a auto:cdsdisk    19_97717_a01a  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp1_a01b auto:cdsdisk    19_97717_a01b  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp1_a01c auto:cdsdisk    19_97717_a01c  dgdbhiqaw1bkup online thinrclm
+hitachi_vsp1_a01f auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a02a auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a02b auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a02c auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a02d auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a007 auto:cdsdisk    19_97717_a007  dgdbauqaw1db online thinrclm
+hitachi_vsp1_a008 auto:cdsdisk    19_97717_a008  dgdbauqaw1db online thinrclm
+hitachi_vsp1_a009 auto:cdsdisk    19_97717_a009  dgdbauqaw1db online thinrclm
+hitachi_vsp1_a014 auto:cdsdisk    19_97717_a014  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_a015 auto:cdsdisk    19_97717_a015  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_a016 auto:cdsdisk    19_97717_a016  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_a017 auto:cdsdisk    19_97717_a017  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_a020 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a021 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a022 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a023 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a024 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a027 auto:cdsdisk    19_97717_a027  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_a032 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a033 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a034 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a035 auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_a036 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_a037 auto:cdsdisk    -            (dgdbkiqaw1bkup) online thinrclm
+hitachi_vsp1_002a auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_002b auto:cdsdisk    -            (dgdbkiqaw1db) online thinrclm
+hitachi_vsp1_002c auto:cdsdisk    19_97717_002c  dgdbauqaw1db online thinrclm
+hitachi_vsp1_005a auto:cdsdisk    19_97717_005a  dgdbauqaw1bkup online thinrclm
+hitachi_vsp1_006d auto:cdsdisk    19_97717_006d  dgdbauqaw1db online
+hitachi_vsp1_006e auto:cdsdisk    19_97717_006e  dgdbauqaw1db online
+hitachi_vsp1_008a auto:cdsdisk    19_97717_008a  dgdbauqaw1redo2 online thinrclm
+hitachi_vsp1_008b auto:cdsdisk    19_97717_008b  dgdbhiqaw1apps online thinrclm
+hitachi_vsp1_008c auto:cdsdisk    19_97717_008c  dgdbhiqaw1redo1 online thinrclm
+hitachi_vsp1_008d auto:cdsdisk    19_97717_008d  dgdbhiqaw1redo2 online thinrclm
+hitachi_vsp1_008e auto:cdsdisk    -            (dgdbkiqaw1apps) online thinrclm
+hitachi_vsp1_008f auto:cdsdisk    19_97717_008f  dgdbauqaw1bkup online thinrclm
+hitachi_vsp1_015b auto:cdsdisk    19_97717_015b  dgdbe00w1db  online
+hitachi_vsp1_015c auto:cdsdisk    19_97717_015c  dgdbe00w1db  online
+hitachi_vsp1_015d auto:cdsdisk    19_97717_015d  dgdbe00w1db  online
+hitachi_vsp1_015e auto:cdsdisk    19_97717_015e  dgdbe00w1db  online
+hitachi_vsp1_015f auto:cdsdisk    19_97717_015f  dgdbe00w1db  online
+hitachi_vsp1_0028 auto:cdsdisk    19_97717_0028  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_0029 auto:cdsdisk    19_97717_0029  dgdbhiqaw1db online thinrclm
+hitachi_vsp1_0030 auto:cdsdisk    19_97717_0030  dgdbauqaw1db online thinrclm
+hitachi_vsp1_0042 auto:cdsdisk    19_97717_0042  dgdbhiqaw1db online
+hitachi_vsp1_0043 auto:cdsdisk    19_97717_0043  dgdbhiqaw1db online
+hitachi_vsp1_50cd auto:cdsdisk    19_97717_50cd  dgdbhiqaw1db online
+hitachi_vsp1_50ce auto:cdsdisk    19_97717_50ce  dgdbauqaw1db online
+hitachi_vsp1_50c1 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp1_50c2 auto:cdsdisk    19_97717_50c2  dgdbhiqaw1db online
+hitachi_vsp1_50c3 auto:cdsdisk    19_97717_50c3  dgdbhiqaw1db online
+hitachi_vsp1_50c4 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp1_50e3 auto:cdsdisk    19_97717_50e3  dgdbauqaw1bkup online
+hitachi_vsp1_50e4 auto:cdsdisk    19_97717_50e4  dgdbauqaw1bkup online
+hitachi_vsp1_50f1 auto:cdsdisk    19_97717_50f1  dgdbhiqaw1db online
+hitachi_vsp1_0056 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp1_0057 auto:cdsdisk    -            (dgdbkiqaw1db) online
+hitachi_vsp1_0089 auto:cdsdisk    19_97717_0089  dgdbauqaw1redo1 online thinrclm
+hitachi_vsp1_0090 auto:cdsdisk    19_97717_0090  dgdbauqaw1bkup online thinrclm
+hitachi_vsp1_0091 auto:cdsdisk    -            (dgdbkiqaw1redo1) online thinrclm
+hitachi_vsp1_0092 auto:cdsdisk    -            (dgdbkiqaw1redo2) online thinrclm
+hitachi_vsp1_0160 auto:cdsdisk    19_97717_0160  dgdbe00w1db  online
+hitachi_vsp1_0161 auto:cdsdisk    19_97717_0161  dgdbe00w1db  online
+hitachi_vsp1_0162 auto:cdsdisk    19_97717_0162  dgdbe00w1bkup online
+hitachi_vsp1_0163 auto:cdsdisk    19_97717_0163  dgdbe00w1bkup online
+hitachi_vsp1_0164 auto:cdsdisk    19_97717_0164  dgdbe00w1bkup online
+hitachi_vsp1_0165 auto:cdsdisk    19_97717_0165  dgdbe00w1redo1 online
+hitachi_vsp1_0166 auto:cdsdisk    19_97717_0166  dgdbe00w1redo2 online
+hitachi_vsp1_0167 auto:cdsdisk    19_97717_0167  dgdbe00w1apps online
+hitachi_vsp1_0207 auto:cdsdisk    -            (dgdbkiqaw1bkup) online
+hitachi_vsp1_0208 auto:cdsdisk    -            (dgdbkiqaw1bkup) online
+hitachi_vsp1_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp1_506d auto:cdsdisk    19_97717_506d  dgoracle_lp01d65 online
+hitachi_vsp1_512d auto:cdsdisk    19_97717_512d  dgdbhiqaw1bkup online
+hitachi_vsp1_5154 auto:cdsdisk    19_97717_5154  dgdbhiqaw1db online
+hitachi_vsp1_5159 auto:cdsdisk    19_97717_5159  dgdbauqaw1bkup online
+lp01d65_disk_0 auto:none       -            -            online invalid
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # df -TH -t vxfs|wc -l
+17
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # blkid
+/dev/sda2: LABEL="ROOT" UUID="226d692e-6b76-4ee5-a8ca-6c039c7137a6" UUID_SUB="68fdad5b-06bd-428b-89bc-c4e021623118" TYPE="btrfs" PARTUUID="a216c4f4-02"
+/dev/mapper/vglocal-lvvarcrash: LABEL="LVVARCRASH" UUID="10767308-794a-4abd-bb6b-a57e6ee1fca7" TYPE="xfs"
+/dev/sda1: LABEL="BOOT" UUID="1b2d0efc-b82f-42df-a5e4-274adafa6256" TYPE="ext3" PARTUUID="a216c4f4-01"
+/dev/sda3: LABEL="SWAP" UUID="3f268b0e-627c-438f-890c-8016b60d09cf" TYPE="swap" PARTUUID="a216c4f4-03"
+/dev/sda4: UUID="nzler1-Mpkj-c2Vf-tZus-keFM-RxM6-SDxxdi" TYPE="LVM2_member" PARTUUID="a216c4f4-04"
+/dev/sdc3: PTTYPE="sun"
+/dev/sdc8: PTTYPE="sun"
+/dev/sdd3: PTTYPE="sun"
+/dev/sdd8: PTTYPE="sun"
+/dev/sdf3: PTTYPE="sun"
+/dev/sdf8: PTTYPE="sun"
+/dev/sdg3: PTTYPE="sun"
+/dev/sdg8: PTTYPE="sun"
+/dev/sde3: PTTYPE="sun"
+/dev/sde8: PTTYPE="sun"
+/dev/sdh3: PTTYPE="sun"
+/dev/sdh8: PTTYPE="sun"
+/dev/sdi3: PTTYPE="sun"
+/dev/sdi8: PTTYPE="sun"
+/dev/sdj3: PTTYPE="sun"
+/dev/sdj8: PTTYPE="sun"
+/dev/sdk3: PTTYPE="sun"
+/dev/sdk8: PTTYPE="sun"
+/dev/sdl3: PTTYPE="sun"
+/dev/sdl8: PTTYPE="sun"
+/dev/sdm3: PTTYPE="sun"
+/dev/sdm8: PTTYPE="sun"
+/dev/sdo3: PTTYPE="sun"
+/dev/sdo8: PTTYPE="sun"
+/dev/sdp3: PTTYPE="sun"
+/dev/sdp8: PTTYPE="sun"
+/dev/sdq3: PTTYPE="sun"
+/dev/sdq8: PTTYPE="sun"
+/dev/sdr3: PTTYPE="sun"
+/dev/sdr8: PTTYPE="sun"
+/dev/sds3: PTTYPE="sun"
+/dev/sds8: PTTYPE="sun"
+/dev/sdt3: PTTYPE="sun"
+/dev/sdt8: PTTYPE="sun"
+/dev/sdu3: PTTYPE="sun"
+/dev/sdu8: PTTYPE="sun"
+/dev/sdv3: PTTYPE="sun"
+/dev/sdv8: PTTYPE="sun"
+/dev/sdw3: PTTYPE="sun"
+/dev/sdw8: PTTYPE="sun"
+/dev/sdx3: PTTYPE="sun"
+/dev/sdx8: PTTYPE="sun"
+/dev/sdy3: PTTYPE="sun"
+/dev/sdy8: PTTYPE="sun"
+/dev/sdz3: PTTYPE="sun"
+/dev/sdz8: PTTYPE="sun"
+/dev/sdn3: PTTYPE="sun"
+/dev/sdn8: PTTYPE="sun"
+/dev/sdaa3: PTTYPE="sun"
+/dev/sdaa8: PTTYPE="sun"
+/dev/sdab3: PTTYPE="sun"
+/dev/sdab8: PTTYPE="sun"
+/dev/sdac3: PTTYPE="sun"
+/dev/sdac8: PTTYPE="sun"
+/dev/sdad3: PTTYPE="sun"
+/dev/sdad8: PTTYPE="sun"
+/dev/sdaf3: PTTYPE="sun"
+/dev/sdaf8: PTTYPE="sun"
+/dev/sdag3: PTTYPE="sun"
+/dev/sdag8: PTTYPE="sun"
+/dev/sdah3: PTTYPE="sun"
+/dev/sdah8: PTTYPE="sun"
+/dev/sdai3: PTTYPE="sun"
+/dev/sdai8: PTTYPE="sun"
+/dev/sdaj3: PTTYPE="sun"
+/dev/sdaj8: PTTYPE="sun"
+/dev/sdak3: PTTYPE="sun"
+/dev/sdak8: PTTYPE="sun"
+/dev/sdal3: PTTYPE="sun"
+/dev/sdal8: PTTYPE="sun"
+/dev/sdam3: PTTYPE="sun"
+/dev/sdam8: PTTYPE="sun"
+/dev/sdae3: PTTYPE="sun"
+/dev/sdae8: PTTYPE="sun"
+/dev/sdao3: PTTYPE="sun"
+/dev/sdao8: PTTYPE="sun"
+/dev/sdap3: PTTYPE="sun"
+/dev/sdap8: PTTYPE="sun"
+/dev/sdaq3: PTTYPE="sun"
+/dev/sdaq8: PTTYPE="sun"
+/dev/sdar3: PTTYPE="sun"
+/dev/sdar8: PTTYPE="sun"
+/dev/sdan3: PTTYPE="sun"
+/dev/sdan8: PTTYPE="sun"
+/dev/sdas3: PTTYPE="sun"
+/dev/sdas8: PTTYPE="sun"
+/dev/sdat3: PTTYPE="sun"
+/dev/sdat8: PTTYPE="sun"
+/dev/sdau3: PTTYPE="sun"
+/dev/sdau8: PTTYPE="sun"
+/dev/sdaw3: PTTYPE="sun"
+/dev/sdaw8: PTTYPE="sun"
+/dev/sdav3: PTTYPE="sun"
+/dev/sdav8: PTTYPE="sun"
+/dev/sdax3: PTTYPE="sun"
+/dev/sdax8: PTTYPE="sun"
+/dev/sday3: PTTYPE="sun"
+/dev/sday8: PTTYPE="sun"
+/dev/sdbb3: PTTYPE="sun"
+/dev/sdbb8: PTTYPE="sun"
+/dev/sdbc3: PTTYPE="sun"
+/dev/sdbc8: PTTYPE="sun"
+/dev/sdaz3: PTTYPE="sun"
+/dev/sdaz8: PTTYPE="sun"
+/dev/sdbd3: PTTYPE="sun"
+/dev/sdbd8: PTTYPE="sun"
+/dev/sdba3: PTTYPE="sun"
+/dev/sdba8: PTTYPE="sun"
+/dev/sdbe3: PTTYPE="sun"
+/dev/sdbe8: PTTYPE="sun"
+/dev/sdbg3: PTTYPE="sun"
+/dev/sdbg8: PTTYPE="sun"
+/dev/sdbf3: PTTYPE="sun"
+/dev/sdbf8: PTTYPE="sun"
+/dev/sdbh3: PTTYPE="sun"
+/dev/sdbh8: PTTYPE="sun"
+/dev/sdbi3: PTTYPE="sun"
+/dev/sdbi8: PTTYPE="sun"
+/dev/sdbk3: PTTYPE="sun"
+/dev/sdbk8: PTTYPE="sun"
+/dev/sdbl3: PTTYPE="sun"
+/dev/sdbl8: PTTYPE="sun"
+/dev/sdbm3: PTTYPE="sun"
+/dev/sdbm8: PTTYPE="sun"
+/dev/sdbj3: PTTYPE="sun"
+/dev/sdbj8: PTTYPE="sun"
+/dev/sdbn3: PTTYPE="sun"
+/dev/sdbn8: PTTYPE="sun"
+/dev/sdbo3: PTTYPE="sun"
+/dev/sdbo8: PTTYPE="sun"
+/dev/sdbq3: PTTYPE="sun"
+/dev/sdbq8: PTTYPE="sun"
+/dev/sdbr3: PTTYPE="sun"
+/dev/sdbr8: PTTYPE="sun"
+/dev/sdbs3: PTTYPE="sun"
+/dev/sdbs8: PTTYPE="sun"
+/dev/sdbt3: PTTYPE="sun"
+/dev/sdbt8: PTTYPE="sun"
+/dev/sdbv3: PTTYPE="sun"
+/dev/sdbv8: PTTYPE="sun"
+/dev/sdbw3: PTTYPE="sun"
+/dev/sdbw8: PTTYPE="sun"
+/dev/sdbx3: PTTYPE="sun"
+/dev/sdbx8: PTTYPE="sun"
+/dev/sdbu3: PTTYPE="sun"
+/dev/sdbu8: PTTYPE="sun"
+/dev/sdbz3: PTTYPE="sun"
+/dev/sdbz8: PTTYPE="sun"
+/dev/sdby3: PTTYPE="sun"
+/dev/sdby8: PTTYPE="sun"
+/dev/sdca3: PTTYPE="sun"
+/dev/sdca8: PTTYPE="sun"
+/dev/sdcc3: PTTYPE="sun"
+/dev/sdcc8: PTTYPE="sun"
+/dev/sdcd3: PTTYPE="sun"
+/dev/sdcd8: PTTYPE="sun"
+/dev/sdce3: PTTYPE="sun"
+/dev/sdce8: PTTYPE="sun"
+/dev/sdcf3: PTTYPE="sun"
+/dev/sdcf8: PTTYPE="sun"
+/dev/sdch3: PTTYPE="sun"
+/dev/sdch8: PTTYPE="sun"
+/dev/sdci3: PTTYPE="sun"
+/dev/sdci8: PTTYPE="sun"
+/dev/sdcb3: PTTYPE="sun"
+/dev/sdcb8: PTTYPE="sun"
+/dev/sdcg3: PTTYPE="sun"
+/dev/sdcg8: PTTYPE="sun"
+/dev/sdcj3: PTTYPE="sun"
+/dev/sdcj8: PTTYPE="sun"
+/dev/sdcn3: PTTYPE="sun"
+/dev/sdcn8: PTTYPE="sun"
+/dev/sdck3: PTTYPE="sun"
+/dev/sdck8: PTTYPE="sun"
+/dev/sdcl3: PTTYPE="sun"
+/dev/sdcl8: PTTYPE="sun"
+/dev/sdcp3: PTTYPE="sun"
+/dev/sdcp8: PTTYPE="sun"
+/dev/sdcq3: PTTYPE="sun"
+/dev/sdcq8: PTTYPE="sun"
+/dev/sdcm3: PARTLABEL="symc_cdsdisk" PARTUUID="73442996-8f98-11eb-9dd6-a806ea1ae597"
+/dev/sdcr3: PTTYPE="sun"
+/dev/sdcr8: PTTYPE="sun"
+/dev/sdcs3: PTTYPE="sun"
+/dev/sdcs8: PTTYPE="sun"
+/dev/sdct3: PTTYPE="sun"
+/dev/sdct8: PTTYPE="sun"
+/dev/sdcu3: PTTYPE="sun"
+/dev/sdcu8: PTTYPE="sun"
+/dev/sdcx3: PTTYPE="sun"
+/dev/sdcx8: PTTYPE="sun"
+/dev/sdcy3: PTTYPE="sun"
+/dev/sdcy8: PTTYPE="sun"
+/dev/sdcz3: PTTYPE="sun"
+/dev/sdcz8: PTTYPE="sun"
+/dev/sdda3: PTTYPE="sun"
+/dev/sdda8: PTTYPE="sun"
+/dev/sddb3: PTTYPE="sun"
+/dev/sddb8: PTTYPE="sun"
+/dev/sdcw3: PTTYPE="sun"
+/dev/sdcw8: PTTYPE="sun"
+/dev/sddd3: PTTYPE="sun"
+/dev/sddd8: PTTYPE="sun"
+/dev/sdcv3: PTTYPE="sun"
+/dev/sdcv8: PTTYPE="sun"
+/dev/sdde3: PTTYPE="sun"
+/dev/sdde8: PTTYPE="sun"
+/dev/sddf3: PTTYPE="sun"
+/dev/sddf8: PTTYPE="sun"
+/dev/sddc3: PTTYPE="sun"
+/dev/sddc8: PTTYPE="sun"
+/dev/sddh3: PTTYPE="sun"
+/dev/sddh8: PTTYPE="sun"
+/dev/sddi3: PTTYPE="sun"
+/dev/sddi8: PTTYPE="sun"
+/dev/sddl3: PTTYPE="sun"
+/dev/sddl8: PTTYPE="sun"
+/dev/sddk3: PTTYPE="sun"
+/dev/sddk8: PTTYPE="sun"
+/dev/sddm3: PTTYPE="sun"
+/dev/sddm8: PTTYPE="sun"
+/dev/sddn3: PTTYPE="sun"
+/dev/sddn8: PTTYPE="sun"
+/dev/sddg3: PTTYPE="sun"
+/dev/sddg8: PTTYPE="sun"
+/dev/sddp3: PTTYPE="sun"
+/dev/sddp8: PTTYPE="sun"
+/dev/sddq3: PTTYPE="sun"
+/dev/sddq8: PTTYPE="sun"
+/dev/sddj3: PTTYPE="sun"
+/dev/sddj8: PTTYPE="sun"
+/dev/sddo3: PTTYPE="sun"
+/dev/sddo8: PTTYPE="sun"
+/dev/sdds3: PTTYPE="sun"
+/dev/sdds8: PTTYPE="sun"
+/dev/sddr3: PTTYPE="sun"
+/dev/sddr8: PTTYPE="sun"
+/dev/sddu3: PTTYPE="sun"
+/dev/sddu8: PTTYPE="sun"
+/dev/sddt3: PTTYPE="sun"
+/dev/sddt8: PTTYPE="sun"
+/dev/sddv3: PTTYPE="sun"
+/dev/sddv8: PTTYPE="sun"
+/dev/sddx3: PTTYPE="sun"
+/dev/sddx8: PTTYPE="sun"
+/dev/sddw3: PTTYPE="sun"
+/dev/sddw8: PTTYPE="sun"
+/dev/sddz3: PTTYPE="sun"
+/dev/sddz8: PTTYPE="sun"
+/dev/sddy3: PTTYPE="sun"
+/dev/sddy8: PTTYPE="sun"
+/dev/sdea3: PTTYPE="sun"
+/dev/sdea8: PTTYPE="sun"
+/dev/sdeb3: PTTYPE="sun"
+/dev/sdeb8: PTTYPE="sun"
+/dev/sdec3: PTTYPE="sun"
+/dev/sdec8: PTTYPE="sun"
+/dev/sded3: PTTYPE="sun"
+/dev/sded8: PTTYPE="sun"
+/dev/sdee3: PTTYPE="sun"
+/dev/sdee8: PTTYPE="sun"
+/dev/sdeg3: PTTYPE="sun"
+/dev/sdeg8: PTTYPE="sun"
+/dev/sdef3: PTTYPE="sun"
+/dev/sdef8: PTTYPE="sun"
+/dev/sdej3: PTTYPE="sun"
+/dev/sdej8: PTTYPE="sun"
+/dev/sdei3: PTTYPE="sun"
+/dev/sdei8: PTTYPE="sun"
+/dev/sdek3: PTTYPE="sun"
+/dev/sdek8: PTTYPE="sun"
+/dev/sdel3: PTTYPE="sun"
+/dev/sdel8: PTTYPE="sun"
+/dev/sdem3: PTTYPE="sun"
+/dev/sdem8: PTTYPE="sun"
+/dev/sdeh3: PTTYPE="sun"
+/dev/sdeh8: PTTYPE="sun"
+/dev/sden3: PTTYPE="sun"
+/dev/sden8: PTTYPE="sun"
+/dev/sdeq3: PTTYPE="sun"
+/dev/sdeq8: PTTYPE="sun"
+/dev/sdeo3: PTTYPE="sun"
+/dev/sdeo8: PTTYPE="sun"
+/dev/sdep3: PTTYPE="sun"
+/dev/sdep8: PTTYPE="sun"
+/dev/sder3: PTTYPE="sun"
+/dev/sder8: PTTYPE="sun"
+/dev/sdes3: PTTYPE="sun"
+/dev/sdes8: PTTYPE="sun"
+/dev/sdet3: PTTYPE="sun"
+/dev/sdet8: PTTYPE="sun"
+/dev/sdeu3: PTTYPE="sun"
+/dev/sdeu8: PTTYPE="sun"
+/dev/sdew3: PTTYPE="sun"
+/dev/sdew8: PTTYPE="sun"
+/dev/sdev3: PTTYPE="sun"
+/dev/sdev8: PTTYPE="sun"
+/dev/sdez3: PTTYPE="sun"
+/dev/sdez8: PTTYPE="sun"
+/dev/sdfa3: PTTYPE="sun"
+/dev/sdfa8: PTTYPE="sun"
+/dev/sdfb3: PTTYPE="sun"
+/dev/sdfb8: PTTYPE="sun"
+/dev/sdfc3: PTTYPE="sun"
+/dev/sdfc8: PTTYPE="sun"
+/dev/sdex3: PTTYPE="sun"
+/dev/sdex8: PTTYPE="sun"
+/dev/sdey3: PTTYPE="sun"
+/dev/sdey8: PTTYPE="sun"
+/dev/sdfd3: PTTYPE="sun"
+/dev/sdfd8: PTTYPE="sun"
+/dev/sdfe3: PTTYPE="sun"
+/dev/sdfe8: PTTYPE="sun"
+/dev/sdff3: PTTYPE="sun"
+/dev/sdff8: PTTYPE="sun"
+/dev/sdfg3: PTTYPE="sun"
+/dev/sdfg8: PTTYPE="sun"
+/dev/sdfh3: PTTYPE="sun"
+/dev/sdfh8: PTTYPE="sun"
+/dev/sdfi3: PTTYPE="sun"
+/dev/sdfi8: PTTYPE="sun"
+/dev/sdfk3: PTTYPE="sun"
+/dev/sdfk8: PTTYPE="sun"
+/dev/sdfj3: PTTYPE="sun"
+/dev/sdfj8: PTTYPE="sun"
+/dev/sdfl3: PTTYPE="sun"
+/dev/sdfl8: PTTYPE="sun"
+/dev/sdfm3: PTTYPE="sun"
+/dev/sdfm8: PTTYPE="sun"
+/dev/sdfo3: PTTYPE="sun"
+/dev/sdfo8: PTTYPE="sun"
+/dev/sdfn3: PTTYPE="sun"
+/dev/sdfn8: PTTYPE="sun"
+/dev/sdfp3: PTTYPE="sun"
+/dev/sdfp8: PTTYPE="sun"
+/dev/sdfq3: PTTYPE="sun"
+/dev/sdfq8: PTTYPE="sun"
+/dev/sdft3: PTTYPE="sun"
+/dev/sdft8: PTTYPE="sun"
+/dev/sdfs3: PTTYPE="sun"
+/dev/sdfs8: PTTYPE="sun"
+/dev/sdfr3: PTTYPE="sun"
+/dev/sdfr8: PTTYPE="sun"
+/dev/sdfv3: PTTYPE="sun"
+/dev/sdfv8: PTTYPE="sun"
+/dev/sdfu3: PTTYPE="sun"
+/dev/sdfu8: PTTYPE="sun"
+/dev/sdfw3: PTTYPE="sun"
+/dev/sdfw8: PTTYPE="sun"
+/dev/sdfy3: PTTYPE="sun"
+/dev/sdfy8: PTTYPE="sun"
+/dev/sdfx3: PTTYPE="sun"
+/dev/sdfx8: PTTYPE="sun"
+/dev/sdfz3: PTTYPE="sun"
+/dev/sdfz8: PTTYPE="sun"
+/dev/sdga3: PTTYPE="sun"
+/dev/sdga8: PTTYPE="sun"
+/dev/sdgb3: PTTYPE="sun"
+/dev/sdgb8: PTTYPE="sun"
+/dev/sdgc3: PTTYPE="sun"
+/dev/sdgc8: PTTYPE="sun"
+/dev/sdge3: PTTYPE="sun"
+/dev/sdge8: PTTYPE="sun"
+/dev/sdgf3: PTTYPE="sun"
+/dev/sdgf8: PTTYPE="sun"
+/dev/sdgd3: PTTYPE="sun"
+/dev/sdgd8: PTTYPE="sun"
+/dev/sdgg3: PTTYPE="sun"
+/dev/sdgg8: PTTYPE="sun"
+/dev/sdgi3: PTTYPE="sun"
+/dev/sdgi8: PTTYPE="sun"
+/dev/sdgh3: PTTYPE="sun"
+/dev/sdgh8: PTTYPE="sun"
+/dev/sdgk3: PTTYPE="sun"
+/dev/sdgk8: PTTYPE="sun"
+/dev/sdgl3: PTTYPE="sun"
+/dev/sdgl8: PTTYPE="sun"
+/dev/sdgj3: PTTYPE="sun"
+/dev/sdgj8: PTTYPE="sun"
+/dev/sdgm3: PTTYPE="sun"
+/dev/sdgm8: PTTYPE="sun"
+/dev/sdgo3: PTTYPE="sun"
+/dev/sdgo8: PTTYPE="sun"
+/dev/sdgq3: PTTYPE="sun"
+/dev/sdgq8: PTTYPE="sun"
+/dev/sdgp3: PTTYPE="sun"
+/dev/sdgp8: PTTYPE="sun"
+/dev/sdgs3: PTTYPE="sun"
+/dev/sdgs8: PTTYPE="sun"
+/dev/sdgr3: PTTYPE="sun"
+/dev/sdgr8: PTTYPE="sun"
+/dev/sdgn3: PTTYPE="sun"
+/dev/sdgn8: PTTYPE="sun"
+/dev/sdgu3: PTTYPE="sun"
+/dev/sdgu8: PTTYPE="sun"
+/dev/sdgv3: PTTYPE="sun"
+/dev/sdgv8: PTTYPE="sun"
+/dev/sdgx3: PTTYPE="sun"
+/dev/sdgx8: PTTYPE="sun"
+/dev/sdgw3: PTTYPE="sun"
+/dev/sdgw8: PTTYPE="sun"
+/dev/sdgt3: PTTYPE="sun"
+/dev/sdgt8: PTTYPE="sun"
+/dev/sdha3: PTTYPE="sun"
+/dev/sdha8: PTTYPE="sun"
+/dev/sdhc3: PTTYPE="sun"
+/dev/sdhc8: PTTYPE="sun"
+/dev/sdgz3: PTTYPE="sun"
+/dev/sdgz8: PTTYPE="sun"
+/dev/sdgy3: PTTYPE="sun"
+/dev/sdgy8: PTTYPE="sun"
+/dev/sdhd3: PTTYPE="sun"
+/dev/sdhd8: PTTYPE="sun"
+/dev/sdhe3: PTTYPE="sun"
+/dev/sdhe8: PTTYPE="sun"
+/dev/sdhf3: PTTYPE="sun"
+/dev/sdhf8: PTTYPE="sun"
+/dev/sdhb3: PTTYPE="sun"
+/dev/sdhb8: PTTYPE="sun"
+/dev/sdhg3: PTTYPE="sun"
+/dev/sdhg8: PTTYPE="sun"
+/dev/sdhh3: PTTYPE="sun"
+/dev/sdhh8: PTTYPE="sun"
+/dev/sdhj3: PTTYPE="sun"
+/dev/sdhj8: PTTYPE="sun"
+/dev/sdhl3: PTTYPE="sun"
+/dev/sdhl8: PTTYPE="sun"
+/dev/sdhi3: PTTYPE="sun"
+/dev/sdhi8: PTTYPE="sun"
+/dev/sdhk3: PTTYPE="sun"
+/dev/sdhk8: PTTYPE="sun"
+/dev/sdhm3: PTTYPE="sun"
+/dev/sdhm8: PTTYPE="sun"
+/dev/sdho3: PTTYPE="sun"
+/dev/sdho8: PTTYPE="sun"
+/dev/sdhn3: PTTYPE="sun"
+/dev/sdhn8: PTTYPE="sun"
+/dev/sdhp3: PARTLABEL="symc_cdsdisk" PARTUUID="73442996-8f98-11eb-9dd6-a806ea1ae597"
+/dev/sdhq3: PTTYPE="sun"
+/dev/sdhq8: PTTYPE="sun"
+/dev/sdht3: PTTYPE="sun"
+/dev/sdht8: PTTYPE="sun"
+/dev/sdhr3: PTTYPE="sun"
+/dev/sdhr8: PTTYPE="sun"
+/dev/sdhu3: PTTYPE="sun"
+/dev/sdhu8: PTTYPE="sun"
+/dev/sdhw3: PTTYPE="sun"
+/dev/sdhw8: PTTYPE="sun"
+/dev/sdhx3: PTTYPE="sun"
+/dev/sdhx8: PTTYPE="sun"
+/dev/sdhv3: PTTYPE="sun"
+/dev/sdhv8: PTTYPE="sun"
+/dev/sdhy3: PTTYPE="sun"
+/dev/sdhy8: PTTYPE="sun"
+/dev/sdia3: PTTYPE="sun"
+/dev/sdia8: PTTYPE="sun"
+/dev/sdhz3: PTTYPE="sun"
+/dev/sdhz8: PTTYPE="sun"
+/dev/sdib3: PTTYPE="sun"
+/dev/sdib8: PTTYPE="sun"
+/dev/sdic3: PTTYPE="sun"
+/dev/sdic8: PTTYPE="sun"
+/dev/sdid3: PTTYPE="sun"
+/dev/sdid8: PTTYPE="sun"
+/dev/sdif3: PTTYPE="sun"
+/dev/sdif8: PTTYPE="sun"
+/dev/sdie3: PTTYPE="sun"
+/dev/sdie8: PTTYPE="sun"
+/dev/sdii3: PTTYPE="sun"
+/dev/sdii8: PTTYPE="sun"
+/dev/sdig3: PTTYPE="sun"
+/dev/sdig8: PTTYPE="sun"
+/dev/sdij3: PTTYPE="sun"
+/dev/sdij8: PTTYPE="sun"
+/dev/sdih3: PTTYPE="sun"
+/dev/sdih8: PTTYPE="sun"
+/dev/sdik3: PTTYPE="sun"
+/dev/sdik8: PTTYPE="sun"
+/dev/sdim3: PTTYPE="sun"
+/dev/sdim8: PTTYPE="sun"
+/dev/sdio3: PTTYPE="sun"
+/dev/sdio8: PTTYPE="sun"
+/dev/sdil3: PTTYPE="sun"
+/dev/sdil8: PTTYPE="sun"
+/dev/sdip3: PTTYPE="sun"
+/dev/sdip8: PTTYPE="sun"
+/dev/sdiq3: PTTYPE="sun"
+/dev/sdiq8: PTTYPE="sun"
+/dev/sdin3: PTTYPE="sun"
+/dev/sdin8: PTTYPE="sun"
+/dev/sdis3: PTTYPE="sun"
+/dev/sdis8: PTTYPE="sun"
+/dev/sdir3: PARTLABEL="symc_cdsdisk" PARTUUID="72567318-8f98-11eb-83be-07194e24b5a9"
+/dev/sdit3: PTTYPE="sun"
+/dev/sdit8: PTTYPE="sun"
+/dev/sdiu3: PTTYPE="sun"
+/dev/sdiu8: PTTYPE="sun"
+/dev/sdiv3: PTTYPE="sun"
+/dev/sdiv8: PTTYPE="sun"
+/dev/sdiw3: PTTYPE="sun"
+/dev/sdiw8: PTTYPE="sun"
+/dev/sdix3: PTTYPE="sun"
+/dev/sdix8: PTTYPE="sun"
+/dev/sdiy3: PTTYPE="sun"
+/dev/sdiy8: PTTYPE="sun"
+/dev/sdiz3: PTTYPE="sun"
+/dev/sdiz8: PTTYPE="sun"
+/dev/sdja3: PTTYPE="sun"
+/dev/sdja8: PTTYPE="sun"
+/dev/sdjb3: PTTYPE="sun"
+/dev/sdjb8: PTTYPE="sun"
+/dev/sdjc3: PTTYPE="sun"
+/dev/sdjc8: PTTYPE="sun"
+/dev/sdjd3: PTTYPE="sun"
+/dev/sdjd8: PTTYPE="sun"
+/dev/sdje3: PTTYPE="sun"
+/dev/sdje8: PTTYPE="sun"
+/dev/sdjg3: PTTYPE="sun"
+/dev/sdjg8: PTTYPE="sun"
+/dev/sdjf3: PTTYPE="sun"
+/dev/sdjf8: PTTYPE="sun"
+/dev/sdjh3: PTTYPE="sun"
+/dev/sdjh8: PTTYPE="sun"
+/dev/sdji3: PTTYPE="sun"
+/dev/sdji8: PTTYPE="sun"
+/dev/sdjj3: PTTYPE="sun"
+/dev/sdjj8: PTTYPE="sun"
+/dev/sdjk3: PTTYPE="sun"
+/dev/sdjk8: PTTYPE="sun"
+/dev/sdjl3: PTTYPE="sun"
+/dev/sdjl8: PTTYPE="sun"
+/dev/sdjn3: PTTYPE="sun"
+/dev/sdjn8: PTTYPE="sun"
+/dev/sdjm3: PTTYPE="sun"
+/dev/sdjm8: PTTYPE="sun"
+/dev/sdjp3: PTTYPE="sun"
+/dev/sdjp8: PTTYPE="sun"
+/dev/sdjo3: PTTYPE="sun"
+/dev/sdjo8: PTTYPE="sun"
+/dev/sdjq3: PTTYPE="sun"
+/dev/sdjq8: PTTYPE="sun"
+/dev/sdjr3: PTTYPE="sun"
+/dev/sdjr8: PTTYPE="sun"
+/dev/sdjs3: PTTYPE="sun"
+/dev/sdjs8: PTTYPE="sun"
+/dev/sdjt3: PTTYPE="sun"
+/dev/sdjt8: PTTYPE="sun"
+/dev/sdju3: PTTYPE="sun"
+/dev/sdju8: PTTYPE="sun"
+/dev/sdjw3: PTTYPE="sun"
+/dev/sdjw8: PTTYPE="sun"
+/dev/sdjy3: PTTYPE="sun"
+/dev/sdjy8: PTTYPE="sun"
+/dev/sdjv3: PTTYPE="sun"
+/dev/sdjv8: PTTYPE="sun"
+/dev/sdjx3: PTTYPE="sun"
+/dev/sdjx8: PTTYPE="sun"
+/dev/sdjz3: PTTYPE="sun"
+/dev/sdjz8: PTTYPE="sun"
+/dev/sdka3: PTTYPE="sun"
+/dev/sdka8: PTTYPE="sun"
+/dev/sdkb3: PTTYPE="sun"
+/dev/sdkb8: PTTYPE="sun"
+/dev/sdkc3: PTTYPE="sun"
+/dev/sdkc8: PTTYPE="sun"
+/dev/sdke3: PTTYPE="sun"
+/dev/sdke8: PTTYPE="sun"
+/dev/sdkd3: PTTYPE="sun"
+/dev/sdkd8: PTTYPE="sun"
+/dev/sdkf3: PTTYPE="sun"
+/dev/sdkf8: PTTYPE="sun"
+/dev/sdkg3: PTTYPE="sun"
+/dev/sdkg8: PTTYPE="sun"
+/dev/sdkh3: PTTYPE="sun"
+/dev/sdkh8: PTTYPE="sun"
+/dev/sdki3: PTTYPE="sun"
+/dev/sdki8: PTTYPE="sun"
+/dev/sdkj3: PTTYPE="sun"
+/dev/sdkj8: PTTYPE="sun"
+/dev/sdkl3: PTTYPE="sun"
+/dev/sdkl8: PTTYPE="sun"
+/dev/sdkm3: PTTYPE="sun"
+/dev/sdkm8: PTTYPE="sun"
+/dev/sdkk3: PTTYPE="sun"
+/dev/sdkk8: PTTYPE="sun"
+/dev/sdkn3: PTTYPE="sun"
+/dev/sdkn8: PTTYPE="sun"
+/dev/sdko3: PTTYPE="sun"
+/dev/sdko8: PTTYPE="sun"
+/dev/sdkp3: PTTYPE="sun"
+/dev/sdkp8: PTTYPE="sun"
+/dev/sdkq3: PTTYPE="sun"
+/dev/sdkq8: PTTYPE="sun"
+/dev/sdkr3: PTTYPE="sun"
+/dev/sdkr8: PTTYPE="sun"
+/dev/sdks3: PTTYPE="sun"
+/dev/sdks8: PTTYPE="sun"
+/dev/sdkv3: PTTYPE="sun"
+/dev/sdkv8: PTTYPE="sun"
+/dev/sdkw3: PTTYPE="sun"
+/dev/sdkw8: PTTYPE="sun"
+/dev/sdkx3: PTTYPE="sun"
+/dev/sdkx8: PTTYPE="sun"
+/dev/sdkt3: PTTYPE="sun"
+/dev/sdkt8: PTTYPE="sun"
+/dev/sdky3: PTTYPE="sun"
+/dev/sdky8: PTTYPE="sun"
+/dev/sdku3: PTTYPE="sun"
+/dev/sdku8: PTTYPE="sun"
+/dev/sdla3: PTTYPE="sun"
+/dev/sdla8: PTTYPE="sun"
+/dev/sdkz3: PTTYPE="sun"
+/dev/sdkz8: PTTYPE="sun"
+/dev/sdlb3: PTTYPE="sun"
+/dev/sdlb8: PTTYPE="sun"
+/dev/sdld3: PTTYPE="sun"
+/dev/sdld8: PTTYPE="sun"
+/dev/sdlc3: PTTYPE="sun"
+/dev/sdlc8: PTTYPE="sun"
+/dev/sdle3: PARTLABEL="symc_cdsdisk" PARTUUID="72567318-8f98-11eb-83be-07194e24b5a9"
+/dev/vx/dmp/lp01d65_disk_0: PTUUID="a216c4f4" PTTYPE="dos"
+/dev/vx/dmp/lp01d65_disk_0s1: LABEL="BOOT" UUID="1b2d0efc-b82f-42df-a5e4-274adafa6256" TYPE="ext3" PARTUUID="a216c4f4-01"
+/dev/vx/dmp/lp01d65_disk_0s2: LABEL="ROOT" UUID="226d692e-6b76-4ee5-a8ca-6c039c7137a6" UUID_SUB="68fdad5b-06bd-428b-89bc-c4e021623118" TYPE="btrfs" PARTUUID="a216c4f4-02"
+/dev/vx/dmp/lp01d65_disk_0s3: LABEL="SWAP" UUID="3f268b0e-627c-438f-890c-8016b60d09cf" TYPE="swap" PARTUUID="a216c4f4-03"
+/dev/vx/dmp/lp01d65_disk_0s4: UUID="nzler1-Mpkj-c2Vf-tZus-keFM-RxM6-SDxxdi" TYPE="LVM2_member" PARTUUID="a216c4f4-04"
+/dev/vx/dmp/hitachi_vsp0_0091: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0091s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0091s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0162: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0162s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0162s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0207: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0207s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0207s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c1: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c1s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c1s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a022: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a022s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a022s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_506d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_506ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_506ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a015: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a015s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a015s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0043: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0043s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0043s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a020: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a020s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a020s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_512d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_512ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_512ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0163: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0163s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0163s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c3s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c3s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a016: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a016s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a016s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a033: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a033s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a033s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a017: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a017s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a017s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0208: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0208s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0208s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0092: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0092s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0092s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a023: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a023s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a023s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0089: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0089s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0089s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0028: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0028s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0028s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0090: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0090s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0090s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c2: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c2s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c2s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0056: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0056s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0056s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a008: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a008s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a008s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50cd: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50cds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50cds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a036: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a036s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a036s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e4: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e4s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e4s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0164: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0164s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0164s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0160: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0160s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0160s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0166: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0166s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0166s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_005a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_005as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_005as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a007: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a007s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a007s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a037: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a037s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a037s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c4: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c4s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50c4s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a034: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a034s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a034s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50ce: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50ces3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50ces8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0042: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0042s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0042s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a027: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a027s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a027s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a024: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a024s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a024s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a000: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a000s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a000s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0030: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0030s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0030s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a032: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a032s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a032s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50f1: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50f1s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50f1s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0161: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0161s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0161s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a014: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a014s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a014s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_002as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a009: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a009s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a009s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a021: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a021s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a021s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e3s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_50e3s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0165: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0165s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0165s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a01bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_008ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a02cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_015ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0167: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0167s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0167s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_5154: PTUUID="7256721e-8f98-11eb-a4fd-50eeae41bdad" PTTYPE="gpt"
+/dev/vx/dmp/hitachi_vsp0_5154s3: PARTLABEL="symc_cdsdisk" PARTUUID="72567318-8f98-11eb-83be-07194e24b5a9"
+/dev/vx/dmp/hitachi_vsp0_0057: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0057s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0057s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_006ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0029: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0029s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_0029s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a035: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a035s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_a035s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0092: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0092s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0092s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50ce: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50ces3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50ces8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0056: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0056s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0056s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a034: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a034s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a034s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0207: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0207s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0207s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a027: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a027s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a027s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_506d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_506ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_506ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c4: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c4s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c4s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0161: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0161s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0161s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0042: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0042s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0042s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a022: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a022s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a022s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50f1: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50f1s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50f1s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a008: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a008s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a008s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a015: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a015s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a015s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0166: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0166s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0166s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c2: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c2s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c2s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a037: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a037s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a037s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50cd: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50cds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50cds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0029: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0029s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0029s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a009: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a009s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a009s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_5154: PTUUID="734428a6-8f98-11eb-b420-edcaba7c7ea7" PTTYPE="gpt"
+/dev/vx/dmp/hitachi_vsp1_5154s3: PARTLABEL="symc_cdsdisk" PARTUUID="73442996-8f98-11eb-9dd6-a806ea1ae597"
+/dev/vx/dmp/hitachi_vsp1_0208: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0208s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0208s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a035: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a035s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a035s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c1: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c1s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c1s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a021: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a021s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a021s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0090: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0090s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0090s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0043: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0043s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0043s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015f: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015fs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015fs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a023: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a023s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a023s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a032: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a032s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a032s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a016: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a016s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a016s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0089: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0089s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0089s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_006ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0163: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0163s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0163s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a024: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a024s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a024s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a017: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a017s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a017s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0091: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0091s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0091s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a000: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a000s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a000s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e3s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e3s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0162: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0162s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0162s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0028: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0028s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0028s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a033: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a033s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a033s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_005a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_005as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_005as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002a: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002as3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_002as8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015e: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015es3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_015es8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0164: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0164s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0164s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_008ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0167: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0167s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0167s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0057: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0057s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0057s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e4: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e4s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50e4s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a007: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a007s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a007s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01c: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01cs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a01cs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0160: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0160s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0160s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a020: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a020s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a020s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0030: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0030s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0030s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0165: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0165s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_0165s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a014: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a014s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a014s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_512d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_512ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_512ds8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c3s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_50c3s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a036: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a036s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a036s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02b: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02bs3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02bs8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02d: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02ds3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_a02ds8: PTTYPE="sun"
+/dev/sdlf3: PTTYPE="sun"
+/dev/sdlf8: PTTYPE="sun"
+/dev/sdlg3: PTTYPE="sun"
+/dev/sdlg8: PTTYPE="sun"
+/dev/sdlh3: PTTYPE="sun"
+/dev/sdlh8: PTTYPE="sun"
+/dev/sdli3: PTTYPE="sun"
+/dev/sdli8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_5159: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_5159s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp1_5159s8: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_5159: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_5159s3: PTTYPE="sun"
+/dev/vx/dmp/hitachi_vsp0_5159s8: PTTYPE="sun"
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # san_shortinfo
+VXDEV              | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | DISKGROUP
+-------------------|-----------------------------------|-----------------------------------|----------
+hitachi_vsp0_0028  | sdcr  00:28   4B   97714   230490 | sdhw  00:28   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0029  | sdcs  00:29   4B   97714   230490 | sdhy  00:29   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_002a  | sdcv  00:2A   4B   97714    57622 | sdhz  00:2A   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_002b  | sdcx  00:2B   4B   97714    57622 | sdib  00:2B   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_002c  | sdcz  00:2C   4B   97714    57622 | sdid  00:2C   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0030  | sddb  00:30   4B   97714    57622 | sdie  00:30   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0042  | sdde  00:42   4B   97714   230490 | sdig  00:42   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0043  | sddf  00:43   4B   97714   230490 | sdii  00:43   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0056  | sddh  00:56   4B   97714    57622 | sdil  00:56   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_0057  | sddi  00:57   4B   97714    57622 | sdin  00:57   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_005a  | sddj  00:5A   4B   97714    57622 | sdio  00:5A   3B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_006d  | sddl  00:6D   4B   97714    57622 | sdip  00:6D   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_006e  | sddn  00:6E   4B   97714    57622 | sdis  00:6E   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0089  | sddp  00:89   4B   97714    14405 | sdit  00:89   3B   97714    14405 | dgdbauqaw1redo1
+hitachi_vsp0_008a  | sdds  00:8A   4B   97714    14405 | sdiu  00:8A   3B   97714    14405 | dgdbauqaw1redo2
+hitachi_vsp0_008b  | sddu  00:8B   4B   97714    14405 | sdiv  00:8B   3B   97714    14405 | dgdbhiqaw1apps
+hitachi_vsp0_008c  | sddx  00:8C   4B   97714    14405 | sdiw  00:8C   3B   97714    14405 | dgdbhiqaw1redo1
+hitachi_vsp0_008d  | sddy  00:8D   4B   97714    14405 | sdix  00:8D   3B   97714    14405 | dgdbhiqaw1redo2
+hitachi_vsp0_008e  | sdea  00:8E   4B   97714    14405 | sdiy  00:8E   3B   97714    14405 | dgdbkiqaw1apps
+hitachi_vsp0_008f  | sdec  00:8F   4B   97714    57622 | sdiz  00:8F   3B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_0090  | sdef  00:90   4B   97714    57622 | sdja  00:90   3B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_0091  | sdeg  00:91   4B   97714    14405 | sdjb  00:91   3B   97714    14405 | dgdbkiqaw1redo1
+hitachi_vsp0_0092  | sdei  00:92   4B   97714    14405 | sdjc  00:92   3B   97714    14405 | dgdbkiqaw1redo2
+hitachi_vsp0_015b  | sdek  01:5B   4B   97714   230490 | sdjd  01:5B   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015c  | sdel  01:5C   4B   97714   230490 | sdje  01:5C   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015d  | sdem  01:5D   4B   97714   230490 | sdjf  01:5D   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015e  | sden  01:5E   4B   97714   230490 | sdjg  01:5E   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015f  | sdep  01:5F   4B   97714   230490 | sdjh  01:5F   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0160  | sdes  01:60   4B   97714   230490 | sdji  01:60   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0161  | sdeu  01:61   4B   97714   230490 | sdjj  01:61   3B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0162  | sdew  01:62   4B   97714    57622 | sdjk  01:62   3B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0163  | sdey  01:63   4B   97714    57622 | sdjl  01:63   3B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0164  | sdfa  01:64   4B   97714    57622 | sdjm  01:64   3B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0165  | sdfc  01:65   4B   97714    14405 | sdjn  01:65   3B   97714    14405 | dgdbe00w1redo1
+hitachi_vsp0_0166  | sdff  01:66   4B   97714    14405 | sdjo  01:66   3B   97714    14405 | dgdbe00w1redo2
+hitachi_vsp0_0167  | sdfh  01:67   4B   97714    14405 | sdjp  01:67   3B   97714    14405 | dgdbe00w1apps
+hitachi_vsp0_0207  | sdfj  02:07   4B   97714    57622 | sdjq  02:07   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_0208  | sdfl  02:08   4B   97714    57622 | sdjr  02:08   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_506b  | sdco  50:6B   4B   97714    14405 | sdhs  50:6B   3B   97714    14405 |
+hitachi_vsp0_506d  | sdcp  50:6D   4B   97714   230490 | sdht  50:6D   3B   97714   230490 | dgoracle_lp01d65
+hitachi_vsp0_50c1  | sdhv  50:C1   4B   97714   518602 | sdku  50:C1   3B   97714   518602 | dgdbkiqaw1db
+hitachi_vsp0_50c2  | sdhx  50:C2   4B   97714   230490 | sdkv  50:C2   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_50c3  | sdia  50:C3   4B   97714   115245 | sdkw  50:C3   3B   97714   115245 | dgdbhiqaw1db
+hitachi_vsp0_50c4  | sdic  50:C4   4B   97714   518602 | sdkx  50:C4   3B   97714   518602 | dgdbkiqaw1db
+hitachi_vsp0_50cd  | sdif  50:CD   4B   97714   230490 | sdky  50:CD   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_50ce  | sdih  50:CE   4B   97714   230490 | sdkz  50:CE   3B   97714   230490 | dgdbauqaw1db
+hitachi_vsp0_50e3  | sdij  50:E3   4B   97714   230490 | sdla  50:E3   3B   97714   230490 | dgdbauqaw1bkup
+hitachi_vsp0_50e4  | sdik  50:E4   4B   97714   115245 | sdlb  50:E4   3B   97714   115245 | dgdbauqaw1bkup
+hitachi_vsp0_50f1  | sdim  50:F1   4B   97714   518602 | sdlc  50:F1   3B   97714   518602 | dgdbhiqaw1db
+hitachi_vsp0_512d  | sdiq  51:2D   4B   97714   518602 | sdld  51:2D   3B   97714   518602 | dgdbhiqaw1bkup
+hitachi_vsp0_5154  | sdir  51:54   4B   97714  2097152 | sdle  51:54   3B   97714  2097152 | dgdbhiqaw1db
+hitachi_vsp0_5159  | sdlg  51:59   4B   97714   115245 | sdli  51:59   3B   97714   115245 | dgdbauqaw1bkup
+hitachi_vsp0_a000  | sdfn  A0:00   4B   97714    57622 | sdjs  A0:00   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a007  | sdfq  A0:07   4B   97714    57622 | sdjt  A0:07   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a008  | sdft  A0:08   4B   97714    57622 | sdju  A0:08   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a009  | sdfu  A0:09   4B   97714    57622 | sdjv  A0:09   3B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a014  | sdfx  A0:14   4B   97714   230490 | sdjw  A0:14   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a015  | sdfz  A0:15   4B   97714   230490 | sdjx  A0:15   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a016  | sdgb  A0:16   4B   97714   230490 | sdjy  A0:16   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a017  | sdge  A0:17   4B   97714   230490 | sdjz  A0:17   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a01a  | sdgg  A0:1A   4B   97714    57622 | sdka  A0:1A   3B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01b  | sdgi  A0:1B   4B   97714    57622 | sdkb  A0:1B   3B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01c  | sdgj  A0:1C   4B   97714    57622 | sdkc  A0:1C   3B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01f  | sdgl  A0:1F   4B   97714    57622 | sdkd  A0:1F   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a020  | sdgm  A0:20   4B   97714    57622 | sdke  A0:20   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a021  | sdgn  A0:21   4B   97714    57622 | sdkf  A0:21   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a022  | sdgp  A0:22   4B   97714    57622 | sdkg  A0:22   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a023  | sdgr  A0:23   4B   97714    57622 | sdkh  A0:23   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a024  | sdgt  A0:24   4B   97714    57622 | sdki  A0:24   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a027  | sdgw  A0:27   4B   97714   230490 | sdkj  A0:27   3B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a02a  | sdgx  A0:2A   4B   97714    57622 | sdkk  A0:2A   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02b  | sdgy  A0:2B   4B   97714    57622 | sdkl  A0:2B   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02c  | sdha  A0:2C   4B   97714    57622 | sdkm  A0:2C   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02d  | sdhe  A0:2D   4B   97714    57622 | sdkn  A0:2D   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a032  | sdhg  A0:32   4B   97714    57622 | sdko  A0:32   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a033  | sdhk  A0:33   4B   97714    57622 | sdkp  A0:33   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a034  | sdhm  A0:34   4B   97714    57622 | sdkq  A0:34   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a035  | sdhq  A0:35   4B   97714    57622 | sdkr  A0:35   3B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a036  | sdhr  A0:36   4B   97714    57622 | sdks  A0:36   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a037  | sdhu  A0:37   4B   97714    57622 | sdkt  A0:37   3B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_0028  | sdbs  00:28   3B   97717   230490 | sdd   00:28   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0029  | sdbt  00:29   3B   97717   230490 | sde   00:29   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_002a  | sdbx  00:2A   3B   97717    57622 | sdf   00:2A   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_002b  | sdby  00:2B   3B   97717    57622 | sdg   00:2B   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_002c  | sdcb  00:2C   3B   97717    57622 | sdh   00:2C   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0030  | sdcc  00:30   3B   97717    57622 | sdi   00:30   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0042  | sdce  00:42   3B   97717   230490 | sdj   00:42   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0043  | sdcg  00:43   3B   97717   230490 | sdk   00:43   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0056  | sdck  00:56   3B   97717    57622 | sdl   00:56   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_0057  | sdcn  00:57   3B   97717    57622 | sdm   00:57   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_005a  | sdcq  00:5A   3B   97717    57622 | sdn   00:5A   4B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_006d  | sdct  00:6D   3B   97717    57622 | sdo   00:6D   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_006e  | sdcu  00:6E   3B   97717    57622 | sdp   00:6E   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0089  | sdcw  00:89   3B   97717    14405 | sdq   00:89   4B   97717    14405 | dgdbauqaw1redo1
+hitachi_vsp1_008a  | sdcy  00:8A   3B   97717    14405 | sdr   00:8A   4B   97717    14405 | dgdbauqaw1redo2
+hitachi_vsp1_008b  | sdda  00:8B   3B   97717    14405 | sds   00:8B   4B   97717    14405 | dgdbhiqaw1apps
+hitachi_vsp1_008c  | sddc  00:8C   3B   97717    14405 | sdt   00:8C   4B   97717    14405 | dgdbhiqaw1redo1
+hitachi_vsp1_008d  | sddd  00:8D   3B   97717    14405 | sdu   00:8D   4B   97717    14405 | dgdbhiqaw1redo2
+hitachi_vsp1_008e  | sddg  00:8E   3B   97717    14405 | sdv   00:8E   4B   97717    14405 | dgdbkiqaw1apps
+hitachi_vsp1_008f  | sddk  00:8F   3B   97717    57622 | sdw   00:8F   4B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_0090  | sddm  00:90   3B   97717    57622 | sdx   00:90   4B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_0091  | sddo  00:91   3B   97717    14405 | sdy   00:91   4B   97717    14405 | dgdbkiqaw1redo1
+hitachi_vsp1_0092  | sddq  00:92   3B   97717    14405 | sdz   00:92   4B   97717    14405 | dgdbkiqaw1redo2
+hitachi_vsp1_015b  | sddr  01:5B   3B   97717   230490 | sdaa  01:5B   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015c  | sddt  01:5C   3B   97717   230490 | sdab  01:5C   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015d  | sddv  01:5D   3B   97717   230490 | sdac  01:5D   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015e  | sddw  01:5E   3B   97717   230490 | sdad  01:5E   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015f  | sddz  01:5F   3B   97717   230490 | sdae  01:5F   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0160  | sdeb  01:60   3B   97717   230490 | sdaf  01:60   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0161  | sded  01:61   3B   97717   230490 | sdag  01:61   4B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0162  | sdee  01:62   3B   97717    57622 | sdah  01:62   4B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0163  | sdeh  01:63   3B   97717    57622 | sdai  01:63   4B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0164  | sdej  01:64   3B   97717    57622 | sdaj  01:64   4B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0165  | sdeo  01:65   3B   97717    14405 | sdak  01:65   4B   97717    14405 | dgdbe00w1redo1
+hitachi_vsp1_0166  | sdeq  01:66   3B   97717    14405 | sdal  01:66   4B   97717    14405 | dgdbe00w1redo2
+hitachi_vsp1_0167  | sder  01:67   3B   97717    14405 | sdam  01:67   4B   97717    14405 | dgdbe00w1apps
+hitachi_vsp1_0207  | sdet  02:07   3B   97717    57622 | sdan  02:07   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_0208  | sdev  02:08   3B   97717    57622 | sdao  02:08   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_506b  | sdbp  50:6B   3B   97717    14405 | sdb   50:6B   4B   97717    14405 |
+hitachi_vsp1_506d  | sdbr  50:6D   3B   97717   230490 | sdc   50:6D   4B   97717   230490 | dgoracle_lp01d65
+hitachi_vsp1_50c1  | sdhb  50:C1   3B   97717   518602 | sdbv  50:C1   4B   97717   518602 | dgdbkiqaw1db
+hitachi_vsp1_50c2  | sdhc  50:C2   3B   97717   230490 | sdbw  50:C2   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_50c3  | sdhd  50:C3   3B   97717   115245 | sdbz  50:C3   4B   97717   115245 | dgdbhiqaw1db
+hitachi_vsp1_50c4  | sdhf  50:C4   3B   97717   518602 | sdca  50:C4   4B   97717   518602 | dgdbkiqaw1db
+hitachi_vsp1_50cd  | sdhh  50:CD   3B   97717   230490 | sdcd  50:CD   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_50ce  | sdhi  50:CE   3B   97717   230490 | sdcf  50:CE   4B   97717   230490 | dgdbauqaw1db
+hitachi_vsp1_50e3  | sdhj  50:E3   3B   97717   230490 | sdch  50:E3   4B   97717   230490 | dgdbauqaw1bkup
+hitachi_vsp1_50e4  | sdhl  50:E4   3B   97717   115245 | sdci  50:E4   4B   97717   115245 | dgdbauqaw1bkup
+hitachi_vsp1_50f1  | sdhn  50:F1   3B   97717   518602 | sdcj  50:F1   4B   97717   518602 | dgdbhiqaw1db
+hitachi_vsp1_512d  | sdho  51:2D   3B   97717   518602 | sdcl  51:2D   4B   97717   518602 | dgdbhiqaw1bkup
+hitachi_vsp1_5154  | sdhp  51:54   3B   97717  2097152 | sdcm  51:54   4B   97717  2097152 | dgdbhiqaw1db
+hitachi_vsp1_5159  | sdlh  51:59   3B   97717   115245 | sdlf  51:59   4B   97717   115245 | dgdbauqaw1bkup
+hitachi_vsp1_a000  | sdex  A0:00   3B   97717    57622 | sdap  A0:00   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a007  | sdez  A0:07   3B   97717    57622 | sdaq  A0:07   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a008  | sdfb  A0:08   3B   97717    57622 | sdar  A0:08   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a009  | sdfd  A0:09   3B   97717    57622 | sdas  A0:09   4B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a014  | sdfe  A0:14   3B   97717   230490 | sdat  A0:14   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a015  | sdfg  A0:15   3B   97717   230490 | sdau  A0:15   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a016  | sdfi  A0:16   3B   97717   230490 | sdav  A0:16   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a017  | sdfk  A0:17   3B   97717   230490 | sdaw  A0:17   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a01a  | sdfm  A0:1A   3B   97717    57622 | sdax  A0:1A   4B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01b  | sdfo  A0:1B   3B   97717    57622 | sday  A0:1B   4B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01c  | sdfp  A0:1C   3B   97717    57622 | sdaz  A0:1C   4B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01f  | sdfr  A0:1F   3B   97717    57622 | sdba  A0:1F   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a020  | sdfs  A0:20   3B   97717    57622 | sdbb  A0:20   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a021  | sdfv  A0:21   3B   97717    57622 | sdbc  A0:21   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a022  | sdfw  A0:22   3B   97717    57622 | sdbd  A0:22   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a023  | sdfy  A0:23   3B   97717    57622 | sdbe  A0:23   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a024  | sdga  A0:24   3B   97717    57622 | sdbf  A0:24   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a027  | sdgc  A0:27   3B   97717   230490 | sdbg  A0:27   4B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a02a  | sdgd  A0:2A   3B   97717    57622 | sdbh  A0:2A   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02b  | sdgf  A0:2B   3B   97717    57622 | sdbi  A0:2B   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02c  | sdgh  A0:2C   3B   97717    57622 | sdbj  A0:2C   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02d  | sdgk  A0:2D   3B   97717    57622 | sdbk  A0:2D   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a032  | sdgo  A0:32   3B   97717    57622 | sdbl  A0:32   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a033  | sdgq  A0:33   3B   97717    57622 | sdbm  A0:33   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a034  | sdgs  A0:34   3B   97717    57622 | sdbn  A0:34   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a035  | sdgu  A0:35   3B   97717    57622 | sdbo  A0:35   4B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a036  | sdgv  A0:36   3B   97717    57622 | sdbq  A0:36   4B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a037  | sdgz  A0:37   3B   97717    57622 | sdbu  A0:37   4B   97717    57622 | dgdbkiqaw1bkup
+lp01d65:~ #
+
+
+=============================
+
+
+lp01d66:~ # uname -r
+4.12.14-95.57-default
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # uptime
+ 15:47pm  up 279 days  9:31,  1 user,  load average: 3.87, 3.53, 3.33
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ #  cat /etc/fstab
+###
+### OS mounts
+###
+LABEL=ROOT                    /                             btrfs     defaults                      0 1
+LABEL=BOOT                    /boot                         ext3      defaults                      0 1
+LABEL=ROOT                    /lfs                          btrfs     subvol=@/lfs                  0 0
+LABEL=ROOT                    /home                         btrfs     subvol=@/home                 0 0
+LABEL=ROOT                    /opt                          btrfs     subvol=@/opt                  0 0
+LABEL=ROOT                    /tmp                          btrfs     subvol=@/tmp                  0 0
+LABEL=ROOT                    /var/log                      btrfs     subvol=@/var/log              0 0
+LABEL=ROOT                    /var/opt                      btrfs     subvol=@/var/opt              0 0
+LABEL=ROOT                    /var/spool                    btrfs     subvol=@/var/spool            0 0
+LABEL=ROOT                    /var/cache                    btrfs     subvol=@/var/cache            0 0
+LABEL=ROOT                    /global/local                 btrfs     subvol=@/global/local         0 0
+LABEL=ROOT                    /var/tmp                      btrfs     subvol=@/var/tmp              0 0
+LABEL=ROOT                    /.snapshots                   btrfs     subvol=@/.snapshots           0 0
+LABEL=SWAP                    swap                          swap      pri=42                        0 0
+LABEL=LVVARCRASH              /var/crash                    xfs       defaults                      0 0
+
+###
+### Application mounts
+### Mandatory mount options for SAN/NAS: nofail,x-systemd.device-timeout=20
+###
+
+
+        # NOTE: When adding or modifying VxFS or VxVM entries, add 'nofail'
+        # to the mount options to avoid boot failure during system bootup
+        # if systemd tries to mount filesystem before VxVM and VXFS have
+        # started.
+
+# Added by vxctl 2019-04-11 17:39:45
+/dev/vx/dsk/dgoracle_lp01d66/lvoracle /lfs/oracle vxfs _netdev,nofail,x-systemd.device-timeout=20 0 0
+/dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit /lfs/oracle_audit vxfs _netdev,nofail,x-systemd.device-timeout=20 0 0
+
+nv01100026.bmwgroup.net:/f08195/t026673/dbauqaw1_utlfile /nfs/ora/dbauqaw1_utlfile nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+nv01100026.bmwgroup.net:/f08195/t026672/dbkiqaw1_utlfile  /nfs/ora/dbkiqaw1_utlfile nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+nv02400144.bmwgroup.net:/f05631/t011642      /nfs/ora/Datenexport_LW nfs rw,bg,vers=3,tcp,rsize=32768,wsize=32768,hard,intr,nodev,nosuid 0 0
+
+# Added by vxctl 2019-08-11 03:56:59
+
+# Added by vxctl 2019-08-11 04:11:49
+
+# Added by vxctl 2019-08-12 07:34:14
+
+# Added by vxctl 2019-08-12 07:36:08
+lp01d66:~ #
+lp01d66:~ #  cat /etc/fstab | wc -l
+45
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # df -hT
+Filesystem                                               Type      Size  Used Avail Use% Mounted on
+devtmpfs                                                 devtmpfs  188G  8.0K  188G   1% /dev
+tmpfs                                                    tmpfs     188G  4.0K  188G   1% /dev/shm
+tmpfs                                                    tmpfs     188G  7.5M  188G   1% /run
+tmpfs                                                    tmpfs     188G     0  188G   0% /sys/fs/cgroup
+/dev/sda2                                                btrfs     101G   29G   72G  29% /
+/dev/sda2                                                btrfs     101G   29G   72G  29% /home
+/dev/sda2                                                btrfs     101G   29G   72G  29% /.snapshots
+/dev/sda2                                                btrfs     101G   29G   72G  29% /opt
+/dev/sda2                                                btrfs     101G   29G   72G  29% /var/opt
+/dev/sda2                                                btrfs     101G   29G   72G  29% /lfs
+/dev/sda2                                                btrfs     101G   29G   72G  29% /var/tmp
+/dev/sda2                                                btrfs     101G   29G   72G  29% /var/log
+/dev/sda2                                                btrfs     101G   29G   72G  29% /global/local
+/dev/sda2                                                btrfs     101G   29G   72G  29% /var/cache
+/dev/sda2                                                btrfs     101G   29G   72G  29% /tmp
+/dev/sda2                                                btrfs     101G   29G   72G  29% /var/spool
+/dev/sda1                                                ext3      976M  101M  824M  11% /boot
+/dev/mapper/vglocal-lvvarcrash                           xfs        50G   33M   50G   1% /var/crash
+tmpfs                                                    tmpfs     4.0K     0  4.0K   0% /dev/vx
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/66159
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/48952
+/dev/vx/dsk/dgoracle_lp01d66/lvoracle                    vxfs      175G   59G  116G  34% /lfs/oracle
+/dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit               vxfs       50G  163M   50G   1% /lfs/oracle_audit
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/840873
+/dev/vx/dsk/dgdbkiqaw1redo1/lvredo1                      vxfs      3.5G  1.7G  1.8G  50% /global/dbkiqaw1/redo1
+/dev/vx/dsk/dgdbkiqaw1apps/lvapps                        vxfs      3.5G   20M  3.3G   1% /global/dbkiqaw1/apps
+/dev/vx/dsk/dgdbkiqaw1redo2/lvredo2                      vxfs      3.5G  1.6G  1.8G  48% /global/dbkiqaw1/redo2
+/dev/vx/dsk/dgdbkiqaw1bkup/lvbkup                        vxfs      731G  215G  513G  30% /global/dbkiqaw1/bkup
+/dev/vx/dsk/dgdbkiqaw1db/lvdb                            vxfs      1.6T  808G  762G  52% /global/dbkiqaw1/db
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/864047
+nv01100026.bmwgroup.net:/f08195/t026673/dbauqaw1_utlfile nfs       5.0G  578M  4.5G  12% /nfs/ora/dbauqaw1_utlfile
+nv01100026.bmwgroup.net:/f08195/t026672/dbkiqaw1_utlfile nfs       5.0G  2.9G  2.2G  57% /nfs/ora/dbkiqaw1_utlfile
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/864046
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/846785
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/44035
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/0
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # ifconfig
+bond0     Link encap:Ethernet  HWaddr E4:43:4B:56:02:14
+          inet addr:160.46.157.33  Bcast:160.46.157.255  Mask:255.255.255.0
+          inet6 addr: fe80::e643:4bff:fe56:214/64 Scope:Link
+          inet6 addr: 2a03:1e80:a01:52c::1:1/64 Scope:Global
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:50642591762 errors:0 dropped:804686 overruns:0 frame:0
+          TX packets:51598823754 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:10805184782888 (10304627.2 Mb)  TX bytes:27175430853453 (25916510.4 Mb)
+
+bond0:0   Link encap:Ethernet  HWaddr E4:43:4B:56:02:14
+          inet addr:160.46.157.31  Bcast:160.46.157.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+
+eth0      Link encap:Ethernet  HWaddr E4:43:4B:56:02:14
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:50611565401 errors:0 dropped:4 overruns:0 frame:0
+          TX packets:51597203205 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:10802440896860 (10302010.4 Mb)  TX bytes:27175230520709 (25916319.3 Mb)
+
+eth1      Link encap:Ethernet  HWaddr E4:43:4B:56:02:15
+          inet addr:10.100.37.15  Bcast:10.100.37.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e80:a04:544::1:a/64 Scope:Global
+          inet6 addr: fe80::e643:4bff:fe56:215/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1721930448 errors:0 dropped:21 overruns:0 frame:0
+          TX packets:38086802538 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:117280572649 (111847.4 Mb)  TX bytes:57180859571525 (54531917.1 Mb)
+
+eth2      Link encap:Ethernet  HWaddr E4:43:4B:56:02:16
+          inet addr:160.48.156.76  Bcast:160.48.156.255  Mask:255.255.255.0
+          inet6 addr: 2a03:1e80:a03:528::1:14/64 Scope:Global
+          inet6 addr: fe80::e643:4bff:fe56:216/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:165074283 errors:101 dropped:3 overruns:0 frame:101
+          TX packets:53192017 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:11904342840 (11352.8 Mb)  TX bytes:3806988120 (3630.6 Mb)
+
+eth3      Link encap:Ethernet  HWaddr E4:43:4B:56:02:14
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:31026362 errors:0 dropped:804677 overruns:0 frame:0
+          TX packets:1620549 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2743886088 (2616.7 Mb)  TX bytes:200332744 (191.0 Mb)
+
+eth6      Link encap:Ethernet  HWaddr 4C:D9:8F:2A:B7:5F
+          inet addr:169.254.0.2  Bcast:169.254.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::4ed9:8fff:fe2a:b75f/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:959022 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1083270 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:48480522 (46.2 Mb)  TX bytes:76971860 (73.4 Mb)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:64201440 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:64201440 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:19795811699 (18878.7 Mb)  TX bytes:19795811699 (18878.7 Mb)
+
+lp01d66:~ # vxprint -htq
+Disk group: dgoracle_lp01d66
+
+dg dgoracle_lp01d66 default  default  22000    1554997183.12.lp01d66
+
+dm 13_97714_506c hitachi_vsp0_506c auto 65536  471961632 -
+dm 19_97717_506c hitachi_vsp1_506c auto 65536  471961632 -
+
+v  lvoracle     -            ENABLED  ACTIVE   367001600 PREFER   lvoracle-97717 fsgen
+pl lvoracle-97714 lvoracle   ENABLED  ACTIVE   367001600 CONCAT   -        RW
+sd 13_97714_506c-01 lvoracle-97714 13_97714_506c 0 367001600 0    hitachi_vsp0_506c ENA
+pl lvoracle-97717 lvoracle   ENABLED  ACTIVE   367001600 CONCAT   -        RW
+sd 19_97717_506c-01 lvoracle-97717 19_97717_506c 0 367001600 0    hitachi_vsp1_506c ENA
+pl lvoracle_drl-97714 lvoracle ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 13_97714_506c-03 lvoracle_drl-97714 13_97714_506c 367003712 2112 LOG hitachi_vsp0_506c ENA
+pl lvoracle_drl-97717 lvoracle ENABLED ACTIVE  LOGONLY  CONCAT    -        RW
+sd 19_97717_506c-03 lvoracle_drl-97717 19_97717_506c 367003712 2112 LOG hitachi_vsp1_506c ENA
+dc lvoracle_dco lvoracle     lvoracle_dcl
+v  lvoracle_dcl -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoracle_dcl-97714 lvoracle_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 13_97714_506c-02 lvoracle_dcl-97714 13_97714_506c 367001600 2112 0 hitachi_vsp0_506c ENA
+pl lvoracle_dcl-97717 lvoracle_dcl ENABLED ACTIVE 2112  CONCAT    -        RW
+sd 19_97717_506c-02 lvoracle_dcl-97717 19_97717_506c 367001600 2112 0 hitachi_vsp1_506c ENA
+
+v  lvoracleaudit -           ENABLED  ACTIVE   104857600 PREFER   lvoracleaudit-97717 fsgen
+pl lvoracleaudit-97714 lvoracleaudit ENABLED ACTIVE 104857600 CONCAT -     RW
+sd 13_97714_506c-04 lvoracleaudit-97714 13_97714_506c 367005824 104857600 0 hitachi_vsp0_506c ENA
+pl lvoracleaudit-97717 lvoracleaudit ENABLED ACTIVE 104857600 CONCAT -     RW
+sd 19_97717_506c-04 lvoracleaudit-97717 19_97717_506c 367005824 104857600 0 hitachi_vsp1_506c ENA
+pl lvoracleaudit_drl-97714 lvoracleaudit ENABLED ACTIVE LOGONLY CONCAT -   RW
+sd 13_97714_506c-06 lvoracleaudit_drl-97714 13_97714_506c 471865536 2112 LOG hitachi_vsp0_506c ENA
+pl lvoracleaudit_drl-97717 lvoracleaudit ENABLED ACTIVE LOGONLY CONCAT -   RW
+sd 19_97717_506c-06 lvoracleaudit_drl-97717 19_97717_506c 471865536 2112 LOG hitachi_vsp1_506c ENA
+dc lvoracleaudit_dco lvoracleaudit lvoracleaudit_dcl
+v  lvoracleaudit_dcl -       ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvoracleaudit_dcl-97714 lvoracleaudit_dcl ENABLED ACTIVE 2112 CONCAT -  RW
+sd 13_97714_506c-05 lvoracleaudit_dcl-97714 13_97714_506c 471863424 2112 0 hitachi_vsp0_506c ENA
+pl lvoracleaudit_dcl-97717 lvoracleaudit_dcl ENABLED ACTIVE 2112 CONCAT -  RW
+sd 19_97717_506c-05 lvoracleaudit_dcl-97717 19_97717_506c 471863424 2112 0 hitachi_vsp1_506c ENA
+
+Disk group: dgdbkiqaw1apps
+
+dg dgdbkiqaw1apps default    default  4000     1214037150.142.lp01d13
+
+dm 13_97714_008e hitachi_vsp0_008e auto 65536  29435792 -
+dm 19_97717_008e hitachi_vsp1_008e auto 65536  29435792 -
+
+v  lvapps       -            ENABLED  ACTIVE   7294592  PREFER    lvapps-97717 fsgen
+pl lvapps-97714 lvapps       ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_008e-01 lvapps-97714 13_97714_008e 0 7294592 0        hitachi_vsp0_008e ENA
+pl lvapps-97717 lvapps       ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_008e-01 lvapps-97717 19_97717_008e 0 7294592 0        hitachi_vsp1_008e ENA
+pl lvapps_drl-97714 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_008e-02 lvapps_drl-97714 13_97714_008e 7294592 2112 LOG hitachi_vsp0_008e ENA
+pl lvapps_drl-97717 lvapps   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_008e-02 lvapps_drl-97717 19_97717_008e 7294592 2112 LOG hitachi_vsp1_008e ENA
+dc lvapps_dco   lvapps       lvapps_dcl
+v  lvapps_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvapps_dcl-97714 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 13_97714_008e-03 lvapps_dcl-97714 13_97714_008e 7296704 2112 0 hitachi_vsp0_008e ENA
+pl lvapps_dcl-97717 lvapps_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_008e-03 lvapps_dcl-97717 19_97717_008e 7296704 2112 0 hitachi_vsp1_008e ENA
+
+Disk group: dgdbkiqaw1bkup
+
+dg dgdbkiqaw1bkup default    default  10000    1214037101.124.lp01d13
+
+dm 13_97714_a02a hitachi_vsp0_a02a auto 65536  117819168 -
+dm 13_97714_a02b hitachi_vsp0_a02b auto 65536  117819168 -
+dm 13_97714_a02c hitachi_vsp0_a02c auto 65536  117819168 -
+dm 13_97714_a02d hitachi_vsp0_a02d auto 65536  117819168 -
+dm 13_97714_a022 hitachi_vsp0_a022 auto 65536  117819168 -
+dm 13_97714_a023 hitachi_vsp0_a023 auto 65536  117819168 -
+dm 13_97714_a024 hitachi_vsp0_a024 auto 65536  117819168 -
+dm 13_97714_a032 hitachi_vsp0_a032 auto 65536  117819168 -
+dm 13_97714_a033 hitachi_vsp0_a033 auto 65536  117819168 -
+dm 13_97714_a036 hitachi_vsp0_a036 auto 65536  117819168 -
+dm 13_97714_a037 hitachi_vsp0_a037 auto 65536  117819168 -
+dm 13_97714_0207 hitachi_vsp0_0207 auto 65536  117940560 -
+dm 13_97714_0208 hitachi_vsp0_0208 auto 65536  117940560 -
+dm 19_97717_a02a hitachi_vsp1_a02a auto 65536  117819168 -
+dm 19_97717_a02b hitachi_vsp1_a02b auto 65536  117819168 -
+dm 19_97717_a02c hitachi_vsp1_a02c auto 65536  117819168 -
+dm 19_97717_a02d hitachi_vsp1_a02d auto 65536  117819168 -
+dm 19_97717_a022 hitachi_vsp1_a022 auto 65536  117819168 -
+dm 19_97717_a023 hitachi_vsp1_a023 auto 65536  117819168 -
+dm 19_97717_a024 hitachi_vsp1_a024 auto 65536  117819168 -
+dm 19_97717_a032 hitachi_vsp1_a032 auto 65536  117819168 -
+dm 19_97717_a033 hitachi_vsp1_a033 auto 65536  117819168 -
+dm 19_97717_a036 hitachi_vsp1_a036 auto 65536  117819168 -
+dm 19_97717_a037 hitachi_vsp1_a037 auto 65536  117819168 -
+dm 19_97717_0207 hitachi_vsp1_0207 auto 65536  117940560 -
+dm 19_97717_0208 hitachi_vsp1_0208 auto 65536  117940560 -
+
+v  lvbkup       -            ENABLED  ACTIVE   1531865888 PREFER  lvbkup-97717 fsgen
+pl lvbkup-01    lvbkup       ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0208-02 lvbkup-01 19_97717_0208 117918704 2112 LOG    hitachi_vsp1_0208 ENA
+pl lvbkup-97714 lvbkup       ENABLED  ACTIVE   1531865888 CONCAT  -        RW
+sd 13_97714_a022-01 lvbkup-97714 13_97714_a022 0 117819168 0      hitachi_vsp0_a022 ENA
+sd 13_97714_a023-01 lvbkup-97714 13_97714_a023 0 117819168 117819168 hitachi_vsp0_a023 ENA
+sd 13_97714_a024-01 lvbkup-97714 13_97714_a024 0 117814944 235638336 hitachi_vsp0_a024 ENA
+sd 13_97714_a02a-01 lvbkup-97714 13_97714_a02a 0 117819168 353453280 hitachi_vsp0_a02a ENA
+sd 13_97714_a02b-01 lvbkup-97714 13_97714_a02b 0 117819168 471272448 hitachi_vsp0_a02b ENA
+sd 13_97714_a02c-01 lvbkup-97714 13_97714_a02c 0 117819168 589091616 hitachi_vsp0_a02c ENA
+sd 13_97714_a02d-01 lvbkup-97714 13_97714_a02d 0 117819168 706910784 hitachi_vsp0_a02d ENA
+sd 13_97714_a032-01 lvbkup-97714 13_97714_a032 0 117819168 824729952 hitachi_vsp0_a032 ENA
+sd 13_97714_a033-01 lvbkup-97714 13_97714_a033 0 117819168 942549120 hitachi_vsp0_a033 ENA
+sd 13_97714_a036-01 lvbkup-97714 13_97714_a036 0 117819168 1060368288 hitachi_vsp0_a036 ENA
+sd 13_97714_a037-01 lvbkup-97714 13_97714_a037 0 117819168 1178187456 hitachi_vsp0_a037 ENA
+sd 13_97714_0207-01 lvbkup-97714 13_97714_0207 0 117940560 1296006624 hitachi_vsp0_0207 ENA
+sd 13_97714_0208-01 lvbkup-97714 13_97714_0208 0 117918704 1413947184 hitachi_vsp0_0208 ENA
+pl lvbkup-97717 lvbkup       ENABLED  ACTIVE   1531865888 CONCAT  -        RW
+sd 19_97717_a022-01 lvbkup-97717 19_97717_a022 0 117819168 0      hitachi_vsp1_a022 ENA
+sd 19_97717_a023-01 lvbkup-97717 19_97717_a023 0 117819168 117819168 hitachi_vsp1_a023 ENA
+sd 19_97717_a024-02 lvbkup-97717 19_97717_a024 0 117814944 235638336 hitachi_vsp1_a024 ENA
+sd 19_97717_a02a-01 lvbkup-97717 19_97717_a02a 0 117819168 353453280 hitachi_vsp1_a02a ENA
+sd 19_97717_a02b-01 lvbkup-97717 19_97717_a02b 0 117819168 471272448 hitachi_vsp1_a02b ENA
+sd 19_97717_a02c-01 lvbkup-97717 19_97717_a02c 0 117819168 589091616 hitachi_vsp1_a02c ENA
+sd 19_97717_a02d-01 lvbkup-97717 19_97717_a02d 0 117819168 706910784 hitachi_vsp1_a02d ENA
+sd 19_97717_a032-01 lvbkup-97717 19_97717_a032 0 117819168 824729952 hitachi_vsp1_a032 ENA
+sd 19_97717_a033-01 lvbkup-97717 19_97717_a033 0 117819168 942549120 hitachi_vsp1_a033 ENA
+sd 19_97717_a036-01 lvbkup-97717 19_97717_a036 0 117819168 1060368288 hitachi_vsp1_a036 ENA
+sd 19_97717_a037-01 lvbkup-97717 19_97717_a037 0 117819168 1178187456 hitachi_vsp1_a037 ENA
+sd 19_97717_0207-01 lvbkup-97717 19_97717_0207 0 117940560 1296006624 hitachi_vsp1_0207 ENA
+sd 19_97717_0208-01 lvbkup-97717 19_97717_0208 0 117918704 1413947184 hitachi_vsp1_0208 ENA
+pl lvbkup_drl-97717 lvbkup   ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_a024-01 lvbkup_drl-97717 19_97717_a024 117814944 2112 LOG hitachi_vsp1_a024 ENA
+dc lvbkup_dco   lvbkup       lvbkup_dcl
+v  lvbkup_dcl   -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvbkup_dcl-97714 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_0208-03 lvbkup_dcl-97714 19_97717_0208 117920816 2112 0 hitachi_vsp1_0208 ENA
+pl lvbkup_dcl-97717 lvbkup_dcl ENABLED ACTIVE  2112     CONCAT    -        RW
+sd 19_97717_a024-03 lvbkup_dcl-97717 19_97717_a024 117817056 2112 0 hitachi_vsp1_a024 ENA
+
+Disk group: dgdbkiqaw1db
+
+dg dgdbkiqaw1db default      default  24000    1214037080.114.lp01d13
+
+dm 13_97714_a000 hitachi_vsp0_a000 auto 65536  117819168 -
+dm 13_97714_a01f hitachi_vsp0_a01f auto 65536  117819168 -
+dm 13_97714_a020 hitachi_vsp0_a020 auto 65536  117819168 -
+dm 13_97714_a021 hitachi_vsp0_a021 auto 65536  117819168 -
+dm 13_97714_a034 hitachi_vsp0_a034 auto 65536  117819168 -
+dm 13_97714_a035 hitachi_vsp0_a035 auto 65536  117819168 -
+dm 13_97714_002a hitachi_vsp0_002a auto 65536  117940560 -
+dm 13_97714_002b hitachi_vsp0_002b auto 65536  117940560 -
+dm 13_97714_50c1 hitachi_vsp0_50c1 auto 65536  1061995824 -
+dm 13_97714_50c4 hitachi_vsp0_50c4 auto 65536  1061995824 -
+dm 13_97714_0056 hitachi_vsp0_0056 auto 65536  117940560 -
+dm 13_97714_0057 hitachi_vsp0_0057 auto 65536  117940560 -
+dm 19_97717_a000 hitachi_vsp1_a000 auto 65536  117819168 -
+dm 19_97717_a01f hitachi_vsp1_a01f auto 65536  117819168 -
+dm 19_97717_a020 hitachi_vsp1_a020 auto 65536  117819168 -
+dm 19_97717_a021 hitachi_vsp1_a021 auto 65536  117819168 -
+dm 19_97717_a034 hitachi_vsp1_a034 auto 65536  117819168 -
+dm 19_97717_a035 hitachi_vsp1_a035 auto 65536  117819168 -
+dm 19_97717_002a hitachi_vsp1_002a auto 65536  117940560 -
+dm 19_97717_002b hitachi_vsp1_002b auto 65536  117940560 -
+dm 19_97717_50c1 hitachi_vsp1_50c1 auto 65536  1061995824 -
+dm 19_97717_50c4 hitachi_vsp1_50c4 auto 65536  1061995824 -
+dm 19_97717_0056 hitachi_vsp1_0056 auto 65536  117940560 -
+dm 19_97717_0057 hitachi_vsp1_0057 auto 65536  117940560 -
+
+v  lvdb         -            ENABLED  ACTIVE   3302569184 PREFER  lvdb-97717 fsgen
+pl lvdb-01      lvdb         ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_a021-01 lvdb-01  19_97717_a021 117814944 2112 LOG     hitachi_vsp1_a021 ENA
+pl lvdb-02      lvdb         ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_50c4-02 lvdb-02  19_97717_50c4 1061900336 2112 LOG    hitachi_vsp1_50c4 ENA
+pl lvdb-97714   lvdb         ENABLED  ACTIVE   3302569184 CONCAT  -        RW
+sd 13_97714_a01f-01 lvdb-97714 13_97714_a01f 0 117819168 0        hitachi_vsp0_a01f ENA
+sd 13_97714_a020-01 lvdb-97714 13_97714_a020 0 117819168 117819168 hitachi_vsp0_a020 ENA
+sd 13_97714_a021-01 lvdb-97714 13_97714_a021 0 117814944 235638336 hitachi_vsp0_a021 ENA
+sd 13_97714_a000-01 lvdb-97714 13_97714_a000 0 117819168 353453280 hitachi_vsp0_a000 ENA
+sd 13_97714_a034-01 lvdb-97714 13_97714_a034 0 117819168 471272448 hitachi_vsp0_a034 ENA
+sd 13_97714_a035-01 lvdb-97714 13_97714_a035 0 117819168 589091616 hitachi_vsp0_a035 ENA
+sd 13_97714_002a-01 lvdb-97714 13_97714_002a 0 117940560 706910784 hitachi_vsp0_002a ENA
+sd 13_97714_002b-01 lvdb-97714 13_97714_002b 0 117940560 824851344 hitachi_vsp0_002b ENA
+sd 13_97714_0056-01 lvdb-97714 13_97714_0056 0 117940560 942791904 hitachi_vsp0_0056 ENA
+sd 13_97714_0057-01 lvdb-97714 13_97714_0057 0 117940560 1060732464 hitachi_vsp0_0057 ENA
+sd 13_97714_50c1-01 lvdb-97714 13_97714_50c1 0 1061995824 1178673024 hitachi_vsp0_50c1 ENA
+sd 13_97714_50c4-01 lvdb-97714 13_97714_50c4 0 1061900336 2240668848 hitachi_vsp0_50c4 ENA
+pl lvdb-97717   lvdb         ENABLED  ACTIVE   3302569184 CONCAT  -        RW
+sd 19_97717_a01f-01 lvdb-97717 19_97717_a01f 0 117819168 0        hitachi_vsp1_a01f ENA
+sd 19_97717_a020-01 lvdb-97717 19_97717_a020 0 117819168 117819168 hitachi_vsp1_a020 ENA
+sd 19_97717_a021-02 lvdb-97717 19_97717_a021 0 117814944 235638336 hitachi_vsp1_a021 ENA
+sd 19_97717_a000-01 lvdb-97717 19_97717_a000 0 117819168 353453280 hitachi_vsp1_a000 ENA
+sd 19_97717_a034-01 lvdb-97717 19_97717_a034 0 117819168 471272448 hitachi_vsp1_a034 ENA
+sd 19_97717_a035-01 lvdb-97717 19_97717_a035 0 117819168 589091616 hitachi_vsp1_a035 ENA
+sd 19_97717_002a-01 lvdb-97717 19_97717_002a 0 117940560 706910784 hitachi_vsp1_002a ENA
+sd 19_97717_002b-01 lvdb-97717 19_97717_002b 0 117940560 824851344 hitachi_vsp1_002b ENA
+sd 19_97717_0056-01 lvdb-97717 19_97717_0056 0 117940560 942791904 hitachi_vsp1_0056 ENA
+sd 19_97717_0057-01 lvdb-97717 19_97717_0057 0 117940560 1060732464 hitachi_vsp1_0057 ENA
+sd 19_97717_50c1-01 lvdb-97717 19_97717_50c1 0 1061995824 1178673024 hitachi_vsp1_50c1 ENA
+sd 19_97717_50c4-01 lvdb-97717 19_97717_50c4 0 1061900336 2240668848 hitachi_vsp1_50c4 ENA
+dc lvdb_dco     lvdb         lvdb_dcl
+v  lvdb_dcl     -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvdb_dcl-97714 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_50c4-03 lvdb_dcl-97714 19_97717_50c4 1061902448 2112 0 hitachi_vsp1_50c4 ENA
+pl lvdb_dcl-97717 lvdb_dcl   ENABLED  ACTIVE   2112     CONCAT    -        RW
+sd 19_97717_a021-03 lvdb_dcl-97717 19_97717_a021 117817056 2112 0 hitachi_vsp1_a021 ENA
+
+Disk group: dgdbkiqaw1redo1
+
+dg dgdbkiqaw1redo1 default   default  0        1214037119.130.lp01d13
+
+dm 13_97714_0091 hitachi_vsp0_0091 auto 65536  29435792 -
+dm 19_97717_0091 hitachi_vsp1_0091 auto 65536  29435792 -
+
+v  lvredo1      -            ENABLED  ACTIVE   7294592  PREFER    lvredo1-97717 fsgen
+pl lvredo1-97714 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_0091-01 lvredo1-97714 13_97714_0091 0 7294592 0       hitachi_vsp0_0091 ENA
+pl lvredo1-97717 lvredo1     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_0091-01 lvredo1-97717 19_97717_0091 0 7294592 0       hitachi_vsp1_0091 ENA
+pl lvredo1_drl-97714 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0091-02 lvredo1_drl-97714 13_97714_0091 7294592 2112 LOG hitachi_vsp0_0091 ENA
+pl lvredo1_drl-97717 lvredo1 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0091-02 lvredo1_drl-97717 19_97717_0091 7294592 2112 LOG hitachi_vsp1_0091 ENA
+dc lvredo1_dco  lvredo1      lvredo1_dcl
+v  lvredo1_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo1_dcl-97714 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_0091-03 lvredo1_dcl-97714 13_97714_0091 7296704 2112 0 hitachi_vsp0_0091 ENA
+pl lvredo1_dcl-97717 lvredo1_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_0091-03 lvredo1_dcl-97717 19_97717_0091 7296704 2112 0 hitachi_vsp1_0091 ENA
+
+Disk group: dgdbkiqaw1redo2
+
+dg dgdbkiqaw1redo2 default   default  1000     1214037134.136.lp01d13
+
+dm 13_97714_0092 hitachi_vsp0_0092 auto 65536  29435792 -
+dm 19_97717_0092 hitachi_vsp1_0092 auto 65536  29435792 -
+
+v  lvredo2      -            ENABLED  ACTIVE   7294592  PREFER    lvredo2-97717 fsgen
+pl lvredo2-97714 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 13_97714_0092-01 lvredo2-97714 13_97714_0092 0 7294592 0       hitachi_vsp0_0092 ENA
+pl lvredo2-97717 lvredo2     ENABLED  ACTIVE   7294592  CONCAT    -        RW
+sd 19_97717_0092-02 lvredo2-97717 19_97717_0092 0 7294592 0       hitachi_vsp1_0092 ENA
+pl lvredo2_drl-97714 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 13_97714_0092-02 lvredo2_drl-97714 13_97714_0092 7294592 2112 LOG hitachi_vsp0_0092 ENA
+pl lvredo2_drl-97717 lvredo2 ENABLED  ACTIVE   LOGONLY  CONCAT    -        RW
+sd 19_97717_0092-01 lvredo2_drl-97717 19_97717_0092 7294592 2112 LOG hitachi_vsp1_0092 ENA
+dc lvredo2_dco  lvredo2      lvredo2_dcl
+v  lvredo2_dcl  -            ENABLED  ACTIVE   2112     SELECT    -        gen
+pl lvredo2_dcl-97714 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 13_97714_0092-03 lvredo2_dcl-97714 13_97714_0092 7296704 2112 0 hitachi_vsp0_0092 ENA
+pl lvredo2_dcl-97717 lvredo2_dcl ENABLED ACTIVE 2112    CONCAT    -        RW
+sd 19_97717_0092-03 lvredo2_dcl-97717 19_97717_0092 7296704 2112 0 hitachi_vsp1_0092 ENA
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ #  vxdisk -o alldgs list
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vsp0_a000 auto:cdsdisk    13_97714_a000  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a01a auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01b auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01c auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01f auto:cdsdisk    13_97714_a01f  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a02a auto:cdsdisk    13_97714_a02a  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02b auto:cdsdisk    13_97714_a02b  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02c auto:cdsdisk    13_97714_a02c  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02d auto:cdsdisk    13_97714_a02d  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a007 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a008 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a009 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a014 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a015 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a016 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a017 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a020 auto:cdsdisk    13_97714_a020  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a021 auto:cdsdisk    13_97714_a021  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a022 auto:cdsdisk    13_97714_a022  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a023 auto:cdsdisk    13_97714_a023  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a024 auto:cdsdisk    13_97714_a024  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a027 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a032 auto:cdsdisk    13_97714_a032  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a033 auto:cdsdisk    13_97714_a033  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a034 auto:cdsdisk    13_97714_a034  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a035 auto:cdsdisk    13_97714_a035  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a036 auto:cdsdisk    13_97714_a036  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a037 auto:cdsdisk    13_97714_a037  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_002a auto:cdsdisk    13_97714_002a  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_002b auto:cdsdisk    13_97714_002b  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_002c auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_005a auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_006d auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_006e auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_008a auto:cdsdisk    -            (dgdbauqaw1redo2) online thinrclm
+hitachi_vsp0_008b auto:cdsdisk    -            (dgdbhiqaw1apps) online thinrclm
+hitachi_vsp0_008c auto:cdsdisk    -            (dgdbhiqaw1redo1) online thinrclm
+hitachi_vsp0_008d auto:cdsdisk    -            (dgdbhiqaw1redo2) online thinrclm
+hitachi_vsp0_008e auto:cdsdisk    13_97714_008e  dgdbkiqaw1apps online thinrclm
+hitachi_vsp0_008f auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_015b auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015c auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015d auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015e auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015f auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0028 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_0029 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_0030 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_0042 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_0043 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50cd auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50ce auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_50c1 auto:cdsdisk    13_97714_50c1  dgdbkiqaw1db online
+hitachi_vsp0_50c2 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50c3 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50c4 auto:cdsdisk    13_97714_50c4  dgdbkiqaw1db online
+hitachi_vsp0_50e3 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp0_50e4 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp0_50f1 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_0056 auto:cdsdisk    13_97714_0056  dgdbkiqaw1db online
+hitachi_vsp0_0057 auto:cdsdisk    13_97714_0057  dgdbkiqaw1db online
+hitachi_vsp0_0089 auto:cdsdisk    -            (dgdbauqaw1redo1) online thinrclm
+hitachi_vsp0_0090 auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_0091 auto:cdsdisk    13_97714_0091  dgdbkiqaw1redo1 online thinrclm
+hitachi_vsp0_0092 auto:cdsdisk    13_97714_0092  dgdbkiqaw1redo2 online thinrclm
+hitachi_vsp0_0160 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0161 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0162 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0163 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0164 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0165 auto:cdsdisk    -            (dgdbe00w1redo1) online
+hitachi_vsp0_0166 auto:cdsdisk    -            (dgdbe00w1redo2) online
+hitachi_vsp0_0167 auto:cdsdisk    -            (dgdbe00w1apps) online
+hitachi_vsp0_0207 auto:cdsdisk    13_97714_0207  dgdbkiqaw1bkup online
+hitachi_vsp0_0208 auto:cdsdisk    13_97714_0208  dgdbkiqaw1bkup online
+hitachi_vsp0_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp0_506c auto:cdsdisk    13_97714_506c  dgoracle_lp01d66 online
+hitachi_vsp0_512d auto:cdsdisk    -            (dgdbhiqaw1bkup) online
+hitachi_vsp0_5154 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_5159 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_a000 auto:cdsdisk    19_97717_a000  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a01a auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01b auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01c auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01f auto:cdsdisk    19_97717_a01f  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a02a auto:cdsdisk    19_97717_a02a  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02b auto:cdsdisk    19_97717_a02b  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02c auto:cdsdisk    19_97717_a02c  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02d auto:cdsdisk    19_97717_a02d  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a007 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a008 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a009 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a014 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a015 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a016 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a017 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a020 auto:cdsdisk    19_97717_a020  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a021 auto:cdsdisk    19_97717_a021  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a022 auto:cdsdisk    19_97717_a022  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a023 auto:cdsdisk    19_97717_a023  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a024 auto:cdsdisk    19_97717_a024  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a027 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a032 auto:cdsdisk    19_97717_a032  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a033 auto:cdsdisk    19_97717_a033  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a034 auto:cdsdisk    19_97717_a034  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a035 auto:cdsdisk    19_97717_a035  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a036 auto:cdsdisk    19_97717_a036  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a037 auto:cdsdisk    19_97717_a037  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_002a auto:cdsdisk    19_97717_002a  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_002b auto:cdsdisk    19_97717_002b  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_002c auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_005a auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_006d auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_006e auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_008a auto:cdsdisk    -            (dgdbauqaw1redo2) online thinrclm
+hitachi_vsp1_008b auto:cdsdisk    -            (dgdbhiqaw1apps) online thinrclm
+hitachi_vsp1_008c auto:cdsdisk    -            (dgdbhiqaw1redo1) online thinrclm
+hitachi_vsp1_008d auto:cdsdisk    -            (dgdbhiqaw1redo2) online thinrclm
+hitachi_vsp1_008e auto:cdsdisk    19_97717_008e  dgdbkiqaw1apps online thinrclm
+hitachi_vsp1_008f auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_015b auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015c auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015d auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015e auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015f auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0028 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_0029 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_0030 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_0042 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_0043 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50cd auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50ce auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_50c1 auto:cdsdisk    19_97717_50c1  dgdbkiqaw1db online
+hitachi_vsp1_50c2 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50c3 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50c4 auto:cdsdisk    19_97717_50c4  dgdbkiqaw1db online
+hitachi_vsp1_50e3 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_50e4 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_50f1 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_0056 auto:cdsdisk    19_97717_0056  dgdbkiqaw1db online
+hitachi_vsp1_0057 auto:cdsdisk    19_97717_0057  dgdbkiqaw1db online
+hitachi_vsp1_0089 auto:cdsdisk    -            (dgdbauqaw1redo1) online thinrclm
+hitachi_vsp1_0090 auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_0091 auto:cdsdisk    19_97717_0091  dgdbkiqaw1redo1 online thinrclm
+hitachi_vsp1_0092 auto:cdsdisk    19_97717_0092  dgdbkiqaw1redo2 online thinrclm
+hitachi_vsp1_0160 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0161 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0162 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0163 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0164 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0165 auto:cdsdisk    -            (dgdbe00w1redo1) online
+hitachi_vsp1_0166 auto:cdsdisk    -            (dgdbe00w1redo2) online
+hitachi_vsp1_0167 auto:cdsdisk    -            (dgdbe00w1apps) online
+hitachi_vsp1_0207 auto:cdsdisk    19_97717_0207  dgdbkiqaw1bkup online
+hitachi_vsp1_0208 auto:cdsdisk    19_97717_0208  dgdbkiqaw1bkup online
+hitachi_vsp1_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp1_506c auto:cdsdisk    19_97717_506c  dgoracle_lp01d66 online
+hitachi_vsp1_512d auto:cdsdisk    -            (dgdbhiqaw1bkup) online
+hitachi_vsp1_5154 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_5159 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+lp01d66_disk_0 auto:none       -            -            online invalid
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # vxdisk -o alldgs list
+DEVICE          TYPE            DISK         GROUP        STATUS
+hitachi_vsp0_a000 auto:cdsdisk    13_97714_a000  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a01a auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01b auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01c auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp0_a01f auto:cdsdisk    13_97714_a01f  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a02a auto:cdsdisk    13_97714_a02a  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02b auto:cdsdisk    13_97714_a02b  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02c auto:cdsdisk    13_97714_a02c  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a02d auto:cdsdisk    13_97714_a02d  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a007 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a008 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a009 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_a014 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a015 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a016 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a017 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a020 auto:cdsdisk    13_97714_a020  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a021 auto:cdsdisk    13_97714_a021  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a022 auto:cdsdisk    13_97714_a022  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a023 auto:cdsdisk    13_97714_a023  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a024 auto:cdsdisk    13_97714_a024  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a027 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_a032 auto:cdsdisk    13_97714_a032  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a033 auto:cdsdisk    13_97714_a033  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a034 auto:cdsdisk    13_97714_a034  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a035 auto:cdsdisk    13_97714_a035  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_a036 auto:cdsdisk    13_97714_a036  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_a037 auto:cdsdisk    13_97714_a037  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp0_002a auto:cdsdisk    13_97714_002a  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_002b auto:cdsdisk    13_97714_002b  dgdbkiqaw1db online thinrclm
+hitachi_vsp0_002c auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_005a auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_006d auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_006e auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_008a auto:cdsdisk    -            (dgdbauqaw1redo2) online thinrclm
+hitachi_vsp0_008b auto:cdsdisk    -            (dgdbhiqaw1apps) online thinrclm
+hitachi_vsp0_008c auto:cdsdisk    -            (dgdbhiqaw1redo1) online thinrclm
+hitachi_vsp0_008d auto:cdsdisk    -            (dgdbhiqaw1redo2) online thinrclm
+hitachi_vsp0_008e auto:cdsdisk    13_97714_008e  dgdbkiqaw1apps online thinrclm
+hitachi_vsp0_008f auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_015b auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015c auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015d auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015e auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_015f auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0028 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_0029 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp0_0030 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp0_0042 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_0043 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50cd auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50ce auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp0_50c1 auto:cdsdisk    13_97714_50c1  dgdbkiqaw1db online
+hitachi_vsp0_50c2 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50c3 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_50c4 auto:cdsdisk    13_97714_50c4  dgdbkiqaw1db online
+hitachi_vsp0_50e3 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp0_50e4 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp0_50f1 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_0056 auto:cdsdisk    13_97714_0056  dgdbkiqaw1db online
+hitachi_vsp0_0057 auto:cdsdisk    13_97714_0057  dgdbkiqaw1db online
+hitachi_vsp0_0089 auto:cdsdisk    -            (dgdbauqaw1redo1) online thinrclm
+hitachi_vsp0_0090 auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp0_0091 auto:cdsdisk    13_97714_0091  dgdbkiqaw1redo1 online thinrclm
+hitachi_vsp0_0092 auto:cdsdisk    13_97714_0092  dgdbkiqaw1redo2 online thinrclm
+hitachi_vsp0_0160 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0161 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp0_0162 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0163 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0164 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp0_0165 auto:cdsdisk    -            (dgdbe00w1redo1) online
+hitachi_vsp0_0166 auto:cdsdisk    -            (dgdbe00w1redo2) online
+hitachi_vsp0_0167 auto:cdsdisk    -            (dgdbe00w1apps) online
+hitachi_vsp0_0207 auto:cdsdisk    13_97714_0207  dgdbkiqaw1bkup online
+hitachi_vsp0_0208 auto:cdsdisk    13_97714_0208  dgdbkiqaw1bkup online
+hitachi_vsp0_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp0_506c auto:cdsdisk    13_97714_506c  dgoracle_lp01d66 online
+hitachi_vsp0_512d auto:cdsdisk    -            (dgdbhiqaw1bkup) online
+hitachi_vsp0_5154 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp0_5159 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_a000 auto:cdsdisk    19_97717_a000  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a01a auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01b auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01c auto:cdsdisk    -            (dgdbhiqaw1bkup) online thinrclm
+hitachi_vsp1_a01f auto:cdsdisk    19_97717_a01f  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a02a auto:cdsdisk    19_97717_a02a  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02b auto:cdsdisk    19_97717_a02b  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02c auto:cdsdisk    19_97717_a02c  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a02d auto:cdsdisk    19_97717_a02d  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a007 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a008 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a009 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_a014 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a015 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a016 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a017 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a020 auto:cdsdisk    19_97717_a020  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a021 auto:cdsdisk    19_97717_a021  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a022 auto:cdsdisk    19_97717_a022  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a023 auto:cdsdisk    19_97717_a023  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a024 auto:cdsdisk    19_97717_a024  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a027 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_a032 auto:cdsdisk    19_97717_a032  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a033 auto:cdsdisk    19_97717_a033  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a034 auto:cdsdisk    19_97717_a034  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a035 auto:cdsdisk    19_97717_a035  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_a036 auto:cdsdisk    19_97717_a036  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_a037 auto:cdsdisk    19_97717_a037  dgdbkiqaw1bkup online thinrclm
+hitachi_vsp1_002a auto:cdsdisk    19_97717_002a  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_002b auto:cdsdisk    19_97717_002b  dgdbkiqaw1db online thinrclm
+hitachi_vsp1_002c auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_005a auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_006d auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_006e auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_008a auto:cdsdisk    -            (dgdbauqaw1redo2) online thinrclm
+hitachi_vsp1_008b auto:cdsdisk    -            (dgdbhiqaw1apps) online thinrclm
+hitachi_vsp1_008c auto:cdsdisk    -            (dgdbhiqaw1redo1) online thinrclm
+hitachi_vsp1_008d auto:cdsdisk    -            (dgdbhiqaw1redo2) online thinrclm
+hitachi_vsp1_008e auto:cdsdisk    19_97717_008e  dgdbkiqaw1apps online thinrclm
+hitachi_vsp1_008f auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_015b auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015c auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015d auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015e auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_015f auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0028 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_0029 auto:cdsdisk    -            (dgdbhiqaw1db) online thinrclm
+hitachi_vsp1_0030 auto:cdsdisk    -            (dgdbauqaw1db) online thinrclm
+hitachi_vsp1_0042 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_0043 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50cd auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50ce auto:cdsdisk    -            (dgdbauqaw1db) online
+hitachi_vsp1_50c1 auto:cdsdisk    19_97717_50c1  dgdbkiqaw1db online
+hitachi_vsp1_50c2 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50c3 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_50c4 auto:cdsdisk    19_97717_50c4  dgdbkiqaw1db online
+hitachi_vsp1_50e3 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_50e4 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+hitachi_vsp1_50f1 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_0056 auto:cdsdisk    19_97717_0056  dgdbkiqaw1db online
+hitachi_vsp1_0057 auto:cdsdisk    19_97717_0057  dgdbkiqaw1db online
+hitachi_vsp1_0089 auto:cdsdisk    -            (dgdbauqaw1redo1) online thinrclm
+hitachi_vsp1_0090 auto:cdsdisk    -            (dgdbauqaw1bkup) online thinrclm
+hitachi_vsp1_0091 auto:cdsdisk    19_97717_0091  dgdbkiqaw1redo1 online thinrclm
+hitachi_vsp1_0092 auto:cdsdisk    19_97717_0092  dgdbkiqaw1redo2 online thinrclm
+hitachi_vsp1_0160 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0161 auto:cdsdisk    -            (dgdbe00w1db) online
+hitachi_vsp1_0162 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0163 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0164 auto:cdsdisk    -            (dgdbe00w1bkup) online
+hitachi_vsp1_0165 auto:cdsdisk    -            (dgdbe00w1redo1) online
+hitachi_vsp1_0166 auto:cdsdisk    -            (dgdbe00w1redo2) online
+hitachi_vsp1_0167 auto:cdsdisk    -            (dgdbe00w1apps) online
+hitachi_vsp1_0207 auto:cdsdisk    19_97717_0207  dgdbkiqaw1bkup online
+hitachi_vsp1_0208 auto:cdsdisk    19_97717_0208  dgdbkiqaw1bkup online
+hitachi_vsp1_506b auto:none       -            -            online invalid thinrclm
+hitachi_vsp1_506c auto:cdsdisk    19_97717_506c  dgoracle_lp01d66 online
+hitachi_vsp1_512d auto:cdsdisk    -            (dgdbhiqaw1bkup) online
+hitachi_vsp1_5154 auto:cdsdisk    -            (dgdbhiqaw1db) online
+hitachi_vsp1_5159 auto:cdsdisk    -            (dgdbauqaw1bkup) online
+lp01d66_disk_0 auto:none       -            -            online invalid
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # san_shortinfo
+VXDEV              | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | DISKGROUP
+-------------------|-----------------------------------|-----------------------------------|----------
+hitachi_vsp0_0028  | sddf  00:28   3B   97714   230490 | sdic  00:28   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0029  | sddi  00:29   3B   97714   230490 | sdid  00:29   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_002a  | sddo  00:2A   3B   97714    57622 | sdie  00:2A   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_002b  | sddp  00:2B   3B   97714    57622 | sdif  00:2B   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_002c  | sddq  00:2C   3B   97714    57622 | sdig  00:2C   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0030  | sdds  00:30   3B   97714    57622 | sdih  00:30   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0042  | sddu  00:42   3B   97714   230490 | sdii  00:42   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0043  | sddw  00:43   3B   97714   230490 | sdij  00:43   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_0056  | sddx  00:56   3B   97714    57622 | sdik  00:56   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_0057  | sddz  00:57   3B   97714    57622 | sdil  00:57   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_005a  | sdeb  00:5A   3B   97714    57622 | sdim  00:5A   4B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_006d  | sdec  00:6D   3B   97714    57622 | sdin  00:6D   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_006e  | sded  00:6E   3B   97714    57622 | sdio  00:6E   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_0089  | sdef  00:89   3B   97714    14405 | sdip  00:89   4B   97714    14405 | dgdbauqaw1redo1
+hitachi_vsp0_008a  | sdeh  00:8A   3B   97714    14405 | sdiq  00:8A   4B   97714    14405 | dgdbauqaw1redo2
+hitachi_vsp0_008b  | sdej  00:8B   3B   97714    14405 | sdir  00:8B   4B   97714    14405 | dgdbhiqaw1apps
+hitachi_vsp0_008c  | sdem  00:8C   3B   97714    14405 | sdis  00:8C   4B   97714    14405 | dgdbhiqaw1redo1
+hitachi_vsp0_008d  | sdeo  00:8D   3B   97714    14405 | sdit  00:8D   4B   97714    14405 | dgdbhiqaw1redo2
+hitachi_vsp0_008e  | sdeq  00:8E   3B   97714    14405 | sdiu  00:8E   4B   97714    14405 | dgdbkiqaw1apps
+hitachi_vsp0_008f  | sder  00:8F   3B   97714    57622 | sdiv  00:8F   4B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_0090  | sdet  00:90   3B   97714    57622 | sdiw  00:90   4B   97714    57622 | dgdbauqaw1bkup
+hitachi_vsp0_0091  | sdeu  00:91   3B   97714    14405 | sdix  00:91   4B   97714    14405 | dgdbkiqaw1redo1
+hitachi_vsp0_0092  | sdew  00:92   3B   97714    14405 | sdiy  00:92   4B   97714    14405 | dgdbkiqaw1redo2
+hitachi_vsp0_015b  | sdex  01:5B   3B   97714   230490 | sdiz  01:5B   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015c  | sdfb  01:5C   3B   97714   230490 | sdja  01:5C   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015d  | sdfg  01:5D   3B   97714   230490 | sdjb  01:5D   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015e  | sdfi  01:5E   3B   97714   230490 | sdjc  01:5E   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_015f  | sdfl  01:5F   3B   97714   230490 | sdjd  01:5F   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0160  | sdfm  01:60   3B   97714   230490 | sdje  01:60   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0161  | sdfp  01:61   3B   97714   230490 | sdjf  01:61   4B   97714   230490 | dgdbe00w1db
+hitachi_vsp0_0162  | sdfr  01:62   3B   97714    57622 | sdjg  01:62   4B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0163  | sdft  01:63   3B   97714    57622 | sdjh  01:63   4B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0164  | sdfv  01:64   3B   97714    57622 | sdji  01:64   4B   97714    57622 | dgdbe00w1bkup
+hitachi_vsp0_0165  | sdfy  01:65   3B   97714    14405 | sdjj  01:65   4B   97714    14405 | dgdbe00w1redo1
+hitachi_vsp0_0166  | sdgb  01:66   3B   97714    14405 | sdjk  01:66   4B   97714    14405 | dgdbe00w1redo2
+hitachi_vsp0_0167  | sdgd  01:67   3B   97714    14405 | sdjl  01:67   4B   97714    14405 | dgdbe00w1apps
+hitachi_vsp0_0207  | sdgf  02:07   3B   97714    57622 | sdjm  02:07   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_0208  | sdgh  02:08   3B   97714    57622 | sdjn  02:08   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_506b  | sddb  50:6B   3B   97714    14405 | sdia  50:6B   4B   97714    14405 |
+hitachi_vsp0_506c  | sddd  50:6C   3B   97714   230490 | sdib  50:6C   4B   97714   230490 | dgoracle_lp01d66
+hitachi_vsp0_50c1  | sdhp  50:C1   3B   97714   518602 | sdkq  50:C1   4B   97714   518602 | dgdbkiqaw1db
+hitachi_vsp0_50c2  | sdhq  50:C2   3B   97714   230490 | sdkr  50:C2   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_50c3  | sdhr  50:C3   3B   97714   115245 | sdks  50:C3   4B   97714   115245 | dgdbhiqaw1db
+hitachi_vsp0_50c4  | sdhs  50:C4   3B   97714   518602 | sdkt  50:C4   4B   97714   518602 | dgdbkiqaw1db
+hitachi_vsp0_50cd  | sdht  50:CD   3B   97714   230490 | sdku  50:CD   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_50ce  | sdhu  50:CE   3B   97714   230490 | sdkv  50:CE   4B   97714   230490 | dgdbauqaw1db
+hitachi_vsp0_50e3  | sdhv  50:E3   3B   97714   230490 | sdkw  50:E3   4B   97714   230490 | dgdbauqaw1bkup
+hitachi_vsp0_50e4  | sdhw  50:E4   3B   97714   115245 | sdky  50:E4   4B   97714   115245 | dgdbauqaw1bkup
+hitachi_vsp0_50f1  | sdhx  50:F1   3B   97714   518602 | sdla  50:F1   4B   97714   518602 | dgdbhiqaw1db
+hitachi_vsp0_512d  | sdhy  51:2D   3B   97714   518602 | sdlc  51:2D   4B   97714   518602 | dgdbhiqaw1bkup
+hitachi_vsp0_5154  | sdhz  51:54   3B   97714  2097152 | sdle  51:54   4B   97714  2097152 | dgdbhiqaw1db
+hitachi_vsp0_5159  | sdli  51:59   3B   97714   115245 | sdlg  51:59   4B   97714   115245 | dgdbauqaw1bkup
+hitachi_vsp0_a000  | sdgj  A0:00   3B   97714    57622 | sdjo  A0:00   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a007  | sdgl  A0:07   3B   97714    57622 | sdjp  A0:07   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a008  | sdgo  A0:08   3B   97714    57622 | sdjq  A0:08   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a009  | sdgp  A0:09   3B   97714    57622 | sdjr  A0:09   4B   97714    57622 | dgdbauqaw1db
+hitachi_vsp0_a014  | sdgq  A0:14   3B   97714   230490 | sdjs  A0:14   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a015  | sdgs  A0:15   3B   97714   230490 | sdjt  A0:15   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a016  | sdgt  A0:16   3B   97714   230490 | sdju  A0:16   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a017  | sdgu  A0:17   3B   97714   230490 | sdjv  A0:17   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a01a  | sdgv  A0:1A   3B   97714    57622 | sdjw  A0:1A   4B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01b  | sdgw  A0:1B   3B   97714    57622 | sdjx  A0:1B   4B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01c  | sdgx  A0:1C   3B   97714    57622 | sdjy  A0:1C   4B   97714    57622 | dgdbhiqaw1bkup
+hitachi_vsp0_a01f  | sdgy  A0:1F   3B   97714    57622 | sdjz  A0:1F   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a020  | sdgz  A0:20   3B   97714    57622 | sdka  A0:20   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a021  | sdha  A0:21   3B   97714    57622 | sdkb  A0:21   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a022  | sdhb  A0:22   3B   97714    57622 | sdkc  A0:22   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a023  | sdhc  A0:23   3B   97714    57622 | sdkd  A0:23   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a024  | sdhd  A0:24   3B   97714    57622 | sdke  A0:24   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a027  | sdhe  A0:27   3B   97714   230490 | sdkf  A0:27   4B   97714   230490 | dgdbhiqaw1db
+hitachi_vsp0_a02a  | sdhf  A0:2A   3B   97714    57622 | sdkg  A0:2A   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02b  | sdhg  A0:2B   3B   97714    57622 | sdkh  A0:2B   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02c  | sdhh  A0:2C   3B   97714    57622 | sdki  A0:2C   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a02d  | sdhi  A0:2D   3B   97714    57622 | sdkj  A0:2D   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a032  | sdhj  A0:32   3B   97714    57622 | sdkk  A0:32   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a033  | sdhk  A0:33   3B   97714    57622 | sdkl  A0:33   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a034  | sdhl  A0:34   3B   97714    57622 | sdkm  A0:34   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a035  | sdhm  A0:35   3B   97714    57622 | sdkn  A0:35   4B   97714    57622 | dgdbkiqaw1db
+hitachi_vsp0_a036  | sdhn  A0:36   3B   97714    57622 | sdko  A0:36   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp0_a037  | sdho  A0:37   3B   97714    57622 | sdkp  A0:37   4B   97714    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_0028  | sdd   00:28   4B   97717   230490 | sdbf  00:28   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0029  | sde   00:29   4B   97717   230490 | sdbg  00:29   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_002a  | sdf   00:2A   4B   97717    57622 | sdbh  00:2A   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_002b  | sdg   00:2B   4B   97717    57622 | sdbj  00:2B   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_002c  | sdh   00:2C   4B   97717    57622 | sdbm  00:2C   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0030  | sdi   00:30   4B   97717    57622 | sdbp  00:30   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0042  | sdj   00:42   4B   97717   230490 | sdbr  00:42   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0043  | sdk   00:43   4B   97717   230490 | sdbs  00:43   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_0056  | sdl   00:56   4B   97717    57622 | sdbt  00:56   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_0057  | sdm   00:57   4B   97717    57622 | sdbu  00:57   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_005a  | sdn   00:5A   4B   97717    57622 | sdbw  00:5A   3B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_006d  | sdo   00:6D   4B   97717    57622 | sdby  00:6D   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_006e  | sdp   00:6E   4B   97717    57622 | sdcc  00:6E   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_0089  | sdq   00:89   4B   97717    14405 | sdce  00:89   3B   97717    14405 | dgdbauqaw1redo1
+hitachi_vsp1_008a  | sdr   00:8A   4B   97717    14405 | sdcg  00:8A   3B   97717    14405 | dgdbauqaw1redo2
+hitachi_vsp1_008b  | sds   00:8B   4B   97717    14405 | sdci  00:8B   3B   97717    14405 | dgdbhiqaw1apps
+hitachi_vsp1_008c  | sdt   00:8C   4B   97717    14405 | sdcj  00:8C   3B   97717    14405 | dgdbhiqaw1redo1
+hitachi_vsp1_008d  | sdu   00:8D   4B   97717    14405 | sdcl  00:8D   3B   97717    14405 | dgdbhiqaw1redo2
+hitachi_vsp1_008e  | sdv   00:8E   4B   97717    14405 | sdcm  00:8E   3B   97717    14405 | dgdbkiqaw1apps
+hitachi_vsp1_008f  | sdw   00:8F   4B   97717    57622 | sdco  00:8F   3B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_0090  | sdx   00:90   4B   97717    57622 | sdcr  00:90   3B   97717    57622 | dgdbauqaw1bkup
+hitachi_vsp1_0091  | sdy   00:91   4B   97717    14405 | sdct  00:91   3B   97717    14405 | dgdbkiqaw1redo1
+hitachi_vsp1_0092  | sdz   00:92   4B   97717    14405 | sdcv  00:92   3B   97717    14405 | dgdbkiqaw1redo2
+hitachi_vsp1_015b  | sdaa  01:5B   4B   97717   230490 | sdcx  01:5B   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015c  | sdab  01:5C   4B   97717   230490 | sdcz  01:5C   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015d  | sdac  01:5D   4B   97717   230490 | sddc  01:5D   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015e  | sdad  01:5E   4B   97717   230490 | sdde  01:5E   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_015f  | sdae  01:5F   4B   97717   230490 | sddg  01:5F   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0160  | sdaf  01:60   4B   97717   230490 | sddh  01:60   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0161  | sdag  01:61   4B   97717   230490 | sddj  01:61   3B   97717   230490 | dgdbe00w1db
+hitachi_vsp1_0162  | sdah  01:62   4B   97717    57622 | sddk  01:62   3B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0163  | sdai  01:63   4B   97717    57622 | sddl  01:63   3B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0164  | sdaj  01:64   4B   97717    57622 | sddm  01:64   3B   97717    57622 | dgdbe00w1bkup
+hitachi_vsp1_0165  | sdak  01:65   4B   97717    14405 | sddn  01:65   3B   97717    14405 | dgdbe00w1redo1
+hitachi_vsp1_0166  | sdal  01:66   4B   97717    14405 | sddr  01:66   3B   97717    14405 | dgdbe00w1redo2
+hitachi_vsp1_0167  | sdam  01:67   4B   97717    14405 | sddt  01:67   3B   97717    14405 | dgdbe00w1apps
+hitachi_vsp1_0207  | sdan  02:07   4B   97717    57622 | sddv  02:07   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_0208  | sdao  02:08   4B   97717    57622 | sddy  02:08   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_506b  | sdb   50:6B   4B   97717    14405 | sdbb  50:6B   3B   97717    14405 |
+hitachi_vsp1_506c  | sdc   50:6C   4B   97717   230490 | sdbd  50:6C   3B   97717   230490 | dgoracle_lp01d66
+hitachi_vsp1_50c1  | sdck  50:C1   4B   97717   518602 | sdga  50:C1   3B   97717   518602 | dgdbkiqaw1db
+hitachi_vsp1_50c2  | sdcn  50:C2   4B   97717   230490 | sdgc  50:C2   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_50c3  | sdcp  50:C3   4B   97717   115245 | sdge  50:C3   3B   97717   115245 | dgdbhiqaw1db
+hitachi_vsp1_50c4  | sdcq  50:C4   4B   97717   518602 | sdgg  50:C4   3B   97717   518602 | dgdbkiqaw1db
+hitachi_vsp1_50cd  | sdcs  50:CD   4B   97717   230490 | sdgi  50:CD   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_50ce  | sdcu  50:CE   4B   97717   230490 | sdgk  50:CE   3B   97717   230490 | dgdbauqaw1db
+hitachi_vsp1_50e3  | sdcw  50:E3   4B   97717   230490 | sdgm  50:E3   3B   97717   230490 | dgdbauqaw1bkup
+hitachi_vsp1_50e4  | sdcy  50:E4   4B   97717   115245 | sdgn  50:E4   3B   97717   115245 | dgdbauqaw1bkup
+hitachi_vsp1_50f1  | sdda  50:F1   4B   97717   518602 | sdgr  50:F1   3B   97717   518602 | dgdbhiqaw1db
+hitachi_vsp1_512d  | sdkx  51:2D   4B   97717   518602 | sdkz  51:2D   3B   97717   518602 | dgdbhiqaw1bkup
+hitachi_vsp1_5154  | sdlb  51:54   4B   97717  2097152 | sdld  51:54   3B   97717  2097152 | dgdbhiqaw1db
+hitachi_vsp1_5159  | sdlf  51:59   4B   97717   115245 | sdlh  51:59   3B   97717   115245 | dgdbauqaw1bkup
+hitachi_vsp1_a000  | sdap  A0:00   4B   97717    57622 | sdea  A0:00   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a007  | sdaq  A0:07   4B   97717    57622 | sdee  A0:07   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a008  | sdar  A0:08   4B   97717    57622 | sdeg  A0:08   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a009  | sdas  A0:09   4B   97717    57622 | sdei  A0:09   3B   97717    57622 | dgdbauqaw1db
+hitachi_vsp1_a014  | sdat  A0:14   4B   97717   230490 | sdek  A0:14   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a015  | sdau  A0:15   4B   97717   230490 | sdel  A0:15   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a016  | sdav  A0:16   4B   97717   230490 | sden  A0:16   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a017  | sdaw  A0:17   4B   97717   230490 | sdep  A0:17   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a01a  | sdax  A0:1A   4B   97717    57622 | sdes  A0:1A   3B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01b  | sday  A0:1B   4B   97717    57622 | sdev  A0:1B   3B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01c  | sdaz  A0:1C   4B   97717    57622 | sdey  A0:1C   3B   97717    57622 | dgdbhiqaw1bkup
+hitachi_vsp1_a01f  | sdba  A0:1F   4B   97717    57622 | sdez  A0:1F   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a020  | sdbc  A0:20   4B   97717    57622 | sdfa  A0:20   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a021  | sdbe  A0:21   4B   97717    57622 | sdfc  A0:21   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a022  | sdbi  A0:22   4B   97717    57622 | sdfd  A0:22   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a023  | sdbk  A0:23   4B   97717    57622 | sdfe  A0:23   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a024  | sdbl  A0:24   4B   97717    57622 | sdff  A0:24   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a027  | sdbn  A0:27   4B   97717   230490 | sdfh  A0:27   3B   97717   230490 | dgdbhiqaw1db
+hitachi_vsp1_a02a  | sdbo  A0:2A   4B   97717    57622 | sdfj  A0:2A   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02b  | sdbq  A0:2B   4B   97717    57622 | sdfk  A0:2B   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02c  | sdbv  A0:2C   4B   97717    57622 | sdfn  A0:2C   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a02d  | sdbx  A0:2D   4B   97717    57622 | sdfo  A0:2D   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a032  | sdbz  A0:32   4B   97717    57622 | sdfq  A0:32   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a033  | sdca  A0:33   4B   97717    57622 | sdfs  A0:33   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a034  | sdcb  A0:34   4B   97717    57622 | sdfu  A0:34   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a035  | sdcd  A0:35   4B   97717    57622 | sdfw  A0:35   3B   97717    57622 | dgdbkiqaw1db
+hitachi_vsp1_a036  | sdcf  A0:36   4B   97717    57622 | sdfx  A0:36   3B   97717    57622 | dgdbkiqaw1bkup
+hitachi_vsp1_a037  | sdch  A0:37   4B   97717    57622 | sdfz  A0:37   3B   97717    57622 | dgdbkiqaw1bkup
+lp01d66:~ #

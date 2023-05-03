@@ -1,0 +1,68 @@
+lvextend -L +4096G /dev/mapper/vgpc00084archive-lvarchive
+
+/dev/mapper/vgpc00084archive-lvarchive
+
+lppgb00084vm:~ # vgdisplay
+  --- Volume group ---
+  VG Name               vgpc00084archive
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  110
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               6.00 TiB
+  PE Size               4.00 MiB
+  Total PE              1572798
+  Alloc PE / Size       1440206 / 5.49 TiB
+  Free  PE / Size       132592 / 517.94 GiB
+  VG UUID               OcMLJI-Ked3-mLxE-6p9F-H6Q1-gQFs-P1n8lY
+
+  --- Volume group ---
+  VG Name               vgpc00084app
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  52
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               1.49 TiB
+  PE Size               4.00 MiB
+  Total PE              391729
+  Alloc PE / Size       391729 / 1.49 TiB
+  Free  PE / Size       0 / 0
+  VG UUID               kkBnHv-qV0V-ZT3I-SIQe-2x8V-C9Nj-BJtKge
+
+  --- Volume group ---
+  VG Name               vgpc00084xlog
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  17
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               281.20 GiB
+  PE Size               4.00 MiB
+  Total PE              71987
+  Alloc PE / Size       64788 / 253.08 GiB
+  Free  PE / Size       7199 / 28.12 GiB
+  VG UUID               fwQugT-KyXy-VRYm-GJVT-LSs6-4DXk-Pob7fv
+

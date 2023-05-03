@@ -1,0 +1,100 @@
+Issue resolved. Here's what I did, with a short explanation of my work process:
+
+First step, I verify the error message and try to run the plugin manually:
+
+lt19aqars01 # cd ~qqnagio/prod/lib/nagios/plugins
+lt19aqasr01 # ./check_dummy
+bash: ./check_dummy: No such file or directory
+
+This failed. So I confirm whether the file actually exists, and has the right permissions/owner:
+
+lt19aqasr01 # ls -al ./check_dummy
+-rwxr-xr-x 1 qqnagio nagios 11032 Apr  2  2012 ./check_dummy
+
+Looks good. Is it a valid executable program?
+
+lt19aqasr01 # file ./check_dummy
+./check_dummy: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-, for GNU/Linux 2.2.5, stripped
+
+Yes it is. But interpreter /lib/ld- looks strange.. like an incomplete file name.
+(side note: on some Linux versions this actually returns "interpreter not found" which is more clear..)
+Let's check what the linux loader thinks of this program..
+
+lt19aqasr01 # ldd ./check_dummy
+        not a dynamic executable
+
+.. wait. "not a dynamic executable"? but the file tool said "dynamically linked".
+So, ldd apparently can't load the file correctly either.. which would explain why
+it can not be started. Let's check what loader it is really supposed to be run with..
+this is usually the first string in the binary file.
+
+lt19aqasr01 # strings ./check_dummy | head -5
+/lib/ld-linux.so.2
+SuSE
+libm.so.6
+_Jv_RegisterClasses
+__gmon_start__
+
+so.. /lib/ld-linux.so.2 .. this looks more like a valid loader name than just "/lib/ld-"
+let's see if it exists.
+
+lt19aqasr01 # ls /lib/ld-linux.so.2
+ls: cannot access '/lib/ld-linux.so.2': No such file or directory
+
+so the binary loader that the program is built for, does not seem to exist.
+Where should it come from?
+
+lt19aqasr01 # zypper what-provides /lib/ld-linux.so.2
+Command 'what-provides' is replaced by 'search --provides --match-exact'.
+See 'help search' for all available options.
+Loading repository data...
+Reading installed packages...
+S | Name        | Summary                                            | Type
+--+-------------+----------------------------------------------------+--------
+i | glibc-32bit | Standard Shared Libraries (from the GNU C Library) | package
+
+It is part of the glibc-32bit.. is it installed?
+
+lt19aqasr01 # zypper in glibc-32bit
+Loading repository data...
+Reading installed packages...
+'glibc-32bit' is already installed.
+No update candidate for 'glibc-32bit-2.22-100.27.3.x86_64'. The highest available version is already installed.
+Resolving package dependencies...
+Nothing to do.
+
+The package is installed. Still, we are missing an important file that it provides.
+Let's reinstall the package to make sure.
+
+lt19aqasr01 # zypper in -f glibc-32bit
+Loading repository data...
+Reading installed packages...
+Forcing installation of 'glibc-32bit-2.22-100.27.3.x86_64' from repository 'BMW-SLES12-SP4'.
+Resolving package dependencies...
+
+The following package is going to be reinstalled:
+  glibc-32bit
+
+1 package to reinstall.
+Overall download size: 1.1 MiB. Already cached: 0 B. No additional space will be used or freed after the operation.
+Continue? [y/n/...? shows all options] (y): y
+Retrieving package glibc-32bit-2.22-100.27.3.x86_64                                            (1/1),   1.1 MiB (  3.4 MiB unpacked)
+Retrieving: glibc-32bit-2.22-100.27.3.x86_64.rpm .............................................................................[done]
+
+Checking for file conflicts: .................................................................................................[done]
+(1/1) Installing: glibc-32bit-2.22-100.27.3.x86_64 ...........................................................................[done]
+
+Does the loader file exist now?
+
+lt19aqasr01 # ls -al /lib/ld-linux.so.2
+lrwxrwxrwx 1 root root 10 Jul 30 18:02 /lib/ld-linux.so.2 -> ld-2.22.so
+
+Yes it does. Does the check program work now?
+
+lt19aqasr01 # ./check_dummy
+check_dummy: Could not parse arguments
+Usage: check_dummy <integer state> [optional text]
+
+Looks better.
+Final conclusion: The file /lib/ld-linux.so.2 of the package glibc-32bit was missing,
+and the issue resolved by force reinstalling the glibc-32bit package.

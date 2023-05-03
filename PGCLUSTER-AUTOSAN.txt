@@ -1,0 +1,14 @@
+autosan.pl order-disks-vm -O TAS000004894013  -d 224:2:Filesystem  --vmname lppga01201vm --vmname lppgb01201vm
+
+
+
+
+Server:lppgb01201vm.bmwgroup.net,lppga01201vm.bmwgroup.net
+APP-ID: 113641
+FS : Add [ ] / Extend [X ] / Reduce [ ]
+FS Name: /dev/mapper/dgpc01201archive-lvarchive
+Mount point:/global/pc01201/archive
+FS size change( in GB ): 224
+Standard lun disk size( in GB) 14, 56, 112, 224, 506 ,1024 , 2048 and 4096
+
+VM lipga02636vm  unable to start as it has some issue with LVM  and it we think it need a reboot of farm node

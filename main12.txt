@@ -1,0 +1,47 @@
+vxdg import dgoracle_lp01d65
+vxdg import dgdbauqaw1bkup
+vxdg import dgdbauqaw1db
+vxdg import dgdbauqaw1redo1
+vxdg import dgdbauqaw1redo2
+
+vxdg import dgdbe00w1apps
+vxdg import dgdbe00w1bkup
+vxdg import dgdbe00w1db
+vxdg import dgdbe00w1redo1
+vxdg import dgdbe00w1redo2
+
+vxdg import dgdbhiqaw1apps
+vxdg import dgdbhiqaw1bkup
+vxdg import dgdbhiqaw1db
+vxdg import dgdbhiqaw1redo1
+vxdg import dgdbhiqaw1redo2
+
+
+vxdg import dgoracle_lp01d66
+vxdg import dgdbkiqaw1apps
+vxdg import dgdbkiqaw1bkup
+vxdg import dgdbkiqaw1db
+vxdg import dgdbkiqaw1redo1
+vxdg import dgdbkiqaw1redo2
+
+
+
+======================
+
+for DG in dgoracle_lp01d65 dgdbauqaw1bkup dgdbauqaw1db dgdbauqaw1redo1 dgdbauqaw1redo2 dgdbe00w1apps dgdbe00w1bkup dgdbe00w1db dgdbe00w1redo1 dgdbe00w1redo2 dgdbhiqaw1apps dgdbhiqaw1bkup dgdbhiqaw1db dgdbhiqaw1redo1 dgdbhiqaw1redo2 ; do
+echo "Upgrading $DG"
+vxdg upgrade $DG && sleep 1 && vxdg -q list $DG | egrep -i ^version:| awk '{print "Version: "$NF}'
+done
+
+dgoracle_lp01d65 dgdbauqaw1bkup dgdbauqaw1db dgdbauqaw1redo1 dgdbauqaw1redo2 dgdbe00w1apps dgdbe00w1bkup dgdbe00w1db dgdbe00w1redo1 dgdbe00w1redo2 dgdbhiqaw1apps dgdbhiqaw1bkup dgdbhiqaw1db dgdbhiqaw1redo1 dgdbhiqaw1redo2
+
+=========================================================================================================================
+
+
+for DG in dgoracle_lp01d66 dgdbkiqaw1apps dgdbkiqaw1bkup dgdbkiqaw1db dgdbkiqaw1redo1 dgdbkiqaw1redo2 ; do
+echo "Upgrading $DG"
+vxdg upgrade $DG && sleep 1 && vxdg -q list $DG | egrep -i ^version:| awk '{print "Version: "$NF}'
+done
+
+dgoracle_lp01d66 dgdbkiqaw1apps dgdbkiqaw1bkup dgdbkiqaw1db dgdbkiqaw1redo1 dgdbkiqaw1redo2
+

@@ -1,0 +1,188 @@
+Work Info History
+
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   21.08.2020 16:52:18 
+Submitter   qxz0o55 
+Source    
+View Access   Internal 
+Summary   Task checked - MB - OK 
+Notes   Dear Madam, Dear Sir,
+
+your task has been pre-qualified and checked for the required information. It will be assigned to an appropriate team member shortly. Please do not modify the task. Should there be a pressing reason to modify the task, please contact the assignee directly and coordinate all modifications with the assignee. The assignee must be involved in any future modifications. This is imperative for the correct execution of the task and all commitments concerning the task run-time depend on this coordination and cannot be guaranteed if not observed.
+
+More information regarding tools, processes or responsible groups can be found here:
+
+Task Guidelines and Runtime:  https://contenthub.bmwgroup.net/web/linux-unix-openstack/task-guidelines
+
+Kind regards,
+Your Unix Operations Team. 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:18:59 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   LSAN Zoning = YES 
+Notes   [INSTSERV][qxz10kw][lpinstiaas01] ~ $ check4autosan.pl lpdbhsid05
+lpdbhsid05 has AutoSAN: EDC307
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $
+
+====
+
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ check4autosan.pl lpgssdb03
+lpgssdb03 has AutoSAN: GMA3S1
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:22:33 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   Visibility ticket raised 
+Notes   000324359 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:42:10 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   Getting unexpected error while raise request for new disk for target server 
+Notes   [INSTSERV][qxz10kw][lpinstiaas01] ~ $ autosan.pl order-disks-servers -O TAS000004932274 -d 225:2:DB-Data -d 14:2:DB-Data --server lpgssdb03 --server lpgssdb04
+Script started, file is /global/instserv/logs/full_outputs/2020/08/23/2020-08-23_22-38-11_autosan.pl.qxz10kw.log
+
+AutoSAN version 20190320
+User qxz10kw called command: "/global/instserv/bin/autosan.pl order-disks-servers -O TAS000004932274 -d 225:2:DB-Data -d 14:2:DB-Data --server lpgssdb03 --server lpgssdb04"
+
+Info[1]: 2020-08-23 22:38:12 Collecting storage data from server(s)
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password,keyboard-interactive).
+Error: 2020-08-23 22:38:14 BMW::AutoSAN::Server::_build_SSH: error logging in to lpgssdb03 using username qqasan0: unable to establish master SSH connection: master process exited unexpectedly
+Script done, file is /global/instserv/logs/full_outputs/2020/08/23/2020-08-23_22-38-11_autosan.pl.qxz10kw.log
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:44:24 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   NO SecFS mount point 
+Notes   lpdbhsid05:~ # hacf -cftocmd /etc/VRTSvcs/conf/config -display | egrep plgsscotde04 |grep -i secfs
+lpdbhsid05:~ # 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:45:56 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   San_shortinfo 
+Notes   lpdbhsid05:~ # san_shortinfo | egrep plgsscotde04
+hitachi_vsp0_5031  | sdgr  50:31   2M   97878   230490 | sdga  50:31   1M   97878   230490 | dgplgsscotde04db
+hitachi_vsp0_5032  | sdgt  50:32   2M   97878   230490 | sdgc  50:32   1M   97878   230490 | dgplgsscotde04bkup
+hitachi_vsp0_5033  | sdgv  50:33   2M   97878    14405 | sdge  50:33   1M   97878    14405 | dgplgsscotde04redo1
+hitachi_vsp0_5034  | sdgx  50:34   2M   97878    14405 | sdgf  50:34   1M   97878    14405 | dgplgsscotde04redo2
+hitachi_vsp1_5031  | sdbf  50:31   1M   97935   230490 | sdjz  50:31   2M   97935   230490 | dgplgsscotde04db
+hitachi_vsp1_5032  | sdbg  50:32   1M   97935   230490 | sdka  50:32   2M   97935   230490 | dgplgsscotde04bkup
+hitachi_vsp1_5033  | sdbh  50:33   1M   97935    14405 | sdkb  50:33   2M   97935    14405 | dgplgsscotde04redo1
+hitachi_vsp1_5034  | sdbi  50:34   1M   97935    14405 | sdkc  50:34   2M   97935    14405 | dgplgsscotde04redo2
+lpdbhsid05:~ # 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:54:07 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   IP Need to change 
+Notes   lpdbhsid05:~ # host plgsscotde04
+plgsscotde04.bmwgroup.net has address 160.50.192.76
+lpdbhsid05:~ #
+
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ c6000 lpdbhsid05 | grep -i net_id
+| NET_ID        |                  160.50.192.64 |
+| NET_ID        |                  160.48.72.128 |
+| NET_ID        |                  10.101.32.128 |
+| NET_ID        |                  160.48.72.128 |
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ c6000 lpgssdb03 | grep -i net_id
+| NET_ID        |                   10.131.197.0 |
+| NET_ID        |                   10.131.164.0 |
+| NET_ID        |                   10.131.177.0 |
+| NET_ID        |                   10.131.164.0 |
+[INSTSERV][qxz10kw][lpinstiaas01] ~ $ 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   23.08.2020 22:49:11 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   No App control script 
+Notes   lpdbhsid05:~ # cd /lfs/cluster/app_control/
+bash: cd: /lfs/cluster/app_control/: No such file or directory
+lpdbhsid05:~ # 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   24.08.2020 22:02:58 
+Submitter   qxz10kw 
+Source    
+View Access   Internal 
+Summary   Working on New LUN assignment 
+Notes   Working on New LUN assignment 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   25.08.2020 13:37:28 
+Submitter   qxy5788 
+Source    
+View Access   Internal 
+Summary   Storm ticket 324482 raised for new storage 
+Notes   Storm ticket 324482 raised for new storage 
+
+Ticket [324482] has been submitted successfully to the storage provider.Ticket Automation Requested. 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   25.08.2020 13:38:41 
+Submitter   qxy5788 
+Source    
+View Access   Internal 
+Summary   IP reservation has been done in CMDB and awaiting for sync with DNS. 
+Notes   IP reservation has been done in CMDB and awaiting for sync with DNS. 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   25.08.2020 16:55:44 
+Submitter   qxy5788 
+Source    
+View Access   Internal 
+Summary   All pre-p activity done successful - ok 
+Notes   All pre-p activity done successful - ok 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   25.08.2020 16:53:55 
+Submitter   qxy5788 
+Source    
+View Access   Internal 
+Summary   Strom ticket 324482  for storage is completed 
+Notes   Strom ticket 324482  for storage is completed 
+
+--------------------------------------------------------------------------------
+Task ID   TAS000004932274 
+Submit Date   25.08.2020 16:55:03 
+Submitter   qxy5788 
+Source    
+View Access   Internal 
+Summary   DBGNONBILL 
+Notes   4 
+
+--------------------------------------------------------------------------------
+
+
+Printed by qxz10kv on Tuesday, 01.09.2020 14:23:17 

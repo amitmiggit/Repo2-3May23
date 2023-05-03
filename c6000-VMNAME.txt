@@ -1,0 +1,165 @@
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ c6000 ltcocpit01
+.------------------------------------------------.
+|                   ltcocpit01                   |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                     ltcocpit01 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 160.46.155.162 |
+| NSI           |                           YHG7 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   160.46.155.1 |
+| NET_ID        |                   160.46.155.0 |
+| INT_VLAN      |                           2028 |
+| SUB_AREA      |                     MUC-HA-III |
+| BROADCAST     |                 160.46.155.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                 ltcocpit01-new                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                 ltcocpit01-new |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                   10.31.96.239 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.252.0 |
+| GATEWAY       |                     10.31.96.1 |
+| NET_ID        |                     10.31.96.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                       MUC-HA-V |
+| BROADCAST     |                   10.31.99.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                 ltcocpit01-newb                |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                ltcocpit01-newb |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 10.231.145.190 |
+| NSI           |                                |
+| SUBNETMASK    |                  255.255.252.0 |
+| GATEWAY       |                   10.231.144.1 |
+| NET_ID        |                   10.231.144.0 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                       MUC-HA-V |
+| BROADCAST     |                 10.231.147.255 |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                   ltcocpit01b                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    ltcocpit01b |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |                 192.168.12.202 |
+| NSI           |                           YHG0 |
+| SUBNETMASK    |                  255.255.255.0 |
+| GATEWAY       |                   192.168.12.1 |
+| NET_ID        |                   192.168.12.0 |
+| INT_VLAN      |                             44 |
+| SUB_AREA      |                                |
+| BROADCAST     |                 192.168.12.255 |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $
+
+
+
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ c6000 -6 ltcocpit01
+.------------------------------------------------.
+|                   ltcocpit01                   |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                     ltcocpit01 |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a01:52a:0:0:1:28 |
+| NSI           |                           YHG7 |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a01:52a:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a01:52a:0:0:0:0/64 |
+| INT_VLAN      |                           2028 |
+| SUB_AREA      |                     MUC-HA-III |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                 ltcocpit01-new                 |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                 ltcocpit01-new |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a15:54e:0:0:1:85 |
+| NSI           |                                |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a15:54e:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a15:54e:0:0:0:0/64 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                       MUC-HA-V |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                   ltcocpit01b                  |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                    ltcocpit01b |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a04:573:0:0:1:46 |
+| NSI           |                           YHG0 |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a04:573:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a04:573:0:0:0:0/64 |
+| INT_VLAN      |                             44 |
+| SUB_AREA      |                                |
+'---------------+--------------------------------'
+
+
+.------------------------------------------------.
+|                 ltcocpit01b-new                |
++---------------+--------------------------------+
+| key           | value                          |
++---------------+--------------------------------+
+| HOSTNAME      |                ltcocpit01b-new |
+| DOMAIN        |                   bmwgroup.net |
+| LOG_SERVER_ID |        ltcocpit01.bmwgroup.net |
+| ALIAS         |                                |
+| IP_ADDRESS    |     2a03:1e80:a16:515:0:0:1:ef |
+| NSI           |                                |
+| SUBNETMASK    |                                |
+| GATEWAY       |      2a03:1e80:a16:515:0:0:0:1 |
+| NET_ID        |   2a03:1e80:a16:515:0:0:0:0/64 |
+| INT_VLAN      |                                |
+| SUB_AREA      |                       MUC-HA-V |
+'---------------+--------------------------------'
+
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $
+

@@ -1,0 +1,49 @@
+Below CMDB changes are also required:
+
+OLD Cluster: lttpd03 in CMDB:
+
+-          Rename the ttpdcs20 and ttpddb20 Resource Objects to <name>-old    
+
+NEW Cluster in CMDB:  lttpd05 :
+
+-          Rename the ttpdcs20n and ttpddb20n Resource Object to NOT have the “n”  suffix
+
+Please check with support task# before starting Exec
+
+
+=================
+INSTSERV][qxz12n2][lpinstiaas02] ~ $ nslookup  ttpdcs20
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ttpdcs20.bmwgroup.net
+Address: 160.46.104.54
+
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ nslookup ttpddb20
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Non-authoritative answer:
+Name:   ttpddb20.bmwgroup.net
+Address: 160.46.104.55
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ nslookup ttpdcs20n
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ttpdcs20n.bmwgroup.net
+Address: 160.46.162.24
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $ nslookup ttpddb20n
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   ttpddb20n.bmwgroup.net
+Address: 160.46.162.22
+
+[INSTSERV][qxz12n2][lpinstiaas02] ~ $
+
+
+
+

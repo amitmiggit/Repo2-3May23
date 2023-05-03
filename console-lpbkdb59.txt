@@ -1,0 +1,22 @@
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ get_rmb_password lpbkdb59k
+Administrator|845E52AB101C
+Administrator2|079AE967DF56
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ get_rmb_password lpbkdb60k
+Administrator|642F2CEA3A39
+Administrator2|46611B052F52
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ ping lpbkdb59k
+PING lpbkdb59k.bmwgroup.net (160.50.52.14) 56(84) bytes of data.
+64 bytes from lpbkdb59k.bmwgroup.net (160.50.52.14): icmp_seq=1 ttl=59 time=1.70 ms
+64 bytes from lpbkdb59k.bmwgroup.net (160.50.52.14): icmp_seq=2 ttl=59 time=1.66 ms
+^C
+--- lpbkdb59k.bmwgroup.net ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 1.669/1.688/1.708/0.045 ms
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ ping lpbkdb60k
+PING lpbkdb60k.bmwgroup.net (160.50.52.45) 56(84) bytes of data.
+64 bytes from lpbkdb60k.bmwgroup.net (160.50.52.45): icmp_seq=1 ttl=59 time=2.65 ms
+^C
+--- lpbkdb60k.bmwgroup.net ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.655/2.655/2.655/0.000 ms
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $

@@ -1,0 +1,41 @@
+####Implementation Plan #################
+vxmake –g <DG> sd <name of the sd> <name of the dm> len=<size of the sd>
+vxmake -g dgpgupcs0006 sd 19_23225_026e-01 19_23225_026e len= 1061995824
+vxmake -g dgpgupcs0006 sd 19_23225_0212-01 19_23225_0212 len= 117940560
+vxmake -g dgpgupcs0006 sd 19_23225_0213-01 19_23225_0213 len= 117936336
+  
+#####Sub disk creation with New disks########################
+vxmake -g dgpgupcs0006 sd  2_23183_0063-01  2_23183_0063 len=1061995824
+vxmake -g dgpgupcs0006 sd 19_23225_0063-01 19_23225_0063 len=1061995824
+##
+vxmake -g dgpgupcs0006 sd  2_23183_0213-01 2_23183_0213 len=117940560
+vxmake -g dgpgupcs0006 sd  19_23225_0213-01 19_23225_0213 len=117940560
+##create a new plex ######
+vxmake -g dgpgupcs0006 -U fsgen plex lvsapdata1-23225
+###sync new plex from old-one
+vxsd -g dgpgupcs0006 assoc lvsapdata1-23225 2_23183_0063-01 19_23225_0063-01 2_23183_0213-01 19_23225_0213-01
+####
+vxresize -F vxfs -g  dgpgupcs0006 lvsapdata1  -- -2224 
+vxresize -F vxfs -g  dgpgupcs0006 lvsapdata1  -- -2224 
+
+vxplex -g dgpgupcs0006 –U fsgen att lvsapdata1 lvsapdata1-23225
+####
+
+
+
+
+
+
+
+
+ New Veritas device(s):
+
+   VX-DISK           | RAW   CU:LDEV PORT XP-SN   SIZE | RAW   CU:LDEV PORT XP-SN   SIZE | DG
+   ------------------|---------------------------------|---------------------------------|------
+   hitachi_vspg1k0_0a85| sdef  0A:85   7C   50305  57622 | sdeb  0A:85   8C   50305  57622 |
+   hitachi_vspg1k0_026d| sdeg  02:6D   7C   50305 518602 | sdec  02:6D   8C   50305 518602 |
+   hitachi_vspg1k1_0a85| sddz  0A:85   8C   50305  57622 | sded  0A:85   7C   50305  57622 |
+   hitachi_vspg1k1_026d| sdea  02:6D   8C   50305 518602 | sdee  02:6D   7C   50305 518602 |
+
+ - Found 4 new Veritas device(s): 'hitachi_vspg1k0_0a85 hitachi_vspg1k0_026d hitachi_vspg1k1_0a85 hitachi_vspg1k1_026d'
+#########

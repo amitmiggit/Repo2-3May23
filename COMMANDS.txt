@@ -1,0 +1,72 @@
+DownTime
+lppga00492vm
+CMDB
+
+SOURCE 
+
+vmc stop lppga00492vm
+vmc mount lppga00492vm
+
+EDIT ETH1 FILE lppga00492vm
+
+
+cd  /global/lppga00492vm/base/mnt/etc/sysconfig/network
+etc/sysconfig/network/ifcfg-eth1
+
+cp -pr ifcfg-eth1 /global/lppga00492vm/base/mnt/tmp/ifcfg-eth1_bkp
+
+cat route : just to check
+
+vmc umount lppga00492vm
+vmc info lppga00492vm
+vmc rmnet lppga00492vm lppga00492vm
+vmc rmnet lppga00492vm lppga00492vmb
+vmc info lppga00492vm
+
+DESTINATION
+
+san_shortinfo | grep lppga00492vm
+vmc define lppga00492vm
+vmc addnet lppga00492vm lppga00492vm
+vmc addnet lppga00492vm lppga00492vmb
+vmc start lppga00492vm
+
+
+
+=======================
+
+
+
+DownTime
+ltpga00445vm
+CMDB
+
+SOURCE 
+
+vmc stop ltpga00445vm
+vmc mount ltpga00445vm
+
+EDIT ETH1 FILE ltpga00445vm
+
+
+cd  /global/ltpga00445vm/base/mnt/etc/sysconfig/network
+etc/sysconfig/network/ifcfg-eth1
+
+cp -pr ifcfg-eth1 /global/ltpga00445vm/base/mnt/tmp/ifcfg-eth1_bkp
+
+cat route : just to check
+
+vmc umount ltpga00445vm
+vmc info ltpga00445vm
+vmc rmnet ltpga00445vm ltpga00445vm
+vmc rmnet ltpga00445vm ltpga00445vmb
+vmc info ltpga00445vm
+
+DESTINATION
+
+san_shortinfo | grep ltpga00445vm
+vmc define ltpga00445vm
+vmc addnet ltpga00445vm ltpga00445vm
+vmc addnet ltpga00445vm ltpga00445vmb
+vmc start ltpga00445vm
+

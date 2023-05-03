@@ -1,0 +1,28 @@
+li09zai02:/tmp # last -f wtmp-20210629| grep -i system
+reboot   system boot  3.0.101-108.117- Mon Jun 28 19:57 - 09:31 (14+13:33)
+
+crash lpbkvvs06.31268 ../../vmlinux/vmlinux-3.0.101-108.101-xen.gz ../../debuginfo/vmlinux-3.0.101-108.101-xen.debug
+crash li09zai02.8227 ../../vmlinux/vmlinux-3.0.101-108.101-xen.gz ../../debuginfo/vmlinux-3.0.101-108.117-xen.debug
+===
+lpdebug02:/global/debug/data/workdir/2021-06-28_li09zai02 # get_kernel_version li09zai02.8227                                              3.0.101-108.117-xen
+lpdebug02:/global/debug/data/workdir/2021-06-28_li09zai02 # crash li09zai02.8227 ../../vmlinux/vmlinux-3.0.101-108.117-xen.gz ../../debuginfo/vmlinux-3.0.101-108.117-xen.debug
+
+crash 7.2.1
+
+qxz12n2@lpdebug02:~> /bin/rootsh -i -u qqcrashdump
+sudo -s
+lpdebug02:~ # /bin/rootsh -i -u qqcrashdump
+qqcrashdump@lpdebug02:~>
+/global/debug/data/workdir
+
+lpitsmdb06:/opt/VRTSspt/DataCollector/sort/log/sortdc-202107251947IcE
+==[ DONE ]===================================================================
+  Log file tar ball: /var/log/scc_lpitsmdb06_210725_1953.txz
+  Log file size:     25M
+  Log file md5sum:   90b85c8c05bf5422dfdef59012d9d2f4
+=============================================================================
+
+
+
+
+

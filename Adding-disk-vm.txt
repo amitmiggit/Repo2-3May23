@@ -1,0 +1,21 @@
+Hi Team,
+
+I have seen we are receiving many TASK to adding Applicate File system and extending application Disk (Filesystem) size in vmware environment.
+
+Requesting you to please go through with the below confluence link and follow the same instruction, if you are facing any issue while performing below activity, feel free to connect with me. 
+
+1.	Extending Application Disk (Filesystem) Size in Virtual Machine
+https://atc.bmwgroup.net/confluence/display/IAAS18/12.5.2.5+Extending+Application+Disk+%28Filesystem%29+Size+in+Virtual+Machine
+
+2.	Adding Application File System in Virtual Machine
+https://atc.bmwgroup.net/confluence/display/IAAS18/12.5.2.4+Adding+Application+File+System+in+Virtual+Machine
+
+
+regard’s
+Afraz 
+IaaS Infrastructure as a Service 
+UNIX Team || NTT DATA Services Germany GmbH
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+Mobile: +91-9999-3138-17 || Mail: mohammad.afraz@partner.bmw.de 
+

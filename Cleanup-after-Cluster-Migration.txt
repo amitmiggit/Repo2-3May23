@@ -1,0 +1,54 @@
+TAS000006429425
+Cleanup after Cluster Migration
+server-unix-std:global|06|024c-cluster-migrate-cleanup-(NSTC)
+
+Source Cluster: lpbkdbag3/4
+
+Destination Cluster: lpbkdbagtde5/6
+1-dg migrate
+=========================================
+hastatus -sum | egrep -i "plbkecap1|plbkecap2"|grep -i online
+df -hT|egrep -i "plbkecap1|plbkecap2"
+san_shortinfo |egrep -i "plbkecap1|plbkecap2"
+vxdisk -eo alldgs list|egrep -i "plbkecap1|plbkecap2"
+vxdisk list |egrep -i "plbkecap1|plbkecap2"
+============================================
+vxdisk -o alldgs list
+vxdg list
+vxdisk -eo alldgs list|egrep -i "plbkecap1|plbkecap2"|wc -l
+vxpring -htq -g dg-name
+san_short info | grep -i diskgrpname
+vxctl migratedg dgpltopd01apps Array_Serial(1),disk_ldev_id1,disk_ldev_id2 Array_Serial(2),disk_ldev_id1,disk_ldev_id2
+vxctl migratedg dgpltopd01apps 10650,0f5e,0f5f,0f6a 10652,0f5e,0f5f,0f6a
+
+2-cmdb check 
+
+3-package removal from source server
+================================
+df -h |grep plbkecap1
+df -h |grep plbkecap2
+PKGNAME=plbkecap1
+echo PKGNAME=${PKGNAME} | tee /var/tmp/pkgremoval-${PKGNAME}
+cat  /var/tmp/pkgremoval-${PKGNAME}
+hastatus -sum | sed -e "s/ *$//g" | grep -i ${PKGNAME} | tee -a /var/tmp/pkgremoval-${PKGNAME}
+hares -value ${PKGNAME}_ip Address | tee -a /var/tmp/pkgremoval-${PKGNAME}
+170.34.2.132
+hagrp -resources ${PKGNAME} | egrep _ip
+san_shortinfo | egrep ${PKGNAME} | tee -a /var/tmp/pkgremoval-shortinfo-${PKGNAME}
+awk '{print $15}' /var/tmp/pkgremoval-shortinfo-${PKGNAME} | sort -u | tee /var/tmp/pkgremoval-dgnames-${PKGNAME}
+awk '{print $6 " " $4}' /var/tmp/pkgremoval-shortinfo-${PKGNAME} | tee /var/tmp/pkgremoval-LDEV-BOX-pairs-${PKGNAME}
+hagrp -resources ${PKGNAME} | tee /var/tmp/pkgremoval-resources-${PKGNAME}
+hares -display -attribute MountPoint -group ${PKGNAME} | tee /var/tmp/pkgremoval-mountpoints-${PKGNAME}
+hagrp -dep | tee -a /var/tmp/pkgremoval-${PKGNAME}
+for resource in $(cat /var/tmp/pkgremoval-resources-dbc10w75); do hares -delete ${resource} ;done
+hastatus -sum | sed -e "s/ *$//g"
+hagrp -resources ${PKGNAME}
+hagrp -resources dbc10w75
+hagrp -delete dbc10w75
+haconf -dump -makero
+cd /lfs/cluster/vcs/
+rm dbc10w75_stop/start/monitor
+cat /var/tmp/pkgremoval-dgnames-${PKGNAME}
+•	Submit a return request, use san_shortinfo | grep -i <packagename>
+
+•	OS Disks deconfigured

@@ -1,0 +1,124 @@
+Problem management impo data
+https://atc.bmwgroup.net/confluence/display/IAAS18/Problem-Management+Linux+-+WIP 
+
+Task Templates for UNIX 
+https://atc.bmwgroup.net/confluence/display/IAAS18/Task+Templates
+
+sed '/TAS000004758222/,/^$/!d;/^$/s//--/' /etc/sudoers
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ 
+
+for i in `cat sapservers` do echo $i `cmdb $i "uuv -gu $i"` done;
+
+for i in qxp4700 qxg3945 qxy4712 qxz0igm ; do sudo -l -U $i; done;
+
+
+lvextend -L +56G /dev/mapper/dgtms-lv01
+lvextend -L +56G /dev/mapper/dgtms-lv01
+lvextend -L +56G /dev/mapper/dgtms-lv01
+
+
+service lwsmd restart
+
+
+q183616|qxp4427|q293022|q139678
+
+
+INC000027825275 - Request for confluence 
+
+
+for i in `cat new`; do echo $i; cmdb $i | grep -i "OS name:"; done;
+
+
+ libkrrcmsch2
+ 
+ 
+ 
+ [INSTSERV][qxz10kv][lpinstiaas01] /opt/pbis/bin $ ./find-group-by-name --level 1 "europe.bmw.corp\\UNIX_SERVER_AG_SERVER_ETL_ADMIN"
+
+downtime  -a -h 4 -c 'TAS000004840983 qxz10kv' lpwebadm6.bmwgroup.net
+
+
+downtime -l lpwebadm6.bmwgroup.net
+UNIX_SERVER_SF5_SPLUNK_INT
+
+UNIX_SERVER_LOGIN_MQTTBROKER_E2E
+lpwebadm6.bmwgroup.net
+
+/opt/pbis/bin $ ./find-group-by-name --level 1 "europe.bmw.corp\\UNIX_SERVER_LOGIN_MQTTBROKER_E2E"
+
+===========================
+
+
+rudder agent update; rudder agent inventory ; rudder agent run
+
+for i in `cat 5julserver`; do echo $i; cmdb $i | grep -i "modul"; done;
+
+
+for i in qxz0f6a qxz0f6b qxz0fgs qxz0fgp qxz0fgo qxz0f6d qxz08ys qxz0o23 qxz14p2 qxz1698 qxk0315; do sudo -l -U $i; done;
+
+
+rudderswinst list  | grep -i ODBC
+
+
+[INSTSERV][qxy6254][lpinstiaas01] ~ $  rudderctl properties-get --hostname=lpxentpki01.bmwgroup.net --key=RUDDER_MR_VERSION
+RUDDER_MR_VERSION="2019Q02.00"
+[INSTSERV][qxy6254][lpinstiaas01] ~ $
+
+
+
+qx17294@lpinstiaas01:/home/qx17294> for SERVER in ltfxj01 ltfxj02 ltfxi01 ltfxi02; do ssh $SERVER ls -l /etc/sudoers; done
+
+ltfxj01|ltfxj02|ltfxi01|ltfxi02
+
+
+
+Tasks related to an AD-User
+Almost all properties of an ADonly-User can only be modified by the AD-Operating, but there is one known exception:
+adding/deleting a supplementary, local group to an ADonly-User
+In this case the usermod will not work. To add a supplementary group to an user use the following command:
+SLES11/12: groupmod -A user group
+To delete a supplementary,local group from an ADonly-user use the following command:
+SLES11/12: groupmod -R user group
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ /opt/pbis/bin/find-user-by-name qxq7363 | egrep ^Logon
+Logon restriction: YES
+
+lpbkinfap02vm:~ # cat /etc/passwd | grep -i qxq7363
+lpbkinfap02vm:~ #
+
+
+=========================================
+
+
+If LSAN ZONING - NO (where md migration not needed for VM , simply remove the LUNS from the source (Old Xen Farm)
+
+If LSAN ZONING YES -
+
+Execution task main md migration has been completed or not 
+
+Where md migration needed for VM , we need to raise remove visibility request on destination (New Xen forms) once it gets completed need to raise disk return request in storm from old Xen farm )
+
+
+
+
+https://mm.bmwgroup.net/transition/channels/transition-apac-servers-migration-za--to-iaas
+
+
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -a -h 2 -c "TAS000004875059 qxz10kv" ltdbsbb40054vm.bmwgroup.net
+
+[INSTSERV][qxz10kv][lpinstiaas01] ~ $ downtime -l ltdbsbb40054vm.bmwgroup.net
+34357 : host lptpa01.bmwgroup.net down between Sun Jun 28 17:01:00 2020 and Sun Jun 28 19:01:00 2020
+
+
+ltdbsbb40054vm:~ # ps -ef | grep -i pmon
+root     12866   437  0 17:34 pts/0    00:00:00 grep -i pmon
+ltdbsbb40054vm:~ # date
+Thu Jul 30 17:34:41 CEST 2020
+ltdbsbb40054vm:~ # uptime
+ 17:34pm  up 22 days  8:25,  3 users,  load average: 0.69, 1.05, 0.68
+ltdbsbb40054vm:~ #
+

@@ -1,0 +1,413 @@
+Work Info History
+Task ID	 TAS000005511259
+Submit Date	 30.04.2021 17:33:08
+Submitter	 qxy9685
+Source	 
+View Access	 Internal
+Summary	 New pkg and FS has been created
+Notes	 [INSTSERV][qxy9685][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $ configure_veritas.sh lp19d18_create_TAS000005511259.cluster
+
+ _  _ ____ ____ _ ___ ____ ____    _  _ ____ _  _ ____ ____ ____ ____
+ |  | |___ |__/ |  |  |__| [__     |\/| |__| |\ | |__| | __ |___ |__/
+  \/  |___ |  \ |  |  |  | ___]    |  | |  | | \| |  | |__] |___ |  \
+
+
+
+Processing file 'lp19d18_create_TAS000005511259.cluster'
+
+-> Checking File validity                        [OK]    file exist: lp19d18_create_TAS000005511259.cluster
+-> Looking for RequestID markers                 [OK]    none found
+-> Fetching Hostlist(s)                          [OK]    working on lp19d18 lp19d17
+-> Testing Hosts                                 [OK]    root access verified
+-> Fetching ServiceGroup                         [OK]    found dbssad19
+-> Fetching module for Apps                      [OK]    fetched
+
+
+Running remote sanity check
+
+-> Copy template to remote host 'lp19d18'        [OK]    copied
+-> Running sanity check on 'lp19d18'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package dbssad19...
+23:30:33 Sanity checking IP 10.186.92.20
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/dbssad19_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/dbssad19/db
+Sanity checking mount /global/dbssad19/bkup
+***************************************
+
+-> Sanity check                                  [OK]    success
+-> Copy template to remote host 'lp19d17'        [OK]    copied
+-> Running sanity check on 'lp19d17'
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+Sanity checking package dbssad19...
+23:31:02 Sanity checking IP 10.186.92.20
+Sanity checking application oracle
+WARNING: Application start/stop/monitor scripts don't exist (/lfs/cluster/vcs/dbssad19_oracle_start/stop/monitor), please make sure they are created before the final run.
+Sanity checking mount /global/dbssad19/db
+Sanity checking mount /global/dbssad19/bkup
+***************************************
+
+-> Sanity check                                  [OK]    success
+
+
+Deploying application scripts
+
+-> Preparing files                               [OK]    staged
+-> Distributing files                            [OK]    distributed
+
+
+Starting remote /sbin/vxctl call
+
+-> Initiating vxctl on lp19d18
+
+***************************************
+Scanning for disks, please wait...success!
+Sanity checking LUNs...
+23:31:26 Initializing disk hitachi_vspg1k0_0347                           OK
+23:31:29 Disabling thin provisioning on disk hitachi_vspg1k0_0347         OK
+23:31:29 Initializing disk hitachi_vspg1k1_0347                           OK
+23:31:31 Disabling thin provisioning on disk hitachi_vspg1k1_0347         OK
+23:31:31 Creating disk group with name dgdbssad19bkup and disks
+hitachi_vspg1k0_0347 hitachi_vspg1k1_0347                                OK
+23:31:34 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbgcdm19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvdbmp0119bkup-01 in diskgroup dgdbmp0119bkup to
+lvdbmp0119bkup_drl-90246                                                 FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119bkup-01 to lvdbmp0119bkup_drl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvdbmp0119db-01 in diskgroup dgdbmp0119db to
+lvdbmp0119db_drl-90246                                                   FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119db-01 to lvdbmp0119db_drl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvdbsafr19bkup-01 in diskgroup dgdbsafr19bkup to
+lvdbsafr19bkup_drl-90246                                                 FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19bkup-01 to lvdbsafr19bkup_drl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvdbsafr19db-01 in diskgroup dgdbsafr19db to
+lvdbsafr19db_drl-90246                                                   FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19db-01 to lvdbsafr19db_drl-90246
+       Record already exists in disk group
+23:31:34 Renaming disk hitachi_vspg1k0_0347 in diskgroup dgdbssad19bkup
+to 10_10514_0347                                                         OK
+23:31:34 Renaming disk hitachi_vspg1k1_0347 in diskgroup dgdbssad19bkup
+to 2_10520_0347                                                          OK
+23:31:34 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbstrs19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvdb_dcl-90346 in diskgroup dgdbstrs19db to
+lvdb_dcl-90246                                                           FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvdb_dcl-90346 to lvdb_dcl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvbkup-01 in diskgroup dgidguar19bkup to
+lvbkup_drl-90246                                                         FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup-01 to lvbkup_drl-90246
+       Record already exists in disk group
+23:31:34 Renaming plex lvidmp0119db-01 in diskgroup dgidmp0119db to
+lvidmp0119db_drl-90246                                                   FAILED
+23:31:34 VxVM vxedit ERROR V-5-1-10127 renaming lvidmp0119db-01 to lvidmp0119db_drl-90246
+       Record already exists in disk group
+23:31:34 Creating volume lvbkup in diskgroup dgdbssad19bkup with size
+1048530M                                                                 OK
+23:31:37 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbgcdm19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvdbmp0119bkup-01 in diskgroup dgdbmp0119bkup to
+lvdbmp0119bkup_drl-90246                                                 FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119bkup-01 to lvdbmp0119bkup_drl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvdbmp0119db-01 in diskgroup dgdbmp0119db to
+lvdbmp0119db_drl-90246                                                   FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119db-01 to lvdbmp0119db_drl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvdbsafr19bkup-01 in diskgroup dgdbsafr19bkup to
+lvdbsafr19bkup_drl-90246                                                 FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19bkup-01 to lvdbsafr19bkup_drl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvdbsafr19db-01 in diskgroup dgdbsafr19db to
+lvdbsafr19db_drl-90246                                                   FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19db-01 to lvdbsafr19db_drl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvbkup-02 in diskgroup dgdbssad19bkup to
+lvbkup-10520                                                             OK
+23:31:37 Renaming plex lvbkup-01 in diskgroup dgdbssad19bkup to
+lvbkup-10514                                                             OK
+23:31:37 Renaming plex lvbkup-03 in diskgroup dgdbssad19bkup to
+lvbkup_drl-10514                                                         OK
+23:31:37 Renaming plex lvbkup-04 in diskgroup dgdbssad19bkup to
+lvbkup_drl-10520                                                         OK
+23:31:37 Renaming plex lvbkup_dcl-01 in diskgroup dgdbssad19bkup to
+lvbkup_dcl-10514                                                         OK
+23:31:37 Renaming plex lvbkup_dcl-02 in diskgroup dgdbssad19bkup to
+lvbkup_dcl-10520                                                         OK
+23:31:37 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbstrs19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvdb_dcl-90346 in diskgroup dgdbstrs19db to
+lvdb_dcl-90246                                                           FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvdb_dcl-90346 to lvdb_dcl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvbkup-01 in diskgroup dgidguar19bkup to
+lvbkup_drl-90246                                                         FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup-01 to lvbkup_drl-90246
+       Record already exists in disk group
+23:31:37 Renaming plex lvidmp0119db-01 in diskgroup dgidmp0119db to
+lvidmp0119db_drl-90246                                                   FAILED
+23:31:37 VxVM vxedit ERROR V-5-1-10127 renaming lvidmp0119db-01 to lvidmp0119db_drl-90246
+       Record already exists in disk group
+23:31:37 Unable to set read policy on volume lvbkup: no local plex.
+23:31:37 Exec: /sbin/mkfs.vxfs -o bsize=8192
+/dev/vx/dsk/dgdbssad19bkup/lvbkup 2>&1 >/dev/null                        OK
+23:31:38 Exec: /bin/mount -t vxfs /dev/vx/dsk/dgdbssad19bkup/lvbkup
+/global/dbssad19/bkup                                                    OK
+23:31:38 Exec: /bin/chown oracle:dba /global/dbssad19/bkup                OK
+23:31:38 Exec: /bin/chmod 755 /global/dbssad19/bkup                       OK
+23:31:38 Exec: /bin/umount /global/dbssad19/bkup                          OK
+23:31:38 Initializing disk hitachi_vspg1k0_0345                           OK
+23:31:40 Disabling thin provisioning on disk hitachi_vspg1k0_0345         OK
+23:31:40 Initializing disk hitachi_vspg1k1_0345                           OK
+23:31:43 Disabling thin provisioning on disk hitachi_vspg1k1_0345         OK
+23:31:43 Creating disk group with name dgdbssad19db and disks
+hitachi_vspg1k0_0345 hitachi_vspg1k1_0345                                OK
+23:31:45 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbgcdm19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvdbmp0119bkup-01 in diskgroup dgdbmp0119bkup to
+lvdbmp0119bkup_drl-90246                                                 FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119bkup-01 to lvdbmp0119bkup_drl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvdbmp0119db-01 in diskgroup dgdbmp0119db to
+lvdbmp0119db_drl-90246                                                   FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119db-01 to lvdbmp0119db_drl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvdbsafr19bkup-01 in diskgroup dgdbsafr19bkup to
+lvdbsafr19bkup_drl-90246                                                 FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19bkup-01 to lvdbsafr19bkup_drl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvdbsafr19db-01 in diskgroup dgdbsafr19db to
+lvdbsafr19db_drl-90246                                                   FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19db-01 to lvdbsafr19db_drl-90246
+       Record already exists in disk group
+23:31:45 Renaming disk hitachi_vspg1k0_0345 in diskgroup dgdbssad19db to
+10_10514_0345                                                            OK
+23:31:45 Renaming disk hitachi_vspg1k1_0345 in diskgroup dgdbssad19db to
+2_10520_0345                                                             OK
+23:31:45 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbstrs19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvdb_dcl-90346 in diskgroup dgdbstrs19db to
+lvdb_dcl-90246                                                           FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvdb_dcl-90346 to lvdb_dcl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvbkup-01 in diskgroup dgidguar19bkup to
+lvbkup_drl-90246                                                         FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup-01 to lvbkup_drl-90246
+       Record already exists in disk group
+23:31:45 Renaming plex lvidmp0119db-01 in diskgroup dgidmp0119db to
+lvidmp0119db_drl-90246                                                   FAILED
+23:31:45 VxVM vxedit ERROR V-5-1-10127 renaming lvidmp0119db-01 to lvidmp0119db_drl-90246
+       Record already exists in disk group
+23:31:45 Creating volume lvdb in diskgroup dgdbssad19db with size
+4194258M                                                                 OK
+23:31:48 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbgcdm19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:48 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:48 Renaming plex lvdbmp0119bkup-01 in diskgroup dgdbmp0119bkup to
+lvdbmp0119bkup_drl-90246                                                 FAILED
+23:31:48 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119bkup-01 to lvdbmp0119bkup_drl-90246
+       Record already exists in disk group
+23:31:48 Renaming plex lvdbmp0119db-01 in diskgroup dgdbmp0119db to
+lvdbmp0119db_drl-90246                                                   FAILED
+23:31:48 VxVM vxedit ERROR V-5-1-10127 renaming lvdbmp0119db-01 to lvdbmp0119db_drl-90246
+       Record already exists in disk group
+23:31:48 Renaming plex lvdbsafr19bkup-01 in diskgroup dgdbsafr19bkup to
+lvdbsafr19bkup_drl-90246                                                 FAILED
+23:31:48 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19bkup-01 to lvdbsafr19bkup_drl-90246
+       Record already exists in disk group
+23:31:48 Renaming plex lvdbsafr19db-01 in diskgroup dgdbsafr19db to
+lvdbsafr19db_drl-90246                                                   FAILED
+23:31:48 VxVM vxedit ERROR V-5-1-10127 renaming lvdbsafr19db-01 to lvdbsafr19db_drl-90246
+       Record already exists in disk group
+23:31:48 Renaming plex lvdb-04 in diskgroup dgdbssad19db to
+lvdb_drl-10514                                                           OK
+23:31:48 Renaming plex lvdb-01 in diskgroup dgdbssad19db to lvdb-10514    OK
+23:31:48 Renaming plex lvdb-02 in diskgroup dgdbssad19db to lvdb-10520    OK
+23:31:48 Renaming plex lvdb-03 in diskgroup dgdbssad19db to
+lvdb_drl-10520                                                           OK
+23:31:49 Renaming plex lvdb_dcl-01 in diskgroup dgdbssad19db to
+lvdb_dcl-10514                                                           OK
+23:31:49 Renaming plex lvdb_dcl-02 in diskgroup dgdbssad19db to
+lvdb_dcl-10520                                                           OK
+23:31:49 Renaming plex lvbkup_dcl-90346 in diskgroup dgdbstrs19bkup to
+lvbkup_dcl-90246                                                         FAILED
+23:31:49 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup_dcl-90346 to lvbkup_dcl-90246
+       Record already exists in disk group
+23:31:49 Renaming plex lvdb_dcl-90346 in diskgroup dgdbstrs19db to
+lvdb_dcl-90246                                                           FAILED
+23:31:49 VxVM vxedit ERROR V-5-1-10127 renaming lvdb_dcl-90346 to lvdb_dcl-90246
+       Record already exists in disk group
+23:31:49 Renaming plex lvbkup-01 in diskgroup dgidguar19bkup to
+lvbkup_drl-90246                                                         FAILED
+23:31:49 VxVM vxedit ERROR V-5-1-10127 renaming lvbkup-01 to lvbkup_drl-90246
+       Record already exists in disk group
+23:31:49 Renaming plex lvidmp0119db-01 in diskgroup dgidmp0119db to
+lvidmp0119db_drl-90246                                                   FAILED
+23:31:49 VxVM vxedit ERROR V-5-1-10127 renaming lvidmp0119db-01 to lvidmp0119db_drl-90246
+       Record already exists in disk group
+23:31:49 Unable to set read policy on volume lvdb: no local plex.
+23:31:49 Exec: /sbin/mkfs.vxfs -o bsize=8192
+/dev/vx/dsk/dgdbssad19db/lvdb 2>&1 >/dev/null                            OK
+23:31:49 Exec: /bin/mount -t vxfs -o mincache=direct,convosync=direct
+/dev/vx/dsk/dgdbssad19db/lvdb /global/dbssad19/db                        OK
+23:31:49 Exec: /bin/chown oracle:dba /global/dbssad19/db                  OK
+23:31:49 Exec: /bin/chmod 755 /global/dbssad19/db                         OK
+23:31:49 Exec: /bin/umount /global/dbssad19/db                            OK
+23:31:54 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+23:31:54 Exec: /opt/VRTS/bin/hagrp -add dbssad19                          VCS NOTICE V-16-1-10136 Group added; populating SystemList and setting the Parallel attribute recommended before adding resources
+OK
+23:31:54 Exec: /opt/VRTS/bin/hagrp -modify dbssad19 SystemList -add
+lp19d18 0                                                                OK
+23:31:54 Exec: /opt/VRTS/bin/hagrp -modify dbssad19 SystemList -add
+lp19d17 1                                                                OK
+23:31:54 Exec: /opt/VRTS/bin/hagrp -modify dbssad19 AutoStartList -add
+lp19d18                                                                  OK
+23:31:54 Exec: /opt/VRTS/bin/hagrp -modify dbssad19 AutoStartList -add
+lp19d17                                                                  OK
+23:31:54 Exec: /opt/VRTS/bin/hares -add dbssad19_nic_proxy Proxy dbssad19 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:31:54 Exec: /opt/VRTS/bin/hares -modify dbssad19_nic_proxy
+TargetResName NIC_monitor                                                OK
+23:31:54 Exec: /opt/VRTS/bin/hares -modify dbssad19_nic_proxy Enabled 1   OK
+23:31:54 Exec: sleep 1                                                    OK
+23:31:55 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+23:32:00 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+23:32:00 Exec: /opt/VRTS/bin/hares -add dbssad19_dbssad19_ip IP dbssad19  VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip Address
+10.186.92.20                                                             OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip NetMask
+255.255.255.0                                                            OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip Options
+"broadcast 10.186.92.255"                                                OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip Device
+bond0                                                                    OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip Critical
+1                                                                        OK
+23:32:00 Exec: /opt/VRTS/bin/hares -modify dbssad19_dbssad19_ip Enabled 1 OK
+23:32:00 Exec: /opt/VRTS/bin/hares -link dbssad19_dbssad19_ip
+dbssad19_nic_proxy                                                       OK
+23:32:00 Exec: sleep 1                                                    OK
+23:32:01 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+23:32:03 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+23:32:03 Exec: /opt/VRTS/bin/hares -add dbssad19_oracle_app Application
+dbssad19                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:03 Exec: /opt/VRTS/bin/hares -modify dbssad19_oracle_app
+StartProgram /lfs/cluster/vcs/dbssad19_oracle_start                      OK
+23:32:03 Exec: /opt/VRTS/bin/hares -modify dbssad19_oracle_app
+StopProgram /lfs/cluster/vcs/dbssad19_oracle_stop                        OK
+23:32:03 Exec: /opt/VRTS/bin/hares -modify dbssad19_oracle_app
+MonitorProgram /lfs/cluster/vcs/dbssad19_oracle_monitor                  OK
+23:32:03 Exec: /opt/VRTS/bin/hares -modify dbssad19_oracle_app Enabled 1  OK
+23:32:03 Exec: /opt/VRTS/bin/hares -modify dbssad19_oracle_app Critical 1 OK
+23:32:03 Exec: hares -link dbssad19_oracle_app dbssad19_dbssad19_ip       OK
+23:32:03 Exec: sleep 1                                                    OK
+23:32:04 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+23:32:07 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+23:32:07 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbssad19/db"    OK
+23:32:07 Exec: /opt/VRTS/bin/hares -add dbssad19_dgdbssad19db DiskGroup
+dbssad19                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19db
+DiskGroup dgdbssad19db                                                   OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19db
+StartVolumes 1                                                           OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19db
+StopVolumes 1                                                            OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19db Enabled
+1                                                                        OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19db Critical
+1                                                                        OK
+23:32:07 Exec: /opt/VRTS/bin/hares -add dbssad19_global_dbssad19_db_mount
+Mount dbssad19                                                           VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount BlockDevice
+/dev/vx/dsk/dgdbssad19db/lvdb                                            OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount MountPoint /global/dbssad19/db         OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount FsckOpt %-y                            OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount FSType vxfs                            OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount Enabled 1                              OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount Critical 1                             OK
+23:32:07 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_db_mount MountOpt
+mincache=direct,convosync=direct                                         OK
+23:32:07 Exec: /opt/VRTS/bin/hares -link
+dbssad19_global_dbssad19_db_mount dbssad19_dgdbssad19db                  OK
+23:32:07 Exec: /opt/VRTS/bin/hares -link dbssad19_oracle_app
+dbssad19_global_dbssad19_db_mount                                        OK
+23:32:07 Exec: sleep 1                                                    OK
+23:32:08 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+23:32:11 Exec: /opt/VRTS/bin/haconf -makerw                               OK
+23:32:11 Exec: /opt/VRTS/bin/hacli -cmd "mkdir -p /global/dbssad19/bkup"  OK
+23:32:11 Exec: /opt/VRTS/bin/hares -add dbssad19_dgdbssad19bkup DiskGroup
+dbssad19                                                                 VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19bkup
+DiskGroup dgdbssad19bkup                                                 OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19bkup
+StartVolumes 1                                                           OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19bkup
+StopVolumes 1                                                            OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19bkup
+Enabled 1                                                                OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify dbssad19_dgdbssad19bkup
+Critical 1                                                               OK
+23:32:11 Exec: /opt/VRTS/bin/hares -add
+dbssad19_global_dbssad19_bkup_mount Mount dbssad19                       VCS NOTICE V-16-1-10242 Resource added. Enabled attribute must be set before agent monitors
+OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount BlockDevice
+/dev/vx/dsk/dgdbssad19bkup/lvbkup                                        OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount MountPoint /global/dbssad19/bkup     OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount FsckOpt %-y                          OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount FSType vxfs                          OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount Enabled 1                            OK
+23:32:11 Exec: /opt/VRTS/bin/hares -modify
+dbssad19_global_dbssad19_bkup_mount Critical 1                           OK
+23:32:11 Exec: /opt/VRTS/bin/hares -link
+dbssad19_global_dbssad19_bkup_mount dbssad19_dgdbssad19bkup              OK
+23:32:11 Exec: /opt/VRTS/bin/hares -link dbssad19_oracle_app
+dbssad19_global_dbssad19_bkup_mount                                      OK
+23:32:11 Exec: sleep 1                                                    OK
+23:32:12 Exec: /opt/VRTS/bin/haconf -dump -makero                         OK
+***************************************
+
+-> Evaluating remote script return code          [OK]    creation ok
+
+cleanup...
+[INSTSERV][qxy9685][lpinstiaas01] /global/instserv/data/CONFIGURE_VERITAS $
+Printed by qxz12n2 on Saturday, 01.05.2021 10:10:23

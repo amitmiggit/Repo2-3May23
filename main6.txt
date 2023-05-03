@@ -1,0 +1,76 @@
+lp01d65:~ # vxdg list
+NAME         STATE           ID
+dgoracle_lp01d65 enabled,cds          1554997036.12.lp01d65
+dgdbauqaw1bkup enabled,cds          1204122892.114.lp01d03
+dgdbauqaw1db enabled,cds          1204122876.104.lp01d03
+dgdbauqaw1redo1 enabled,cds          1204122904.120.lp01d03
+dgdbauqaw1redo2 enabled,cds          1204122917.126.lp01d03
+dgdbe00w1apps enabled,cds          1416216486.36.lp01d51
+dgdbe00w1bkup enabled,cds          1416216492.50.lp01d51
+dgdbe00w1db  enabled,cds          1416216504.80.lp01d51
+dgdbe00w1redo1 enabled,cds          1416216509.86.lp01d51
+dgdbe00w1redo2 enabled,cds          1416216513.92.lp01d51
+dgdbhiqaw1apps enabled,cds          1204896550.306.lp01d03
+dgdbhiqaw1bkup enabled,cds          1204896499.288.lp01d03
+dgdbhiqaw1db enabled,cds          1204896465.254.lp01d03
+dgdbhiqaw1redo1 enabled,cds          1204896518.294.lp01d03
+dgdbhiqaw1redo2 enabled,cds          1204896537.300.lp01d03
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # date
+Sat Oct  9 14:44:38 CEST 2021
+
+
+dgoracle_lp01d65
+dgdbauqaw1bkup   - dbauqaw1
+dgdbauqaw1db     - dbauqaw1
+dgdbauqaw1redo1  - dbauqaw1
+dgdbauqaw1redo2  - dbauqaw1
+dgdbe00w1apps    - dbe00w1
+dgdbe00w1bkup    - dbe00w1
+dgdbe00w1db      - dbe00w1
+dgdbe00w1redo1   - dbe00w1
+dgdbe00w1redo2   - dbe00w1
+dgdbhiqaw1apps   - dbhiqaw1
+dgdbhiqaw1bkup   - dbhiqaw1
+dgdbhiqaw1db     - dbhiqaw1
+dgdbhiqaw1redo1  - dbhiqaw1
+dgdbhiqaw1redo2  - dbhiqaw1
+
+lp01d65:~ # hastatus -sum | grep -i online
+B  NIC             lp01d65              Y          N               ONLINE
+B  NIC             lp01d66              Y          N               ONLINE
+B  dbauqaw1        lp01d65              Y          N               ONLINE
+B  dbe00w1         lp01d65              Y          N               ONLINE
+B  dbhiqaw1        lp01d65              Y          N               ONLINE
+B  dbkiqaw1        lp01d66              Y          N               ONLINE
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+lp01d66:~ # vxdg list
+NAME         STATE           ID
+dgoracle_lp01d66 enabled,cds          1554997183.12.lp01d66
+dgdbkiqaw1apps enabled,cds          1214037150.142.lp01d13
+dgdbkiqaw1bkup enabled,cds          1214037101.124.lp01d13
+dgdbkiqaw1db enabled,cds          1214037080.114.lp01d13
+dgdbkiqaw1redo1 enabled,cds          1214037119.130.lp01d13
+dgdbkiqaw1redo2 enabled,cds          1214037134.136.lp01d13
+lp01d66:~ #
+lp01d66:~ #
+lp01d66:~ # date
+Sat Oct  9 14:45:33 CEST 2021
+
+
+dgoracle_lp01d66
+dgdbkiqaw1apps    - dbkiqaw1
+dgdbkiqaw1bkup    - dbkiqaw1
+dgdbkiqaw1db      - dbkiqaw1
+dgdbkiqaw1redo1   - dbkiqaw1
+dgdbkiqaw1redo2   - dbkiqaw1
+
+
+===========================
+

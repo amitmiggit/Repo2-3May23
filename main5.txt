@@ -1,0 +1,94 @@
+
+lp01d65:~ # rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+VRTSodm-7.4.1.1700-SLES12.x86_64
+VRTSvxfs-7.4.1.1700-SLES12.x86_64
+VRTSvxvm-7.4.1.2705-SLES12.x86_64
+lp01d65:~ #
+
+
+
+lp01d65:~ # df -hT
+Filesystem                                               Type      Size  Used Avail Use% Mounted on
+devtmpfs                                                 devtmpfs  188G  8.0K  188G   1% /dev
+tmpfs                                                    tmpfs     188G  4.0K  188G   1% /dev/shm
+tmpfs                                                    tmpfs     188G  7.3M  188G   1% /run
+tmpfs                                                    tmpfs     188G     0  188G   0% /sys/fs/cgroup
+/dev/sda2                                                btrfs     101G   27G   73G  27% /
+/dev/sda2                                                btrfs     101G   27G   73G  27% /home
+/dev/sda2                                                btrfs     101G   27G   73G  27% /.snapshots
+/dev/sda2                                                btrfs     101G   27G   73G  27% /opt
+/dev/sda2                                                btrfs     101G   27G   73G  27% /var/opt
+/dev/sda2                                                btrfs     101G   27G   73G  27% /global/local
+/dev/sda2                                                btrfs     101G   27G   73G  27% /var/log
+/dev/sda2                                                btrfs     101G   27G   73G  27% /lfs
+/dev/sda2                                                btrfs     101G   27G   73G  27% /var/cache
+/dev/sda2                                                btrfs     101G   27G   73G  27% /var/spool
+/dev/sda2                                                btrfs     101G   27G   73G  27% /var/tmp
+/dev/sda2                                                btrfs     101G   27G   73G  27% /tmp
+/dev/mapper/vglocal-lvvarcrash                           xfs        50G   33M   50G   1% /var/crash
+/dev/sda1                                                ext3      976M  101M  824M  11% /boot
+tmpfs                                                    tmpfs     4.0K     0  4.0K   0% /dev/vx
+nv01100026.bmwgroup.net:/f08195/t026672/dbkiqaw1_utlfile nfs       5.0G  2.9G  2.2G  57% /nfs/ora/dbkiqaw1_utlfile
+nv01100026.bmwgroup.net:/f08195/t026673/dbauqaw1_utlfile nfs       5.0G  578M  4.5G  12% /nfs/ora/dbauqaw1_utlfile
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/66159
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/48952
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/44035
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/846785
+lp01d65:~ # zypper up VRTSodm VRTSvxfs VRTSvxvm
+Loading repository data...
+Reading installed packages...
+No update candidate for 'VRTSvxfs-7.4.1.1700-SLES12.x86_64'. The highest available version is already installed.
+No update candidate for 'VRTSodm-7.4.1.1700-SLES12.x86_64'. The highest available version is already installed.
+Resolving package dependencies...
+
+The following package is going to be upgraded:
+  VRTSvxvm
+
+The following package has no support information from it's vendor:
+  VRTSvxvm
+
+1 package to upgrade.
+Overall download size: 130.5 MiB. Already cached: 0 B. After the operation, additional 90.8 KiB will be used.
+Continue? [y/n/...? shows all options] (y): y
+Retrieving package VRTSvxvm-7.4.1.2805-SLES12.x86_64                                                                    (1/1), 130.5 MiB ( 1.06 GiB unpacked)
+Retrieving: VRTSvxvm-7.4.1.2805-SLES12.x86_64.rpm .....................................................................................................[done]
+
+Checking for file conflicts: ..........................................................................................................................[done]
+(1/1) Installing: VRTSvxvm-7.4.1.2805-SLES12.x86_64 ...................................................................................................[done]
+Additional rpm output:
+warning: /var/cache/zypp/packages/BMW-Software-Veritas/VRTSvxvm-7.4.1.2805-SLES12.x86_64.rpm: Header V4 RSA/SHA1 Signature, key ID cc633953: NOKEY
+stopping vxrelocd
+stopping vxattachd
+stopping vxcached
+stopping vxconfigbackupd
+stopping vxvollogd
+stopping vxloggerd
+stopping vxnotify
+stopping vxesd
+Stopping vxencryptd
+Stopping vxcloudd
+stopping vxvvrstatd
+stopping vxconfigd
+Installing and Enabling VxVM systemd-services
+creating VxVM device nodes under /dev
+Installing keys for APMs
+Starting all VxVM services
+
+
+There are some running programs that might use files deleted by recent upgrade. You may wish to check and restart some of them. Run 'zypper ps -s' to list these programs.
+lp01d65:~ # rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+VRTSodm-7.4.1.1700-SLES12.x86_64
+VRTSvxfs-7.4.1.1700-SLES12.x86_64
+VRTSvxvm-7.4.1.2805-SLES12.x86_64
+lp01d65:~ #
+
+
+
+
+lp01d66:~ # rpm -qa | egrep -E "VRTSodm|VRTSvxfs|VRTSvxvm"
+VRTSodm-7.4.1.1700-SLES12.x86_64
+VRTSvxvm-7.4.1.2705-SLES12.x86_64
+VRTSvxfs-7.4.1.1700-SLES12.x86_64
+lp01d66:~ #
+
+

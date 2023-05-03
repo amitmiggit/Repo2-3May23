@@ -1,0 +1,463 @@
+lp34d56:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp34d55              RUNNING              0
+A  lp34d56              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp34d55              Y          N               ONLINE
+B  NIC             lp34d56              Y          N               ONLINE
+B  dbmon00         lp34d55              Y          N               OFFLINE
+B  dbmon00         lp34d56              Y          N               ONLINE
+B  dboid834        lp34d55              Y          N               OFFLINE
+B  dboid834        lp34d56              Y          N               ONLINE
+B  dbopcw34        lp34d55              Y          N               OFFLINE
+B  dbopcw34        lp34d56              Y          N               ONLINE
+B  dbpamp79        lp34d55              Y          N               OFFLINE
+B  dbpamp79        lp34d56              Y          N               ONLINE
+B  dbqar289        lp34d55              Y          N               OFFLINE
+B  dbqar289        lp34d56              Y          N               ONLINE
+B  dbqar389        lp34d55              Y          N               OFFLINE
+B  dbqar389        lp34d56              Y          N               OFFLINE
+B  dbqari89        lp34d55              Y          N               OFFLINE
+B  dbqari89        lp34d56              Y          N               ONLINE
+B  dbqst89         lp34d55              Y          N               OFFLINE
+B  dbqst89         lp34d56              Y          N               ONLINE
+B  dbspab89        lp34d55              Y          N               OFFLINE
+B  dbspab89        lp34d56              Y          N               ONLINE
+B  dbspai89        lp34d55              Y          N               OFFLINE
+B  dbspai89        lp34d56              Y          N               ONLINE
+B  dbstrs34        lp34d55              Y          N               OFFLINE
+B  dbstrs34        lp34d56              Y          N               ONLINE
+B  dbwow89         lp34d55              Y          N               OFFLINE
+B  dbwow89         lp34d56              Y          N               ONLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  dbqar389
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  dbqar389        Application     dbqar389_oracle_app
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389bkup
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389db
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo1
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo2
+H  dbqar389        IP              dbqar389_dbqar389_ip
+H  dbqar389        Mount           dbqar389_global_dbqar389_bkup_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_db_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo1_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo2_mount
+H  dbqar389        Proxy           dbqar389_nic_proxy
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # hastatus -sum | grep -i dbqar389
+B  dbqar389        lp34d55              Y          N               OFFLINE
+B  dbqar389        lp34d56              Y          N               OFFLINE
+C  dbqar389
+H  dbqar389        Application     dbqar389_oracle_app
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389bkup
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389db
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo1
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo2
+H  dbqar389        IP              dbqar389_dbqar389_ip
+H  dbqar389        Mount           dbqar389_global_dbqar389_bkup_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_db_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo1_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo2_mount
+H  dbqar389        Proxy           dbqar389_nic_proxy
+lp34d56:~ # cd /root
+lp34d56:/root # cd /var/tmp/
+lp34d56:/var/tmp # ls -lrta
+total 6632
+drwxrwxr-x 1  720021 800223      20 Jun 27 12:56 biosctl
+-rw------- 1 root    root   6567166 Jul  2 03:14 rudder-agent-latest.SLES.12.x86_64.rpm
+drwxr-xr-x 1 root    root        38 Jul  2 03:16 rudder
+drwxr-xr-x 1 root    root       234 Jul  2 03:17 ..
+drwx------ 1 root    root        12 Jul  3 02:06 zypptest
+drwx------ 1 root    root         6 Jul  8 12:03 systemd-private-760171c7b5404fee97933aa812a11998-ntpd.service-k6HmDk
+drwxr-xr-x 1 qqnagio nagios     288 Jul  9 02:45 check_interfaces
+-rwxr-xr-x 1 root    root      8059 Oct 26 01:46 dbspai89.cmd
+-rw-r--r-- 1 root    root      8059 Oct 26 01:57 dbspab89.cmd
+-rw-r--r-- 1 root    root      9177 Oct 26 02:01 dboid834.cmd
+-rw-r--r-- 1 root    root      7815 Oct 26 02:06 dbqst89.cmd
+-rw-r--r-- 1 root    root      8988 Oct 26 02:09 dbpamp79.cmd
+-rw-r--r-- 1 root    root      8861 Oct 26 02:14 dbwow89.cmd
+-rw-r--r-- 1 root    root      8861 Oct 26 02:18 dbmon00.cmd
+-rw-r--r-- 1 root    root      9178 Oct 26 02:23 dbqar389.cmd
+-rw-r--r-- 1 root    root      9178 Oct 26 02:26 dbqar289.cmd
+-rw-r--r-- 1 root    root      9177 Oct 26 02:30 dbqari89.cmd
+-rw-r--r-- 1 root    root      9178 Oct 26 02:32 dbstrs34.cmd
+-rw-r--r-- 1 root    root      9177 Oct 26 02:37 dbqar189.cmd
+-rw-r--r-- 1 root    root      9178 Oct 26 02:39 dbopcw34.cmd
+drwxrwxrwt 1 root    root       456 Oct 29 19:55 .oracle
+-rw-r--r-- 1 root    root         0 Nov 22 17:04 pkgremoval-
+-rw-r--r-- 1 root    root       166 Nov 22 18:27 pkgremoval-dbqar189
+-rw-r--r-- 1 root    root      1096 Nov 22 18:32 pkgremoval-shortinfo-dbqar189
+-rw-r--r-- 1 root    root        60 Nov 22 18:33 pkgremoval-dgnames-dbqar189
+-rw-r--r-- 1 root    root       120 Nov 22 18:34 pkgremoval-LDEV-BOX-pairs-dbqar189
+-rw-r--r-- 1 root    root       300 Nov 22 18:35 pkgremoval-resources-dbqar189
+-rw-r--r-- 1 root    root       444 Nov 22 18:35 pkgremoval-mountpoints-dbqar189
+-rw-r--r-- 1 root    root       166 Nov 28 13:27 pkgremoval-dbqar389
+-rw-r--r-- 1 root    root      1316 Nov 28 13:29 pkgremoval-shortinfo-dbqar389
+-rw-r--r-- 1 root    root        60 Nov 28 13:29 pkgremoval-dgnames-dbqar389
+-rw-r--r-- 1 root    root       144 Nov 28 13:30 pkgremoval-LDEV-BOX-pairs-dbqar389
+-rw-r--r-- 1 root    root       300 Nov 28 13:31 pkgremoval-resources-dbqar389
+-rw-r--r-- 1 root    root       444 Nov 28 13:31 pkgremoval-mountpoints-dbqar389
+drwxrwxrwt 1 root    root         0 Nov 28 17:05 .rdh
+-rw-r--r-- 1 qqnagio nagios   15844 Nov 30 00:03 eventhandler.log
+-rw-r--r-- 1 qqnagio nagios    6948 Nov 30 13:58 saninfo.state
+drwx------ 1 root    root         6 Nov 30 16:13 systemd-private-760171c7b5404fee97933aa812a11998-systemd-localed.service-KVxTwm
+drwxrwxrwt 1 root    root      1528 Nov 30 16:13 .
+lp34d56:/var/tmp # ls -lrta dbqar189*
+-rw-r--r-- 1 root root 9177 Oct 26 02:37 dbqar189.cmd
+lp34d56:/var/tmp # ls -lrta dbqar389*
+-rw-r--r-- 1 root root 9178 Oct 26 02:23 dbqar389.cmd
+lp34d56:/var/tmp # ls -lrta *dbqar389*
+-rw-r--r-- 1 root root 9178 Oct 26 02:23 dbqar389.cmd
+-rw-r--r-- 1 root root  166 Nov 28 13:27 pkgremoval-dbqar389
+-rw-r--r-- 1 root root 1316 Nov 28 13:29 pkgremoval-shortinfo-dbqar389
+-rw-r--r-- 1 root root   60 Nov 28 13:29 pkgremoval-dgnames-dbqar389
+-rw-r--r-- 1 root root  144 Nov 28 13:30 pkgremoval-LDEV-BOX-pairs-dbqar389
+-rw-r--r-- 1 root root  300 Nov 28 13:31 pkgremoval-resources-dbqar389
+-rw-r--r-- 1 root root  444 Nov 28 13:31 pkgremoval-mountpoints-dbqar389
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # cat pkgremoval-mountpoints-dbqar389
+#Resource                            Attribute             System     Value
+dbqar389_global_dbqar389_bkup_mount  MountPoint            global     /global/dbqar389/bkup
+dbqar389_global_dbqar389_db_mount    MountPoint            global     /global/dbqar389/db
+dbqar389_global_dbqar389_redo1_mount MountPoint            global     /global/dbqar389/redo1
+dbqar389_global_dbqar389_redo2_mount MountPoint            global     /global/dbqar389/redo2
+lp34d56:/var/tmp # cat pkgremoval-resources-dbqar389
+dbqar389_oracle_app
+dbqar389_dgdbqar389bkup
+dbqar389_dgdbqar389db
+dbqar389_dgdbqar389redo1
+dbqar389_dgdbqar389redo2
+dbqar389_dbqar389_ip
+dbqar389_global_dbqar389_bkup_mount
+dbqar389_global_dbqar389_db_mount
+dbqar389_global_dbqar389_redo1_mount
+dbqar389_global_dbqar389_redo2_mount
+dbqar389_nic_proxy
+lp34d56:/var/tmp # echo PKGNAME=${PKGNAME} | tee /var/tmp/pkgremoval-${PKGNAME}
+PKGNAME=
+lp34d56:/var/tmp # PKGNAME=dbqar389
+lp34d56:/var/tmp # echo PKGNAME=${PKGNAME} | tee /var/tmp/pkgremoval-${PKGNAME}
+PKGNAME=dbqar389
+lp34d56:/var/tmp # hagrp -resources ${PKGNAME} | egrep _ip
+dbqar389_dbqar389_ip
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp34d55              RUNNING              0
+A  lp34d56              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp34d55              Y          N               ONLINE
+B  NIC             lp34d56              Y          N               ONLINE
+B  dbmon00         lp34d55              Y          N               OFFLINE
+B  dbmon00         lp34d56              Y          N               ONLINE
+B  dboid834        lp34d55              Y          N               OFFLINE
+B  dboid834        lp34d56              Y          N               ONLINE
+B  dbopcw34        lp34d55              Y          N               OFFLINE
+B  dbopcw34        lp34d56              Y          N               ONLINE
+B  dbpamp79        lp34d55              Y          N               OFFLINE
+B  dbpamp79        lp34d56              Y          N               ONLINE
+B  dbqar289        lp34d55              Y          N               OFFLINE
+B  dbqar289        lp34d56              Y          N               ONLINE
+B  dbqar389        lp34d55              Y          N               OFFLINE
+B  dbqar389        lp34d56              Y          N               OFFLINE
+B  dbqari89        lp34d55              Y          N               OFFLINE
+B  dbqari89        lp34d56              Y          N               ONLINE
+B  dbqst89         lp34d55              Y          N               OFFLINE
+B  dbqst89         lp34d56              Y          N               ONLINE
+B  dbspab89        lp34d55              Y          N               OFFLINE
+B  dbspab89        lp34d56              Y          N               ONLINE
+B  dbspai89        lp34d55              Y          N               OFFLINE
+B  dbspai89        lp34d56              Y          N               ONLINE
+B  dbstrs34        lp34d55              Y          N               OFFLINE
+B  dbstrs34        lp34d56              Y          N               ONLINE
+B  dbwow89         lp34d55              Y          N               OFFLINE
+B  dbwow89         lp34d56              Y          N               ONLINE
+
+-- GROUPS FROZEN
+-- Group
+
+C  dbqar389
+
+-- RESOURCES DISABLED
+-- Group           Type            Resource
+
+H  dbqar389        Application     dbqar389_oracle_app
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389bkup
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389db
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo1
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo2
+H  dbqar389        IP              dbqar389_dbqar389_ip
+H  dbqar389        Mount           dbqar389_global_dbqar389_bkup_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_db_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo1_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo2_mount
+H  dbqar389        Proxy           dbqar389_nic_proxy
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # hostname -f
+lp34d56.w34.bmwgroup.net
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # nslookup dbqar389.w34
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Name:   dbqar389.w34
+Address: 172.25.196.145
+
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # cat /var/tmp/pkgremoval-resources-${PKGNAME}
+dbqar389_oracle_app
+dbqar389_dgdbqar389bkup
+dbqar389_dgdbqar389db
+dbqar389_dgdbqar389redo1
+dbqar389_dgdbqar389redo2
+dbqar389_dbqar389_ip
+dbqar389_global_dbqar389_bkup_mount
+dbqar389_global_dbqar389_db_mount
+dbqar389_global_dbqar389_redo1_mount
+dbqar389_global_dbqar389_redo2_mount
+dbqar389_nic_proxy
+lp34d56:/var/tmp # echo PKGNAME=${PKGNAME} | tee /var/tmp/pkgremoval-${PKGNAME}
+PKGNAME=dbqar389
+lp34d56:/var/tmp # echo $PKGNAME
+dbqar389
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp #
+lp34d56:/var/tmp # hastatus -sum | sed -e "s/ *$//g" | grep -i ${PKGNAME}
+B  dbqar389        lp34d55              Y          N               OFFLINE
+B  dbqar389        lp34d56              Y          N               OFFLINE
+C  dbqar389
+H  dbqar389        Application     dbqar389_oracle_app
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389bkup
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389db
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo1
+H  dbqar389        DiskGroup       dbqar389_dgdbqar389redo2
+H  dbqar389        IP              dbqar389_dbqar389_ip
+H  dbqar389        Mount           dbqar389_global_dbqar389_bkup_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_db_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo1_mount
+H  dbqar389        Mount           dbqar389_global_dbqar389_redo2_mount
+H  dbqar389        Proxy           dbqar389_nic_proxy
+lp34d56:/var/tmp # cat /var/tmp/pkgremoval-${PKGNAME}
+PKGNAME=dbqar389
+lp34d56:/var/tmp # ls -lrta *dbqar389*
+-rw-r--r-- 1 root root 9178 Oct 26 02:23 dbqar389.cmd
+-rw-r--r-- 1 root root 1316 Nov 28 13:29 pkgremoval-shortinfo-dbqar389
+-rw-r--r-- 1 root root   60 Nov 28 13:29 pkgremoval-dgnames-dbqar389
+-rw-r--r-- 1 root root  144 Nov 28 13:30 pkgremoval-LDEV-BOX-pairs-dbqar389
+-rw-r--r-- 1 root root  300 Nov 28 13:31 pkgremoval-resources-dbqar389
+-rw-r--r-- 1 root root  444 Nov 28 13:31 pkgremoval-mountpoints-dbqar389
+-rw-r--r-- 1 root root   17 Nov 30 16:20 pkgremoval-dbqar389
+lp34d56:/var/tmp # hagrp -dep | tee -a /var/tmp/pkgremoval-${PKGNAME}
+VCS WARNING V-16-1-50035 No Group dependencies are configured
+lp34d56:/var/tmp # cat pkgremoval-LDEV-BOX-pairs-dbqar389
+10538 00:2E
+10538 02:8B
+10538 06:0C
+10538 06:0D
+10538 06:0E
+10538 06:0F
+10565 00:2E
+10565 02:8B
+10565 06:0C
+10565 06:0D
+10565 06:0E
+10565 06:0F
+lp34d56:/var/tmp # cd
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # for resource in $(cat /var/tmp/pkgremoval-resources-${PKGNAME}); do hares -delete ${resource} ;done^C
+lp34d56:~ # cat /var/tmp/pkgremoval-resources-${PKGNAME}
+dbqar389_oracle_app
+dbqar389_dgdbqar389bkup
+dbqar389_dgdbqar389db
+dbqar389_dgdbqar389redo1
+dbqar389_dgdbqar389redo2
+dbqar389_dbqar389_ip
+dbqar389_global_dbqar389_bkup_mount
+dbqar389_global_dbqar389_db_mount
+dbqar389_global_dbqar389_redo1_mount
+dbqar389_global_dbqar389_redo2_mount
+dbqar389_nic_proxy
+lp34d56:~ # for resource in $(cat /var/tmp/pkgremoval-resources-${PKGNAME}); do hares -delete ${resource} ;done
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+VCS WARNING V-16-1-11335 Configuration must be ReadWrite : Use haconf -makerw
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # haconf -makerw
+lp34d56:~ # for resource in $(cat /var/tmp/pkgremoval-resources-${PKGNAME}); do hares -delete ${resource} ;done
+lp34d56:~ # hastatus -sum | sed -e "s/ *$//g" | grep -i ${PKGNAME}
+B  dbqar389        lp34d55              Y          N               OFFLINE
+B  dbqar389        lp34d56              Y          N               OFFLINE
+C  dbqar389
+lp34d56:~ #
+lp34d56:~ # hagrp -resources ${PKGNAME}
+
+lp34d56:~ # hagrp -resources dbqar389
+
+lp34d56:~ # hagrp -delete dbqar389
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # hastatus -sum | sed -e "s/ *$//g" | grep -i ${PKGNAME}
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp34d55              RUNNING              0
+A  lp34d56              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp34d55              Y          N               ONLINE
+B  NIC             lp34d56              Y          N               ONLINE
+B  dbmon00         lp34d55              Y          N               OFFLINE
+B  dbmon00         lp34d56              Y          N               ONLINE
+B  dboid834        lp34d55              Y          N               OFFLINE
+B  dboid834        lp34d56              Y          N               ONLINE
+B  dbopcw34        lp34d55              Y          N               OFFLINE
+B  dbopcw34        lp34d56              Y          N               ONLINE
+B  dbpamp79        lp34d55              Y          N               OFFLINE
+B  dbpamp79        lp34d56              Y          N               ONLINE
+B  dbqar289        lp34d55              Y          N               OFFLINE
+B  dbqar289        lp34d56              Y          N               ONLINE
+B  dbqari89        lp34d55              Y          N               OFFLINE
+B  dbqari89        lp34d56              Y          N               ONLINE
+B  dbqst89         lp34d55              Y          N               OFFLINE
+B  dbqst89         lp34d56              Y          N               ONLINE
+B  dbspab89        lp34d55              Y          N               OFFLINE
+B  dbspab89        lp34d56              Y          N               ONLINE
+B  dbspai89        lp34d55              Y          N               OFFLINE
+B  dbspai89        lp34d56              Y          N               ONLINE
+B  dbstrs34        lp34d55              Y          N               OFFLINE
+B  dbstrs34        lp34d56              Y          N               ONLINE
+B  dbwow89         lp34d55              Y          N               OFFLINE
+B  dbwow89         lp34d56              Y          N               ONLINE
+lp34d56:~ # haconf -dump -makero
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  lp34d55              RUNNING              0
+A  lp34d56              RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  NIC             lp34d55              Y          N               ONLINE
+B  NIC             lp34d56              Y          N               ONLINE
+B  dbmon00         lp34d55              Y          N               OFFLINE
+B  dbmon00         lp34d56              Y          N               ONLINE
+B  dboid834        lp34d55              Y          N               OFFLINE
+B  dboid834        lp34d56              Y          N               ONLINE
+B  dbopcw34        lp34d55              Y          N               OFFLINE
+B  dbopcw34        lp34d56              Y          N               ONLINE
+B  dbpamp79        lp34d55              Y          N               OFFLINE
+B  dbpamp79        lp34d56              Y          N               ONLINE
+B  dbqar289        lp34d55              Y          N               OFFLINE
+B  dbqar289        lp34d56              Y          N               ONLINE
+B  dbqari89        lp34d55              Y          N               OFFLINE
+B  dbqari89        lp34d56              Y          N               ONLINE
+B  dbqst89         lp34d55              Y          N               OFFLINE
+B  dbqst89         lp34d56              Y          N               ONLINE
+B  dbspab89        lp34d55              Y          N               OFFLINE
+B  dbspab89        lp34d56              Y          N               ONLINE
+B  dbspai89        lp34d55              Y          N               OFFLINE
+B  dbspai89        lp34d56              Y          N               ONLINE
+B  dbstrs34        lp34d55              Y          N               OFFLINE
+B  dbstrs34        lp34d56              Y          N               ONLINE
+B  dbwow89         lp34d55              Y          N               OFFLINE
+B  dbwow89         lp34d56              Y          N               ONLINE
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # cd /lfs/cluster/vcs
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs # ls -l ${PKGNAME}_{monitor,start,stop}
+ls: cannot access 'dbqar389_monitor': No such file or directory
+ls: cannot access 'dbqar389_start': No such file or directory
+ls: cannot access 'dbqar389_stop': No such file or directory
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs # ls -l dbqar389*
+-rwxr-xr-x 1 root root 1548 Apr 24  2021 dbqar389_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Apr 24  2021 dbqar389_oracle_start
+-rwxr-xr-x 1 root root 3149 Apr 24  2021 dbqar389_oracle_stop
+lp34d56:/lfs/cluster/vcs # ls -l ${PKGNAME}_oracle_{monitor,start,stop}
+-rwxr-xr-x 1 root root 1548 Apr 24  2021 dbqar389_oracle_monitor
+-rwxr-xr-x 1 root root 6393 Apr 24  2021 dbqar389_oracle_start
+-rwxr-xr-x 1 root root 3149 Apr 24  2021 dbqar389_oracle_stop
+lp34d56:/lfs/cluster/vcs # rm dbqar389_oracle_monitor dbqar389_oracle_start dbqar389_oracle_stop
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs # ls -l dbqar389*
+ls: cannot access 'dbqar389*': No such file or directory
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs #
+lp34d56:/lfs/cluster/vcs # cd
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # grep -e "^dg." /var/tmp/pkgremoval-dgnames-${PKGNAME}
+dgdbqar389bkup
+dgdbqar389db
+dgdbqar389redo1
+dgdbqar389redo2
+lp34d56:~ # grep -e "^dg." /var/tmp/pkgremoval-dgnames-${PKGNAME}
+dgdbqar389bkup
+dgdbqar389db
+dgdbqar389redo1
+dgdbqar389redo2
+lp34d56:~ # for diskgroup in $(grep -e "^dg." /var/tmp/pkgremoval-dgnames-${PKGNAME}); do vxdg import ${diskgroup} ;vxdg destroy ${diskgroup} ;done
+lp34d56:~ #
+lp34d56:~ #
+lp34d56:~ # vxdisk -o alldgs list |grep -i dbqar389
+lp34d56:~ #

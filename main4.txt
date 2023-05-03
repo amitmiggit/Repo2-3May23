@@ -1,0 +1,1173 @@
+lp01d65:~ # haclus -value EngineVersion
+7.4.10.000
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ #
+lp01d65:~ # cat /etc/VRTSvcs/conf/config/main.cf
+include "types.cf"
+
+cluster lp01d65_lp01d66 (
+        UserNames = { oracle = aHHpIDgCIgHEhE, qqunix = GHFdHNfEIhHEgCHmDGcP,
+                 qqoperat = aLKkJIjIIiJRlIKlIH }
+        Operators = { qqoperat }
+        HacliUserLevel = COMMANDROOT
+        )
+
+system lp01d65 (
+        )
+
+system lp01d66 (
+        )
+
+group NIC (
+        SystemList = { lp01d65 = 1, lp01d66 = 1 }
+        Parallel = 1
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        NIC NIC_monitor (
+                Device = bond0
+                NetworkHosts = { "160.46.157.1" }
+                )
+
+        Phantom NIC_phantom (
+                )
+
+        NIC_phantom requires NIC_monitor
+
+
+        // resource dependency tree
+        //
+        //      group NIC
+        //      {
+        //      Phantom NIC_phantom
+        //          {
+        //          NIC NIC_monitor
+        //          }
+        //      }
+
+
+group dbauqaw1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbauqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbauqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbauqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbauqaw1_monitor"
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbauqaw1bkup
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1db (
+                Critical = 0
+                DiskGroup = dgdbauqaw1db
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbauqaw1redo1
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbauqaw1redo2
+                )
+
+        IP dbauqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.28"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbauqaw1_bkup_mount (
+                MountPoint = "/global/dbauqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_db_mount (
+                MountPoint = "/global/dbauqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_redo1_mount (
+                MountPoint = "/global/dbauqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_redo2_mount (
+                MountPoint = "/global/dbauqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbauqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbauqaw1_app requires dbauqaw1_bkup_mount
+        dbauqaw1_app requires dbauqaw1_db_mount
+        dbauqaw1_app requires dbauqaw1_ip
+        dbauqaw1_app requires dbauqaw1_redo1_mount
+        dbauqaw1_app requires dbauqaw1_redo2_mount
+        dbauqaw1_bkup_mount requires dbauqaw1_dgdbauqaw1bkup
+        dbauqaw1_db_mount requires dbauqaw1_dgdbauqaw1db
+        dbauqaw1_ip requires dbauqaw1_nic_proxy
+        dbauqaw1_redo1_mount requires dbauqaw1_dgdbauqaw1redo1
+        dbauqaw1_redo2_mount requires dbauqaw1_dgdbauqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbauqaw1
+        //      {
+        //      Application dbauqaw1_app
+        //          {
+        //          Mount dbauqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1bkup
+        //              }
+        //          Mount dbauqaw1_db_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1db
+        //              }
+        //          IP dbauqaw1_ip
+        //              {
+        //              Proxy dbauqaw1_nic_proxy
+        //              }
+        //          Mount dbauqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1redo1
+        //              }
+        //          Mount dbauqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbe00w1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbe00w1_oracle_app (
+                StartProgram = "/lfs/cluster/vcs/dbe00w1_oracle_start"
+                StopProgram = "/lfs/cluster/vcs/dbe00w1_oracle_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbe00w1_oracle_monitor"
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1apps (
+                DiskGroup = dgdbe00w1apps
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1bkup (
+                DiskGroup = dgdbe00w1bkup
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1db (
+                DiskGroup = dgdbe00w1db
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1redo1 (
+                DiskGroup = dgdbe00w1redo1
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1redo2 (
+                DiskGroup = dgdbe00w1redo2
+                )
+
+        IP dbe00w1_dbe00w1_ip (
+                Device = bond0
+                Address = "160.46.157.100"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbe00w1_global_dbe00w1_apps_mount (
+                MountPoint = "/global/dbe00w1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1apps/lvapps"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_bkup_mount (
+                MountPoint = "/global/dbe00w1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1bkup/lvbkup"
+                FSType = vxfs
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_db_mount (
+                MountPoint = "/global/dbe00w1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_redo1_mount (
+                MountPoint = "/global/dbe00w1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_redo2_mount (
+                MountPoint = "/global/dbe00w1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbe00w1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbe00w1_dbe00w1_ip requires dbe00w1_nic_proxy
+        dbe00w1_global_dbe00w1_apps_mount requires dbe00w1_dgdbe00w1apps
+        dbe00w1_global_dbe00w1_bkup_mount requires dbe00w1_dgdbe00w1bkup
+        dbe00w1_global_dbe00w1_db_mount requires dbe00w1_dgdbe00w1db
+        dbe00w1_global_dbe00w1_redo1_mount requires dbe00w1_dgdbe00w1redo1
+        dbe00w1_global_dbe00w1_redo2_mount requires dbe00w1_dgdbe00w1redo2
+        dbe00w1_oracle_app requires dbe00w1_dbe00w1_ip
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_apps_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_bkup_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_db_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_redo1_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_redo2_mount
+
+
+        // resource dependency tree
+        //
+        //      group dbe00w1
+        //      {
+        //      Application dbe00w1_oracle_app
+        //          {
+        //          IP dbe00w1_dbe00w1_ip
+        //              {
+        //              Proxy dbe00w1_nic_proxy
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_apps_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1apps
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_bkup_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1bkup
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_db_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1db
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_redo1_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1redo1
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_redo2_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbhiqaw1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbhiqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbhiqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbhiqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbhiqaw1_monitor"
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1apps (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1apps
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1bkup
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1db (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1db
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1redo1
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1redo2
+                )
+
+        IP dbhiqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.30"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbhiqaw1_apps_mount (
+                MountPoint = "/global/dbhiqaw1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1apps/lvapps"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_bkup_mount (
+                MountPoint = "/global/dbhiqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_db_mount (
+                MountPoint = "/global/dbhiqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_redo1_mount (
+                MountPoint = "/global/dbhiqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_redo2_mount (
+                MountPoint = "/global/dbhiqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbhiqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbhiqaw1_app requires dbhiqaw1_apps_mount
+        dbhiqaw1_app requires dbhiqaw1_bkup_mount
+        dbhiqaw1_app requires dbhiqaw1_db_mount
+        dbhiqaw1_app requires dbhiqaw1_ip
+        dbhiqaw1_app requires dbhiqaw1_redo1_mount
+        dbhiqaw1_app requires dbhiqaw1_redo2_mount
+        dbhiqaw1_apps_mount requires dbhiqaw1_dgdbhiqaw1apps
+        dbhiqaw1_bkup_mount requires dbhiqaw1_dgdbhiqaw1bkup
+        dbhiqaw1_db_mount requires dbhiqaw1_dgdbhiqaw1db
+        dbhiqaw1_ip requires dbhiqaw1_nic_proxy
+        dbhiqaw1_redo1_mount requires dbhiqaw1_dgdbhiqaw1redo1
+        dbhiqaw1_redo2_mount requires dbhiqaw1_dgdbhiqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbhiqaw1
+        //      {
+        //      Application dbhiqaw1_app
+        //          {
+        //          Mount dbhiqaw1_apps_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1apps
+        //              }
+        //          Mount dbhiqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1bkup
+        //              }
+        //          Mount dbhiqaw1_db_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1db
+        //              }
+        //          IP dbhiqaw1_ip
+        //              {
+        //              Proxy dbhiqaw1_nic_proxy
+        //              }
+        //          Mount dbhiqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1redo1
+        //              }
+        //          Mount dbhiqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbkiqaw1 (
+        SystemList = { lp01d66 = 0, lp01d65 = 1 }
+        AutoStartList = { lp01d66, lp01d65 }
+        )
+
+        Application dbkiqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbkiqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbkiqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbkiqaw1_monitor"
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1apps (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1apps
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1bkup
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1db (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1db
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1redo1
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1redo2
+                )
+
+        IP dbkiqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.31"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbkiqaw1_apps_mount (
+                MountPoint = "/global/dbkiqaw1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1apps/lvapps"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_bkup_mount (
+                MountPoint = "/global/dbkiqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_db_mount (
+                MountPoint = "/global/dbkiqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_redo1_mount (
+                MountPoint = "/global/dbkiqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_redo2_mount (
+                MountPoint = "/global/dbkiqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbkiqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbkiqaw1_app requires dbkiqaw1_apps_mount
+        dbkiqaw1_app requires dbkiqaw1_bkup_mount
+        dbkiqaw1_app requires dbkiqaw1_db_mount
+        dbkiqaw1_app requires dbkiqaw1_ip
+        dbkiqaw1_app requires dbkiqaw1_redo1_mount
+        dbkiqaw1_app requires dbkiqaw1_redo2_mount
+        dbkiqaw1_apps_mount requires dbkiqaw1_dgdbkiqaw1apps
+        dbkiqaw1_bkup_mount requires dbkiqaw1_dgdbkiqaw1bkup
+        dbkiqaw1_db_mount requires dbkiqaw1_dgdbkiqaw1db
+        dbkiqaw1_ip requires dbkiqaw1_nic_proxy
+        dbkiqaw1_redo1_mount requires dbkiqaw1_dgdbkiqaw1redo1
+        dbkiqaw1_redo2_mount requires dbkiqaw1_dgdbkiqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbkiqaw1
+        //      {
+        //      Application dbkiqaw1_app
+        //          {
+        //          Mount dbkiqaw1_apps_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1apps
+        //              }
+        //          Mount dbkiqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1bkup
+        //              }
+        //          Mount dbkiqaw1_db_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1db
+        //              }
+        //          IP dbkiqaw1_ip
+        //              {
+        //              Proxy dbkiqaw1_nic_proxy
+        //              }
+        //          Mount dbkiqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1redo1
+        //              }
+        //          Mount dbkiqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+
+
+
+///////////////////////////////////
+
+lp01d66:~ # haclus -value EngineVersion
+7.4.10.000
+lp01d66:~ # cat /etc/VRTSvcs/conf/config/main.cf
+include "types.cf"
+
+cluster lp01d65_lp01d66 (
+        UserNames = { oracle = aHHpIDgCIgHEhE, qqunix = GHFdHNfEIhHEgCHmDGcP,
+                 qqoperat = aLKkJIjIIiJRlIKlIH }
+        Operators = { qqoperat }
+        HacliUserLevel = COMMANDROOT
+        )
+
+system lp01d65 (
+        )
+
+system lp01d66 (
+        )
+
+group NIC (
+        SystemList = { lp01d65 = 1, lp01d66 = 1 }
+        Parallel = 1
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        NIC NIC_monitor (
+                Device = bond0
+                NetworkHosts = { "160.46.157.1" }
+                )
+
+        Phantom NIC_phantom (
+                )
+
+        NIC_phantom requires NIC_monitor
+
+
+        // resource dependency tree
+        //
+        //      group NIC
+        //      {
+        //      Phantom NIC_phantom
+        //          {
+        //          NIC NIC_monitor
+        //          }
+        //      }
+
+
+group dbauqaw1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbauqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbauqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbauqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbauqaw1_monitor"
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbauqaw1bkup
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1db (
+                Critical = 0
+                DiskGroup = dgdbauqaw1db
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbauqaw1redo1
+                )
+
+        DiskGroup dbauqaw1_dgdbauqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbauqaw1redo2
+                )
+
+        IP dbauqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.28"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbauqaw1_bkup_mount (
+                MountPoint = "/global/dbauqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_db_mount (
+                MountPoint = "/global/dbauqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_redo1_mount (
+                MountPoint = "/global/dbauqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbauqaw1_redo2_mount (
+                MountPoint = "/global/dbauqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbauqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbauqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbauqaw1_app requires dbauqaw1_bkup_mount
+        dbauqaw1_app requires dbauqaw1_db_mount
+        dbauqaw1_app requires dbauqaw1_ip
+        dbauqaw1_app requires dbauqaw1_redo1_mount
+        dbauqaw1_app requires dbauqaw1_redo2_mount
+        dbauqaw1_bkup_mount requires dbauqaw1_dgdbauqaw1bkup
+        dbauqaw1_db_mount requires dbauqaw1_dgdbauqaw1db
+        dbauqaw1_ip requires dbauqaw1_nic_proxy
+        dbauqaw1_redo1_mount requires dbauqaw1_dgdbauqaw1redo1
+        dbauqaw1_redo2_mount requires dbauqaw1_dgdbauqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbauqaw1
+        //      {
+        //      Application dbauqaw1_app
+        //          {
+        //          Mount dbauqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1bkup
+        //              }
+        //          Mount dbauqaw1_db_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1db
+        //              }
+        //          IP dbauqaw1_ip
+        //              {
+        //              Proxy dbauqaw1_nic_proxy
+        //              }
+        //          Mount dbauqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1redo1
+        //              }
+        //          Mount dbauqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbauqaw1_dgdbauqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbe00w1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbe00w1_oracle_app (
+                StartProgram = "/lfs/cluster/vcs/dbe00w1_oracle_start"
+                StopProgram = "/lfs/cluster/vcs/dbe00w1_oracle_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbe00w1_oracle_monitor"
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1apps (
+                DiskGroup = dgdbe00w1apps
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1bkup (
+                DiskGroup = dgdbe00w1bkup
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1db (
+                DiskGroup = dgdbe00w1db
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1redo1 (
+                DiskGroup = dgdbe00w1redo1
+                )
+
+        DiskGroup dbe00w1_dgdbe00w1redo2 (
+                DiskGroup = dgdbe00w1redo2
+                )
+
+        IP dbe00w1_dbe00w1_ip (
+                Device = bond0
+                Address = "160.46.157.100"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbe00w1_global_dbe00w1_apps_mount (
+                MountPoint = "/global/dbe00w1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1apps/lvapps"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_bkup_mount (
+                MountPoint = "/global/dbe00w1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1bkup/lvbkup"
+                FSType = vxfs
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_db_mount (
+                MountPoint = "/global/dbe00w1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_redo1_mount (
+                MountPoint = "/global/dbe00w1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbe00w1_global_dbe00w1_redo2_mount (
+                MountPoint = "/global/dbe00w1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbe00w1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbe00w1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbe00w1_dbe00w1_ip requires dbe00w1_nic_proxy
+        dbe00w1_global_dbe00w1_apps_mount requires dbe00w1_dgdbe00w1apps
+        dbe00w1_global_dbe00w1_bkup_mount requires dbe00w1_dgdbe00w1bkup
+        dbe00w1_global_dbe00w1_db_mount requires dbe00w1_dgdbe00w1db
+        dbe00w1_global_dbe00w1_redo1_mount requires dbe00w1_dgdbe00w1redo1
+        dbe00w1_global_dbe00w1_redo2_mount requires dbe00w1_dgdbe00w1redo2
+        dbe00w1_oracle_app requires dbe00w1_dbe00w1_ip
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_apps_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_bkup_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_db_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_redo1_mount
+        dbe00w1_oracle_app requires dbe00w1_global_dbe00w1_redo2_mount
+
+
+        // resource dependency tree
+        //
+        //      group dbe00w1
+        //      {
+        //      Application dbe00w1_oracle_app
+        //          {
+        //          IP dbe00w1_dbe00w1_ip
+        //              {
+        //              Proxy dbe00w1_nic_proxy
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_apps_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1apps
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_bkup_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1bkup
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_db_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1db
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_redo1_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1redo1
+        //              }
+        //          Mount dbe00w1_global_dbe00w1_redo2_mount
+        //              {
+        //              DiskGroup dbe00w1_dgdbe00w1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbhiqaw1 (
+        SystemList = { lp01d65 = 0, lp01d66 = 1 }
+        AutoStartList = { lp01d65, lp01d66 }
+        )
+
+        Application dbhiqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbhiqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbhiqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbhiqaw1_monitor"
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1apps (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1apps
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1bkup
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1db (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1db
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1redo1
+                )
+
+        DiskGroup dbhiqaw1_dgdbhiqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbhiqaw1redo2
+                )
+
+        IP dbhiqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.30"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbhiqaw1_apps_mount (
+                MountPoint = "/global/dbhiqaw1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1apps/lvapps"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_bkup_mount (
+                MountPoint = "/global/dbhiqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_db_mount (
+                MountPoint = "/global/dbhiqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_redo1_mount (
+                MountPoint = "/global/dbhiqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbhiqaw1_redo2_mount (
+                MountPoint = "/global/dbhiqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbhiqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbhiqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbhiqaw1_app requires dbhiqaw1_apps_mount
+        dbhiqaw1_app requires dbhiqaw1_bkup_mount
+        dbhiqaw1_app requires dbhiqaw1_db_mount
+        dbhiqaw1_app requires dbhiqaw1_ip
+        dbhiqaw1_app requires dbhiqaw1_redo1_mount
+        dbhiqaw1_app requires dbhiqaw1_redo2_mount
+        dbhiqaw1_apps_mount requires dbhiqaw1_dgdbhiqaw1apps
+        dbhiqaw1_bkup_mount requires dbhiqaw1_dgdbhiqaw1bkup
+        dbhiqaw1_db_mount requires dbhiqaw1_dgdbhiqaw1db
+        dbhiqaw1_ip requires dbhiqaw1_nic_proxy
+        dbhiqaw1_redo1_mount requires dbhiqaw1_dgdbhiqaw1redo1
+        dbhiqaw1_redo2_mount requires dbhiqaw1_dgdbhiqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbhiqaw1
+        //      {
+        //      Application dbhiqaw1_app
+        //          {
+        //          Mount dbhiqaw1_apps_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1apps
+        //              }
+        //          Mount dbhiqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1bkup
+        //              }
+        //          Mount dbhiqaw1_db_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1db
+        //              }
+        //          IP dbhiqaw1_ip
+        //              {
+        //              Proxy dbhiqaw1_nic_proxy
+        //              }
+        //          Mount dbhiqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1redo1
+        //              }
+        //          Mount dbhiqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbhiqaw1_dgdbhiqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+group dbkiqaw1 (
+        SystemList = { lp01d66 = 0, lp01d65 = 1 }
+        AutoStartList = { lp01d66, lp01d65 }
+        )
+
+        Application dbkiqaw1_app (
+                StartProgram = "/lfs/cluster/vcs/dbkiqaw1_start"
+                StopProgram = "/lfs/cluster/vcs/dbkiqaw1_stop"
+                MonitorProgram = "/lfs/cluster/vcs/dbkiqaw1_monitor"
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1apps (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1apps
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1bkup (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1bkup
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1db (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1db
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1redo1 (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1redo1
+                )
+
+        DiskGroup dbkiqaw1_dgdbkiqaw1redo2 (
+                Critical = 0
+                DiskGroup = dgdbkiqaw1redo2
+                )
+
+        IP dbkiqaw1_ip (
+                Device = bond0
+                Address = "160.46.157.31"
+                NetMask = "255.255.255.0"
+                Options = "broadcast 160.46.157.255"
+                )
+
+        Mount dbkiqaw1_apps_mount (
+                MountPoint = "/global/dbkiqaw1/apps"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1apps/lvapps"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_bkup_mount (
+                MountPoint = "/global/dbkiqaw1/bkup"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1bkup/lvbkup"
+                FSType = vxfs
+                MountOpt = defaults
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_db_mount (
+                MountPoint = "/global/dbkiqaw1/db"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1db/lvdb"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_redo1_mount (
+                MountPoint = "/global/dbkiqaw1/redo1"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1redo1/lvredo1"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Mount dbkiqaw1_redo2_mount (
+                MountPoint = "/global/dbkiqaw1/redo2"
+                BlockDevice = "/dev/vx/dsk/dgdbkiqaw1redo2/lvredo2"
+                FSType = vxfs
+                MountOpt = "mincache=direct,convosync=direct"
+                FsckOpt = "-y"
+                VxFSMountLock = 0
+                )
+
+        Proxy dbkiqaw1_nic_proxy (
+                TargetResName = NIC_monitor
+                )
+
+        dbkiqaw1_app requires dbkiqaw1_apps_mount
+        dbkiqaw1_app requires dbkiqaw1_bkup_mount
+        dbkiqaw1_app requires dbkiqaw1_db_mount
+        dbkiqaw1_app requires dbkiqaw1_ip
+        dbkiqaw1_app requires dbkiqaw1_redo1_mount
+        dbkiqaw1_app requires dbkiqaw1_redo2_mount
+        dbkiqaw1_apps_mount requires dbkiqaw1_dgdbkiqaw1apps
+        dbkiqaw1_bkup_mount requires dbkiqaw1_dgdbkiqaw1bkup
+        dbkiqaw1_db_mount requires dbkiqaw1_dgdbkiqaw1db
+        dbkiqaw1_ip requires dbkiqaw1_nic_proxy
+        dbkiqaw1_redo1_mount requires dbkiqaw1_dgdbkiqaw1redo1
+        dbkiqaw1_redo2_mount requires dbkiqaw1_dgdbkiqaw1redo2
+
+
+        // resource dependency tree
+        //
+        //      group dbkiqaw1
+        //      {
+        //      Application dbkiqaw1_app
+        //          {
+        //          Mount dbkiqaw1_apps_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1apps
+        //              }
+        //          Mount dbkiqaw1_bkup_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1bkup
+        //              }
+        //          Mount dbkiqaw1_db_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1db
+        //              }
+        //          IP dbkiqaw1_ip
+        //              {
+        //              Proxy dbkiqaw1_nic_proxy
+        //              }
+        //          Mount dbkiqaw1_redo1_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1redo1
+        //              }
+        //          Mount dbkiqaw1_redo2_mount
+        //              {
+        //              DiskGroup dbkiqaw1_dgdbkiqaw1redo2
+        //              }
+        //          }
+        //      }
+
+
+lp01d66:~ #

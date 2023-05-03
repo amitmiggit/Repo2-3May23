@@ -1,0 +1,88 @@
+
+Summary	 VCS File-system Layout - OK
+Notes	 lp18d01:~ # PACKG=dbmlit19
+lp18d01:~ # for VOL in $(df -hP -t vxfs | grep ${PACKG} | awk '{print $1}'); do /opt/VRTS/bin/fstyp -v ${VOL} | grep -i version; done
+magic a501fcf5  version 9  ctime Fri 19 Oct 2018 09:14:07 PM JST
+magic a501fcf5  version 9  ctime Fri 19 Oct 2018 09:14:48 PM JST
+magic a501fcf5  version 9  ctime Fri 19 Oct 2018 09:14:33 PM JST
+magic a501fcf5  version 9  ctime Fri 19 Oct 2018 09:14:58 PM JST
+lp18d01:~ #
+Package offline and freezed at source Node - OK
+hagrp -offline dbmlit19 -sys lp18d01
+hastatus -sum | grep -i dbmlit19
+ haconf -makerw
+hagrp -freeze dbmlit19 -persistent
+sleep 45
+haconf -dump -makero
+Package started on Target 
+sh -x /var/tmp/create.dbmlit19.cmd
+haconf -dump -makero
+on Target node
+ hastatus -sum | grep -i dbmlit19
+ df -hT | grep dbmlit19
+
+
+=====================================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.6.1.13+standalone+package+move+to+standalone 
+cluster-migrate-package "pb2vdb11"
+output from source server and Target server
+lpb2vdbs04:~ # hastatus -sum |grep -i pb2vdb11
+B  pb2vdb11        lpb2vdbs03           Y          N               OFFLINE
+B  pb2vdb11        lpb2vdbs04           Y          N               ONLINE
+lpb2vdbs04:~ #
+lpb2vdbs04:~ # hagrp -offline pb2vdb11 -sys lpb2vdbs04
+lpb2vdbs04:~ #
+lpb2vdbs04:~ # hastatus -sum |grep -i pb2vdb11
+B  pb2vdb11        lpb2vdbs03           Y          N               OFFLINE
+B  pb2vdb11        lpb2vdbs04           Y          N               ONLINE|STOPPING
+G  pb2vdb11        Application     pb2vdb11_app         lpb2vdbs04           W_OFFLINE_PROPAGATE
+
+lpb2vdbs04:~ # hastatus -sum |grep -i pb2vdb11
+B  pb2vdb11        lpb2vdbs03           Y          N               OFFLINE
+B  pb2vdb11        lpb2vdbs04           Y          N               OFFLINE
+lpb2vdbs04:~ #
+
+lpb2vdbs06:~ # hastatus -sum ( Target server )
+###pls check cmd file and run on Target server 
+
+lpb2vdbs06:~ # haconf -makerw
+lpb2vdbs06:~ # sh -x  /var/tmp/pb2vdb11.cmd
+ ####pckg should be run on Target server.
+lpb2vdbs06:~ # hastatus -sum |grep pb2vdb11
+B  pb2vdb11        lpb2vdbs05           Y          N               OFFLINE
+B  pb2vdb11        lpb2vdbs06           Y          N               ONLINE
+lpb2vdbs06:~ #
+
+
+
+
+
+
+===============================================
+TAS000006129920
+####Preperation task - CRQ000001874902 | TAS000006129921
+nv01502307.bmwgroup.net:/f05528/t078017/C2_UK_Oracle_interface_files_prod 
+                           nv01502236.bmwgroup.net:/f05036/t031846
+                           nv01502705.bmwgroup.net:/f07874/t055788
+                           nv01502166.bmwgroup.net:/f04667/t003530 
+                           nv01502238.bmwgroup.net:/f05037/t038572
+                           nv01502243.bmwgroup.net:/f05148/t044451
+                           nv01502238.bmwgroup.net:/f05146/t031328
+                           nv01502103.bmwgroup.net:/f04448/t021611/ 
+                           nv01502395.bmwgroup.net:/f06089/t005653/Produktion
+                           nv01502210.bmwgroup.net:/f04824/t023440 
+                           nv01502705.bmwgroup.net:/f07877/t082020
+                           nv01502693.bmwgroup.net:/f07845/t082162
+
+###san_shortinfo |egrep -i 'pldb861|pldb972|pldbhss|pldb381|pldb881|pltftps1'| wc -l
+##hastatus -sum|egrep -i 'pldb861|pldb972|pldbhss|pldb381|pldb881|pltftps1'|grep -i online
+Server lpdbs103 do not have rights to mount mentioned NFS
+### ls -lrth |egrep -i 'pldb861|pldb972|pldbhss|pldb381|pldb881|pltftps1'
+
+Notes	 From: Bhandari Rajendra, (Rajendra.Bhandari@partner.bmw.de)
+Sent: Sunday, December 5, 2021 1:30 PM
+To: Ravulla Bhuvana, (Bhuvana.Ravulla@partner.bmw.de) <Bhuvana.Ravulla@partner.bmw.de>; DL-PaaS-CPT <PaaS-CPT@list.bmw.com>
+Subject: RE: CRQ000001874902 | TAS000006129921
+
+++DL
+

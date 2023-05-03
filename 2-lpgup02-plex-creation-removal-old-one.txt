@@ -1,0 +1,33 @@
+#####Server Name ######lpgup05####
+#diassociated SD from plex 
+1 ##vxsd -g dgpgupcs0006 dis 19_23225_0063-01 19_23225_0213-01 19_23225_026e-01
+vxsd -g dgpgupcs0006 
+#removed the newly created plex as size of plex new and old is not same
+2 ###vxedit -g dgpgupcs0006 rm lvsapdata1-23225
+3 ##vxprint -htq -g dgpgupcs0006
+######created new plex 
+4 vxmake -g dgpgupcs0006 -U fsgen plex lvsapdata1-23225
+####associated subdisk with newly created plex
+5 - vxsd -g dgpgupcs0006 assoc lvsapdata1-23225 19_23225_0063-01 19_23225_0213-01 19_23225_026e-01
+pgup05:~ # bc -l
+bc 1.06.95
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+1297874944-1297872720
+2224
+^C
+(interrupt) Exiting bc.
+lpgup05:~ #
+
+##reduce vxsize online --as both plex size should be same
+#####vxresize -F vxfs -g dgpgupcs0006 lvsapdata1  -- -2224
+lpgup05:~ # vxprint -htq -g dgpgupcs0006
+#############new plex is in sync with oldone ############## 
+6--##vxplex -g dgpgupcs0006 -U fsgen att lvsapdata1 lvsapdata1-23225
+####
+####removal of sub disks from old plex  after sync 
+7---vxsd -g dgpgupcs0006 dis 2_23183_026e-01 2_23183_0212-01 19_23225_0212-01
+#####removal of old plex #########
+8--vxedit -g dgpgupcs0006 rm lvsapdata1-23183
+#####

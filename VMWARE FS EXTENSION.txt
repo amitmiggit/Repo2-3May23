@@ -1,0 +1,107 @@
+echo 1 > /sys/block/sdxxx/device/rescan 
+pvresize /dev/sdxxx 
+lvextend -l +100%FREE /dev/VG/LV 
+xfs_growfs /global/<XFS Mount Point>
+
+
+echo 1 > /sys/block/sdb/device/rescan
+
+pvresize /dev/sdb
+
+
+lvextend -l +100%FREE /dev/dgpbrpdi3401/lvapps 
+
+
+xfs_growfs /global/pbrpdi34/apps
+
+
+
+lpbrp11:~ #
+lpbrp11:~ # df -hT /global/pbrpdi34/apps
+Filesystem                      Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpbrpdi3401-lvapps xfs    50G  9.8G   41G  20% /global/pbrpdi34/apps
+lpbrp11:~ # vgs
+  VG           #PV #LV #SN Attr   VSize  VFree
+  dgpbrpdi3401   1   1   0 wz--n- 50.00g    0
+  dgpbrpdi3402   1   1   0 wz--n- 30.00g    0
+  dgpbrpdi3403   1   1   0 wz--n- 32.00g    0
+  vglocal        1   1   0 wz--n- 54.99g 4.99g
+lpbrp11:~ # lsblk
+NAME                   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                      8:0    0  160G  0 disk
+├─sda1                   8:1    0    1G  0 part /boot
+├─sda2                   8:2    0  100G  0 part /
+├─sda3                   8:3    0    4G  0 part [SWAP]
+└─sda4                   8:4    0   55G  0 part
+  └─vglocal-lvvarcrash 254:1    0   50G  0 lvm  /var/crash
+sdb                      8:16   0   50G  0 disk
+└─dgpbrpdi3401-lvapps  254:2    0   50G  0 lvm  /global/pbrpdi34/apps
+sdc                      8:32   0   30G  0 disk
+└─dgpbrpdi3402-lvbrp   254:3    0   30G  0 lvm  /usr/sap/BRP
+sdd                      8:48   0   32G  0 disk
+└─dgpbrpdi3403-lvswap  254:0    0   32G  0 lvm  [SWAP]
+sr0                     11:0    1 1024M  0 rom
+lpbrp11:~ # pvs
+  PV         VG           Fmt  Attr PSize  PFree
+  /dev/sda4  vglocal      lvm2 a--  54.99g 4.99g
+  /dev/sdb   dgpbrpdi3401 lvm2 a--  50.00g    0
+  /dev/sdc   dgpbrpdi3402 lvm2 a--  30.00g    0
+  /dev/sdd   dgpbrpdi3403 lvm2 a--  32.00g    0
+lpbrp11:~ # lvs
+  LV         VG           Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lvapps     dgpbrpdi3401 -wi-ao---- 50.00g
+  lvbrp      dgpbrpdi3402 -wi-ao---- 30.00g
+  lvswap     dgpbrpdi3403 -wi-ao---- 32.00g
+  lvvarcrash vglocal      -wi-ao---- 50.00g
+lpbrp11:~ #
+lpbrp11:~ #
+lpbrp11:~ #
+lpbrp11:~ #
+lpbrp11:~ #
+lpbrp11:~ #
+lpbrp11:~ # echo 1 > /sys/block/sdb/device/rescan
+lpbrp11:~ # pvs
+  PV         VG           Fmt  Attr PSize  PFree
+  /dev/sda4  vglocal      lvm2 a--  54.99g 4.99g
+  /dev/sdb   dgpbrpdi3401 lvm2 a--  50.00g    0
+  /dev/sdc   dgpbrpdi3402 lvm2 a--  30.00g    0
+  /dev/sdd   dgpbrpdi3403 lvm2 a--  32.00g    0
+lpbrp11:~ # pvresize /dev/sdb
+  Physical volume "/dev/sdb" changed
+  1 physical volume(s) resized or updated / 0 physical volume(s) not resized
+lpbrp11:~ # pvs
+  PV         VG           Fmt  Attr PSize   PFree
+  /dev/sda4  vglocal      lvm2 a--   54.99g   4.99g
+  /dev/sdb   dgpbrpdi3401 lvm2 a--  274.00g 224.00g
+  /dev/sdc   dgpbrpdi3402 lvm2 a--   30.00g      0
+  /dev/sdd   dgpbrpdi3403 lvm2 a--   32.00g      0
+lpbrp11:~ # lvextend -l +100%FREE /dev/dgpbrpdi3401/lvapps
+  Size of logical volume dgpbrpdi3401/lvapps changed from 50.00 GiB (12799 extents) to 274.00 GiB (70143 extents).
+  Logical volume dgpbrpdi3401/lvapps successfully resized.
+lpbrp11:~ # xfs_growfs /global/pbrpdi34/apps
+meta-data=/dev/mapper/dgpbrpdi3401-lvapps isize=512    agcount=4, agsize=3276544 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0 spinodes=0 rmapbt=0
+         =                       reflink=0
+data     =                       bsize=4096   blocks=13106176, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal               bsize=4096   blocks=6399, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 13106176 to 71826432
+lpbrp11:~ # df -hT /global/pbrpdi34/apps
+Filesystem                      Type  Size  Used Avail Use% Mounted on
+/dev/mapper/dgpbrpdi3401-lvapps xfs   274G  9.8G  265G   4% /global/pbrpdi34/apps
+lpbrp11:~ # exit
+exit
+[INSTSERV][qxz10kv][lpinstiaas02] ~ $
+
+
+
+
+  
+
+
+
+

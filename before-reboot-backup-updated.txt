@@ -1,0 +1,342 @@
+[?22-?08-?2021 00:50] Misra Amit, (Amit.Misra@partner.bmw.de): 
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.10.2.6+Reinstall+XEN+Node+with+SLES12 
+
+Please reset password for secondary ID corppvt/sarora01.
+SR raised for Activity- SD12316769
+
+reset password for secondary 
+http://www.golinuxhub.com/2012/08/increase-swap-size.html
+https://www.youtube.com/watch?v=2y5gaahFaLI how to scan disk under veritas control
+https://www.youtube.com/watch?v=PaNSnvINl7E
+9000710898 sriniwas
+Q2001437
+Cluster Node --peplap00523 /peplap00524 --Running on Multipath--+16362889464--RAM-Storage
+==========================================================================
+vxdisk scandisks
+vxdmpadm list dmpnode all --To Check NAA ID
+hares -clear dg_storedatadg --if not came online
+vxdisk -o alldgs list
+vxdctl -c mode
+vxdisk -e list
+gabconfig -a
+cat /etc/vxfentab
+vxdg list
+vxdisk -o alldgs list
+vxinfo -g tibcodg
+vxinfo -g tibcodg -p
+vxinfo -g storedatadg
+hastatus -sum
+hagrp -resources grp_qa_tibco
+hagrp -resources grp_qa_tibco
+vxdisk -o alldgs list
+hastatus -sum
+vxdg list
+vxprint -htg storedatadg
+vxprint -htg tibcodg
+df -h
+Case-id-22144321
+
+
+root@qatibemsq3a:~# vxdg list
+NAME         STATE           ID
+storedatadg  enabled,shared,cds   1403269536.12.peplap00523
+tibcodg      enabled,shared,cds   1403269387.10.peplap00523
+root@qatibemsq3a:~#
+
+root@qatibemsq3b:~# hagrp -resources grp_qa_tibco
+app_tibco
+mnt_opttibco
+mnt_opttibcostore
+mnt_vartibco
+dg_storedatadg
+dg_tibcodg
+ip_ems
+nic_bond0
+root@qatib
+multipath -l | grep SYMM | wc -l
+multipath -l | gre Inv | wc -l
+multipath -l | grep Inv -A2
+multipath -l | grep Inv -A1
+#check vxdg size
+vxdmpadm listenclosure
+vxdisk -e list
+mount prdlinux:/usr/unixbin /mnt
+cd /mnt/INQ
+./inq.LinuxAMD64 -no_dots
+./inq.LinuxAMD64 -sid    ( For SYMMETRIC discs only)
+
+
+#
+==
+vxdg list
+vxprint -htg storedatadg -v
+vxprint -htg tibcodg -v
+============
+vxdg list
+ vxinfo -g storedatadg
+vxinfo -g tibcodatadg
+
+
+root@qatibemsq3a:~# vxdg list
+NAME         STATE           ID
+storedatadg  enabled,shared,cds   1403269536.12.peplap00523
+tibcodg      enabled,shared,cds   1403269387.10.peplap00523
+
+
+962  Sep/07 - 21:56:29 vxdisk free
+  963  Sep/07 - 21:56:43 vxdisk -g tibcodg free
+  964  Sep/07 - 21:56:51 vxdg -g tibcodg free
+  965  Sep/07 - 21:57:32 vxassist -g tibcodg maxsize free
+  966  Sep/07 - 21:57:44 vxassist -g tibcodg maxsize mirror=enclosure
+  967  Sep/07 - 21:59:43 vxinfo -g storedatadg
+  968  Sep/07 - 22:01:23 vxtask list
+  969  Sep/07 - 22:01:25 vxdg list
+  970  Sep/07 - 22:01:31 vxprint -htg tibcodg
+  971  Sep/07 - 22:01:49 vxprint -htg storedatadg -v
+  972  Sep/07 - 22:03:33 vxtask list
+  973  Sep/07 - 22:04:09 hastatus -sum
+  974  Sep/07 - 22:06:01 vxdisk -o alldgs list
+  975  Sep/07 - 22:05:31 vxprint -htg tibcodg
+  976  Sep/07 - 22:09:01 df -h
+  977  Sep/07 - 22:09:11 exit
+  978  Sep/07 - 22:13:40 hastatus -sum
+  979  Sep/07 - 22:14:54 vxdctl -c mode
+  980  Sep/07 - 22:23:33 history
+  981  Sep/07 - 22:26:15 vxdg list
+  982  Sep/07 - 22:27:31 vxinfo -g tibcodg
+vxdctl -c mode
+  983  Sep/07 - 22:27:34 vxinfo -g tibcodg -p
+  984  Sep/07 - 22:38:53 exit
+  985  Sep/07 - 22:39:05 free -m
+  986  Sep/07 - 22:39:18 exit
+  987  Sep/08 - 09:09:44 hastatus -sum
+  988  Sep/08 - 09:11:24 hagrp -resource grp_qa_tibco
+  989  Sep/08 - 09:12:20 hagrp -resources grp_qa_tibco
+  990  Sep/08 - 09:13:00 hares -state app_tibco
+  991  Sep/08 - 09:13:18 hares -state mnt_opttibco
+  992  Sep/08 - 09:13:29 hares -state mnt_opttibcostore
+  993  Sep/08 - 09:13:39 hares -state mnt_vartibco
+  994  Sep/08 - 09:13:53 hares -state dg_storedatadg
+  995  Sep/08 - 09:14:07 hares -state dg_tibcodg
+  996  Sep/08 - 09:15:54 hares -display app_tibco | grep -i critical
+  997  Sep/08 - 09:16:31 hares -display app_tibco
+  998  Sep/08 - 10:17:33 history
+
+I have few points to share about the cluster (peplap00523  / peplap00524).
+1.	Application monitoring program is missing from the application resource “app_tibco”  that is why despite being application running fine on both nodes ,  
+VCS cluster engine (HAD) is unable to determine the state of the application so the Service Group (grp_qa_tibco) is in partial state on both nodes.
+for i in `hagrp -resources grp_qa_tibco`; do hares -state $i; done
+hares -display app_tibco
+hares  -display app_tibco|grep -i monitorprogram
+ hares -display app_eme|grep -iE "MonitorProgram"|grep -i global
+
+ hares -display app_tibco |grep -iE "MonitorProgram"|grep -i global
+2.	Below is the example of another cluster (peplap00238 / peplap00298)  from our environment where  application monitoring has setup and configured in cluster properly.
+
+ 
+
+
+Now as a part of solution we need to have tibco team provided application monitoring script so that monitoring can be setup and configured  for resource “app_tibco”  in cluster.
+Once the monitoring of the application setup properly thereafter service group (grp_qa_tibco) state will reflect ONLINE.
+
+Please let us know for any concern or query.
+
+
+
+
+
+==========================
+To take backup before reboot--
+============================================
+cd /tmp
+/sbin/hponcfg -w /tmp/console
+cd /tmp
+=======================
+hostname
+uptime
+who -b
+cat /proc/partitions 
+cat /etc/fstab 
+fdisk -l 
+blkid 
+df -hT 
+mount 
+blkid
+fdisk -l
+uname -a
+uname -r
+cat /proc/partitions
+cat /etc/hosts
+cat /etc/resolv.conf
+cat /etc/fstab
+cat /etc/*release*
+cat /etc/*release*
+ifconfig -a
+ifconfig
+route -v
+netstat -nr
+df -hT
+free -m
+lscpu
+ls -l /dev/oracleasm/disks/ 
+pvscan
+vgscan
+lvscan
+pvs
+vgs
+lvs
+pvdisplay
+vgdisplay
+lvdisplay
+#powermt display dev=all
+multipath -l
+lsscsi
+lsscsi | wc -l
+fdisk -l /dev/sd* 2>/dev/null| grep -E "Disk.+bytes$"
+fdisk -l /dev/em* 2>/dev/null| grep -E "Disk.+bytes$"
+chkconfig --list
+ps -efl | grep pmon
+ps -efl | grep java
+cat /etc/lvm/lvm.conf | grep filter
+cat /etc/fstab
+lspci | grep -i fib
+cat /sys/class/scsi_host/host?/state
+===============
+HA Cluster reboot
+cat /etc/fstab
+ifconfig
+netstat -anr
+uptime
+pvs
+crm_mon -n
+======================
+#cat /etc/lvm/lvm.conf
+pepwap05078.corp.pep.pvt --to take console
+============================
+post checks ====
+===============================
+lsscsi
+lsscsi | wc -l
+fdisk -l /dev/sd* 2>/dev/null| grep -E "Disk.+bytes$"
+fdisk -l /dev/em* 2>/dev/null| grep -E "Disk.+bytes$"
+chkconfig --list
+cat /sys/class/scsi_host/host?/state
+df -hT
+multipath -l | grep SYMM | wc -l
+multipath -l | grep Inv | wc -l
+# fdisk -l /dev/sd* 2>/dev/null| grep -E "Disk.+bytes$" | wc -l
+df -hT | grep var | wc -l
+df -hT | grep opt | wc -l
+cat /etc/fstab | grep var | wc -l
+cat /etc/fstab | grep opt | wc -l
+========================================
+ZSA-CLI-HP-CNSDATA-B02-PP
+
+HPE ProLiant Servers - How to Reset the HPE ILO Inband Root/Administrator Password in Linux
+
+
+Information
+
+How to reset the HPE ILO Inband root/Administrator password in Linux.
+
+
+Details
+
+Use the hponcfg command to reset the HPE ILO Inband password. 
+
+
+1.Check if the package is already installed or not using the below command.
+
+ 
+ 
+# rpm -qf /sbin/hponcfg   
+hponcfg-1.9.0-3    
+ 
+ 
+
+
+
+2.List/Check the content of the package.
+
+ 
+ 
+# rpm -ql hponcfg-1.9.0-3   
+/sbin/hponcfg     
+ 
+ 
+
+
+
+3.Create a xml file like below or user can copy the same content and change the ?newpass? to users password.
+
+ 
+ 
+# vi passwd_reset_ilo.xml     
+# cat passwd_reset_ilo.xml   
+<ribcl version="2.0">   
+<login user_login="Administrator" password="boguspassword">   
+<user_info mode="write">    
+<mod_user user_login="Administrator">     
+<password value="newpass">    
+</password>   
+</mod_user>   
+</user_info>   
+</login>        
+ 
+</RIBCL> 
+ 
+ 
+
+
+
+4.Run the below command to reset the Administrator password.
+
+ 
+ 
+#  hponcfg -f passwd_reset_ilo.xml -l log.txt     
+Firmware Revision = 1.92 Device type = iLO Driver name = hpilo   
+ 
+ 
+
+
+Script succeeded. User will receive the succeed message which means the command ran successfully and user can login with the new password. 
+ 
+
+
+
+5.How to reset the root password.
+
+Repeat steps 3 and 4 by resetting the USER_LOGIN value to ?root? in the xml file as given below.
+
+ 
+ 
+# vi passwd_reset_ilo.xml     
+# cat passwd_reset_ilo.xml   
+<ribcl version="2.0">   
+<login user_login="Administrator" password="boguspassword">   
+<user_info mode="write">    
+<mod_user user_login="root">     
+<password value="root123">    
+</password>   
+</mod_user>   
+</user_info>   
+</login>     
+ 
+</RIBCL> 
+ 
+
+
+Run the below command to reset the root password.
+
+ 
+#  hponcfg -f passwd_reset_ilo.xml -l log.txt   
+Firmware Revision = 1.92 Device type = iLO Driver name = hpilo   
+Script succeeded 
+ 
+ 
+
+
+
+Click here to download HP Lights-Out Online Configuration Utility for Linux .
+
+

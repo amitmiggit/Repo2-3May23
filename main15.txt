@@ -1,0 +1,40 @@
+/dev/vx/dsk/dgoracle_lp01d65/lvoracle                    vxfs      175G   60G  116G  34% /lfs/oracle
+/dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit               vxfs       50G  361M   50G   1% /lfs/oracle_audit
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/160
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/66159
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/48952
+/dev/vx/dsk/dgdbe00w1apps/lvapps                         vxfs       15G   22M   14G   1% /global/dbe00w1/apps
+/dev/vx/dsk/dgdbe00w1redo1/lvredo1                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo1
+/dev/vx/dsk/dgdbe00w1redo2/lvredo2                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo2
+/dev/vx/dsk/dgdbe00w1bkup/lvbkup                         vxfs      169G  1.1G  167G   1% /global/dbe00w1/bkup
+/dev/vx/dsk/dgdbe00w1db/lvdb                             vxfs      1.6T  1.2T  390G  76% /global/dbe00w1/db
+/dev/vx/dsk/dgdbauqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbauqaw1/redo2
+/dev/vx/dsk/dgdbauqaw1db/lvdb                            vxfs      619G  451G  167G  73% /global/dbauqaw1/db
+/dev/vx/dsk/dgdbauqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.4G  61% /global/dbauqaw1/redo1
+/dev/vx/dsk/dgdbauqaw1bkup/lvbkup                        vxfs      478G   71G  404G  15% /global/dbauqaw1/bkup
+/dev/vx/dsk/dgdbhiqaw1apps/lvapps                        vxfs      3.5G  107M  3.2G   4% /global/dbhiqaw1/apps
+/dev/vx/dsk/dgdbhiqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbhiqaw1/redo2
+/dev/vx/dsk/dgdbhiqaw1bkup/lvbkup                        vxfs      675G  2.2G  668G   1% /global/dbhiqaw1/bkup
+/dev/vx/dsk/dgdbhiqaw1db/lvdb                            vxfs      5.1T  4.8T  284G  95% /global/dbhiqaw1/db
+/dev/vx/dsk/dgdbhiqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.3G  62% /global/dbhiqaw1/redo1
+
+
+===
+
+/dev/vx/dsk/dgoracle_lp01d65/lvoracle                    vxfs      175G   60G  116G  34% /lfs/oracle
+/dev/vx/dsk/dgoracle_lp01d65/lvoracleaudit               vxfs       50G  339M   50G   1% /lfs/oracle_audit
+tmpfs                                                    tmpfs      38G     0   38G   0% /run/user/160
+/dev/vx/dsk/dgdbauqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.4G  61% /global/dbauqaw1/redo1
+/dev/vx/dsk/dgdbauqaw1bkup/lvbkup                        vxfs      478G   71G  404G  15% /global/dbauqaw1/bkup
+/dev/vx/dsk/dgdbauqaw1db/lvdb                            vxfs      619G  451G  167G  73% /global/dbauqaw1/db
+/dev/vx/dsk/dgdbauqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbauqaw1/redo2
+/dev/vx/dsk/dgdbe00w1apps/lvapps                         vxfs       15G   22M   14G   1% /global/dbe00w1/apps
+/dev/vx/dsk/dgdbe00w1redo2/lvredo2                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo2
+/dev/vx/dsk/dgdbe00w1redo1/lvredo1                       vxfs       15G  1.1G   13G   8% /global/dbe00w1/redo1
+/dev/vx/dsk/dgdbe00w1bkup/lvbkup                         vxfs      169G  1.1G  167G   1% /global/dbe00w1/bkup
+/dev/vx/dsk/dgdbe00w1db/lvdb                             vxfs      1.6T  1.2T  390G  76% /global/dbe00w1/db
+/dev/vx/dsk/dgdbhiqaw1apps/lvapps                        vxfs      3.5G  107M  3.2G   4% /global/dbhiqaw1/apps
+/dev/vx/dsk/dgdbhiqaw1bkup/lvbkup                        vxfs      675G  2.9G  667G   1% /global/dbhiqaw1/bkup
+/dev/vx/dsk/dgdbhiqaw1redo2/lvredo2                      vxfs      3.5G  2.1G  1.4G  60% /global/dbhiqaw1/redo2
+/dev/vx/dsk/dgdbhiqaw1redo1/lvredo1                      vxfs      3.5G  2.1G  1.3G  62% /global/dbhiqaw1/redo1
+/dev/vx/dsk/dgdbhiqaw1db/lvdb                            vxfs      5.1T  4.8T  284G  95% /global/dbhiqaw1/db

@@ -1,0 +1,1012 @@
+PettedDenseSkyGlowsNever
+PettedDenseSkyGlowsNever@123
+
+rudderctl properties-get --hostname=lim1q05.bmwgroup.net --key=TZ
+vxprint -htq -g dgtdbiwo75db -htu h
+we are not allowed to add PBIS users ( mentioned users in task) to the local groups. PBIS users are supposed to be added to PBIS group and Local users are supposed to be added to local groups.  This task is kept in PE with this reason.  
+========================================================================
+OS Backup file
+========================================================================
+from backup.muc file and also from 
+lpnwp11:/usr/openv/netbackup/bin # ./bpclimagelist 
+from lpnwp11:/usr/openv/netbackup/  you may check OS include file (which is empty now) 
+Sir, I am stepping away for some time .. 
+
+#####INC000039295966
+
+##vxassist -g dg_name convert lv_name layout=mirror-concat
+vxassist -g dgplfasi01bkup convert lvbkup layout=mirror-conca
+
+
+
+MOD - BMW - 498938277911 
+MATRIX - 000498938267777
+$ rootssh lpsbdmsdb6 vxprint -ht|grep -i 'group:\|DET\|FAIL\|NODEV\|STAL'
+dgtdbiwo75db-INC000039023630 
+TAS000006439877 ---need to follow up --istore--Amit Misra
+vi ltgmt01_TAS000006468921_rv.standalone-------Fs creation on stanalone
+lpsecpw02-------secret_share
+TAS000006481681--btrfs balancing restored vm 
+https://apex-p.bmwgroup.net:4950/pls/htmldb/f?p=223:LOGIN:8130294989782 -istore URL
+###PKE000000304444-closed 09/06/2022
+lpcmph02:/root/.hist # crm resource cleanup rsc_SAPHana_CMP00
+customer link: https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=727759576 
+https://amuc1010.bmwgroup.net/
+5.1.19-manual MR and IPU update MR SLES12 Manual pages
+TAS000006065824---server-unix-std:global|06|024c-cluster-migrate-cleanup
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=649667884
+TAS000006608904-SAN CLEANUP REQUEST
+/global/instserv/bin/nastool -a PreCheck -i file name
+[?26-?04-?2022 13:11] Lohia Tushar, (Tushar.LA.Lohia@partner.bmw.de): 
+rudderswinst list 
+rudderswinst -t TAS00000XXX  install <VM-NAME> <package_name> 
+rudderswinst -t TAS000006415647 install lp09sasza01 SW-X11-Core
+rudderswinst -t TAS000006383181 install ltbkvtrec11.bmwgroup.net BMW-Oracle-Client-12.1.0.2
+rudderswinst -t TAS000006583456 install litms02.bmwgroup.net MW-ConnectDirect
+rudderswinst -t TAS000006649348 install ltr1003.bmwgroup.net MW-ConnectDirect
+TAS000006392179
+for i in `cat`;do vxprint -htg $i | grep -i lvdb-01;done
+echo "- - - "> /sys/class/scsi_host/host0/scan
+echo "- - - "> /sys/class/scsi_host/host1/scan
+vxvol_readpol.pl --nagios
+ /sbin/vxvol_readpol.pl
+ /sbin/vxvol_readpol.pl --chprefer [-f]
+As an addon some useful links for customer communication regarding the Master Release:
+
+Activation timeline 2022:
+https://atc.bmwgroup.net/confluence/x/PLMUPw
+
+Master Release 2022 Q2 - Documentation:
+https://atc.bmwgroup.net/confluence/x/o1JOdQ
+
+===============================
+### to check firmware status from console
+opening PKE
+
+https://wuss.bmwgroup.net/#x0=Home&x1=Start&subNavId=10&topNavId=1&langId=en 
+DBGVMIPUP 
+ExecStop=/bin/sh -c '/usr/bin/docker stop -t 60 $(docker ps -q) && /bin/kill -s TERM $MAINPID'
+
+sed '/TAS000006311890/,/^$/!d;/^$/s//--/' /etc/sudoers
+
+
+docker system events
+cuser
+namespace
+
+
+
+IPU Filed on SLES15sp2==>sp3
+=======================================
+Please try the below steps, it should fix the issue
+ 
+#zypper rr --all 
+ 
+#ls /var/cache/zypp/* /var/cache/zypper/ 
+/var/cache/zypp/packages:
+ 
+/var/cache/zypp/pubkeys:
+ 
+/var/cache/zypp/raw:
+ 
+/var/cache/zypp/solv:
+@System
+ 
+/var/cache/zypper/:
+ 
+#rudder agent run -fuqg
+#zypper lr
+It should now show only single sles15 repo, now you may proceed with usual rudderswinst command to update MR
+ 
+=======================================
+####lldpctl  to check network on server
+PBI000000392523---Need to work 
+
+lpbkcdvt13:~ # /tmp/btrfscleanup.sh 
+/sbin/btrfs fi df /| awk -F'[=G]' /Data/'{print $2" "$4}'
+
+PBI000000390983
+DL-bmw-unix-solutions <bmw-unix-solutions@list.bmw.com>
+vxresize -F vxfs -g dgpssmcs0008 lvmirrlogA  -- -20m ---------------------File system reduce
+
+vxresize -F vxfs -g dgpssmcs0008 lvoriglogB -- 71303168
+
+vxresize -F vxfs -g dgpssmcs0009 lvmirrlogB -- 71303168
+
+vxresize -F vxfs -g dgpssmcs0009 lvoriglogA -- 71303168
+
+
+/etc/vx/bin/vxresize -bx -g dgigtqci10ci01 lvsapdata1 +300G mirrorconfine=enclr  -----File system exension 
+
+/etc/vx/bin/vxresize -bx -g dgpssmcs0008 lvmirrlogA +20m mirrorconfine=enclr -----File system exension 
+
+#####vxresize -F vxfs -g dgtantedbl4db lvdb  -- -691200m -File system reduce
+
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.10.3.5+XEN+Tagged+VLANs 
+rudderswinst -t TAS000005948155  update lpxenppg019.bmwgroup.net --no-firmware
+https://serverfault.com/questions/885841/how-do-i-set-cgroup-limits-for-systemd-user-slices
+PBI000000382248
+
+TAS000005855081-------Need to work on 
+TAS000005863641 
+https://idas.bmwgroup.net/idas/  ----To check user /UNIX ID 
+/prod/local/lib/nagios/plugins --- check scripts
+su - qqnagio
+===============
+
+os-unix-std-06:global:2nd
+lp09xensdi09:/lfs/opt/nagios/prod/local/lib/nagios/plugins # ./check_multipath
+cd /lfs/opt/nagios/prod/local/lib/nagios/plugins
+UnixServer@bmwgroup.com
+showmount -e nv16690021.bmwgroup.net | grep -i li1669bnx5
+showmount -a nv01502647.bmwgroup.net |egrep  "/f07305/t022682"
+atop -r atop_20210702 -b 19:30
+lpdebug02:/global/debug/data/workdir/2021-06-28_li09zai02 #
+[INSTSERV][qxz12n2][lpinstiaassfcn19] ~ $ rootscp lp19sfxenw02:/var/log/messages-20210624.xz .
+rootscp lp19sfxenw02:/var/log/messages-20210624.xz .
+[INSTSERV][qxl0737][lpinstiaassfcn19] ~ $ bash bin/jumpscp.sh /global/instserv/home/qxz12n2/scc_lp19sfxenw02_210708_1940.txz 01
+=-===========
+saphosts BNP
+/global/pbnpdi36/apps
+/global/pbnpdi37/apps
+========
+ TAS000004496836-----Cluster Package Creation
+==============
+PBI000000382243-----restart at time of db restore sever name 
+PBI000000382248-----stephan Pullina
+========================= 
+INC000032098160
+===================
+/sbin/mkfs -F vxfs -o largefiles, bsize=8192 /dev/sdm  
+VxFS does not work with Linux native multipathing
+VxDMP must be used for native multipathing
+CRQ000001725221---
+============================
+[?29-?06-?2021 13:42] Misra Amit, (Amit.Misra@partner.bmw.de): 
+https://portal.bmwgroup.net/login.fcc?TYPE=33619969&REALMOID=06-6b9876d3-ec7f-102d-a649-8341ac230cb3&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME=$SM$Bmw4fsoSdcUZjqRNsqYwpi8nE4QOhjaAHYj%2bLjE%2fv9Fxslm2EjH3wkU3032tXKWF&TARGET=$SM$https%3a%2f%2fcmdbp%2ebmwgroup%2enet%2fhtml%2fcommand 
+======================
+https://vts4.bmwgroup.net/sites/it-site-navigator/Lists/Standortnavigator/AllItems.aspx 
+==========================
+vxdisk -eo alldgs list| grep -i hitachi_vspg1k1| grep -i dgilpi2r2bkup 
+vxdmpadm -s iostat show enclosure=hitachi_vspg1k0| egrep -i "sdakw|sdakx|sdaky|sdake|sdaol|sdalp|sdaok|sdaoj|sdajj"
+
+vxdmpadm -s iostat show enclosure=hitachi_vspg1k1
+============================
+vxdmpadm -s iostat show enclosure=hitachi_vspg1k1
+Related PBI - Master - PBI000000380048
+============================
+https://atc.bmwgroup.net/confluence/x/tLjfUg 
+===============
+san_shortinfo |egrep emc_clariion0_97\|emc_clariion0_98
+====================================
+lp05d17----os_linux_cluster_veritas_check_integrity----SAN HDD
+lp05d17:~ # vxdiskunsetup hitachi_vspg1k0_004a
+VxVM vxprtpart ERROR V-5-1-6536 error reading partitions
+
+====================================
+https://sysmon.muc/gui/thruk/#cgi-bin/status.cgi?host=lpb2vdbs01.bmwgroup.net
+PKE000000276429/PKE000000276429/PBI000000371953
+
+LPKWOM47-OLD
+--160.46.156.197
+
+
+qxz12n2@lpdebug02:~> /bin/rootsh -i -u qqcrashdump
+lpdebug02:~ # /bin/rootsh -i -u qqcrashdump
+qqcrashdump@lpdebug02:~>
+qqcrashdump@lpdebug02:~>
+
+scp messages-20210708.bz2 qxz12n2@lpdebug02:/home/qxz12n2/
+scp messages_lp02ipsic1vm qxz12n2@lpdebug02:/global/debug/data
+AppleNewsIntlllOccur1234567890
+
+
+=============================
+zypper lr -d | egrep BMW-SLES12-SP\|Alias
+https://contenthub-de.bmwgroup.net/web/muenchen-dienste/isms                   
+
+ 
+INC000031613125 --to check disk difference
+https://bmwbankadministration.bmwgroup.net/vpn/ca004/index.html 
+And it also would not make sense to open a Suse case, because they would be seeing the same. Unfortunately there is nothing more to investigate.
+lpsbxendb005.
+os-unix-std-06:global:2nd
+The DRAFT script is under  /global/instserv/home/qxs6276/check_dlv_dgv-test.sh
+9823560011
+case number is: 201230-001334.
+rudder agent inventory ; rudder agent info ; rudder agent update ; rudder agent run
+lp03d09/lp03d10---performed MR and Veritas upgrade.
+PBI000000357728--VM Paused status -closed
+PBI000000356864--VM / server gets reboot
+PBI000000355924--closed VM server reboot
+PBI000000356892--closed
+PBI000000356562----closed
+==
+PBI000000355266
+PKE000000264712
+==================================================================
+san_rescan -F --hosts host18
+san_rescan -F --hosts host3
+san_rescan -F --hosts lptup26
+service multipathd stop
+https://sodb-p.bmwgroup.net/dcodb/sodb/pages/ratedServerOverview.jsf
+https://abun-p.bmwgroup.net/dcodb/abun/pages/search.jsf;jsessionid=175504ad9225cc808e2b6a72a162.1
+vmc restore78b5cf56-d2e7-4772-9b41-871da426e2df 
+vxprint -htqg dgdbjcap10db -htu h
+
+vxdg -g dgdbjcap10db free
+https://atc.bmwgroup.net/confluence/x/oOr0Mw
+ PBI000000353924---closed
+
+INC000029899170
+INC000029895207
+
+rootscp -q lp02xen56:/tmp/output.lp02xen56 .
+
+grep rpm /root/.hist/*
+grep rpm /root/.hist/* | grep -v "qa"
+ vi /root/.hist/history.qplinux.dev-pts-0
+DBGIPUPCL 1
+=============================================================
+SERVER_NAME:            <lp02wdp01.bmwgroup.net>  -> Package: pwdpci00.bmwgroup.net  
+ 
+OS_TARGET_RELEASE:      <Sles12 SP4>
+TAS000004970439 - 24/10/2020/ 19:30
+
+================================================================
+WBQ:   TAS000004969402
+WBP:    TAS000004971273
+
+Thomas.Wild@partner.bmw.de
+==============================================================
+server name -lptsp08
+after new disk allocation from storage - Need to run #san_rescan -r  on both nodes to scan and check devices availability
+vxdisksetup -i hitachi_vsp0_508c
+vxdisksetup -i hitachi_vsp1_508c
+vxdg -g dgitsqcs10cs01 adddisk 19_97316_508c=hitachi_vsp0_508c  
+####perform adddisk on which u want to perform activity
+vxdg -g dgitsqcs10cs01 adddisk 13_98209_508c=hitachi_vsp1_508c
+vxprint -htqg dgitsqcs10cs01 | grep -i ^dm
+vxprint -htqg dgitsqcs10cs01 | grep -i ^sd
+vxprint -htqg dgitsqcs10cs01 -htu h | grep -i hitachi_vsp1_508c(new disk)
+vxprint -htqg dgitsqcs10cs01 -htu h | grep -i hitachi_vsp0_508c(new disk)
+vxprint -htqg dgitsqcs10cs01 -htu h
+vxevac -g dgitsqcs10cs01 19_11121_0005 19_97316_508c (new disk)
+vxevac -g dgitsqcs10cs01 13_11122_0006 13_98209_508c (new disk)
+vxdg -g dgitsqcs10cs01 rmdisk 13_11122_0006 19_11121_0005
+VxVM vxevac INFO V-5-2-6184 Usage: vxevac [-g diskgroup] [-t tasktag] [-k] [-f] [-O optag] medianame [new-medianame ...]
+=============================================================
+lpsbdbs04
+==============================================================
+fsck -t vxfs -o full -y /dev/vx/rdsk/dgtdpimaw9db/lvdb
+CRQ000001494220 ||TAS000004968204----inplace upgrade
+lpqmd01
+CRQ000001521339 || TAS00000 5056070 (Oracle Team Task)--new1
+CRQ000001520228
+CRQ000001520226--new
+CRQ000001520213
+TAS000004659062 
+li02d07/li02do08
+INC000029450628
+CRQ000001460004
+GfubmBmbsXbuftCmbsfAftux
+https://pam.bmwgroup.net
+Administrator|s3rvert3@m ||Passw0rd
+BMWapac|@pac_w9
+==========================================
+qx12n2@qqinstserv@lpinstiaas01.bmwgroup.net@pamsshp.bmwgroup.net 
+qxz12n2@qqinstserv@lpinstiaas01.bmwgroup.net@pamsshp.bmwgroup.net 
+qxz12n2@qqinstserv@lpinstiaas09.bmwgroup.net@pamsshp.bmwgroup.net 
+qxz12n2@qqinstserv@lpinstiaas10.bmwgroup.net@pamsshp.bmwgroup.net 
+qxz12n2@qqinstserv@lpinstiaas19.bmwgroup.net@pamsshp.bmwgroup.net 
+qxz12n2@qqinstserv@lpinstiaassfcn19.bmwgroup.net@pamsshp.bmwgroup.net 
+https://cmdbp.bmwgroup.net/html/srm/detail/operatingsystem/GS40HRVQJU6WT2
+ lpbkxen39
+========================================
+TAS000005002483||CRQ000001451340||*PKG-MOVE* *GMA*(ORA) MOVE packages pldwheu2 , pldwheu5 from lpbkrrcmdb3/4 to lpbkrrcmdb5/6
+# xenstore-read /tool/hostname
+xen-diag gnttab_query_size 8
+sshjump.bmwgroup.net
+FetalAlarYatesBlareZesty
+GfubmBmbsXbuftCmbsfAftux
+CRQ000001451340 | TAS000004933238 
+https://www.veritas.com/support/en_US
+dgpscrml03db-lpscrmdb04
+/opt/VRTSvcs/bin/had -restart
+===============
+https://mailtools.bmwgroup.net/mailtoolshome/me
+https://wuss.bmwgroup.net/#x0=Home&x1=Start&subNavId=10&topNavId=1&langId=en 
+to increase mail size.
+====================
+Please find the below link contains the handover call updates 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/Linux-team-meeting+updates
+
+
+22G     /var/opt/VRTSsfmh/APP/Oracle/log/mh.log
+/var/opt/VRTSsfmh/VCS/log/mh.log
+
+/var/opt/VRTSsfmh/APP/log/discovery_oracle.log
+
+
+[?02-?09-?2020 14:18] Raj Suchetan, (Suchetan.Raj@partner.bmw.de): 
+SAP-Basis-Support@list.bmw.com  
+
+https://sodb-p.bmwgroup.net/dcodb/sodb/pages/home.jsf
+
+ftpupload.sh -n = novell li19sfasr01  
+==================
+hares -list | grep -i  mount
+hares -display resorce name
+==============
+San visibility ticket is 000323708
+lpbkrrcmdb3, lpbkrrcmdb4
+Janos.Szoecs@partner.bmw.de
+Consle command line
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.7.2+Console+Reconfigure+and+Password+Reset
+==================
+RECCO
+11 are oracle cluster , others web and documentum 
+FetalAlarYatesBlareZesty
+======================================
+PBI000000339679
+PBI000000339184
+lpinstw19b2v:~ # nc 10.186.62.145 22 -w 2
+SSH-2.0-OpenSSH_6.2
+lpinstw19b2v:~ # echo $?
+https://wuss.bmwgroup.net/#x0=Home&x1=Start&subNavId=10&topNavId=1&langId=en 
+==============
+vmc_migrate dg 
+for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done
+ xzcat messages-20200709.xz | more
+xz -dk messages-20201014.xz
+xzcat messages-20200709.xz | grep "2020-07-09T12" | more
+sar -q -f sa20200709 | more
+Janos.Szoecs@partner.bmw.de
+==========jump host ZA========
+lpinstw19b2v 
+
+cgroup os memory define karna hai
+namespace 
+
+container id logs
+docker system events --events
+
+ChampWastNowayTonNoaa
+
+lpinstwnbrdr 
+lpinstiaas19 
+===============================
+: technical_support@dell.com
+Cc: iaas-unix@list.bmw.com
+xenstore-read /tool/hostname -To check installed server name 
+vmstat -S M 5 10
+lpinstwnbrdr -------Installed Server
+https://opsdb.bmwgroup.net:8443/operations/ 
+https://atc.bmwgroup.net/confluence/display/IAAS18
+https://atc.bmwgroup.net/confluence/display/IAAS18/ 
+lc4hsTud!      -------sudo passwd   sanmar#2
+sanjeev.arora@partner.bmwgroup.com
+Sanjeev.Arora@partner.bmw.de
+QXZ12N2
+qxz12n2
+=============
+https://coma.bmwgroup.net/web/infrastructure/service-desk 
+https://mm.bmwgroup.net/transition/channels/transition-apac-servers-migration-za--to-iaas
+MM Link for Transition 
+=================
+You can visit following link for PAM Authentication:
+                Document: https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=648367089
+                Configuration Check: https://roma-prod.bmwgroup.net/
+                Logon to CyberArk Solution: https://pam.bmwgroup.net/PasswordVault
+=======================
+/global/dbippi79/db
+==============================================
+Sanjeev.Arora@partner.bmwgroup.com ---skype account
+lpsudom01.bmwgroup.net 
+qqsshfwd
+===
+sshjump.bmwgroup.net
+ instserv
+https://pam.bmwgroup.net/passwordvault
+
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ pamssh.sh ld09xen06
+
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ cmdb ld09xen06 -x
+
+
+DL-iaas-unix <iaas-unix@list.bmw.com>; Baur Sebastian, (Sebastian.Baur@partner.bmw.de); mohammed.tanveer@nttdata.com
+
+Regards,
+Sanjeev Arora
+IaaS Infrastructure as a Service 
+UNIX Team || NTT DATA Services Germany GmbH
+Im Auftrag der BMW Group
+FG-840 Linux Server Betrieb
+Mobile: +91-8882336665 || Mail: Sanjeev.Arora@partner.bmw.de
+
+===========================
+grep $(hostname) /tmp/vcsserver_with_instserv|awk '{print $1}' >vcsserver01
+To Fetch server list with Install Server Name-----
+==========================================
+for x in `cat /global/instserv/home/qxz12n2/vcsserversles12sp4` do inst=`cmdb $x -x| grep -i ^inst |awk
+
+ '{print $NF}'`;echo "$x $Inst";done
+
+for x in `cat /global/instserv/home/qxz12n2/vcsserversles12sp4`;do Inst=`cmdb $x -x|grep -i ^inst|awk '{print $NF}'`;echo "$x $Inst";done
+
+cmdb lt09d05 -x|grep -i ^inst|awk '{print $NF}'
+=====================
+#vxprint -htg dgname
+#vxprint -l lvname -To check dgname
+#vxprint -htq
+#vxdg list
+#vxdisk list
+assoc:    vol=lvdb_dcl plex=lvdb_dcl-10650 (offset=0)
+assoc:    vol=lvdb plex=lvdb_drl-10650 (log)
+assoc:    vol=lvdb plex=lvdb-10652 (offset=0)
+assoc:    plexes=lvdb-10650,lvdb-10652,lvdb_drl-10650,lvdb_drl-10652
+policies: read=PREFER (plex=lvdb-10652) exceptions=GEN_DET_SPARSE
+device:   minor=22500 bdev=199/22500 cdev=199/22500 path=/dev/vx/dsk/dgpldb813db/lvdb
+assoc:    plexes=lvdb-10650,lvdb-10652,lvdb_drl-10650,lvdb_drl-10652
+
+policies: read=PREFER (plex=lvdb-10652) exceptions=GEN_DET_SPARSE
+device:   minor=22500 bdev=199/22500 cdev=199/22500 path=/dev/vx/dsk/dgpldb813db/lvdb
+Volume:   lvdb_dcl
+assoc:    plexes=lvdb_dcl-10650,lvdb_dcl-10652
+
+lpsbdbs04:/root # vxvol start lvdb
+VxVM vxvol ERROR V-5-1-15324 Specify a disk group with -g <diskgroup> or configure a default disk group. Refer to the vxdctl(1m) man page for more details on configuring a default disk group
+lpsbdbs04:/root # vxvol -g dgpldb813db start lvdb
+VxVM vxvol ERROR V-5-1-1225 Volume lvdb is locked by another utility
+lpsbdbs04:/root #
+
+vxmend -g dgpldb813db fix stale lvdb-10652
+vxmend -g dgpldb813db fix clean lvdb-10652
+lpsbdbs04:/root # vxmend -g dgpldb813db fix stale lvdb-10652
+VxVM vxmend ERROR V-5-1-809 Plex lvdb-10652 in volume lvdb is locked by another utility
+========================
+Linux	1. /usr/bin/rescan-scsi-bus.sh
+2. vxdctl -f enable
+========================
+lpsbdbs04:/root # vxmend -g dgpldb813db fix clean lvdb-10652
+VxVM vxmend ERROR V-5-1-1227 Volume lvdb is not DISABLED
+lpsbdbs04:/root #
+===================
+#vxdg deport dgname
+another host
+
+#vxdg -C import  dgname
+====================
+vxdisk list | grep -i fail
+vxedit -g dgpldwheu1bkup set failing=off 1_20060_05f8
+vxedit -g dgpldwheu1bkup set failing=off 13_20068_05f8
+su - qqnagio
+vxplex -g dgpldwheu1bkup att lvbkup lvbkup_drl-20060
+su - qqnagio
+vxplex -g dgpldwheu1bkup att lvbkup lvbkup_drl-20068
+su - qqnagio
+##############--- 20200804.120411 ---##############
+cd /tmp
+./vxedit.sh
+./vxplex.sh
+lpbkrrcmdb3:/tmp # cat vxedit.sh
+vxdisk list | grep -i fail  > /tmp/vxdisk.list
+echo 'validating.....'
+while read var1 var2 var3 var4 var5
+do
+vxedit -g $var4 set failing=off $var3
+done <  /tmp/vxdisk.list
+lpbkrrcmdb3:/tmp #
+=============================confluence page==========================================
+1-	https://atc.bmwgroup.net/confluence/display/IAAS18/5.15.15+Rootssh+not+working 
+2-	https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.39+Network+Management+IP+Swap
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.10.2.2+MDADM+Tips%2C+Problems+and+Solutions ---MD Devices 
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.4+SLES12+In-Place+Upgrade
+https://bsswiki.muc/tiki-index.php?page=bss_unix_lnux_howto_package_migration-wiki page cluster migration to new node
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=635320679 ------MR update on SLES 11SP4
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.4.5.12+VxVM+Reduce
+You can visit following link for PAM Authentication:
+                Document: https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=648367089
+                Configuration Check: https://roma-prod.bmwgroup.net/
+                Logon to CyberArk Solution: https://pam.bmwgroup.net/PasswordVault
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/3.7.2.10+Reserve+IP 
+and
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.12+How+to+reserve+an+IP+in+the+CMDB 
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=621877912-------5.13.36 Xen FARM CLEANUP/DISK CONSOLIDATION
+=======================================================================================
+[?16-?08-?2020 18:10] Szoecs Janos, (Janos.Szoecs@partner.bmw.de): 
+To explain, what is happening:
+The package did not start, because a disk was missing from the backup filesystems both mirrors. After a long investigation, it turned out,
+ that this disk was only assigned to the partnernode, but not lpbkrrcmdb3 .
+I talked to a Colleague at SAN, and i made the visibility request for this node. 
+Once that ticket is done, we can start the filesystem and the packate (at least i phope so)
+[?16-?08-?2020 18:11] Arora Sanjeev, (Sanjeev.Arora@partner.bmw.de): 
+Thanks Janos to find root cause .....OR we were stuck badly
+[2:59 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de)
+    user : iaas-unix-hw@list.bmw.com
+?[2:59 PM] Soevenyhazi Lorand, (Lorand.Soevenyhazi@partner.bmw.de)
+    pw : klup9tap_bri@AUNG
+
+=================
+Requesting and Configuring NFS Shares on Unix Systems:  https://atc.bmwgroup.net/confluence/display/LINUX/Requesting+and+Configuring+NFS+Shares+on+Unix+Systems
+# vxplex -g dgname att volumename plexname
+
+#vxplex -g mydg att vol01 vol01-02
+
+
+If the volume is not in use
+If the volume is not in use (not ENABLED or DISABLED), use the following command to re-enable the plex for use:
+
+For example, to re-enable a plex named vol01-02 in the disk group, mydg, enter:
+
+#vxmend -g dgname on plexname
+
+# vxmend -g mydg on vol01-02
+
+for x in $(vxdg -q list|awk {'print $1'});do echo -n $x " "; vxdg -q list $x|grep version;done ---DG version 
+#hagrp -freeze pgtpcs00 -persistent
+#hagrp -freeze igtics10 -persistent
+===========
+Assigned Group name : sap-ext05-global
+==========
+CRQ000001521339 || TAS000005056070 (Oracle Team Task)
+
+[?10-?10-?2020 17:39] Kamana Santosh, (Santosh.Kamana@partner.bmw.de): 
+oracle-ext03:gsp:2nd -- > GSP
+oracle-ext03:gma:2nd  ---> GMA
+oracle-ext03:esp:2nd   ---> ESP
+assignee organization : paas:accenture 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.4+SLES12+In-Place+Upgrade
+==================
+[Yesterday 9:37 PM] Rajpal Jitender, (Jitender.Rajpal@partner.bmw.de)
+    
+rootscp VMC_Parallel_stop_start.sh lp01xen21:/var/tmp
+
+BMW Helpdesk - > 000 49 89 382 55455
+
+BMW  MOD - >  000 49 89 382 77911
+
+Matrix MOD / Hotline.  -- > 000 49 89 589 395499 / 000 49 89 589 395500
+
+============================================
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ downtime -a -h 4 -c "TAS000004970439" lp02wdp01.bmwgroup.net
+Argument: lp02wdp01.bmwgroup.net
+[1603550185] SCHEDULE_HOST_DOWNTIME;lp02wdp01.bmwgroup.net;1603550185;1603564585;1;0;14400;remote;TAS000004970439
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $ downtime -a -h 4 -c "TAS000004970439" lp02wdp02.bmwgroup.net
+Argument: lp02wdp02.bmwgroup.net
+[1603550206] SCHEDULE_HOST_DOWNTIME;lp02wdp02.bmwgroup.net;1603550206;1603564606;1;0;14400;remote;TAS000004970439
+[INSTSERV][qxz12n2][lpinstiaas01] ~ $
+=====================
+vxdctl enable
+vxdisk scandisks
+vxvol -g dgpldb131db startall
+vxprint -ht | grep -i deta
+vxprint -ht | grep -i fail
+vxtask list
+================
+hagrp -dep
+hares -display tratprisma_global_tratprisma_redo1_mount
+vxdg import dgtratprismaredo1
+vxdg import dgtratprismaredo2
+mount -t vxfs /dev/vx/dsk/dgtratprismaredo1/lvredo1 /global/tratprisma/redo1
+fsck -t vxfs -o full -y /dev/vx/rdsk/dgtratprismaredo1/lvredo1
+fsck -t vxfs -o full -y /dev/vx/rdsk/dgtratprismaredo1/lvredo2
+fsck -t vxfs -o full -y /dev/vx/rdsk/dgtratprismaredo2/lvredo2
+hagrp -offline tratprisma -sys lpdbpri9
+hagrp -online tratprisma -sys lpdbpri9
+=========================
+ /opt/pbis/bin $ ./find-user-by-name --level 1 qxr2883
+======================
+vxdisk list |grep -i fail;vxprint |grep -i deta;sh /tmp/vxedit.sh; sh /tmp/vxplex.sh;vxdisk list |grep -i fail
+
+san_shortinfo |egrep -i "0E05|0E08|0E09|0E0A|0E0B|0E0C|0E0D|0E0E|0E0F|0E10|0E11|0E12|0E13|0E14|0E15|0E16|0E17|0E18|0E19|0E1A|0E1B|0E1C|0E1D|0E1F|0E07|0E06|0E1E|0E25|0E26|0E27|0E28|0E29|0E3E|0E3F|0E2A|0E2B|0E41|0E42|0E43|0E44|0E45|0E46|0E47|0E48|0E49|0E4A|0E4B|0E4C|0E4D|0E4E|0E4F|0E20|0E21|0E22|0E23|0E2C|0E40|0E2D|0E2E|0E2F|0E30|0E31|0E32|0E33|0E34|0E35|0E36|0E37|0E38|0E39|0E3A|0E3B|0E3C|0E3D|0E24" |wc -l
+#1597388726
+san_shortinfo | egrep -i  "0E05|0E08|0E09|0E0A|0E0B|0E0C|0E0D|0E0E|0E0F|0E10|0E11|0E12|0E13|0E14|0E15|0E16|0E17|0E18|0E19|0E1A|0E1B|0E1C|0E1D|0E1F|0E07|0E06|0E1E|0E25|0E26|0E27|0E28|0E29|0E3E|0E3F|0E2A|0E2B|0E41|0E42|0E43|0E44|0E45|0E46|0E47|0E48|0E49|0E4A|0E4B|0E4C|0E4D|0E4E|0E4F|0E20|0E21|0E22|0E23|0E2C|0E40|0E2D|0E2E|0E2F|0E30|0E31|0E32|0E33|0E34|0E35|0E36|0E37|0E38|0E39|0E3A|0E3B|0E3C|0E3D|0E24"
+san_shortinfo | grep -i tlswsl03 |grep -i dgtlswsl03bkup
+#1597389850
+san_shortinfo | grep -i tlswsl03 |grep -i dgtlswsl03bkup | wc -l
+san_shortinfo | egrep -i  "0E05|0E08|0E09|0E0A|0E0B|0E0C|0E0D|0E0E|0E0F"
+#1597391254
+san_shortinfo | egrep -i  "0E05|0E08|0E09|0E0A|0E0B|0E0C|0E0D|0E0E|0E0F"|wc -l
+#1597391263
+san_shortinfo | grep -i tlswsl03 |grep -i dgtlswsl03bkup | wc -l
+#1597391375
+san_shortinfo | egrep -i  "0E05|0E08|0E09|0E0A|0E0B|0E0C|0E0D|0E0E"|wc -l
+#1597391401
+san_shortinfo | grep -i tlswsl03 |grep -i dgtlswsl03bkup | wc -l
+#1597392303
+vxctl migratedg dgtlswsl03bkup 0E05,0E08,0E09,0E0A,0E0B,0E0C,0E0D,0E0E
+#1597392359
+vxctl migratedg dgtlswsl03bkup 0E05,0E08,0E09,0E0A,0E0B,0E0C,0E0D,0E0E
+#1597393296
+vxctl migratedg dgtlswsl03bkup 10930,0E05,0E08,0E09,0E0A,0E0B,0E0C,0E0D,0E0E 10925,0E05,0E08,0E09,0E0A,0E0B,0E0C,0E0D,0E0E
+
+hagrp -dis tlswsl03
+#1604358304
+hagrp -display tlswsl03
+#1604358329
+df -h
+#1604358423
+cat /etc/llthosts
+##############--- 20201103.000943 ---##############
+#1604358590
+hagrp -list
+#1604358609
+hagrp -dep tlswsl03
+#1604358631
+hagrp -resources tlswsl03
+#1604358683
+hares -display tlswsl03_db_mount
+#1604358701
+ls -l /dev/vx/dsk/dgtlswsl03db/lvdb
+#1604358724
+hares -display tlswsl03_db_mount
+#1604358763
+vxdg list
+#1604358791
+vxdisk -o alldgs list | grep dgtlswsl03db
+#1604358796
+vxdisk -o alldgs list
+#1604358831
+vxdisk -o alldgs list | grep dgtlswsl03
+hares -state | grep tlswsl03
+#1604359266
+hares -state | grep tlswsl03| grep lpdbsws9
+#1604359311
+hares -display tlswsl03_dgtlswsl03db
+#1604359344
+hares -dep tlswsl03_dgtlswsl03db
+#1604359374
+hagrp -resources tlswsl03
+#1604359725
+for i in `hagrp -resources tlswsl03`; do hares -display $i ;done
+#1604359794
+for i in `hagrp -resources tlswsl03`; do echo "resource " ; echo $i ;echo "=======";hares -display $i ;done
+#1604360454
+vxdisk -o alldgs list | grep dgtlswsl0
+#1604360487
+vxdisk -o alldgs list | grep dgtlswsl03
+#1604360600
+san_shortinfo
+#1604360724
+cd /etc/vx/cbr/bk/
+#1604360727
+ls -ltr
+#1604360747
+cd dgtlswsl03db.1317024185.45.lpswsd6
+#1604360749
+ll
+#1604360773
+file HITACHI%5FOPEN-V%5F17E45%5F090A-page83-60060e80167e450000017e450000090a
+vxdg list dgtlswsl03db2
+#1604361025
+vxdg list dgtlswsl03db
+#1604361038
+cd ..
+#1604361039
+ll
+#1604361050
+vxdg list dgtlswsl03bkup
+#1604361063
+vxdg list dgoracle_lpdbsws9
+#1604361098
+vxdisk -o alldgs list | grep dgtlswsl03
+#1604361112
+vxdisk list hitachi_vspg1k0_0e0a
+#1604361287
+cd
+#1604361313
+for i in `hagrp -resources tlswsl03`; do echo "resource " ; echo $i ;echo "=======";hares -display $i |grep dgtlswsl03 ;done
+#1604361369
+for i in `hagrp -resources tlswsl03`; do echo "resource " ; echo $i ;echo "=======";hares -display $i |grep DiskGroup ;done
+#1604361968
+vxprint -htv
+#1604362027
+vxdisk -o alldgs list | grep dgtlswsl03
+============
+Hi,
+Das Timeout für das Ressource wird immer vom /lfs/opt/veritas_helpers/vcs_set_parameters.pl gesetzt:
+
+# hatype -modify Application OnlineTimeout 1800
+# hatype -modify Application OfflineTimeout 1800
+lp01d61:~ # hatype -display Application | egrep lineTimeout
+Application  OfflineTimeout         1800
+Application  OnlineTimeout          1800
+lp01d61:~ #
+
+Habt ihr mir Beispiele, wo es nicht funktionierte? 
+I did the following steps in order to re-assign the node to EMEA Rudder Master (via EMEA SLES12 Relay):
+
+[INSTSERV][qxu8695][lpinstiaas01] ~ $ rudderctl seed --env=BSS12/EMEA --polserv=cm-relay-bss-sles12-emea.bmwgroup.net --force_polserv --verbose --verbose --hostname=lpxentpg015.bmwgroup.net
+
+==
+lp07d29:~ # mount -t vxfs /dev/vx/dsk/dgdbipm1w7bkup/lvbkup /global/dbipm1w7/bkup
+UX:vxfs mount.vxfs: ERROR: V-3-20012: not a valid vxfs file system
+UX:vxfs mount.vxfs: ERROR: V-3-24996: Unable to get disk layout version
+lp07d29:~ #
+---------------------------===================
+hastatus -sum
+df -hT
+df -hT | grep -i tdpalt79
+ping -c 4 tdpalt79
+nslookup tdpalt79
+ifconfig | grep -i 172.25.195.62
+cd /etc/sysconfig
+cd network
+ip add
+ip add | more
+ls -l *bond0*
+cat ifcfg-bond0
+ifconfig -a
+ls -l *bond0*
+cp -p ifcfg-bond0 old.ifcfg-bond0
+vi ifcfg-bond0
+cat ifcfg-bond0
+wicked ifup bond0
+ifconfig | grep -i 172.25.195.62
+ping 172.25.195.62
+ping tdpalt79
+history
+lt34d07:/etc/sysconfig/network 
+=================
+We have a BMW official site : https://translator.bmwgroup.net/ to convert German language notes in to English Language. 
+Please us this link to translate and fulfill the ticket requirements. 
+
+Even after translating we are not clear on the user requirements you need to contact user over skype/e-mail/ if possible over phone to get the required information. 
+
+We will not Cancel or put in Pending error the ticket if its in German 
+
+====================rudder issue =============
+sh -c "/var/rudder/cfengine-community/bin/cf-agent" -f failsafe.cf ; "/var/rudder/cfengine-community/bin/cf-agent
+=============================================
+To run the utility:
+
+# cd /opt/VRTSspt/VRTSexplorer
+# ./VRTSexplorer
+===================on lpdebug01 file==============
+cd /global/debug/data/tmp
+chmod 755 vmcore dmesg.txt
+chmod 755 scc_lptlp29_201230_1539.txz
+ls -lrt
+mv vmcore lptlp29_vmcore
+ls -lrt
+ftpupload.sh --help
+ftpupload.sh -n = novell lptlp29_vmcore
+ls -lrt
+ftpupload.sh -n = novell scc_lptlp29_201230_1539.txz
+ftpupload.sh -n = novell dmesg.txt
+ftpupload.sh -v/incoming = veritas dmesg.txt
+ls -lrt
+vmcorefile lptlp29_vmcore
+cd /root
+ls -lrt
+cat veritas-cred 
+mkdir /global/debug/data/workdir/PBI000000384233
+chmod 777 -R /global/debug/data/workdir/PBI000000384233
+====================confluence page sectio======================
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=1017112786
+cmdb li19sfintra02 -x | egrep 'Server|country|location|rack'
+Arvind K Soni
++91-9811604029
++91-9958298383
+As long as the regular number +49 382 77911 is not working (please try this always first) you may contact me directly via +49 382 10768.
+FYI, issues with the UNIX MOD number are solved since ca. 16:00 CET, you can call the UNIX MOD via +49 89 382 77911 as always.
+==================
+sudo Management
+===================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.27+HowTo+-+Sudo+Management
+==========CMDB UPDATE=====
+https://atc.bmwgroup.net/confluence/display/IAAS18/4.7.1+Update+Farm+Servers
+=============================
+---------------------------===================
+for i in `lsof /lfs/oracle| awk '{print $2}'`;do kill -9 $i;done
+for i in `lsof /lfs/oracle_audit|awk '{print $2}'`;do kill -9 $i;done
+for i in `lsof /lfs/oracle_audit| awk '{print $2}'`;do kill -9 $i;done
+for i in `lsof /lfs/oracle_audit| awk '{print $2}'`;do kill -9 $i;done
+https://atc.bmwgroup.net/confluence/display/IAAS18/Steps+to+Perform+Veritas+Package+Upgrade+and+MR+Update
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.6.1.9+VCS+Remove+Cluster+Package
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.9+Migration+VCS+Cluster+Package
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.15.1+AD+Client+PBIS
+[?12-?01-?2021 20:34] Soraganvi Sanjiv, (Sanjiv.Soraganvi@partner.bmw.de): 
+hi 
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=1062830573 
+in place upgrade -manual 
+ os_linux_cluster_veritas_check_integrity
+qqnagio@lpnagserv2:~> /omd/sites/os_linux/local/lib/nagios/plugins/check_vcs_cluster.pl -n lpdbdwh01.bmwgroup.net                                                                                       OK - VCS CONFIG: files are identical :-)     
+####
+=====================================
+https://atc.bmwgroup.net/confluence/x/FzYYEg
+
+https://atc.bmwgroup.net/confluence/x/dygWH
+========================
+AD login issue and how to troubleshoot and address the issue are documented in the confluence link and same document is updated with the server login issue with AD credentials 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.15.1+AD+Client+PBIS
+
+We have compiled a table to show how access will change as of tomorrow for accessing all the production install servers!
+
+https://atc.bmwgroup.net/confluence/display/PAM2017/Go+Live+Blog%3A+Linux#GoLiveBlog:Linux-NEW!!:LinuxRolloutWave8
+
+Please have an overview of it, and familiarize yourself with the psmp connection string, which is always a good thing to know.
+
+Please find confluence document contains ITSM service group details of other support team (SAN, USSL, NOC, backup) 
+https://atc.bmwgroup.net/confluence/display/LINUXZA/OPTIS+Service+groups
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.17.6+PBI+Guidelines+for+CDC
+https://apexpgma.bmwgroup.net/ords/f?p=843
+==============================
+Please find the netbackup confluence link 
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.25+HowTo+-+Upgrade+from+Netbackup+7.7.3+to+Netbackup+8.2
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.9+SLES12+Netbackup+Configuriation
+https://atc.bmwgroup.net/confluence/display/IAAS18/SW-OSBasis-Netbackup+Client
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.9.4.1+Netbackup+Keyfile+Error+-5940
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.4.6+BMW-CFG-netbackup-client-sles11
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.8.11+SLES12+ORACLE+Configuration
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.9.1+Backup+Routing+AND+bp.conf
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.9.6+Backup+IP+Address+Change
+https://atc.bmwgroup.net/confluence/display/IAAS18/12.6.5+Backup+Firewall+Adjustments
+https://atc.bmwgroup.net/confluence/display/IAAS18/6.5.3+OS+Install+Final+Checklist
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.11+POST+Install+Checks
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.9+Backup+and+Restore
+https://atc.bmwgroup.net/confluence/display/NETBACKUP/Troubleshooting+Backup+Client+Connection+Problems 
+lppbis01:/root # /global/pbis/bin/createmapping -s lp05ktngd3vm -s lp05ktb3x3vm -r gu_tasteit_int -r gu_tasteit_provider -r gu_adm_tasteit_kalttest  -t noJiraissue -a q160884
+you may find more confluence document when you search with netbackup keyword 
+======hardware scanner related=============
+https://atc.bmwgroup.net/confluence/display/IAAS18/604+HARDWARE+SCANNER+Operations+Manual 
+===========how to all alias -IP===============
+======================Sudo Management=======================
+https://atc.bmwgroup.net/confluence/x/DPWUMw           (probably not in "copy" section, add tagging --> done)
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6+Sudo-management  
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6.2+Sudo-management+operations  
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6.3+Sudo+Management+Server+Installation
+https://atc.bmwgroup.net/confluence/x/DPWUMw 
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6+Sudo-management 
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6.2+Sudo-management+operations  
+https://atc.bmwgroup.net/confluence/display/IAAS18/10.6.3+Sudo+Management+Server+Installation 
+
+PBI /PKE ---NEW PROCESS-:  https://atc.bmwgroup.net/confluence/x/vCYHVg
+=======================================================================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management
+manual MR  update
+
+==============================CDC ======================================
+2.	Special Administrator access for CDC during High Priority Security Incidents. This is a Security Emergency in order to allow the CDC specialists to access any Linux server under the responsibility of FG-840 to troubleshoot and debug directly. 
+During this event, Linux MOD has to be contacted, made aware of this requirement and he will need to confirm the situation and the Incident number.
+
+Confluence Link on the same : https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=1219654046
+
+================================
+https://atc.bmwgroup.net/confluence/x/OwVYQg
+@Javier: 
+SuSE:
+https://kb.cert.org/vuls/id/794544
+https://www.suse.com/de-de/support/kb/doc/?id=000019841 
+https://www.suse.com/security/cve/CVE-2021-3156/
+https://bugzilla.suse.com/show_bug.cgi?id=1181090 
+=========================
+platon ITEE April'2021
+https://teams.microsoft.com/l/file/FBE53BD4-7DA7-45B8-823B-ECE327783078?tenantId=ce849bab-cc1c-465b-b62e-18f07c9ac198&fileType=xlsx&objectUrl=https%3A%2F%2Fbmwgroup.sharepoint.com%2Fteams%2FITEEPlatonFileExchange%2FFreigegebene%20Dokumente%2FGeneral%2FInfrastructure_LINUX_A-P_Change_Reservation.xlsx&baseUrl=https%3A%2F%2Fbmwgroup.sharepoint.com%2Fteams%2FITEEPlatonFileExchange&serviceName=teams&threadId=19:88d048a51c574354a8fe83b8701e487b@thread.tacv2&groupId=1213b9df-0356-4132-b94e-ffb7e741cd14 
+https://cmdbp.bmwgroup.net/
+==========================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.15+Troubleshooting
+===========================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.3.2+Setup+Cluster+Resource+Groups+in+CMDB
+=========================
+https://atc.bmwgroup.net/confluence/display/IAAS18/check_btrfs  
+===============================================
+
+How frequently the machine get HUNG. Is that its getting HUNG frequently or exact at certian period of time between 9 to 12 some thing like that.
+what is applicaiton that is running on that machine.
+what is the CPU and memory assigned on that virutal machine.
+=============daily news letter====
+1.	BMW requested on, not to directly contact Consalco team individuals during the ITEE activity as we mentioned their contact details yesterday Daily Newsletter. 
+BMW Internal will be assisting us on the same. Final decision yet to come.
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management 
+HW-Call-Confluence, Vendor details: https://atc.bmwgroup.net/confluence/x/FzYYEg
+=================================
+for i in `cat serverlist` ; do echo $i ;rootssh $i su -c "~qqnagio/prod/independent/os/check_lastbackup" qqnagio;done
+================================
+MR Failed
+Confluence page updated : 
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management 
+Linux Task Templates	https://atc.bmwgroup.net/confluence/display/COMPUTE/NTT+Task+Template+List+-+Linux
+https://atc.bmwgroup.net/confluence/x/3FvMMw
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.10+SLES12+Patch-+and+Firmware+Management 
+===
+https://atc.bmwgroup.net/confluence/pages/resumedraft.action?draftId=1465579379&draftShareId=7c08e49a-171d-4959-8ebb-4ecb07c1efbe&
+https://atc.bmwgroup.net/confluence/display/IAAS18/VxVM-Disk+%28Array%29+Identification
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=440204263 hardware service confluence page 
+Local Field Services confluence page link
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.6.1.13+standalone+package+move+to+standalone 
+TAS000005870657----standalone+package+move+to+standalone 
+======================================================
+https://atc.bmwgroup.net/confluence/display/IAAS18/7.4+Password+delivery+process+for+the+Linux+Operations+team
+
+qqnagio@lpbkdb57:~/prod/local/lib/nagios/plugins> ./check_vcs
+Use of uninitialized value in pattern match (m//) at ./check_vcs line 91.
+Use of uninitialized value in sprintf at ./check_vcs line 92.
+OK - cluster working properly (2 systems, 8 groups, 4 links)
+
+=======================================================
+Please refer to below link In confluence :
+https://atc.bmwgroup.net/confluence/display/IAAS18/Create+Resource+Group+for+a+Package+in+CMDB
+======================================================
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.13.9+Migration+VCS+Cluster+Package 
+TAS000005165433 
+========================================================
+https://atc.bmwgroup.net/confluence/display/IAAS18/4.1.38+check+po+vm+xenconfig ---partner flag
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=621877912-------5.13.36 Xen FARM CLEANUP/DISK CONSOLIDATION-disk cleanup
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?spaceKey=IAAS18&title=5.13.9+Migration+VCS+Cluster+Package
+5.13.9 Migration VCS Cluster Package
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=654411597
+5.6.1.18 VCS Disk Migration (LSAN) – Mirrored Volumes
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?spaceKey=IAAS18&title=5.1.4+SLES12+In-Place+Upgrade
+5.1.4 SLES12 In-Place Upgrade
+5.1.18 SLES12 In-Place Upgrade (MANUAL)
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=1062830573
+https://wuss.bmwgroup.net/#x0=Home&x1=Start&subNavId=10&topNavId=1&langId=en----BMW SELF  SERVICE PORTAL
+task template
+1-	List of available standard task-templates can be found under https://atc.bmwgroup.net/confluence/x/OwiCGw.
+2-	Use the template server-unix-std:global|06|035s-nfs-mount-filesystem AP (and mention your FS and action unmount).
+3-	Mention actual start and end date/time.
+4-	Mention schedule start/end date/time.
+5-	Make sure there is 4 hours gave between actual start and schedule end date/time.
+6-	Once the Task created, assign to assignee organization: iaas:ntt Assignee Group: os-unix-std-06:global:2nd
+
+============================================================
+RDP OF WINDOWS
+=======================
+Click the Start button.
+Click Run...
+Type “mstsc” and press the Enter key.
+Next to Computer: type in the IP address of your server.
+Click Connect.
+If all goes well, you will see the Windows login prompt.
+================
+To implement Task, Please provide approval from FG-832. Mail Approval need to attach with Task.
+======
+If you need root permissions on your server, please get the approval in written form (e-mail) or have your change approved in ITSM suite by one of the BMW internal server operations responsible.
+If you don’t know who the  BMW internal server operations responsible is, please write to DL-linux-customization-requests (linux-customization-requests@list.bmw.com) explaining in detail why you need root permissions on what servers and what exactly you plan to do with it. Only if a member of this DL approved you can raise a task to grant you root permissions. 
+=============================libvirtd error resolved================
+service libvirtd start
+systemctl start libvirtd
+systemctl start libvirt
+systemctl status libvirtd
+cd
+vmc unlock lpsbdb006vm
+vmc umount lpsbdb006vm
+vmc start lpsbdb006vm
+virsh destroy lpsbdb006vm
+systemctl start libvirtd
+vmc start lpsbdb006vm --nohostcheck
+vmc list lpsbdb006vm================
+=======================================
+#!/bin/bash
+for i in `cat bk2`
+do
+##echo "$i=`cmdb $i | grep -i "Instserv"`"
+echo "$i=`cmdb $i | grep -i "farm name"`"
+done
+========================
+check_rid.pl <storM ticketNO> |grep <Target SAN_ID>
+Exp: check_rid.pl 375121 |grep 10567 
+=========================
+lp19xen21:~ # san_shortinfo | egrep -v "10514|10520"
+DMDev   | RAW   CU:LDEV PORT SERIAL     SIZE | RAW   CU:LDEV PORT SERIAL     SIZE | MDName                 VGName
+--------|-----------------------------------|-----------------------------------|-  -----------------------------------------
+dm-18   | sdv   01:F1   7C   90246    57622 | sdeb  01:F1   8C   90246    57622 | -                      -
+dm-19   | sdw   01:F2   7C   90246    14405 | sdec  01:F2   8C   90246    14405 | -                      -
+dm-23   | sdz   02:0E   7C   90246    57622 | sdef  02:0E   8C   90246    57622 | -                      -
+dm-1    | sde   01:F1   7C   90346    57622 | sddk  01:F1   8C   90346    57622 | -                      -
+dm-5    | sdh   01:FF   7C   90346    14405 | sddn  01:FF   8C   90346    14405 | -                      -
+dm-6    | sdi   02:0E   7C   90346    57622 | sddo  02:0E   8C   90346    57622 | -                      -
+lp19xen21:~ #
+
+RG-18717--- pkgidipscw0.bmwgroup.net---ltsbdbs03.bmwgroup.net/04
+RG-18718--pkgpflxte1_ltsbdbs08_TAS000006654765||10.30.36.58
+RG-18719--TAS000006649362_lpdbs119_pkgediacp.bmwgroup.net

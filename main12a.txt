@@ -1,0 +1,22 @@
+
+mount /dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit /DLVUPGRADE;for DLV in 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done 
+
+umount /DLVUPGRADE 
+
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d66/lvoracleaudit | egrep version 
+
+
+
+
+///////////////
+
+mount /dev/vx/dsk/dgoracle_lp01d65/lvoracle /DLVUPGRADE;for DLV in 10 11 12 13 14 15 ;do vxupgrade -n $DLV /DLVUPGRADE && sleep 3 && sync -f /DLVUPGRADE;done 
+
+umount /DLVUPGRADE 
+
+/opt/VRTS/bin/fstyp -v /dev/vx/dsk/dgoracle_lp01d65/lvoracle | egrep version 
+
+
+for i in `lsof /lfs/oracle |awk '{print $2}'`;do kill -9 $i;done
+
+

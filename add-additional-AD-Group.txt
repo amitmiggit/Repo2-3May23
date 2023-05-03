@@ -1,0 +1,3 @@
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.13.6+SLES12+How+to+add+additional+AD+Group 
+Misra Amit, (Amit.Misra@partner.bmw.de) 12:05: 
+check_SLES12_account.sh liapp601 

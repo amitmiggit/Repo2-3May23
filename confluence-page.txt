@@ -1,0 +1,30 @@
+a.	Veritas Volume Manager
+a-5.4.5.15 Failed LUNs on DB Servers related with drl logs- Back to Online
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.4.5.15+Failed+LUNs+on+DB+Servers+related+with+drl+logs-+Back+to+Online
+b.	SAP HANA
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.2.7.6.3+Failed+Disks+on+SAP+Hana+server
+
+c-https://atc.bmwgroup.net/confluence/display/IAAS18/5.4.5.16+Failing+Disk+and+Failed+Disk+Issues
+
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.4+SLES12+In-Place+Upgrade 
+
+d.	Xen-Farms 
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.10.2.2+MDADM+Tips%2C+Problems+and+Solutions 
+ 
+MR UPgrade----
+https://atc.bmwgroup.net/confluence/pages/viewpage.action?pageId=649667884
+=============
+Split Mode cluster in DRAFT Action 
+https://atc.bmwgroup.net/confluence/pages/resumedraft.action?draftId=1074449503&draftShareId=d3e4e999-57bc-4a71-be5e-3c45b1c57fcf&
+===========
+IP Addition on standalone server to Standalone server
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.6.1.13+standalone+package+move+to+standalone
+=============
+VCS PAackge upgrades and MR Update
+https://atc.bmwgroup.net/confluence/pages/resumedraft.action?draftId=1087968076&draftShareId=61b18be6-e08c-446e-a932-c7b10510d03c&
+===================
+In PLace Upgrade
+https://atc.bmwgroup.net/confluence/display/IAAS18/5.1.4+SLES12+In-Place+Upgrade
+=====================
+https://atc.bmwgroup.net/confluence/display/IAAS18/Steps+to+Perform+Veritas+Package+Upgrade+and+MR+Update
+Steps to Perform Veritas Package Upgrade and MR Update
